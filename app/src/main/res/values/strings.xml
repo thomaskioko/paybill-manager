@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Paybill Manager</string>
+
+    <!-- Tabs Titles -->
+    <string name="tab_title_paybills">PayBills</string>
+    <string name="tab_title_transaction_history">Transaction History</string>
+
 </resources>
