@@ -1,13 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
 
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="android:windowTranslucentStatus">true</item>
 
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowActionBar">false</item>
@@ -17,11 +15,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-    </style>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">@color/drawerArrowColor</item>
-    </style>
 
+    </style>
 </resources>
