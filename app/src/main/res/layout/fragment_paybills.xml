@@ -5,19 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.thomaskioko.paybillmanager.fragments.PaybillsFragment">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fbAddPayBill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:src="@android:drawable/ic_media_play"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

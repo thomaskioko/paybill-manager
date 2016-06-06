@@ -3,4 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Image Dimensions -->
+    <dimen name="image_view_normal">80dp</dimen>
+
+    <dimen name="text_view_medium">18sp</dimen>
+    <dimen name="text_view_xlarge">28sp</dimen>
 </resources>
