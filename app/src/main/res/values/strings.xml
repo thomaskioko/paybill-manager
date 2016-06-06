@@ -4,5 +4,15 @@
     <!-- Tabs Titles -->
     <string name="tab_title_paybills">PayBills</string>
     <string name="tab_title_transaction_history">Transaction History</string>
+    <string name="image_view_description">Image view description</string>
+
+    <!-- TextViews -->
+    <string name="add_your_first_paybill">Add your first paybill</string>
+
+    <!-- EditText Hints -->
+    <string name="hint_paybill_name">Paybill Name</string>
+    <string name="hint_paybill_number">Paybill Number</string>
+    <string name="hint_account_number">Account Number</string>
+
 
 </resources>
