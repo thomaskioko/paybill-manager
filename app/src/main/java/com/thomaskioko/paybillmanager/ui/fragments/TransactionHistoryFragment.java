@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.fragments;
+package com.thomaskioko.paybillmanager.ui.fragments;
 
 
 import android.os.Bundle;
