@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager;
+package com.thomaskioko.paybillmanager.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,12 +7,17 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
-import com.thomaskioko.paybillmanager.fragments.PaybillsFragment;
-import com.thomaskioko.paybillmanager.fragments.RecyclerViewFragment;
+import com.thomaskioko.paybillmanager.R;
+import com.thomaskioko.paybillmanager.models.PaybillCategory;
+import com.thomaskioko.paybillmanager.ui.fragments.PaybillsFragment;
+import com.thomaskioko.paybillmanager.ui.fragments.RecyclerViewFragment;
+
+import java.util.UUID;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setupMaterialViewPager();
+
+        PaybillCategory paybillCategory = new PaybillCategory("1", "Utilities", "R.id");
+        paybillCategory.save();
+
     }
 
     /**

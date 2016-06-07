@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.thomaskioko.paybillmanager.AddPaybillActivity;
+import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
 import com.thomaskioko.paybillmanager.R;
 
 import java.util.List;

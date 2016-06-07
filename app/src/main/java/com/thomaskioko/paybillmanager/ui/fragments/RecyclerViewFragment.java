@@ -1,5 +1,4 @@
-package com.thomaskioko.paybillmanager.fragments;
-
+package com.thomaskioko.paybillmanager.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.adapter.PaybillRecyclerViewAdapter;
+import com.thomaskioko.paybillmanager.adapter.TestRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,30 +20,22 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Fragment that allows a user to add paybills and stores them in SQLite.
- *
  * @author Thomas Kioko
  */
-public class PaybillsFragment extends Fragment {
+
+public class RecyclerViewFragment extends Fragment {
 
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
-
     private List<Object> mContentItems = new ArrayList<>();
 
-    /**
-     * Method to instantiate the fragment.
-     *
-     * @return Fragment instance
-     */
-    public static PaybillsFragment newInstance() {
-        return new PaybillsFragment();
+    public static RecyclerViewFragment newInstance() {
+        return new RecyclerViewFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_paybills, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recyclerview, container, false);
     }
 
     @Override
@@ -59,12 +50,11 @@ public class PaybillsFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        RecyclerView.Adapter mAdapter = new PaybillRecyclerViewAdapter(getActivity(), mContentItems);
+        RecyclerView.Adapter mAdapter = new TestRecyclerViewAdapter(mContentItems);
 
         mRecyclerView.setAdapter(mAdapter);
 
-        //Add object to {@link #mContentItems}
-        for (int i = 0; i < 1; ++i) {
+        for (int i = 0; i < 50; ++i) {
             mContentItems.add(new Object());
         }
         mAdapter.notifyDataSetChanged();
