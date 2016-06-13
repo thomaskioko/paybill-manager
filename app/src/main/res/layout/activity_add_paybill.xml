@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:paybillmanager="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <!-- HeaderLayout -->
     <LinearLayout
@@ -29,7 +31,7 @@
             android:layout_marginTop="60dp"
             android:fontFamily="sans-serif-thin"
             android:gravity="start"
-            android:text="Add Paybill"
+            android:text="@string/text_add_paybill"
             android:textColor="@color/white"
             android:textSize="@dimen/text_view_xlarge" />
 
@@ -41,71 +43,132 @@
             android:layout_marginTop="1dp"
             android:fontFamily="sans-serif-thin"
             android:gravity="start"
-            android:paddingRight="5dp"
-            android:text="You won't have to remember them again."
+            android:text="@string/text_paybill_message"
             android:textColor="@color/white"
             android:textSize="@dimen/text_view_medium" />
     </LinearLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputPaybillName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/backGroundLayout"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:textColorHint="@color/colorPrimary"
-        android:theme="@style/TextLabel">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/backGroundLayout">
 
-        <EditText
-            android:id="@+id/etPaybillName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_paybill_name"
-            android:imeOptions="actionNext"
-            android:inputType="textPersonName" />
-    </android.support.design.widget.TextInputLayout>
+            android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputPaybillNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textInputPaybillName"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:textColorHint="@color/colorPrimary"
-        android:theme="@style/TextLabel">
+            <TextView
+                android:id="@+id/tvSelectCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/text_select_category"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/etPaybillNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_paybill_number"
-            android:imeOptions="actionNext"
-            android:inputType="number" />
-    </android.support.design.widget.TextInputLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:scrollbars="vertical" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputPaybillAccountNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textInputPaybillNumber"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:textColorHint="@color/colorPrimary"
-        android:theme="@style/TextLabel">
 
-        <EditText
-            android:id="@+id/etPaybillAccountNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_account_number"
-            android:imeOptions="actionNext"
-            android:inputType="number" />
-    </android.support.design.widget.TextInputLayout>
+            <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
 
+                <EditText
+                    android:id="@+id/etPaybillName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/ic_receipt_black_18dp"
+                    android:drawableStart="@mipmap/ic_receipt_black_18dp"
+                    android:hint="@string/hint_paybill_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/editTextAccountNumber"
+                    android:textColor="@color/black" />
+
+            </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
+
+                    <EditText
+                        android:id="@+id/editTextPaybillNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_receipt_black_18dp"
+                        android:drawableStart="@mipmap/ic_receipt_black_18dp"
+                        android:hint="@string/hint_paybill_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/editTextAccountNumber"
+                        android:textColor="@color/black" />
+
+                </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
+
+                <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
+
+                    <EditText
+                        android:id="@+id/editTextAccountNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_account_circle_black_18dp"
+                        android:drawableStart="@mipmap/ic_account_circle_black_18dp"
+                        android:hint="@string/hint_account_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="number|text"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/edit_password"
+                        android:textColor="@color/black" />
+
+                </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btnSavePayBill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_orange"
+                android:drawableEnd="@mipmap/ic_send_white_24dp"
+                android:drawableRight="@mipmap/ic_send_white_24dp"
+                android:text="@string/button_save" />
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
