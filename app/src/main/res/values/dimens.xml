@@ -6,7 +6,17 @@
 
     <!-- Image Dimensions -->
     <dimen name="image_view_normal">80dp</dimen>
+    <dimen name="image_view_small">60dp</dimen>
+    <dimen name="image_view_small_plus">40dp</dimen>
+    <dimen name="image_view_small_micro">24dp</dimen>
 
+    <dimen name="text_view_small">11sp</dimen>
     <dimen name="text_view_medium">18sp</dimen>
     <dimen name="text_view_xlarge">28sp</dimen>
+
+    <!-- Spacing-->
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_minor">8dp</dimen>
+    <dimen name="spacing_major">16dp</dimen>
+    <dimen name="spacing_massive">24dp</dimen>
 </resources>
