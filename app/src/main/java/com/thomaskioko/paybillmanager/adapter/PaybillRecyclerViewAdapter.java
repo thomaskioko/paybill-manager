@@ -7,9 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
 import com.thomaskioko.paybillmanager.R;
+import com.thomaskioko.paybillmanager.models.Paybill;
+import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
 
 import java.util.List;
 
@@ -23,82 +27,93 @@ import butterknife.ButterKnife;
  */
 public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecyclerViewAdapter.PaybillHolder> {
 
-    private List<Object> mObjectList;
-    private static final int TYPE_HEADER = 0;
-    private static final int TYPE_CELL = 1;
+    private List<Paybill> mPaybillList;
     private Context mContext;
+    private boolean mShowHeaderView;
 
     /**
      * Constructor
      *
-     * @param objectList List of Objects
+     * @param context        Application context
+     * @param paybillList    List of paybill objects
+     * @param showHeaderView {@link Boolean} Whether to display the header or not
      */
-    public PaybillRecyclerViewAdapter(Context context, List<Object> objectList) {
-        mObjectList = objectList;
+    public PaybillRecyclerViewAdapter(Context context, List<Paybill> paybillList, boolean showHeaderView) {
+        mPaybillList = paybillList;
         mContext = context;
+        mShowHeaderView = showHeaderView;
     }
 
     @Override
     public int getItemViewType(int position) {
-        switch (position) {
-            case 0:
-                return TYPE_HEADER;
-            default:
-                return TYPE_CELL;
-        }
+        return position;
     }
 
     @Override
     public int getItemCount() {
-        return mObjectList.size();
+        return mPaybillList.size();
     }
 
     @Override
     public PaybillRecyclerViewAdapter.PaybillHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view;
+        //Inflate the item view.
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item_paybill_card, parent, false);
+        return new PaybillHolder(view);
 
-        switch (viewType) {
-            case TYPE_HEADER: {
-                /**
-                 * The header view will only be visible when the user has not added any paybills to the
-                 */
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_item_empty_card_big, parent, false);
-                return new PaybillHolder(view) {
-                };
-            }
-            case TYPE_CELL: {
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_item_card_small, parent, false);
-                return new PaybillHolder(view) {
-                };
-            }
-        }
-        return null;
     }
 
     @Override
     public void onBindViewHolder(PaybillHolder holder, int position) {
-        switch (getItemViewType(position)) {
-            case TYPE_HEADER:
-                holder.btnAddBills.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mContext.startActivity(new Intent(mContext, AddPaybillActivity.class));
-                    }
-                });
-                break;
-            case TYPE_CELL:
-                break;
+
+        Paybill paybill = mPaybillList.get(position);
+
+        /**
+         * Check if the header should me displayed and hide/display the relevant view
+         */
+        if (mShowHeaderView) {
+            holder.payBillDetailLayout.setVisibility(View.GONE);
+
+            holder.btnAddBills.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, AddPaybillActivity.class));
+                }
+            });
+        } else {
+            holder.emptyLayout.setVisibility(View.GONE);
+
+            holder.tvPaybillName.setText(paybill.getPaybillName());
+            holder.tvAccountNumber.setText(mContext.getResources()
+                    .getString(R.string.placeholder_account_number, paybill.getPaybillAccountNumber()));
         }
     }
 
-
+    /**
+     * Uses a ViewHolder to describe the item view and metadata about its place within the RecyclerView.
+     */
     class PaybillHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.btnAddPayBill)
         Button btnAddBills;
+        @Bind(R.id.ivCategoryIcon)
+        ImageView ivCategoryIcon;
+        @Bind(R.id.ivCategoryEdit)
+        ImageView ivEdit;
+        @Bind(R.id.tvAccountNumber)
+        TextView tvAccountNumber;
+        @Bind(R.id.tvPaybillName)
+        TextView tvPaybillName;
+        @Bind(R.id.payBillDetailLayout)
+        RelativeLayout payBillDetailLayout;
+        @Bind(R.id.emptyLayout)
+        RelativeLayout emptyLayout;
 
+        /**
+         * Constructor
+         *
+         * @param itemView populated view
+         */
         private PaybillHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
