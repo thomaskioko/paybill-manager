@@ -1,7 +1,6 @@
 <resources>
 
-
-    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar"/>
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar" />
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
@@ -10,16 +9,12 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 
         <item name="android:windowContentOverlay">@null</item>
-        <item name="windowActionBar">false</item>
         <item name="android:fitsSystemWindows">true</item>
 
         <!-- Material Theme -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
-
     </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
@@ -27,14 +22,23 @@
         <item name="color">@color/drawerArrowColor</item>
     </style>
 
+    <!-- TextInput Layout -->
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/colorAccent</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">12sp</item>
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- Floating label style -->
+    <style name="TextAppearance.PaybillManager.FloatLabel" parent="android:Widget">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
     </style>
 
 </resources>
