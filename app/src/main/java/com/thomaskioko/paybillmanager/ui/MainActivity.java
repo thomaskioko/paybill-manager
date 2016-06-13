@@ -7,17 +7,13 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.models.PaybillCategory;
 import com.thomaskioko.paybillmanager.ui.fragments.PaybillsFragment;
 import com.thomaskioko.paybillmanager.ui.fragments.RecyclerViewFragment;
-
-import java.util.UUID;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         setupMaterialViewPager();
 
-        PaybillCategory paybillCategory = new PaybillCategory("1", "Utilities", "R.id");
-        paybillCategory.save();
-
     }
 
     /**
@@ -65,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mMaterialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                switch (position % 3) {
+                switch (position % 2) {
                     case 0:
                         return PaybillsFragment.newInstance();
                     case 1:
@@ -91,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public CharSequence getPageTitle(int position) {
-                switch (position % 3) {
+                switch (position % 2) {
                     case 0:
                         return getResources().getString(R.string.tab_title_paybills);
                     case 1:
