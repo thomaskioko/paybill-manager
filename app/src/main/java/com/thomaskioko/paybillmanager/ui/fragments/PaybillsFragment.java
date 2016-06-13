@@ -1,12 +1,13 @@
 package com.thomaskioko.paybillmanager.ui.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,14 @@ import android.view.ViewGroup;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.adapter.PaybillRecyclerViewAdapter;
-import com.thomaskioko.paybillmanager.models.PaybillCategory;
+import com.thomaskioko.paybillmanager.models.Paybill;
+import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Fragment that allows a user to add paybills and stores them in SQLite.
@@ -31,8 +33,10 @@ public class PaybillsFragment extends Fragment {
 
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
+    @Bind(R.id.fab)
+    FloatingActionButton floatingActionButton;
 
-    private List<Object> mContentItems = new ArrayList<>();
+    private boolean showHeader = false;
 
     /**
      * Method to instantiate the fragment.
@@ -54,21 +58,39 @@ public class PaybillsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        RecyclerView.LayoutManager layoutManager;
-
-        layoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(layoutManager);
+        /**
+         * Set the layout of the recyclerView
+         */
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setHasFixedSize(true);
-
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        RecyclerView.Adapter mAdapter = new PaybillRecyclerViewAdapter(getActivity(), mContentItems);
 
-        mRecyclerView.setAdapter(mAdapter);
+        //Fetch paybill items
+        List<Paybill> paybillList = Paybill.listAll(Paybill.class);
 
-        //Add object to {@link #mContentItems}
-        for (int i = 0; i < 1; ++i) {
-            mContentItems.add(new Object());
+        if (paybillList.size() == 0) {
+            showHeader = true;
+            //Hide the floating action button
+            floatingActionButton.setVisibility(View.GONE);
+
+            /**
+             * We have no paybill records. We create an empty object and add it to the list. This
+             * will allow us to display the header view.
+             */
+            Paybill paybill = new Paybill();
+            paybillList.add(paybill);
         }
+
+        RecyclerView.Adapter mAdapter = new PaybillRecyclerViewAdapter(getActivity(), paybillList, showHeader);
+        mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * Method to start {@link AddPaybillActivity}
+     */
+    @OnClick(R.id.fab)
+    void startAddPaybillActivity() {
+        startActivity(new Intent(getActivity(), AddPaybillActivity.class));
     }
 }

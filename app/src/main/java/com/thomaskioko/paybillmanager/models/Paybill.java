@@ -19,6 +19,13 @@ public class Paybill extends SugarRecord {
     private String paybillAccountNumber;
 
     /**
+     * Default constructor requried by SugarOrm to create the table
+     */
+    public Paybill() {
+
+    }
+
+    /**
      * Constructor
      *
      * @param categoryId           Category Id

@@ -14,5 +14,18 @@
     <string name="hint_paybill_number">Paybill Number</string>
     <string name="hint_account_number">Account Number</string>
 
+    <!-- Button Text-->
+    <string name="button_save">Save</string>
+    <string name="text_select_category">Select a category</string>
+    <string name="text_paybill_message">You won\'t have to remember them again.</string>
+    <string name="text_add_paybill">Add Paybill</string>
+
+    <!-- EditText Error Messages -->
+    <string name="error_message_paybill_name">Please enter a paybill name</string>
+    <string name="error_message_paybill_number">Please enter a paybill number</string>
+    <string name="error_message_account_number">Please Enter a account number</string>
+
+    <!-- String placeholders -->
+    <string name="placeholder_account_number">Account No: %1$s</string>
 
 </resources>
