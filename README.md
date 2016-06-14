@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://github.com/kioko/paybill-manager/blob/master/app/src/main/ic_launcher_web.png?raw=true" alt="Paybill-Manager"/>
+</p>
+
+
 PayBill Manager
 -------------------
 Paybill manger is a simple app that consumes [Eugine Mutai's](https://developers.google.com/experts/people/eugene-mutai) 
