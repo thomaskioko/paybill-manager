@@ -28,4 +28,8 @@
     <!-- String placeholders -->
     <string name="placeholder_account_number">Account No: %1$s</string>
 
+    <!--Menu Item Strings -->
+    <string name="menu_item_edit">Edit</string>
+    <string name="menu_item_delete">Delete</string>
+
 </resources>
