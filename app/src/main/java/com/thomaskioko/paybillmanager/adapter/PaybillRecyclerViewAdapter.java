@@ -2,8 +2,15 @@ package com.thomaskioko.paybillmanager.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -64,7 +71,7 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
     }
 
     @Override
-    public void onBindViewHolder(PaybillHolder holder, int position) {
+    public void onBindViewHolder(final PaybillHolder holder, int position) {
 
         Paybill paybill = mPaybillList.get(position);
 
@@ -86,6 +93,30 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
             holder.tvPaybillName.setText(paybill.getPaybillName());
             holder.tvAccountNumber.setText(mContext.getResources()
                     .getString(R.string.placeholder_account_number, paybill.getPaybillAccountNumber()));
+            holder.ivEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popupMenu = new PopupMenu(v.getContext(), holder.ivEdit);
+                    popupMenu.inflate(R.menu.paybill_menu);
+                    popupMenu.setGravity(GravityCompat.END);
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.menu_item_edit:
+                                    ///TODO:: Edit the record
+                                    return true;
+                                case R.id.menu_item_delete:
+                                    //TODO:: Delete the record
+                                    return true;
+                                default:
+                                    return false;
+                            }
+                        }
+                    });
+                    popupMenu.show();
+                }
+            });
         }
     }
 
@@ -108,6 +139,7 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
         RelativeLayout payBillDetailLayout;
         @Bind(R.id.emptyLayout)
         RelativeLayout emptyLayout;
+        View view;
 
         /**
          * Constructor
@@ -117,6 +149,8 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
         private PaybillHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            view = itemView;
         }
+
     }
 }
