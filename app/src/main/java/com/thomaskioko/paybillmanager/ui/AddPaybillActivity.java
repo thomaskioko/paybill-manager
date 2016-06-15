@@ -1,25 +1,41 @@
 package com.thomaskioko.paybillmanager.ui;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.adapter.CategoryRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.models.Paybill;
 import com.thomaskioko.paybillmanager.models.PaybillCategory;
+import com.thomaskioko.paybillmanager.util.GUIUtils;
+import com.thomaskioko.paybillmanager.util.OnRevealAnimationListener;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Activity to allow users to add paybills.
@@ -40,12 +56,30 @@ public class AddPaybillActivity extends AppCompatActivity {
     EditText mEditTextPaybillNumber;
     @Bind(R.id.editTextAccountNumber)
     EditText mEditTextAccountNumber;
+    @Bind(R.id.activity_contact_rl_container)
+    RelativeLayout mRlContainer;
+    @Bind(R.id.activity_contact_ll_container)
+    LinearLayout mLlContainer;
+    @Bind(R.id.activity_contact_fab)
+    FloatingActionButton mFab;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_paybill);
         ButterKnife.bind(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setupEnterAnimation();
+            setupExitAnimation();
+        } else {
+            initViews();
+        }
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -56,6 +90,22 @@ public class AddPaybillActivity extends AppCompatActivity {
                 actionBar.setDisplayHomeAsUpEnabled(true);
             }
         }
+    }
+
+    private void initViews() {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Animation animation = AnimationUtils.loadAnimation(AddPaybillActivity.this,
+                        android.R.anim.fade_in);
+                animation.setDuration(300);
+
+                mLlContainer.startAnimation(animation);
+                mLlContainer.setVisibility(View.VISIBLE);
+
+            }
+        });
 
         /**
          * Get all the categories from sugar orm ordering the then using the category name.
@@ -76,6 +126,7 @@ public class AddPaybillActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(new CategoryRecyclerViewAdapter(getApplicationContext(), paybillCategoryList));
+
     }
 
     /**
@@ -118,6 +169,130 @@ public class AddPaybillActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                /**
+                 * Override the toolbar back setting. When clicked, we want to show the display the
+                 * animation.
+                 */
+                GUIUtils.animateRevealHide(this, mRlContainer, R.color.white,
+                        mFab.getWidth() / 2,
+                        new OnRevealAnimationListener() {
+                            @Override
+                            public void onRevealHide() {
+                                backPressed();
+                            }
+
+                            @Override
+                            public void onRevealShow() {
+
+                            }
+                        });
+                break;
+        }
+        return true;
+    }
+
+    /**
+     * Method to setup the enter animation.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setupEnterAnimation() {
+        Transition transition = TransitionInflater.from(this)
+                .inflateTransition(R.transition.changebounds_with_arcmotion);
+        getWindow().setSharedElementEnterTransition(transition);
+        transition.addListener(new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                transition.removeListener(this);
+                animateRevealShow(mRlContainer);
+                mFab.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
+
+            }
+        });
+    }
+
+    /**
+     * Method to animate the view passed
+     *
+     * @param viewRoot {@link View}
+     */
+    private void animateRevealShow(final View viewRoot) {
+        int cx = (viewRoot.getLeft() + viewRoot.getRight()) / 2;
+        int cy = (viewRoot.getTop() + viewRoot.getBottom()) / 2;
+
+        GUIUtils.animateRevealShow(this, mRlContainer,
+                mFab.getWidth() / 2, R.color.colorAccent,
+                cx, cy, new OnRevealAnimationListener() {
+                    @Override
+                    public void onRevealHide() {
+
+                    }
+
+                    @Override
+                    public void onRevealShow() {
+                        initViews();
+                    }
+                });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        GUIUtils.animateRevealHide(this, mRlContainer, R.color.white,
+                mFab.getWidth() / 2,
+                new OnRevealAnimationListener() {
+                    @Override
+                    public void onRevealHide() {
+                        backPressed();
+                    }
+
+                    @Override
+                    public void onRevealShow() {
+
+                    }
+                });
+    }
+
+    /**
+     * This method calls the back button action
+     */
+    private void backPressed() {
+        super.onBackPressed();
+    }
+
+    /**
+     * Method to setup the exit animation
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setupExitAnimation() {
+        Fade fade = new Fade();
+        getWindow().setReturnTransition(fade);
+        fade.setDuration(getResources().getInteger(R.integer.animation_duration));
     }
 
 }
