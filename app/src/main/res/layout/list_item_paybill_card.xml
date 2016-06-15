@@ -38,8 +38,6 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:layout_alignRight="@+id/tvCategoryName"
-                    android:layout_alignEnd="@+id/tvCategoryName"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:contentDescription="@string/image_view_description"
@@ -48,15 +46,13 @@
 
                 <TextView
                     android:id="@+id/tvPaybillName"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/ivCategoryIcon"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_toEndOf="@+id/ivCategoryIcon"
                     android:layout_toRightOf="@+id/ivCategoryIcon"
+                    android:layout_toEndOf="@+id/ivCategoryIcon"
+                    android:layout_marginTop="15dp"
                     android:text="@string/app_name"
                     android:textSize="16sp"
                     android:textStyle="bold" />
