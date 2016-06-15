@@ -27,7 +27,7 @@ import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.adapter.CategoryRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.models.Paybill;
 import com.thomaskioko.paybillmanager.models.PaybillCategory;
-import com.thomaskioko.paybillmanager.util.GUIUtils;
+import com.thomaskioko.paybillmanager.util.AnimationTransitionUtils;
 import com.thomaskioko.paybillmanager.util.OnRevealAnimationListener;
 
 import java.util.List;
@@ -180,7 +180,7 @@ public class AddPaybillActivity extends AppCompatActivity {
                  * Override the toolbar back setting. When clicked, we want to show the display the
                  * animation.
                  */
-                GUIUtils.animateRevealHide(this, mRlContainer, R.color.white,
+                AnimationTransitionUtils.animateRevealHide(this, mRlContainer, R.color.white,
                         mFab.getWidth() / 2,
                         new OnRevealAnimationListener() {
                             @Override
@@ -245,7 +245,7 @@ public class AddPaybillActivity extends AppCompatActivity {
         int cx = (viewRoot.getLeft() + viewRoot.getRight()) / 2;
         int cy = (viewRoot.getTop() + viewRoot.getBottom()) / 2;
 
-        GUIUtils.animateRevealShow(this, mRlContainer,
+        AnimationTransitionUtils.animateRevealShow(this, mRlContainer,
                 mFab.getWidth() / 2, R.color.colorAccent,
                 cx, cy, new OnRevealAnimationListener() {
                     @Override
@@ -263,7 +263,7 @@ public class AddPaybillActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        GUIUtils.animateRevealHide(this, mRlContainer, R.color.white,
+        AnimationTransitionUtils.animateRevealHide(this, mRlContainer, R.color.white,
                 mFab.getWidth() / 2,
                 new OnRevealAnimationListener() {
                     @Override
