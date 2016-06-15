@@ -53,7 +53,7 @@ public class FloatLabelLayout extends LinearLayout {
     private static final float DEFAULT_LABEL_PADDING_RIGHT = 3f;
     private static final float DEFAULT_LABEL_PADDING_BOTTOM = 4f;
     private static final float DEFAULT_LABEL_TEXT_SIZE_MICRO = 8f;
-    private static final float DEFAULT_LABEL_TEXT_SIZE_SMALL = 12f;
+    private static final float DEFAULT_LABEL_TEXT_SIZE_SMALL = 11f;
 
     private EditText mEditText;
     private TextView mLabel;
@@ -63,7 +63,7 @@ public class FloatLabelLayout extends LinearLayout {
     private Context mContext;
 
     /**
-     * @param context Applicaiton context
+     * @param context Application context
      */
     public FloatLabelLayout(Context context) {
         this(context, null);
