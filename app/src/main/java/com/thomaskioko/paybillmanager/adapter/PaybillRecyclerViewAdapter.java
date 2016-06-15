@@ -3,12 +3,8 @@ package com.thomaskioko.paybillmanager.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,7 +93,7 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
                 @Override
                 public void onClick(View v) {
                     PopupMenu popupMenu = new PopupMenu(v.getContext(), holder.ivEdit);
-                    popupMenu.inflate(R.menu.paybill_menu);
+                    popupMenu.inflate(R.menu.menu_paybill_options);
                     popupMenu.setGravity(GravityCompat.END);
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
