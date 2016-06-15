@@ -1,7 +1,9 @@
 package com.thomaskioko.paybillmanager.ui.fragments;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -34,7 +36,7 @@ public class PaybillsFragment extends Fragment {
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
     @Bind(R.id.fab)
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton mFloatingActionButton;
 
     private boolean showHeader = false;
 
@@ -71,7 +73,7 @@ public class PaybillsFragment extends Fragment {
         if (paybillList.size() == 0) {
             showHeader = true;
             //Hide the floating action button
-            floatingActionButton.setVisibility(View.GONE);
+            mFloatingActionButton.setVisibility(View.GONE);
 
             /**
              * We have no paybill records. We create an empty object and add it to the list. This
@@ -84,6 +86,7 @@ public class PaybillsFragment extends Fragment {
         RecyclerView.Adapter mAdapter = new PaybillRecyclerViewAdapter(getActivity(), paybillList, showHeader);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+        registerForContextMenu(mRecyclerView);
     }
 
     /**
@@ -91,6 +94,13 @@ public class PaybillsFragment extends Fragment {
      */
     @OnClick(R.id.fab)
     void startAddPaybillActivity() {
-        startActivity(new Intent(getActivity(), AddPaybillActivity.class));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //Create a transition object and define when the transition should begin from.
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
+                    mFloatingActionButton, mFloatingActionButton.getTransitionName());
+            startActivity(new Intent(getActivity(), AddPaybillActivity.class), options.toBundle());
+        } else {
+            startActivity(new Intent(getActivity(), AddPaybillActivity.class));
+        }
     }
 }
