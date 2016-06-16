@@ -124,6 +124,7 @@
                     android:layout_below="@+id/ivEmptyBills"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
+                    android:transitionName="transition_reveal_contact"
                     android:background="@drawable/button_orange"
                     android:text="@string/add_your_first_paybill" />
             </RelativeLayout>
