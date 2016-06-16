@@ -17,6 +17,8 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.models.PaybillCategory;
+import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
+import com.thomaskioko.paybillmanager.ui.MainActivity;
 
 import java.util.List;
 
@@ -96,13 +98,14 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             @Override
             public void onClick(View v) {
 
-                //Get the selected Category Id
+                AddPaybillActivity.setPaybillCategory(paybillCategory);
                 /**
                  * When a view is clicked, we check it has been selected and we determine whether
                  * to make the background to reset the color or get the colot of the image and set it
                  * to the recyclerView.
                  */
                 if (!holder.isSelected) {
+
                     holder.isSelected = true;
                     Glide.with(holder.imageViewCategory.getContext())
                             .load(finalResourceId)

@@ -1,7 +1,10 @@
 package com.thomaskioko.paybillmanager.adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +17,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.models.Paybill;
+import com.thomaskioko.paybillmanager.models.PaybillCategory;
 import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
 
 import java.util.List;
@@ -80,11 +86,54 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
             holder.btnAddBills.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, AddPaybillActivity.class));
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        //Create a transition object and define when the transition should begin from.
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
+                                (Activity) mContext, holder.btnAddBills,
+                                holder.btnAddBills.getTransitionName()
+                        );
+
+                        mContext.startActivity(new Intent(mContext, AddPaybillActivity.class), options.toBundle());
+                    } else {
+                        mContext.startActivity(new Intent(mContext, AddPaybillActivity.class));
+                    }
                 }
             });
         } else {
             holder.emptyLayout.setVisibility(View.GONE);
+
+            List<PaybillCategory> paybillCategoryList = PaybillCategory.findWithQuery(PaybillCategory.class,
+                    "SELECT * FROM paybill_category WHERE category_id = ? ", paybill.getCategoryId());
+            for (PaybillCategory paybillCategory : paybillCategoryList) {
+                holder.tvCategoryName.setText(paybillCategory.getCategoryName());
+
+                int resourceId = 0;
+                //TODO:: Load the drawable using the drawable id. This will do away with the switch case
+
+                switch (paybillCategory.getCategoryName()) {
+                    case "Utilities":
+                        resourceId = R.mipmap.ic_utilities;
+                        break;
+                    case "Entertainment":
+                        resourceId = R.mipmap.ic_entertainment;
+                        break;
+                    case "Internet":
+                        resourceId = R.mipmap.ic_internet;
+                        break;
+                    case "Others":
+                        resourceId = R.mipmap.ic_others;
+                        break;
+                    default:
+                        break;
+                }
+
+                Glide.with(mContext)
+                        .load(resourceId)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(holder.ivCategoryIcon);
+            }
 
             holder.tvPaybillName.setText(paybill.getPaybillName());
             holder.tvAccountNumber.setText(mContext.getResources()
@@ -131,6 +180,8 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
         TextView tvAccountNumber;
         @Bind(R.id.tvPaybillName)
         TextView tvPaybillName;
+        @Bind(R.id.tvCategoryName)
+        TextView tvCategoryName;
         @Bind(R.id.payBillDetailLayout)
         RelativeLayout payBillDetailLayout;
         @Bind(R.id.emptyLayout)

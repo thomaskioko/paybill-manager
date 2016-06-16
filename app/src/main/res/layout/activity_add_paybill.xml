@@ -167,7 +167,6 @@
                             android:imeOptions="actionNext"
                             android:inputType="number|text"
                             android:maxLines="1"
-                            android:nextFocusDown="@+id/edit_password"
                             android:textColor="@color/black" />
 
                     </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>

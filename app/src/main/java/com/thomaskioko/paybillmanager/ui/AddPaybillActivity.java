@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.ui;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.adapter.CategoryRecyclerViewAdapter;
@@ -47,7 +49,7 @@ public class AddPaybillActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.recycler_view)
-    RecyclerView recyclerView;
+    RecyclerView mRecyclerView;
     @Bind(R.id.btnSavePayBill)
     Button mButtonSavePaybill;
     @Bind(R.id.etPaybillName)
@@ -62,6 +64,8 @@ public class AddPaybillActivity extends AppCompatActivity {
     LinearLayout mLlContainer;
     @Bind(R.id.activity_contact_fab)
     FloatingActionButton mFab;
+
+    private static PaybillCategory mPaybillCategory;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -120,12 +124,14 @@ public class AddPaybillActivity extends AppCompatActivity {
 
         /**
          * {@link LayoutManager} is responsible for measuring and positioning item views within a
-         * RecyclerView. We then set the layout of the recyclerView to gridView using {@link GridLayoutManager}
+         * RecyclerView. We then set the layout of the mRecyclerView to gridView using {@link GridLayoutManager}
          */
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 4);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(new CategoryRecyclerViewAdapter(getApplicationContext(), paybillCategoryList));
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        //Set the adapter
+        mRecyclerView.setAdapter(new CategoryRecyclerViewAdapter(getApplicationContext(), paybillCategoryList));
 
     }
 
@@ -135,12 +141,17 @@ public class AddPaybillActivity extends AppCompatActivity {
     @OnClick(R.id.btnSavePayBill)
     void savePaybill() {
         if (isDataValid()) {
-            //TODO:: Get the selected category id
-            Paybill paybill = new Paybill("1", mEditTextPaybillName.getText().toString(),
+
+            Paybill paybill = new Paybill(mPaybillCategory.getCategoryId(), mEditTextPaybillName.getText().toString(),
                     mEditTextPaybillNumber.getText().toString(), mEditTextAccountNumber.getText().toString());
             paybill.save();
 
-            finish();
+            /**
+             * Calling finish() was not reloading the list. So we start a new intent in order to
+             * reload the list of paybills after successfully adding
+             */
+
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     }
 
@@ -295,4 +306,19 @@ public class AddPaybillActivity extends AppCompatActivity {
         fade.setDuration(getResources().getInteger(R.integer.animation_duration));
     }
 
+    /**
+     *
+     * @return
+     */
+    public PaybillCategory getPaybillCategory() {
+        return mPaybillCategory;
+    }
+
+    /**
+     *
+     * @param paybillCategory
+     */
+    public static void setPaybillCategory(PaybillCategory paybillCategory) {
+        mPaybillCategory = paybillCategory;
+    }
 }
