@@ -23,6 +23,7 @@ import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.models.Paybill;
 import com.thomaskioko.paybillmanager.models.PaybillCategory;
 import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
+import com.thomaskioko.paybillmanager.ui.AmountActivity;
 
 import java.util.List;
 
@@ -160,6 +161,13 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
                         }
                     });
                     popupMenu.show();
+                }
+            });
+
+            holder.view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, AmountActivity.class));
                 }
             });
         }

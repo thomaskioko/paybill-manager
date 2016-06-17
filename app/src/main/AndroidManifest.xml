@@ -23,6 +23,10 @@
             android:name=".ui.AddPaybillActivity"
             android:parentActivityName=".ui.MainActivity" />
 
+        <activity
+            android:name=".ui.AmountActivity"
+            android:parentActivityName=".ui.MainActivity" />
+
         <meta-data
             android:name="DATABASE"
             android:value="paybillmanager.db" />

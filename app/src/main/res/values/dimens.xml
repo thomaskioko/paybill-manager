@@ -19,4 +19,7 @@
     <dimen name="spacing_minor">8dp</dimen>
     <dimen name="spacing_major">16dp</dimen>
     <dimen name="spacing_massive">24dp</dimen>
+
+    <dimen name="anti_theft_t9_key_paddingTop">15dp</dimen>
+    <dimen name="anti_theft_t9_key_paddingBottom">15dp</dimen>
 </resources>

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Paybill Manager</string>
 
+    <!-- Toolbar Titles-->
+    <string name="toolbar_title_amount">Enter Amount</string>
+
     <!-- Tabs Titles -->
     <string name="tab_title_paybills">PayBills</string>
     <string name="tab_title_transaction_history">Transaction History</string>
@@ -31,5 +34,24 @@
     <!--Menu Item Strings -->
     <string name="menu_item_edit">Edit</string>
     <string name="menu_item_delete">Delete</string>
+
+    <!-- Calculator Keyboard TextViews -->
+    <string name="keyboard_1">1</string>
+    <string name="keyboard_2">2</string>
+    <string name="keyboard_3">3</string>
+    <string name="keyboard_4">4</string>
+    <string name="keyboard_5">5</string>
+    <string name="keyboard_6">6</string>
+    <string name="keyboard_7">7</string>
+    <string name="keyboard_8">8</string>
+    <string name="keyboard_9">9</string>
+    <string name="keyboard_decimal">.</string>
+    <string name="keyboard_0">0</string>
+    <string name="keyboard_clear">Clear</string>
+
+    <!-- TextView Strings -->
+    <string name="text_view_currency_code">KSh</string>
+    <string name="button_next">Pay</string>
+    <string name="default_amount">0.00</string>
 
 </resources>

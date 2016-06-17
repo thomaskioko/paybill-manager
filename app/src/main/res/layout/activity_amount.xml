@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dataLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <!-- ToolBar -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
+    <!-- Currency and country code. -->
+    <LinearLayout
+        android:id="@+id/layoutAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tvCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|bottom"
+            android:layout_marginTop="5dp"
+            android:layout_weight="2"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center|end"
+            android:paddingLeft="32dp"
+            android:text="@string/text_view_currency_code"
+            android:textColor="#ffffff"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/tvCurrencyAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center|start"
+            android:paddingRight="32dp"
+            android:textColor="@color/white"
+            android:textSize="80sp" />
+    </LinearLayout>
+
+    <!-- Table layout with number inputs -->
+    <TableLayout
+        android:id="@+id/anti_theft_t9_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutAmount"
+        android:layout_marginTop="60dp"
+        android:background="@color/white"
+        android:divider="@android:color/darker_gray"
+        android:orientation="vertical"
+        android:showDividers="middle|beginning|end">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/darker_gray"
+            android:gravity="center"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_1"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_1"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_2"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_2"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_3"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_3"
+                android:textIsSelectable="false" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/darker_gray"
+            android:gravity="center"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_4"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_4"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_5"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_5"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_6"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_6"
+                android:textIsSelectable="false" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/darker_gray"
+            android:gravity="center"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_7"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_7"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_8"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_8"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_9"
+                style="@style/anti_theft_t9_key"
+                android:text="@string/keyboard_9"
+                android:textIsSelectable="false" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/darker_gray"
+            android:gravity="center"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_00"
+                style="@style/anti_theft_t9_key"
+                android:paddingBottom="42dp"
+                android:text="@string/keyboard_decimal"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_0"
+                style="@style/anti_theft_t9_key"
+                android:paddingBottom="42dp"
+                android:text="@string/keyboard_0"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/anti_theft_t9_key_clear"
+                style="@style/anti_theft_t9_key"
+                android:drawableTop="@mipmap/ic_backspace_white"
+                android:gravity="center"
+                android:textIsSelectable="false" />
+
+
+        </TableRow>
+    </TableLayout>
+
+    <!-- Next Button-->
+    <Button
+        android:id="@+id/button_buy_airtime"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_next"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>
