@@ -51,7 +51,8 @@
 
     <!-- TextView Strings -->
     <string name="text_view_currency_code">KSh</string>
-    <string name="button_next">Pay</string>
+    <string name="button_next">Pay Now</string>
+    <string name="button_cancel">Cancel</string>
     <string name="default_amount">0.00</string>
 
 </resources>
