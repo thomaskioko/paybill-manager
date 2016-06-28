@@ -129,6 +129,8 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                                 }
                             });
                 } else { //Reset the Background color and the text color
+
+                    AddPaybillActivity.setPaybillCategory(null); //Reset the object
                     holder.isSelected = false;
                     holder.relativeLayout.setBackgroundColor(mContext.getResources().getColor(R.color.white));
                     holder.tvCategoryName.setTextColor(mContext.getResources().getColor(R.color.black));
