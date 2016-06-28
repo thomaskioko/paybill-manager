@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -23,7 +25,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.adapter.CategoryRecyclerViewAdapter;
@@ -64,6 +65,8 @@ public class AddPaybillActivity extends AppCompatActivity {
     LinearLayout mLlContainer;
     @Bind(R.id.activity_contact_fab)
     FloatingActionButton mFab;
+    @Bind(R.id.coordinatorLayout)
+    CoordinatorLayout mCoordinatorLayout;
 
     private static PaybillCategory mPaybillCategory;
 
@@ -177,6 +180,14 @@ public class AddPaybillActivity extends AppCompatActivity {
         if (mEditTextPaybillName.getText().toString().equals("")) {
             mEditTextPaybillName.requestFocus();
             mEditTextPaybillName.setError(getString(R.string.error_message_paybill_name));
+            return false;
+        }
+
+        //Check if the category is null. If true prompt the user to select a category
+        if(mPaybillCategory == null){
+            Snackbar snackbar = Snackbar
+                    .make(mCoordinatorLayout, "Please select a category", Snackbar.LENGTH_LONG);
+            snackbar.show();
             return false;
         }
         return true;
@@ -307,16 +318,14 @@ public class AddPaybillActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @return
+     * @return {@link PaybillCategory}
      */
     public PaybillCategory getPaybillCategory() {
         return mPaybillCategory;
     }
 
     /**
-     *
-     * @param paybillCategory
+     * @param paybillCategory Paybill category object
      */
     public static void setPaybillCategory(PaybillCategory paybillCategory) {
         mPaybillCategory = paybillCategory;
