@@ -58,22 +58,33 @@
             android:textSize="80sp" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/white_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/layoutAmount"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/white" />
+
     <!-- Table layout with number inputs -->
     <TableLayout
         android:id="@+id/anti_theft_t9_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutAmount"
+        android:layout_below="@+id/white_border"
         android:layout_marginTop="60dp"
         android:background="@color/white"
-        android:divider="@android:color/darker_gray"
+        android:divider="@color/white"
         android:orientation="vertical"
         android:showDividers="middle|beginning|end">
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:divider="@android:color/darker_gray"
+            android:divider="@color/white"
             android:gravity="center"
             android:showDividers="middle">
 
@@ -99,7 +110,7 @@
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:divider="@android:color/darker_gray"
+            android:divider="@color/white"
             android:gravity="center"
             android:showDividers="middle">
 
@@ -125,7 +136,7 @@
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:divider="@android:color/darker_gray"
+            android:divider="@color/white"
             android:gravity="center"
             android:showDividers="middle">
 
@@ -151,7 +162,7 @@
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:divider="@android:color/darker_gray"
+            android:divider="@color/white"
             android:gravity="center"
             android:showDividers="middle">
 
@@ -180,16 +191,45 @@
         </TableRow>
     </TableLayout>
 
-    <!-- Next Button-->
-    <Button
-        android:id="@+id/button_buy_airtime"
-        style="?android:attr/buttonBarButtonStyle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:text="@string/button_next"
-        android:textColor="@color/white" />
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <!-- Cancel Button-->
+        <Button
+            android:id="@+id/buttonCancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/red"
+            android:drawableLeft="@mipmap/ic_cancel_white_24dp"
+            android:drawableStart="@mipmap/ic_cancel_white_24dp"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/button_cancel"
+            android:textColor="@color/white" />
+
+        <!-- Pay Button-->
+        <Button
+            android:id="@+id/buttonPayNow"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:drawableEnd="@mipmap/ic_payment_white_24dp"
+            android:drawableRight="@mipmap/ic_payment_white_24dp"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/button_next"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
