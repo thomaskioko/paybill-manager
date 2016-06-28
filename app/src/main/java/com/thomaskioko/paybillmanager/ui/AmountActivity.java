@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.thomaskioko.paybillmanager.R;
@@ -26,6 +27,10 @@ public class AmountActivity extends AppCompatActivity implements View.OnClickLis
     TextView mTvAmount;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.buttonPayNow)
+    Button mButtonPayNow;
+    @Bind(R.id.buttonCancel)
+    Button mButtonCancel;
     private Animation mAnimationKeyboardPop;
     /**
      * TextView numbers
