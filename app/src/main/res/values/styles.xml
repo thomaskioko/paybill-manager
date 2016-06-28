@@ -17,7 +17,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <!-- Popup Menu Settings -->
-        <item name="popupMenuStyle">@style/MyPopupMenu</item>
+        <item name="android:popupMenuStyle">@style/MyPopupMenu</item>
         <item name="android:textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceLarge
         </item>
         <item name="android:textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceSmall
