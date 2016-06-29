@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.ui.fragments.PaybillsFragment;
+import com.thomaskioko.paybillmanager.ui.fragments.PayBillsFragment;
 import com.thomaskioko.paybillmanager.ui.fragments.RecyclerViewFragment;
 
 import butterknife.Bind;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public Fragment getItem(int position) {
                 switch (position % 2) {
                     case 0:
-                        return PaybillsFragment.newInstance();
+                        return PayBillsFragment.newInstance();
                     case 1:
                         return RecyclerViewFragment.newInstance();
                     default:

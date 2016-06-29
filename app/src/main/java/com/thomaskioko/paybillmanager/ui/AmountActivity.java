@@ -1,19 +1,27 @@
 package com.thomaskioko.paybillmanager.ui;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.thomaskioko.paybillmanager.R;
+import com.thomaskioko.paybillmanager.util.NumberFormatUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * This activity 'replaces' the default android keyboard, presenting a custom calculator like
@@ -31,7 +39,10 @@ public class AmountActivity extends AppCompatActivity implements View.OnClickLis
     Button mButtonPayNow;
     @Bind(R.id.buttonCancel)
     Button mButtonCancel;
+    @Bind(R.id.dataLayout)
+    RelativeLayout mRelativeLayout;
     private Animation mAnimationKeyboardPop;
+    private String mPaybillName, mPaybillNumber, mAccountNumber;
     /**
      * TextView numbers
      */
@@ -49,11 +60,16 @@ public class AmountActivity extends AppCompatActivity implements View.OnClickLis
 
         setSupportActionBar(toolbar);
 
+        mPaybillName = getIntent().getStringExtra("payBillName");
+        mPaybillNumber = getIntent().getStringExtra("payBillNumber");
+        mAccountNumber = getIntent().getStringExtra("accountNumber");
+
         //Setup the actionbar
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(getResources().getString(R.string.toolbar_title_amount));
+            actionBar.setTitle(getString(R.string.toolbar_title_amount, mPaybillName, mPaybillNumber));
+            actionBar.setSubtitle("Acc No - " + getIntent().getStringExtra("accountNumber"));
         }
 
         //Popup animation for when the keyboard is clicked.
@@ -116,7 +132,9 @@ public class AmountActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        mTvAmount.setText(""); //Clear the text.
+        if (mTvAmount.getText().toString().equals("0.00")) {
+            mTvAmount.setText("");
+        }
         switch (v.getId()) {
             case R.id.anti_theft_t9_key_0:
                 anti_theft_t9_key_0.startAnimation(mAnimationKeyboardPop);
@@ -192,5 +210,59 @@ public class AmountActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onAnimationRepeat(Animation animation) {
 
+    }
+
+    @OnClick({R.id.buttonPayNow, R.id.buttonCancel})
+    void buttonClickListener(View view) {
+        switch (view.getId()) {
+            case R.id.buttonPayNow:
+                if (!mTvAmount.getText().toString().equals("0.00")) {
+                    showPaymentDialog();
+                } else {
+                    Snackbar snackbar = Snackbar
+                            .make(mRelativeLayout, "Please enter an amount", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+                break;
+            case R.id.buttonCancel:
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Method to display Alert dialog.
+     */
+    private void showPaymentDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AmountActivity.this);
+        builder.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_launcher));
+        builder.setTitle(getString(R.string.dialog_title));
+        builder.setMessage(getString(R.string.dialog_message,
+                NumberFormatUtils.formatAmount(mTvAmount.getText().toString()),
+                mPaybillName, mPaybillNumber, mAccountNumber));
+
+        String positiveText = getString(android.R.string.ok);
+        builder.setPositiveButton(positiveText,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO:: INVOKE API
+                    }
+                });
+
+        String negativeText = getString(android.R.string.cancel);
+        builder.setNegativeButton(negativeText,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        // display dialog
+        dialog.show();
     }
 }

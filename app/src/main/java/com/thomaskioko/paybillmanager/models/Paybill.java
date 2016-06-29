@@ -9,7 +9,7 @@ import java.util.UUID;
  * @author Thomas Kioko
  */
 
-public class Paybill extends SugarRecord {
+public class PayBill extends SugarRecord {
 
     @Unique
     private String paybillId;
@@ -21,7 +21,7 @@ public class Paybill extends SugarRecord {
     /**
      * Default constructor requried by SugarOrm to create the table
      */
-    public Paybill() {
+    public PayBill() {
 
     }
 
@@ -29,11 +29,11 @@ public class Paybill extends SugarRecord {
      * Constructor
      *
      * @param categoryId           Category Id
-     * @param paybillName          Paybill name
-     * @param paybillNumber        Paybill number
+     * @param paybillName          PayBill name
+     * @param paybillNumber        PayBill number
      * @param paybillAccountNumber User Account number
      */
-    public Paybill(String categoryId, String paybillName, String paybillNumber, String paybillAccountNumber) {
+    public PayBill(String categoryId, String paybillName, String paybillNumber, String paybillAccountNumber) {
         this.paybillId = UUID.randomUUID().toString();
         this.categoryId = categoryId;
         this.paybillName = paybillName;
@@ -42,7 +42,7 @@ public class Paybill extends SugarRecord {
     }
 
     /**
-     * Get the Paybill ID
+     * Get the PayBill ID
      *
      * @return {@link String }
      */
@@ -53,7 +53,7 @@ public class Paybill extends SugarRecord {
     /**
      * Set the paybill ID
      *
-     * @param paybillId Paybill ID
+     * @param paybillId PayBill ID
      */
     public void setPaybillId(String paybillId) {
         this.paybillId = paybillId;
@@ -89,7 +89,7 @@ public class Paybill extends SugarRecord {
     /**
      * Set the paybill name
      *
-     * @param paybillName Paybill name
+     * @param paybillName PayBill name
      */
     public void setPaybillName(String paybillName) {
         this.paybillName = paybillName;
@@ -107,7 +107,7 @@ public class Paybill extends SugarRecord {
     /**
      * Set the paybill number
      *
-     * @param paybillNumber Paybill number
+     * @param paybillNumber PayBill number
      */
     public void setPaybillNumber(String paybillNumber) {
         this.paybillNumber = paybillNumber;

@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 
 import com.orm.SugarApp;
 import com.orm.SugarContext;
-import com.thomaskioko.paybillmanager.models.PaybillCategory;
+import com.thomaskioko.paybillmanager.models.PayBillCategory;
 
 import java.lang.reflect.Field;
 
@@ -47,18 +47,18 @@ public class PaybillManagerApp extends SugarApp{
          * 3. Internet: Sasahost
          * 4. Others
          */
-        PaybillCategory paybillCategoryUtilities = new PaybillCategory("1", "Utilities",
+        PayBillCategory payBillCategoryUtilities = new PayBillCategory("1", "Utilities",
                 String.valueOf(getResId("ic_utilities.png", Drawable.class)));
-        paybillCategoryUtilities.save();
-        PaybillCategory paybillCategoryEntertainment = new PaybillCategory("2", "Entertainment",
+        payBillCategoryUtilities.save();
+        PayBillCategory payBillCategoryEntertainment = new PayBillCategory("2", "Entertainment",
                 String.valueOf(getResId("ic_entertainment.png", Drawable.class)));
-        paybillCategoryEntertainment.save();
-        PaybillCategory paybillCategoryInternet = new PaybillCategory("3", "Internet",
+        payBillCategoryEntertainment.save();
+        PayBillCategory payBillCategoryInternet = new PayBillCategory("3", "Internet",
                 String.valueOf(getResId("ic_internet.png", Drawable.class)));
-        paybillCategoryInternet.save();
-        PaybillCategory paybillCategoryOthers = new PaybillCategory("4", "Others",
+        payBillCategoryInternet.save();
+        PayBillCategory payBillCategoryOthers = new PayBillCategory("4", "Others",
                 String.valueOf(getResId("ic_others.png", Drawable.class)));
-        paybillCategoryOthers.save();
+        payBillCategoryOthers.save();
 
     }
 

@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.AddPaybillActivity"
+            android:name=".ui.AddPayBillActivity"
             android:parentActivityName=".ui.MainActivity" />
 
         <activity

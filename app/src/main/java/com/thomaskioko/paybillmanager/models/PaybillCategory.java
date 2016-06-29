@@ -7,7 +7,7 @@ import com.orm.dsl.Unique;
  * @author Thomas Kioko
  */
 
-public class PaybillCategory extends SugarRecord {
+public class PayBillCategory extends SugarRecord {
 
     @Unique
     private String categoryId;
@@ -15,7 +15,7 @@ public class PaybillCategory extends SugarRecord {
     private String categoryDrawableId;
 
 
-    public PaybillCategory() {
+    public PayBillCategory() {
 
     }
 
@@ -26,7 +26,7 @@ public class PaybillCategory extends SugarRecord {
      * @param categoryName       Name of the Category
      * @param categoryDrawableId Path of the drawable image
      */
-    public PaybillCategory(String categoryId, String categoryName, String categoryDrawableId) {
+    public PayBillCategory(String categoryId, String categoryName, String categoryDrawableId) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.categoryDrawableId = categoryDrawableId;

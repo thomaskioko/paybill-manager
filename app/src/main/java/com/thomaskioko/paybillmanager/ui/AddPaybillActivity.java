@@ -28,8 +28,8 @@ import android.widget.RelativeLayout;
 
 import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.adapter.CategoryRecyclerViewAdapter;
-import com.thomaskioko.paybillmanager.models.Paybill;
-import com.thomaskioko.paybillmanager.models.PaybillCategory;
+import com.thomaskioko.paybillmanager.models.PayBill;
+import com.thomaskioko.paybillmanager.models.PayBillCategory;
 import com.thomaskioko.paybillmanager.util.AnimationTransitionUtils;
 import com.thomaskioko.paybillmanager.util.OnRevealAnimationListener;
 
@@ -45,7 +45,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  *
  * @author Thomas Kioko
  */
-public class AddPaybillActivity extends AppCompatActivity {
+public class AddPayBillActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -68,7 +68,7 @@ public class AddPaybillActivity extends AppCompatActivity {
     @Bind(R.id.coordinatorLayout)
     CoordinatorLayout mCoordinatorLayout;
 
-    private static PaybillCategory mPaybillCategory;
+    private static PayBillCategory mPayBillCategory;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -95,6 +95,7 @@ public class AddPaybillActivity extends AppCompatActivity {
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setTitle("");
             }
         }
     }
@@ -104,7 +105,7 @@ public class AddPaybillActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Animation animation = AnimationUtils.loadAnimation(AddPaybillActivity.this,
+                Animation animation = AnimationUtils.loadAnimation(AddPayBillActivity.this,
                         android.R.anim.fade_in);
                 animation.setDuration(300);
 
@@ -117,13 +118,13 @@ public class AddPaybillActivity extends AppCompatActivity {
         /**
          * Get all the categories from sugar orm ordering the then using the category name.
          *
-         * {@link com.orm.SugarRecord} converts {@link PaybillCategory#categoryName} to category_name.
+         * {@link com.orm.SugarRecord} converts {@link PayBillCategory#categoryName} to category_name.
          *
          * This is the convention followed in Sugar.
          * {@see <href a="http://satyan.github.io/sugar/creation.html"/>}
          */
-        List<PaybillCategory> paybillCategoryList = PaybillCategory.findWithQuery(PaybillCategory.class,
-                "SELECT * FROM paybill_category ORDER BY ? ASC", "category_name");
+        List<PayBillCategory> payBillCategoryList = PayBillCategory.findWithQuery(PayBillCategory.class,
+                "SELECT * FROM pay_bill_category ORDER BY ? ASC", "category_name");
 
         /**
          * {@link LayoutManager} is responsible for measuring and positioning item views within a
@@ -134,20 +135,20 @@ public class AddPaybillActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         //Set the adapter
-        mRecyclerView.setAdapter(new CategoryRecyclerViewAdapter(getApplicationContext(), paybillCategoryList));
+        mRecyclerView.setAdapter(new CategoryRecyclerViewAdapter(getApplicationContext(), payBillCategoryList));
 
     }
 
     /**
-     * Method to save paybill to {@link com.thomaskioko.paybillmanager.models.Paybill}
+     * Method to save paybill to {@link PayBill}
      */
     @OnClick(R.id.btnSavePayBill)
     void savePaybill() {
         if (isDataValid()) {
 
-            Paybill paybill = new Paybill(mPaybillCategory.getCategoryId(), mEditTextPaybillName.getText().toString(),
+            PayBill payBill = new PayBill(mPayBillCategory.getCategoryId(), mEditTextPaybillName.getText().toString(),
                     mEditTextPaybillNumber.getText().toString(), mEditTextAccountNumber.getText().toString());
-            paybill.save();
+            payBill.save();
 
             /**
              * Calling finish() was not reloading the list. So we start a new intent in order to
@@ -184,7 +185,7 @@ public class AddPaybillActivity extends AppCompatActivity {
         }
 
         //Check if the category is null. If true prompt the user to select a category
-        if(mPaybillCategory == null){
+        if(mPayBillCategory == null){
             Snackbar snackbar = Snackbar
                     .make(mCoordinatorLayout, "Please select a category", Snackbar.LENGTH_LONG);
             snackbar.show();
@@ -318,16 +319,16 @@ public class AddPaybillActivity extends AppCompatActivity {
     }
 
     /**
-     * @return {@link PaybillCategory}
+     * @return {@link PayBillCategory}
      */
-    public PaybillCategory getPaybillCategory() {
-        return mPaybillCategory;
+    public PayBillCategory getPaybillCategory() {
+        return mPayBillCategory;
     }
 
     /**
-     * @param paybillCategory Paybill category object
+     * @param payBillCategory PayBill category object
      */
-    public static void setPaybillCategory(PaybillCategory paybillCategory) {
-        mPaybillCategory = paybillCategory;
+    public static void setPaybillCategory(PayBillCategory payBillCategory) {
+        mPayBillCategory = payBillCategory;
     }
 }

@@ -2,7 +2,7 @@
     <string name="app_name">Paybill Manager</string>
 
     <!-- Toolbar Titles-->
-    <string name="toolbar_title_amount">Enter Amount</string>
+    <string name="toolbar_title_amount">%1$S - %2$S</string>
 
     <!-- Tabs Titles -->
     <string name="tab_title_paybills">PayBills</string>
@@ -10,7 +10,7 @@
     <string name="image_view_description">Image view description</string>
 
     <!-- TextViews -->
-    <string name="add_your_first_paybill">Add your first paybill</string>
+    <string name="add_your_first_paybill">Add your first PayBill</string>
 
     <!-- EditText Hints -->
     <string name="hint_paybill_name">Paybill Name</string>
@@ -24,8 +24,8 @@
     <string name="text_add_paybill">Add Paybill</string>
 
     <!-- EditText Error Messages -->
-    <string name="error_message_paybill_name">Please enter a paybill name</string>
-    <string name="error_message_paybill_number">Please enter a paybill number</string>
+    <string name="error_message_paybill_name">Please enter a PayBill name</string>
+    <string name="error_message_paybill_number">Please enter a PayBill number</string>
     <string name="error_message_account_number">Please Enter a account number</string>
 
     <!-- String placeholders -->
@@ -54,5 +54,9 @@
     <string name="button_next">Pay Now</string>
     <string name="button_cancel">Cancel</string>
     <string name="default_amount">0.00</string>
+
+    <!-- Dialog Strings -->
+    <string name="dialog_title">Complete Payment</string>
+    <string name="dialog_message">KSH %1$S will be sent to %2$S - %3$S Account Number %4$S. Complete Payment?</string>
 
 </resources>
