@@ -95,6 +95,7 @@ public class AddPayBillActivity extends AppCompatActivity {
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setTitle("");
             }
         }
     }
@@ -123,7 +124,7 @@ public class AddPayBillActivity extends AppCompatActivity {
          * {@see <href a="http://satyan.github.io/sugar/creation.html"/>}
          */
         List<PayBillCategory> payBillCategoryList = PayBillCategory.findWithQuery(PayBillCategory.class,
-                "SELECT * FROM paybill_category ORDER BY ? ASC", "category_name");
+                "SELECT * FROM pay_bill_category ORDER BY ? ASC", "category_name");
 
         /**
          * {@link LayoutManager} is responsible for measuring and positioning item views within a
