@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.adapter.PaybillRecyclerViewAdapter;
-import com.thomaskioko.paybillmanager.models.Paybill;
-import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
+import com.thomaskioko.paybillmanager.adapter.PayBillRecyclerViewAdapter;
+import com.thomaskioko.paybillmanager.models.PayBill;
+import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ import butterknife.OnClick;
  *
  * @author Thomas Kioko
  */
-public class PaybillsFragment extends Fragment {
+public class PayBillsFragment extends Fragment {
 
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -45,8 +45,8 @@ public class PaybillsFragment extends Fragment {
      *
      * @return Fragment instance
      */
-    public static PaybillsFragment newInstance() {
-        return new PaybillsFragment();
+    public static PayBillsFragment newInstance() {
+        return new PayBillsFragment();
     }
 
     @Override
@@ -68,29 +68,29 @@ public class PaybillsFragment extends Fragment {
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
 
         //Fetch paybill items
-        List<Paybill> paybillList = Paybill.listAll(Paybill.class);
+        List<PayBill> payBillList = PayBill.listAll(PayBill.class);
 
-        if (paybillList.size() == 0) {
+        if (payBillList.size() == 0) {
             showHeader = true;
             //Hide the floating action button
             mFloatingActionButton.setVisibility(View.GONE);
 
             /**
-             * We have no paybill records. We create an empty object and add it to the list. This
+             * We have no payBill records. We create an empty object and add it to the list. This
              * will allow us to display the header view.
              */
-            Paybill paybill = new Paybill();
-            paybillList.add(paybill);
+            PayBill payBill = new PayBill();
+            payBillList.add(payBill);
         }
 
-        RecyclerView.Adapter mAdapter = new PaybillRecyclerViewAdapter(getActivity(), paybillList, showHeader);
+        RecyclerView.Adapter mAdapter = new PayBillRecyclerViewAdapter(getActivity(), payBillList, showHeader);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         registerForContextMenu(mRecyclerView);
     }
 
     /**
-     * Method to start {@link AddPaybillActivity}
+     * Method to start {@link AddPayBillActivity}
      */
     @OnClick(R.id.fab)
     void startAddPaybillActivity() {
@@ -98,9 +98,9 @@ public class PaybillsFragment extends Fragment {
             //Create a transition object and define when the transition should begin from.
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
                     mFloatingActionButton, mFloatingActionButton.getTransitionName());
-            startActivity(new Intent(getActivity(), AddPaybillActivity.class), options.toBundle());
+            startActivity(new Intent(getActivity(), AddPayBillActivity.class), options.toBundle());
         } else {
-            startActivity(new Intent(getActivity(), AddPaybillActivity.class));
+            startActivity(new Intent(getActivity(), AddPayBillActivity.class));
         }
     }
 }

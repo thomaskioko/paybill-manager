@@ -20,9 +20,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.models.Paybill;
-import com.thomaskioko.paybillmanager.models.PaybillCategory;
-import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
+import com.thomaskioko.paybillmanager.models.PayBill;
+import com.thomaskioko.paybillmanager.models.PayBillCategory;
+import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
 import com.thomaskioko.paybillmanager.ui.AmountActivity;
 
 import java.util.List;
@@ -35,9 +35,9 @@ import butterknife.ButterKnife;
  *
  * @author Thomas Kioko
  */
-public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecyclerViewAdapter.PaybillHolder> {
+public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecyclerViewAdapter.PaybillHolder> {
 
-    private List<Paybill> mPaybillList;
+    private List<PayBill> mPayBillList;
     private Context mContext;
     private boolean mShowHeaderView;
 
@@ -45,11 +45,11 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
      * Constructor
      *
      * @param context        Application context
-     * @param paybillList    List of paybill objects
+     * @param payBillList    List of paybill objects
      * @param showHeaderView {@link Boolean} Whether to display the header or not
      */
-    public PaybillRecyclerViewAdapter(Context context, List<Paybill> paybillList, boolean showHeaderView) {
-        mPaybillList = paybillList;
+    public PayBillRecyclerViewAdapter(Context context, List<PayBill> payBillList, boolean showHeaderView) {
+        mPayBillList = payBillList;
         mContext = context;
         mShowHeaderView = showHeaderView;
     }
@@ -61,11 +61,11 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
 
     @Override
     public int getItemCount() {
-        return mPaybillList.size();
+        return mPayBillList.size();
     }
 
     @Override
-    public PaybillRecyclerViewAdapter.PaybillHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PayBillRecyclerViewAdapter.PaybillHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate the item view.
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_paybill_card, parent, false);
@@ -76,7 +76,7 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
     @Override
     public void onBindViewHolder(final PaybillHolder holder, int position) {
 
-        Paybill paybill = mPaybillList.get(position);
+        PayBill payBill = mPayBillList.get(position);
 
         /**
          * Check if the header should me displayed and hide/display the relevant view
@@ -95,24 +95,24 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
                                 holder.btnAddBills.getTransitionName()
                         );
 
-                        mContext.startActivity(new Intent(mContext, AddPaybillActivity.class), options.toBundle());
+                        mContext.startActivity(new Intent(mContext, AddPayBillActivity.class), options.toBundle());
                     } else {
-                        mContext.startActivity(new Intent(mContext, AddPaybillActivity.class));
+                        mContext.startActivity(new Intent(mContext, AddPayBillActivity.class));
                     }
                 }
             });
         } else {
             holder.emptyLayout.setVisibility(View.GONE);
 
-            List<PaybillCategory> paybillCategoryList = PaybillCategory.findWithQuery(PaybillCategory.class,
-                    "SELECT * FROM paybill_category WHERE category_id = ? ", paybill.getCategoryId());
-            for (PaybillCategory paybillCategory : paybillCategoryList) {
-                holder.tvCategoryName.setText(paybillCategory.getCategoryName());
+            List<PayBillCategory> payBillCategoryList = PayBillCategory.findWithQuery(PayBillCategory.class,
+                    "SELECT * FROM paybill_category WHERE category_id = ? ", payBill.getCategoryId());
+            for (PayBillCategory payBillCategory : payBillCategoryList) {
+                holder.tvCategoryName.setText(payBillCategory.getCategoryName());
 
                 int resourceId = 0;
                 //TODO:: Load the drawable using the drawable id. This will do away with the switch case
 
-                switch (paybillCategory.getCategoryName()) {
+                switch (payBillCategory.getCategoryName()) {
                     case "Utilities":
                         resourceId = R.mipmap.ic_utilities;
                         break;
@@ -136,9 +136,9 @@ public class PaybillRecyclerViewAdapter extends RecyclerView.Adapter<PaybillRecy
                         .into(holder.ivCategoryIcon);
             }
 
-            holder.tvPaybillName.setText(paybill.getPaybillName());
+            holder.tvPaybillName.setText(payBill.getPaybillName());
             holder.tvAccountNumber.setText(mContext.getResources()
-                    .getString(R.string.placeholder_account_number, paybill.getPaybillAccountNumber()));
+                    .getString(R.string.placeholder_account_number, payBill.getPaybillAccountNumber()));
             holder.ivEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

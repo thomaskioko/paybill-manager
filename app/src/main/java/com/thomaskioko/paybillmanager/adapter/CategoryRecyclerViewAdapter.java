@@ -16,9 +16,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.models.PaybillCategory;
-import com.thomaskioko.paybillmanager.ui.AddPaybillActivity;
-import com.thomaskioko.paybillmanager.ui.MainActivity;
+import com.thomaskioko.paybillmanager.models.PayBillCategory;
+import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
 
 import java.util.List;
 
@@ -32,7 +31,7 @@ import butterknife.ButterKnife;
  */
 public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewAdapter.PaybillHolder> {
 
-    private List<PaybillCategory> mPaybillCategoryList;
+    private List<PayBillCategory> mPayBillCategoryList;
     private Context mContext;
 
     /**
@@ -40,8 +39,8 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
      *
      * @param objectList List of Objects
      */
-    public CategoryRecyclerViewAdapter(Context context, List<PaybillCategory> objectList) {
-        mPaybillCategoryList = objectList;
+    public CategoryRecyclerViewAdapter(Context context, List<PayBillCategory> objectList) {
+        mPayBillCategoryList = objectList;
         mContext = context;
     }
 
@@ -52,7 +51,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
     @Override
     public int getItemCount() {
-        return mPaybillCategoryList.size();
+        return mPayBillCategoryList.size();
     }
 
     @Override
@@ -65,12 +64,12 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     @Override
     public void onBindViewHolder(final PaybillHolder holder, final int position) {
 
-        final PaybillCategory paybillCategory = mPaybillCategoryList.get(position);
-        holder.tvCategoryName.setText(paybillCategory.getCategoryName());
+        final PayBillCategory payBillCategory = mPayBillCategoryList.get(position);
+        holder.tvCategoryName.setText(payBillCategory.getCategoryName());
         int resourceId = 0;
         //TODO:: Load the drawable using the drawable id. This will do away with the switch case
 
-        switch (paybillCategory.getCategoryName()) {
+        switch (payBillCategory.getCategoryName()) {
             case "Utilities":
                 resourceId = R.mipmap.ic_utilities;
                 break;
@@ -98,7 +97,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             @Override
             public void onClick(View v) {
 
-                AddPaybillActivity.setPaybillCategory(paybillCategory);
+                AddPayBillActivity.setPaybillCategory(payBillCategory);
                 /**
                  * When a view is clicked, we check it has been selected and we determine whether
                  * to make the background to reset the color or get the colot of the image and set it
@@ -130,7 +129,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                             });
                 } else { //Reset the Background color and the text color
 
-                    AddPaybillActivity.setPaybillCategory(null); //Reset the object
+                    AddPayBillActivity.setPaybillCategory(null); //Reset the object
                     holder.isSelected = false;
                     holder.relativeLayout.setBackgroundColor(mContext.getResources().getColor(R.color.white));
                     holder.tvCategoryName.setTextColor(mContext.getResources().getColor(R.color.black));
