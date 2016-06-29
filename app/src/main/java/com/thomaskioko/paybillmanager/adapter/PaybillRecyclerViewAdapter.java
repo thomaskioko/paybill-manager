@@ -76,7 +76,7 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
     @Override
     public void onBindViewHolder(final PaybillHolder holder, int position) {
 
-        PayBill payBill = mPayBillList.get(position);
+        final PayBill payBill = mPayBillList.get(position);
 
         /**
          * Check if the header should me displayed and hide/display the relevant view
@@ -105,7 +105,7 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
             holder.emptyLayout.setVisibility(View.GONE);
 
             List<PayBillCategory> payBillCategoryList = PayBillCategory.findWithQuery(PayBillCategory.class,
-                    "SELECT * FROM paybill_category WHERE category_id = ? ", payBill.getCategoryId());
+                    "SELECT * FROM pay_bill_category WHERE category_id = ? ", payBill.getCategoryId());
             for (PayBillCategory payBillCategory : payBillCategoryList) {
                 holder.tvCategoryName.setText(payBillCategory.getCategoryName());
 
@@ -167,7 +167,11 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, AmountActivity.class));
+                    Intent intent = new Intent(mContext, AmountActivity.class);
+                    intent.putExtra("payBillName", payBill.getPaybillName());
+                    intent.putExtra("payBillNumber", payBill.getPaybillNumber());
+                    intent.putExtra("accountNumber", payBill.getPaybillAccountNumber());
+                    mContext.startActivity(new Intent(intent));
                 }
             });
         }
