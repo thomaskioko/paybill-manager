@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.adapter.PayBillRecyclerViewAdapter;
+import com.thomaskioko.paybillmanager.ui.adapter.PayBillRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.models.PayBill;
 import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
 

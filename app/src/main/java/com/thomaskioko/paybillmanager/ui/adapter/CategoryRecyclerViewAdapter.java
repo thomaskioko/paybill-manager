@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.adapter;
+package com.thomaskioko.paybillmanager.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

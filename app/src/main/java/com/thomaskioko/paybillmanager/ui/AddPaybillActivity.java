@@ -27,7 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.adapter.CategoryRecyclerViewAdapter;
+import com.thomaskioko.paybillmanager.ui.adapter.CategoryRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.models.PayBill;
 import com.thomaskioko.paybillmanager.models.PayBillCategory;
 import com.thomaskioko.paybillmanager.util.AnimationTransitionUtils;
