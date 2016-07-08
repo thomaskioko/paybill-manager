@@ -2,12 +2,16 @@ package com.thomaskioko.paybillmanager.ui.fragments;
 
 
 import android.app.ActivityOptions;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,9 +20,10 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.adapter.PayBillRecyclerViewAdapter;
+import com.thomaskioko.paybillmanager.ui.adapter.PayBillRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.models.PayBill;
 import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
+import com.thomaskioko.paybillmanager.util.AppConstants;
 
 import java.util.List;
 
@@ -39,6 +44,7 @@ public class PayBillsFragment extends Fragment {
     FloatingActionButton mFloatingActionButton;
 
     private boolean showHeader = false;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     /**
      * Method to instantiate the fragment.
@@ -67,6 +73,26 @@ public class PayBillsFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
 
+        loadPayBills();
+
+        /**
+         * Broadcast receiver called to reload list.
+         * */
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // checking for type intent filter
+                if (intent.getAction().equals(AppConstants.RELOAD_PAYBILLS)) {
+                    loadPayBills();
+                }
+            }
+        };
+    }
+
+    /**
+     * Method to load and display PayBills
+     */
+    private void loadPayBills() {
         //Fetch paybill items
         List<PayBill> payBillList = PayBill.listAll(PayBill.class);
 
@@ -103,4 +129,19 @@ public class PayBillsFragment extends Fragment {
             startActivity(new Intent(getActivity(), AddPayBillActivity.class));
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // register GCM registration complete receiver
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(AppConstants.RELOAD_PAYBILLS));
+    }
+
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }
+
 }
