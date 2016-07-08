@@ -1,7 +1,6 @@
 package com.thomaskioko.paybillmanager.ui;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,9 +26,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.thomaskioko.paybillmanager.R;
-import com.thomaskioko.paybillmanager.ui.adapter.CategoryRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.models.PayBill;
 import com.thomaskioko.paybillmanager.models.PayBillCategory;
+import com.thomaskioko.paybillmanager.ui.adapter.CategoryRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.util.AnimationTransitionUtils;
 import com.thomaskioko.paybillmanager.util.OnRevealAnimationListener;
 
@@ -38,7 +37,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Activity to allow users to add paybills.
@@ -70,10 +68,6 @@ public class AddPayBillActivity extends AppCompatActivity {
 
     private static PayBillCategory mPayBillCategory;
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

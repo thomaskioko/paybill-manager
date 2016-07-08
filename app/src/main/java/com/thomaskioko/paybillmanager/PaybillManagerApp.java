@@ -9,15 +9,13 @@ import com.thomaskioko.paybillmanager.models.PayBillCategory;
 
 import java.lang.reflect.Field;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-
 /**
  * Application class.
  *
  * @author Thomas Kioko
  */
 
-public class PaybillManagerApp extends SugarApp{
+public class PaybillManagerApp extends SugarApp {
 
     /**
      * @param context Application context
@@ -31,12 +29,6 @@ public class PaybillManagerApp extends SugarApp{
     public void onCreate() {
         super.onCreate();
         SugarContext.init(getApplicationContext());
-
-
-        CalligraphyConfig.initDefault(
-                new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Roboto-Light.ttf")
-                        .setFontAttrId(R.attr.fontPath)
-                        .build());
 
         /**
          * Create the paybill categories. At the moment this is hard coded. At the moment, we have the
