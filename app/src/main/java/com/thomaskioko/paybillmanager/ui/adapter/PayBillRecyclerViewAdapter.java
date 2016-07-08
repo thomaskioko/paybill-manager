@@ -5,6 +5,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +25,8 @@ import com.thomaskioko.paybillmanager.models.PayBill;
 import com.thomaskioko.paybillmanager.models.PayBillCategory;
 import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
 import com.thomaskioko.paybillmanager.ui.AmountActivity;
+import com.thomaskioko.paybillmanager.ui.fragments.PayBillsFragment;
+import com.thomaskioko.paybillmanager.util.AppConstants;
 
 import java.util.List;
 
@@ -76,7 +79,7 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
     @Override
     public void onBindViewHolder(final PaybillHolder holder, int position) {
 
-        final PayBill payBill = mPayBillList.get(position);
+        final PayBill[] payBill = {mPayBillList.get(position)};
 
         /**
          * Check if the header should me displayed and hide/display the relevant view
@@ -105,7 +108,7 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
             holder.emptyLayout.setVisibility(View.GONE);
 
             List<PayBillCategory> payBillCategoryList = PayBillCategory.findWithQuery(PayBillCategory.class,
-                    "SELECT * FROM pay_bill_category WHERE category_id = ? ", payBill.getCategoryId());
+                    "SELECT * FROM pay_bill_category WHERE category_id = ? ", payBill[0].getCategoryId());
             for (PayBillCategory payBillCategory : payBillCategoryList) {
                 holder.tvCategoryName.setText(payBillCategory.getCategoryName());
 
@@ -136,12 +139,13 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
                         .into(holder.ivCategoryIcon);
             }
 
-            holder.tvPaybillName.setText(payBill.getPaybillName());
+            holder.tvPaybillName.setText(payBill[0].getPaybillName());
             holder.tvAccountNumber.setText(mContext.getResources()
-                    .getString(R.string.placeholder_account_number, payBill.getPaybillAccountNumber()));
+                    .getString(R.string.placeholder_account_number, payBill[0].getPaybillAccountNumber()));
             holder.ivEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //Display a popup view with two option. Edit and Delete
                     PopupMenu popupMenu = new PopupMenu(v.getContext(), holder.ivEdit);
                     popupMenu.inflate(R.menu.menu_paybill_options);
                     popupMenu.setGravity(GravityCompat.END);
@@ -150,10 +154,27 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
                                 case R.id.menu_item_edit:
-                                    ///TODO:: Edit the record
+                                    //Edit the record
+                                    Intent editPayBillIntent = new Intent(mContext, AddPayBillActivity.class);
+                                    editPayBillIntent.putExtra("payBillId", payBill[0].getPaybillId());
+                                    editPayBillIntent.putExtra("categoryId", payBill[0].getCategoryId());
+                                    editPayBillIntent.putExtra("payBillName", payBill[0].getPaybillName());
+                                    editPayBillIntent.putExtra("payBillNumber", payBill[0].getPaybillNumber());
+                                    editPayBillIntent.putExtra("accountNumber", payBill[0].getPaybillAccountNumber());
+                                    mContext.startActivity(new Intent(editPayBillIntent));
                                     return true;
                                 case R.id.menu_item_delete:
-                                    //TODO:: Delete the record
+                                    //Delete the record
+                                    payBill[0] = PayBill.findById(PayBill.class, payBill[0].getId());
+                                    payBill[0].delete();
+
+                                    /**
+                                     * We use a {@link LocalBroadcastManager} to invoke
+                                     * {@link PayBillsFragment#loadPayBills()} and reload the views once
+                                     * a record is deleted.
+                                     */
+                                    Intent intent = new Intent(AppConstants.RELOAD_PAYBILLS);
+                                    LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                                     return true;
                                 default:
                                     return false;
@@ -168,9 +189,9 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, AmountActivity.class);
-                    intent.putExtra("payBillName", payBill.getPaybillName());
-                    intent.putExtra("payBillNumber", payBill.getPaybillNumber());
-                    intent.putExtra("accountNumber", payBill.getPaybillAccountNumber());
+                    intent.putExtra("payBillName", payBill[0].getPaybillName());
+                    intent.putExtra("payBillNumber", payBill[0].getPaybillNumber());
+                    intent.putExtra("accountNumber", payBill[0].getPaybillAccountNumber());
                     mContext.startActivity(new Intent(intent));
                 }
             });
