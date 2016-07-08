@@ -41,6 +41,16 @@ Contributing
 #### No code!
 * You can [discuss a bug](https://github.com/kioko/paybill-manager/issues) or if it was not reported yet [submit a bug](https://github.com/kioko/paybill-manager/issues/new).
 
+
+Libraries Used
+============
+1. [SugarOrm](https://github.com/satyan/sugar) 
+2. [Retrofit](http://square.github.io/retrofit/)
+3. [ButterKnife](http://jakewharton.github.io/butterknife/)
+5. [Glide](https://github.com/bumptech/glide)
+6. [MaterialView Pager](https://github.com/florent37/MaterialViewPager)
+7. [MoneyTextView](http://android-arsenal.com/details/1/3835)
+
 License
 -------
 
