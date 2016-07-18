@@ -33,6 +33,9 @@ the option to use the gradle wrapper
 * You may also be prompted to change to the appropriate SDK folder for your local machine
 * Once the project has compiled -> run the project!
 
+### NB: (Instant Run)
+If you have Instant Run enabled, you'll need to disable it. [SugarOrm](https://github.com/satyan/sugar) does not play nice with Instant Run.
+
 
 Contributing
 ============
