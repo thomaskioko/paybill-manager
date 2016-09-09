@@ -7,10 +7,12 @@ import com.google.gson.annotations.SerializedName;
  */
 public class PaymentResponse {
 
+    @SerializedName(value = "return_code")
     private String returnCode;
+    @SerializedName(value = "status_code")
     private Integer statusCode;
     private String message;
-    @SerializedName(value = "description")
+    @SerializedName(value = "transaction_id")
     private String transactionId;
     private String description;
     @SerializedName(value = "cust_msg")
