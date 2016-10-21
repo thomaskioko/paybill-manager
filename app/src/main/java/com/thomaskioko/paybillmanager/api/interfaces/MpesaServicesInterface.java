@@ -24,7 +24,7 @@ public interface MpesaServicesInterface {
      * @param postPayBillData {@link PostPayBillData} PayBill Post Data
      * @return JSON PaymentResponse from server
      */
-    @POST("/request")
+    @POST("request")
     Call<ServerPaymentResponse> getPaymentResponse(@Body PostPayBillData postPayBillData);
 
     /**
@@ -37,7 +37,7 @@ public interface MpesaServicesInterface {
      * @param transactionId Id Generated after a successful post request
      * @return JSON Response from server
      */
-    @GET("/confirm/{trx_id}")
+    @GET("confirm/{trx_id}")
     Call<ServerConfirmationResponse> getConfirmationResponse(@Path("trx_id") String transactionId);
 
     /**
@@ -47,6 +47,6 @@ public interface MpesaServicesInterface {
      * @param transactionId Id Generated after a successful post request
      * @return JSON Response from server
      */
-    @GET("/status/:{trx_id}")
+    @GET("status/:{trx_id}")
     Call<ServerConfirmationResponse> getPaymentStatus(@Path("trx_id") String transactionId);
 }

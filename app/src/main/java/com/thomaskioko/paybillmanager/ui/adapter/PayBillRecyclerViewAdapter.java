@@ -26,7 +26,7 @@ import com.thomaskioko.paybillmanager.models.PayBillCategory;
 import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
 import com.thomaskioko.paybillmanager.ui.AmountActivity;
 import com.thomaskioko.paybillmanager.ui.fragments.PayBillsFragment;
-import com.thomaskioko.paybillmanager.util.AppConstants;
+import com.thomaskioko.paybillmanager.util.ApplicationConstants;
 
 import java.util.List;
 
@@ -173,7 +173,7 @@ public class PayBillRecyclerViewAdapter extends RecyclerView.Adapter<PayBillRecy
                                      * {@link PayBillsFragment#loadPayBills()} and reload the views once
                                      * a record is deleted.
                                      */
-                                    Intent intent = new Intent(AppConstants.RELOAD_PAYBILLS);
+                                    Intent intent = new Intent(ApplicationConstants.RELOAD_PAY_BILLS);
                                     LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                                     return true;
                                 default:
