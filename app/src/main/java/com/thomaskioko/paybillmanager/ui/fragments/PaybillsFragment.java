@@ -23,7 +23,7 @@ import com.thomaskioko.paybillmanager.R;
 import com.thomaskioko.paybillmanager.ui.adapter.PayBillRecyclerViewAdapter;
 import com.thomaskioko.paybillmanager.models.PayBill;
 import com.thomaskioko.paybillmanager.ui.AddPayBillActivity;
-import com.thomaskioko.paybillmanager.util.AppConstants;
+import com.thomaskioko.paybillmanager.util.ApplicationConstants;
 
 import java.util.List;
 
@@ -82,7 +82,7 @@ public class PayBillsFragment extends Fragment {
             @Override
             public void onReceive(Context context, Intent intent) {
                 // checking for type intent filter
-                if (intent.getAction().equals(AppConstants.RELOAD_PAYBILLS)) {
+                if (intent.getAction().equals(ApplicationConstants.RELOAD_PAY_BILLS)) {
                     loadPayBills();
                 }
             }
@@ -135,7 +135,7 @@ public class PayBillsFragment extends Fragment {
         super.onResume();
         // register GCM registration complete receiver
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(AppConstants.RELOAD_PAYBILLS));
+                new IntentFilter(ApplicationConstants.RELOAD_PAY_BILLS));
     }
 
     @Override
