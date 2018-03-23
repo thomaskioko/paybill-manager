@@ -94,6 +94,9 @@ public class AddPayBillActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Helper method to initialise views
+     */
     private void initViews() {
 
         runOnUiThread(new Runnable() {
@@ -105,6 +108,7 @@ public class AddPayBillActivity extends AppCompatActivity {
 
                 mLlContainer.startAnimation(animation);
                 mLlContainer.setVisibility(View.VISIBLE);
+                mFab.setVisibility(View.INVISIBLE);
 
             }
         });
