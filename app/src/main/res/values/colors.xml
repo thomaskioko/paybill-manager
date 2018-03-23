@@ -12,4 +12,11 @@
     <color name="grey_60">#99333333</color>
     <color name="grey_45">#73333333</color>
     <color name="grey_30">#4C333333</color>
+
+    <!-- -->
+    <color name="transactionFragmentLight">#303f9f</color>
+    <color name="transactionFragmentDark">#242f78</color>
+
+    <color name="paybillsFragmentLight">#4CAF50</color>
+    <color name="paybillsFragmentDark">#357a38</color>
 </resources>
