@@ -22,4 +22,17 @@
 
     <dimen name="anti_theft_t9_key_paddingTop">15dp</dimen>
     <dimen name="anti_theft_t9_key_paddingBottom">15dp</dimen>
+
+    <dimen name="dimen_mini_player">100dp</dimen>
+    <dimen name="dime_navigation_drawer_size">304dp</dimen>
+    <dimen name="dime_circular_image_view">54dp</dimen>
+    <dimen name="dimen_micro_image_view">25dp</dimen>
+    <dimen name="dimen_small_image_view">40dp</dimen>
+    <dimen name="dimen_small_plus_image_view">48dp</dimen>
+    <dimen name="dimen_medium_image_view">60dp</dimen>
+    <dimen name="dimen_frame_height">240dp</dimen>
+
+    <dimen name="material_layout_app_bar_height">320dp</dimen>
+    <dimen name="expanded_toolbar_height">80dp</dimen>
+    <dimen name="expanded_toolbar_title_margin_bottom">40dp</dimen>
 </resources>
