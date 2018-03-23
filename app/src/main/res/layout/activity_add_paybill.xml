@@ -6,35 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/activity_contact_rl_container"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_frame_height"
+        android:background="@null"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/activity_contact_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:transitionName="transition_reveal_contact"
-            app:backgroundTint="@color/colorAccent"
-            app:elevation="0dp"
-            app:fabSize="normal"
-            app:pressedTranslationZ="8dp" />
-
-        <LinearLayout
-            android:id="@+id/activity_contact_ll_container"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical"
-            android:visibility="invisible">
+            android:fitsSystemWindows="true"
+            app:expandedTitleMargin="@dimen/activity_horizontal_margin"
+            app:expandedTitleMarginBottom="@dimen/expanded_toolbar_title_margin_bottom"
+            app:layout_scrollFlags="scroll"
+            app:toolbarId="@+id/toolbar">
 
             <!-- HeaderLayout -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="@dimen/dimen_frame_height"
                 android:background="@color/colorPrimaryDark"
                 android:orientation="vertical">
 
@@ -43,6 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -71,130 +65,155 @@
                     android:textSize="@dimen/text_view_medium" />
             </LinearLayout>
 
-            <ScrollView
-                android:id="@+id/scrollView"
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:id="@+id/activity_contact_rl_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+
+            <LinearLayout
+                android:id="@+id/activity_contact_ll_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white">
+                android:layout_alignParentTop="true"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/tvSelectCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/text_select_category"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:scrollbars="vertical" />
+
+
+                <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
+
+                    <EditText
+                        android:id="@+id/etPaybillName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_receipt_black_18dp"
+                        android:drawableStart="@mipmap/ic_receipt_black_18dp"
+                        android:hint="@string/hint_paybill_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/editTextAccountNumber"
+                        android:textColor="@color/black" />
+
+                </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvSelectCategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/text_select_category"
-                        android:textStyle="bold" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:scrollbars="vertical" />
-
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
                         paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
 
                         <EditText
-                            android:id="@+id/etPaybillName"
+                            android:id="@+id/editTextPaybillNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@mipmap/ic_receipt_black_18dp"
                             android:drawableStart="@mipmap/ic_receipt_black_18dp"
-                            android:hint="@string/hint_paybill_name"
+                            android:hint="@string/hint_paybill_number"
                             android:imeOptions="actionNext"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/editTextAccountNumber"
                             android:textColor="@color/black" />
 
                     </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
 
-                    <LinearLayout
+                    <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
 
-                        <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
+                        <EditText
+                            android:id="@+id/editTextAccountNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
+                            android:drawableLeft="@mipmap/ic_account_circle_black_18dp"
+                            android:drawableStart="@mipmap/ic_account_circle_black_18dp"
+                            android:hint="@string/hint_account_number"
+                            android:imeOptions="actionDone"
+                            android:inputType="number|text"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
-                            <EditText
-                                android:id="@+id/editTextPaybillNumber"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:drawableLeft="@mipmap/ic_receipt_black_18dp"
-                                android:drawableStart="@mipmap/ic_receipt_black_18dp"
-                                android:hint="@string/hint_paybill_number"
-                                android:imeOptions="actionNext"
-                                android:inputType="number"
-                                android:maxLines="1"
-                                android:nextFocusDown="@+id/editTextAccountNumber"
-                                android:textColor="@color/black" />
+                    </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
 
-                        </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
-
-                        <com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_weight="1"
-                            paybillmanager:floatLabelTextAppearance="@style/TextAppearance.PaybillManager.FloatLabel">
-
-                            <EditText
-                                android:id="@+id/editTextAccountNumber"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:drawableLeft="@mipmap/ic_account_circle_black_18dp"
-                                android:drawableStart="@mipmap/ic_account_circle_black_18dp"
-                                android:hint="@string/hint_account_number"
-                                android:imeOptions="actionDone"
-                                android:inputType="number|text"
-                                android:maxLines="1"
-                                android:textColor="@color/black" />
-
-                        </com.thomaskioko.paybillmanager.ui.view.FloatLabelLayout>
-
-                    </LinearLayout>
-
-
-                    <Button
-                        android:id="@+id/btnSavePayBill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/button_orange"
-                        android:drawableEnd="@mipmap/ic_send_white_24dp"
-                        android:drawableRight="@mipmap/ic_send_white_24dp"
-                        android:text="@string/button_save" />
                 </LinearLayout>
 
-            </ScrollView>
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnSavePayBill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_orange"
+                    android:drawableEnd="@mipmap/ic_send_white_24dp"
+                    android:drawableRight="@mipmap/ic_send_white_24dp"
+                    android:text="@string/button_save" />
+            </LinearLayout>
+        </RelativeLayout>
 
-    </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_contact_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:transitionName="transition_reveal_contact"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="0dp"
+        app:fabSize="normal"
+        app:pressedTranslationZ="8dp" />
+
 </android.support.design.widget.CoordinatorLayout>
