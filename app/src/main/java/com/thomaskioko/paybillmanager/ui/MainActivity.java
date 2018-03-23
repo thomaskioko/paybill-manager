@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.ui;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -7,6 +8,8 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
@@ -100,17 +103,21 @@ public class MainActivity extends AppCompatActivity {
             public HeaderDesign getHeaderDesign(int page) {
                 switch (page) {
                     case 0:
+                        changeStatusBarColor(getResources().getColor(R.color.paybillsFragmentDark));
                         mHeaderLogo.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
                                 R.mipmap.ic_monetization_on_white_48dp, null));
                         return HeaderDesign.fromColorResAndUrl(
-                                R.color.green,
-                                "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                                R.color.paybillsFragmentLight,
+                                "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg"
+                        );
                     case 1:
+                        changeStatusBarColor(getResources().getColor(R.color.transactionFragmentDark));
                         mHeaderLogo.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
                                 R.mipmap.ic_receipt_white_48dp, null));
                         return HeaderDesign.fromColorResAndUrl(
-                                R.color.blue,
-                                "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
+                                R.color.transactionFragmentLight,
+                                "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg"
+                        );
                 }
 
                 return null;
@@ -119,5 +126,21 @@ public class MainActivity extends AppCompatActivity {
 
         mMaterialViewPager.getViewPager().setOffscreenPageLimit(mMaterialViewPager.getViewPager().getAdapter().getCount());
         mMaterialViewPager.getPagerTitleStrip().setViewPager(mMaterialViewPager.getViewPager());
+    }
+
+    /**
+     * Helper method to change the color of the status bar.
+     *
+     * @param color color value
+     */
+    private void changeStatusBarColor(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            // finally change the color
+            window.setStatusBarColor(color);
+        }
     }
 }
