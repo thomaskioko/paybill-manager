@@ -3,18 +3,20 @@
 </p>
 
 
-PayBill Manager
+PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
 -------------------
-Paybill manger is a simple app that consumes [Eugine Mutai's](https://developers.google.com/experts/people/eugene-mutai) 
-amazing Restful Mpesa API - [ProjectMula](https://github.com/kn9ts/project-mulla)
+Paybill manger is an Android app meant to help you manage your bill.
+
+It attempts to use the latest cutting edge libraries and tools. As a summary:
+
+ * Entirely written in [Kotlin](https://kotlinlang.org/)
+ * Uses [RxJava](https://github.com/ReactiveX/RxJava) 2
+ * Uses all of the [Architecture Components](https://developer.android.com/topic/libraries/architecture/): Room, LiveData and Lifecycle-components
+ * Uses [dagger-android](https://google.github.io/dagger/android.html) for dependency injection
 
 ## Requirements
 * JDK Version 1.7 & above
-* [Android SDK.](http://developer.android.com/sdk/index.html)
-* Android SDK Tools
-* Android SDK Build tools 23.0.2
-* Android Support Repository
-* Android Support library
+* Android Studio Version 3.0 (or newer)
 
 
 ## Project Setup
@@ -29,6 +31,11 @@ the option to use the gradle wrapper
 * Once the project has compiled -> run the project!
 
 
+### TODO
+- [ ] Create payment module
+- [ ] Setup Travis CI
+
+
 Contributing
 ============
 
@@ -40,16 +47,6 @@ Contributing
 
 #### No code!
 * You can [discuss a bug](https://github.com/kioko/paybill-manager/issues) or if it was not reported yet [submit a bug](https://github.com/kioko/paybill-manager/issues/new).
-
-
-Libraries Used
-============
-1. [SugarOrm](https://github.com/satyan/sugar) 
-2. [Retrofit](http://square.github.io/retrofit/)
-3. [ButterKnife](http://jakewharton.github.io/butterknife/)
-5. [Glide](https://github.com/bumptech/glide)
-6. [MaterialView Pager](https://github.com/florent37/MaterialViewPager)
-7. [MoneyTextView](http://android-arsenal.com/details/1/3835)
 
 License
 -------
