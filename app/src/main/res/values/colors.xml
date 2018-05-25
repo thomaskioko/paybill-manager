@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#5BC236</color>
-    <color name="colorPrimaryDark">#2d8324</color>
-    <color name="colorAccent">#F28408</color>
-    <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
-    <color name="enabled">@color/colorAccent</color>
-    <color name="disabled">@color/grey_60</color>
-    <color name="red">#FF0000</color>
-
-    <color name="grey_60">#99333333</color>
-    <color name="grey_45">#73333333</color>
-    <color name="grey_30">#4C333333</color>
-
-    <!-- -->
-    <color name="transactionFragmentLight">#303f9f</color>
-    <color name="transactionFragmentDark">#242f78</color>
-
-    <color name="paybillsFragmentLight">#4CAF50</color>
-    <color name="paybillsFragmentDark">#357a38</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
 </resources>

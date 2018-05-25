@@ -1,83 +1,11 @@
 <resources>
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar" />
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:fitsSystemWindows">true</item>
-
-        <!-- Material Theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <!-- Popup Menu Settings -->
-        <item name="android:popupMenuStyle">@style/MyPopupMenu</item>
-        <item name="android:textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceLarge
-        </item>
-        <item name="android:textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceSmall
-        </item>
-
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
     </style>
-
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">@color/drawerArrowColor</item>
-    </style>
-
-    <!-- TextInput Layout -->
-    <style name="TextLabel" parent="TextAppearance.AppCompat">
-        <!-- Hint color and label color in FALSE state -->
-        <item name="android:textColorHint">@color/colorAccent</item>
-        <item name="android:textSize">12sp</item>
-        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimaryDark</item>
-    </style>
-
-    <!-- Floating label style -->
-    <style name="TextAppearance.PaybillManager.FloatLabel" parent="android:Widget">
-        <item name="android:textSize">11sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="colorAccent">@color/colorPrimaryDark</item>
-        <item name="colorControlNormal">@color/colorPrimaryDark</item>
-    </style>
-
-    <style name="MyPopupMenu" parent="@style/Widget.AppCompat.PopupMenu">
-        <item name="android:popupBackground">#0F213F</item>
-    </style>
-
-    <style name="myPopupMenuTextAppearanceSmall" parent="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="myPopupMenuTextAppearanceLarge" parent="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <!-- Keyboard button style -->
-    <style name="anti_theft_t9_key">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingTop">@dimen/anti_theft_t9_key_paddingTop</item>
-        <item name="android:paddingBottom">@dimen/anti_theft_t9_key_paddingBottom</item>
-        <item name="android:clickable">true</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:scaleType">centerInside</item>
-        <item name="android:background">@drawable/calculator_background</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
-    </style>
-
 
 </resources>
