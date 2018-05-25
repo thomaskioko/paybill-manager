@@ -34,6 +34,8 @@ the option to use the gradle wrapper
 ### TODO
 - [ ] Create payment module
 - [ ] Setup Travis CI
+- [ ] Add Kotlin Support
+- [ ] Release Beta Version
 
 
 Contributing
@@ -51,7 +53,7 @@ Contributing
 License
 -------
 
-    Copyright 2016 Thomas Kioko
+    Copyright 2018 Thomas Kioko
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
