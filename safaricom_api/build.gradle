@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -32,6 +33,11 @@ android {
         lintConfig rootProject.file('lint.xml')
     }
 
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+    }
 }
 
 dependencies {
@@ -45,11 +51,63 @@ dependencies {
     implementation deps.kotlin.stdlib
 
     /**
+     * Retrofit
+     */
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+
+    /**
+     * OkHTTP
+     */
+    implementation deps.okhttp.okhttp
+    implementation deps.okhttp.okhttp_logging_interceptor
+
+    /**
+     * Room
+     */
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
+    /**
+     * Dagger
+     */
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.compiler
+
+    /**
+     * Lifecycle
+     */
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
+
+    /**
      * Testing
      */
     testImplementation deps.junit
+    testImplementation deps.mock_web_server
+    testImplementation(deps.arch_core.testing, {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
+    testImplementation deps.mockito.core
+
+    androidTestImplementation(deps.espresso.core, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
     androidTestImplementation(deps.espresso.contrib, {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
+
+    androidTestImplementation(deps.arch_core.testing, {
+    })
+    androidTestImplementation deps.dexmaker
+    androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
 }
