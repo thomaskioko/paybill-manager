@@ -1,8 +1,8 @@
-<p align="center">
+[![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/ft-architecture-restructure)](https://travis-ci.org/kioko/paybill-manager)
+p align="center">
   <img src="https://github.com/kioko/paybill-manager/blob/master/app/src/main/ic_launcher_web.png?raw=true" alt="Paybill-Manager"/>
 </p>
 
-[![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/ft-architecture-restructure)](https://travis-ci.org/kioko/paybill-manager)
 
 PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
 -------------------
