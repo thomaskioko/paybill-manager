@@ -46,7 +46,7 @@ android:
 
  - extra-android-m2repository # for design library
 
- - addon-google_apis-google-19 # google play services
+ - addon-google_apis-google-23 # google play services
 
  - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
 
@@ -76,21 +76,6 @@ before_script:
 
 script:
 
-- "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+ - ./gradlew connectedAndroidTest
 
-
-deploy:
-
-  provider: releases
-
-  file: TravisExample.apk
-  skip_cleanup: true
-
-  on:
-
-    repo: kioko/paybill-manager
-
-    tags: true
-
-    jdk: oraclejdk8
 
