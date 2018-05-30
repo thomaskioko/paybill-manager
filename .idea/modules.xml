@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/paybill-manager.iml" filepath="$PROJECT_DIR$/paybill-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/safaricom_api/safaricom_api.iml" filepath="$PROJECT_DIR$/safaricom_api/safaricom_api.iml" />
     </modules>
   </component>
 </project>
