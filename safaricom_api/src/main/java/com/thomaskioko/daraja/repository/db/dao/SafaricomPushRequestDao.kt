@@ -17,6 +17,9 @@ abstract class SafaricomPushRequestDao {
     @Query("SELECT * FROM SafaricomPushRequest")
     abstract fun findAll(): LiveData<List<SafaricomPushRequest>>
 
+    @Query("SELECT * FROM SafaricomPushRequest WHERE id = :id")
+    abstract fun findById(id: Int): LiveData<SafaricomPushRequest>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(vararg safaricomPushRequests: SafaricomPushRequest)
 
