@@ -1,2 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.thomaskioko.safaricomapi" />
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.thomaskioko.safaricomapi">
+
+    <application>
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="26.1.0"
+            tools:replace="android:value" />
+
+    </application>
+</manifest>
