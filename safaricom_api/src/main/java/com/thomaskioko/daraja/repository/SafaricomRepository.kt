@@ -30,7 +30,7 @@ constructor(private val mAppExecutors: AppExecutors, private val mSafaricomServi
 
             override fun saveCallResult(item: SafaricomToken) {
 
-                mSafaricomTokenDao.insert(item)
+                mSafaricomTokenDao.insertSafaricomToken(item)
 
                 mSafaricomAuthInterceptor.setAuthToken(item.accessToken)
                 if (mSafaricomTokenDao.getAccessToken().value != null) {
