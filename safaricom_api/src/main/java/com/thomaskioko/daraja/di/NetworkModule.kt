@@ -1,11 +1,13 @@
 package com.thomaskioko.daraja.di
 
 import com.thomaskioko.daraja.repository.api.interceptor.SafaricomAuthInterceptor
+import com.thomaskioko.daraja.repository.api.interceptor.SafaricomTokenInterceptor
+import com.thomaskioko.daraja.repository.api.util.livedata.LiveDataCallAdapterFactory
 import com.thomaskioko.daraja.util.AppConstants.Companion.CONNECT_TIMEOUT
 import com.thomaskioko.daraja.util.AppConstants.Companion.READ_TIMEOUT
 import com.thomaskioko.daraja.util.AppConstants.Companion.SAFARICOM_BASE_URL
+import com.thomaskioko.daraja.util.AppConstants.Companion.TOKEN_URL
 import com.thomaskioko.daraja.util.AppConstants.Companion.WRITE_TIMEOUT
-import com.thomaskioko.daraja.repository.api.util.livedata.LiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -16,8 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
-import com.thomaskioko.daraja.repository.api.interceptor.SafaricomTokenInterceptor
-import com.thomaskioko.daraja.util.AppConstants.Companion.TOKEN_URL
 
 
 @Module
