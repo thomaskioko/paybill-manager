@@ -13,7 +13,7 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.thomaskioko.safaricomapi.util.SafaricomTestRunner"
 
     }
 
