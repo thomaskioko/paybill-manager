@@ -1,11 +1,9 @@
 package com.thomaskioko.daraja.repository.db.entity
 
-import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.google.gson.annotations.SerializedName
 
-@Entity
 data class SafaricomPushRequest(
         @PrimaryKey(autoGenerate = true)
         @JsonIgnoreProperties(ignoreUnknown = true)
