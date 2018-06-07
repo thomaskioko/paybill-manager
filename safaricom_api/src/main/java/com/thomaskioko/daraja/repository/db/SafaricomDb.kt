@@ -5,7 +5,6 @@ import android.arch.persistence.room.RoomDatabase
 import com.thomaskioko.daraja.repository.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.repository.db.dao.SafaricomTokenDao
 import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
-import com.thomaskioko.daraja.repository.db.entity.SafaricomPushRequest
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 
 

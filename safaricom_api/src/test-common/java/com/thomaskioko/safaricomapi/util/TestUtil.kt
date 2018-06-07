@@ -1,7 +1,7 @@
 package com.thomaskioko.safaricomapi.util
 
 import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
-import com.thomaskioko.daraja.repository.db.entity.SafaricomPushRequest
+import com.thomaskioko.daraja.model.SafaricomPushRequest
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 import com.thomaskioko.daraja.util.AppConstants.Companion.CALLBACKURL
 import com.thomaskioko.daraja.util.AppConstants.Companion.TEST_BUSINESS_SHORT_CODE

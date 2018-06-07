@@ -1,4 +1,4 @@
-package com.thomaskioko.daraja.repository.db.entity
+package com.thomaskioko.daraja.model
 
 import android.arch.persistence.room.PrimaryKey
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties

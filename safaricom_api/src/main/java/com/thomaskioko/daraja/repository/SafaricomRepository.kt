@@ -12,7 +12,7 @@ import com.thomaskioko.daraja.repository.api.util.livedata.AbsentLiveData
 import com.thomaskioko.daraja.repository.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.repository.db.dao.SafaricomTokenDao
 import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
-import com.thomaskioko.daraja.repository.db.entity.SafaricomPushRequest
+import com.thomaskioko.daraja.model.SafaricomPushRequest
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 import javax.inject.Inject
 import javax.inject.Singleton
