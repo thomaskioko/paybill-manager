@@ -13,7 +13,7 @@ import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 @Dao
 abstract class SafaricomTokenDao {
 
-    @Query("SELECT * FROM SafaricomToken Limit 1")
+    @Query("SELECT * FROM SafaricomToken")
     abstract fun getAccessToken(): LiveData<SafaricomToken>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
