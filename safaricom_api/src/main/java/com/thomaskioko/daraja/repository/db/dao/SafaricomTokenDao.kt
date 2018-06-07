@@ -3,6 +3,7 @@ package com.thomaskioko.daraja.repository.db.dao
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import android.database.sqlite.SQLiteConstraintException
+import android.provider.SyncStateContract.Helpers.insert
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 
 
@@ -16,12 +17,12 @@ abstract class SafaricomTokenDao {
     abstract fun getAccessToken(): LiveData<SafaricomToken>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(safaricomToken: SafaricomToken)
+    abstract fun insertSafaricomToken(safaricomToken: SafaricomToken)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    open fun insertSafaricomToken(safaricomToken: SafaricomToken) {
+    open fun updateSafaricomToken(safaricomToken: SafaricomToken) {
         deleteAll()
-        insert(safaricomToken)
+        insertSafaricomToken(safaricomToken)
     }
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
