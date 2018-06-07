@@ -1,7 +1,5 @@
-package com.thomaskioko.daraja.repository.db.dao
+package com.thomaskioko.daraja.di
 
-import com.thomaskioko.daraja.di.NetworkModule
-import com.thomaskioko.daraja.di.RoomModule
 import com.thomaskioko.daraja.repository.api.service.SafaricomService
 import com.thomaskioko.daraja.repository.api.service.SafaricomTokenService
 import dagger.Module
