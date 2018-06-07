@@ -1,6 +1,7 @@
 package com.thomaskioko.daraja.repository.api.interceptor
 
 import android.support.annotation.NonNull
+import com.thomaskioko.safaricomapi.testing.OpenForTesting
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -9,7 +10,7 @@ import javax.inject.Singleton
 
 /**
  * This class add information (API Key) to [okhttp3.OkHttpClient] which is passed in
- * [PaymentNetworkModule.okHttpSafaricomTokenClient]
+ * [NetworkModule.okHttpSafaricomTokenClient]
  * which is required when making a request. This will ensure that all requests are made with the API key
  *
  * @author Thomas Kioko
@@ -19,6 +20,7 @@ import javax.inject.Singleton
  * Default constructor.
  */
 @Singleton
+@OpenForTesting
 class SafaricomAuthInterceptor : Interceptor {
 
     private var authToken: String? = null
