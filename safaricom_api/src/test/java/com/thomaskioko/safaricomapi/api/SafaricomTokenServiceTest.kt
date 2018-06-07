@@ -1,7 +1,6 @@
 package com.thomaskioko.safaricomapi.api
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.thomaskioko.daraja.repository.api.service.SafaricomService
 import com.thomaskioko.daraja.repository.api.service.SafaricomTokenService
 import com.thomaskioko.daraja.repository.api.util.ApiSuccessResponse
 import com.thomaskioko.daraja.repository.api.util.livedata.LiveDataCallAdapterFactory
@@ -10,7 +9,6 @@ import com.thomaskioko.safaricomapi.util.LiveDataTestUtil.getValue
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.Okio
-import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsNull
@@ -53,7 +51,7 @@ class SafaricomTokenServiceTest {
     fun generateAccessToken() {
         enqueueResponse("token-response.json")
 
-        val result = (getValue(tokenService.accessToken) as ApiSuccessResponse).body
+        val result = (getValue(tokenService.getAccessToken()) as ApiSuccessResponse).body
 
         val request = mockWebServer.takeRequest()
         assertThat(request.path, `is`("/generate?grant_type=client_credentials"))
