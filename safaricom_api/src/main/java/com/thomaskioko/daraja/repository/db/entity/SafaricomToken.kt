@@ -10,7 +10,8 @@ data class SafaricomToken(
         @SerializedName("expires_in")
         var expiresIn: String,
         @SerializedName("access_token")
-        var accessToken: String
+        var accessToken: String,
+        var expireTime: Long
 ) {
 
     @PrimaryKey(autoGenerate = true)
