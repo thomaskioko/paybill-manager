@@ -12,30 +12,30 @@ import org.junit.runner.RunWith
 class SafaricomPushRequestDaoTest : SafaricomDbTest() {
 
     @Test
-    fun insertLoadToken() {
+    fun insertLoadPushRequest() {
 
-        val safaricomRequest = TestUtil.createSafaricomPushRequest()
+        val safaricomRequest = TestUtil.createPushRequest()
         db.safaricomPushRequestDao().insert(safaricomRequest)
 
-        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(safaricomRequest.id))
-        assertThat(loadedRequest.accountReference, `is`(safaricomRequest.accountReference))
+        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(safaricomRequest.merchantRequestID))
+        assertThat(loadedRequest.checkoutRequestID, `is`("ws_CO_DMZ_37595383_07062018174946163"))
     }
 
     @Test
-    fun updateAndLoad() {
+    fun updateAndLoadRequest() {
 
         //Create a new object
-        val safaricomRequest = TestUtil.createSafaricomPushRequest(12, "zuku-request")
+        val safaricomRequest = TestUtil.createPushRequest("ws_CO_DMZ_37595383_07062018174946163")
         db.safaricomPushRequestDao().insert(safaricomRequest)
 
         //Create an updated record
-        val updatedSafaricomRequest = TestUtil.createSafaricomPushRequest(12, "zuku-request-june")
+        val updatedSafaricomRequest = TestUtil.createPushRequest("ws_CO_DMZ_37595383_07062018174946164")
         db.safaricomPushRequestDao().insert(updatedSafaricomRequest)
 
-        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(updatedSafaricomRequest.id))
+        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(updatedSafaricomRequest.merchantRequestID))
 
         //Check that the loaded request is the same as as the updated object
-        assertThat(loadedRequest.accountReference, `is`(updatedSafaricomRequest.accountReference))
+        assertThat(loadedRequest.checkoutRequestID, `is`("ws_CO_DMZ_37595383_07062018174946164"))
 
     }
 

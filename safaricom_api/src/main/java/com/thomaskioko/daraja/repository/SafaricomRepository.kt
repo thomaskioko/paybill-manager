@@ -11,6 +11,7 @@ import com.thomaskioko.daraja.repository.api.util.Resource
 import com.thomaskioko.daraja.repository.api.util.livedata.AbsentLiveData
 import com.thomaskioko.daraja.repository.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.repository.db.dao.SafaricomTokenDao
+import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.repository.db.entity.SafaricomPushRequest
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 import javax.inject.Inject
@@ -62,12 +63,12 @@ constructor(private val mAppExecutors: AppExecutors, private val mSafaricomServi
             }
         }.asLiveData()
 
-    fun sendPaymentRequest(safaricomPushRequest: SafaricomPushRequest): LiveData<Resource<SafaricomPushRequest>> {
-        return object : NetworkBoundResource<SafaricomPushRequest, SafaricomPushRequest>(mAppExecutors) {
+    fun sendPaymentRequest(safaricomPushRequest: SafaricomPushRequest): LiveData<Resource<PushRequestResponse>> {
+        return object : NetworkBoundResource<PushRequestResponse, PushRequestResponse>(mAppExecutors) {
             // Temp ResultType
-            private var safaricomToken: SafaricomPushRequest? = null
+            private var safaricomToken: PushRequestResponse? = null
 
-            override fun saveCallResult(item: SafaricomPushRequest) {
+            override fun saveCallResult(item: PushRequestResponse) {
                 mSafaricomPushRequestDao.insert(item)
 
                 if (mSafaricomPushRequestDao.findAll().value != null) {
@@ -75,17 +76,17 @@ constructor(private val mAppExecutors: AppExecutors, private val mSafaricomServi
                 }
             }
 
-            override fun shouldFetch(data: SafaricomPushRequest?): Boolean {
+            override fun shouldFetch(data: PushRequestResponse?): Boolean {
                 //Always fetch data
                 return true
             }
 
-            override fun loadFromDb(): LiveData<SafaricomPushRequest> {
+            override fun loadFromDb(): LiveData<PushRequestResponse> {
                 //Fetch from the db
                 return if (safaricomToken == null) {
                     AbsentLiveData.create()
                 } else {
-                    object : LiveData<SafaricomPushRequest>() {
+                    object : LiveData<PushRequestResponse>() {
                         override fun onActive() {
                             super.onActive()
                             value = safaricomToken
@@ -94,8 +95,8 @@ constructor(private val mAppExecutors: AppExecutors, private val mSafaricomServi
                 }
             }
 
-            override fun createCall(): LiveData<ApiResponse<SafaricomPushRequest>> {
-                return mSafaricomService.sendPush(safaricomPushRequest)
+            override fun createCall(): LiveData<ApiResponse<PushRequestResponse>> {
+                return mSafaricomService.sendPushRequest(safaricomPushRequest)
             }
         }.asLiveData()
     }
