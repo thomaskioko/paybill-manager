@@ -50,6 +50,8 @@ dependencies {
 
     implementation deps.multidex
 
+    implementation deps.support.annotations
+
     /**
      * Kotlin
      */
