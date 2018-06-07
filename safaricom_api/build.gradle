@@ -38,6 +38,11 @@ android {
         androidTest.java.srcDirs += "src/test-common/java"
         test.java.srcDirs += "src/test-common/java"
     }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'SAFARICOM_CONSUMER_KEY', SAFARICOM_CONSUMER_KEY
+        it.buildConfigField 'String', 'SAFARICOM_CONSUMER_SECRET', SAFARICOM_CONSUMER_SECRET
+    }
 }
 
 dependencies {
@@ -55,6 +60,8 @@ dependencies {
      */
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
+    implementation deps.retrofit.jackson
+    implementation deps.retrofit.rxjava2
 
     /**
      * OkHTTP
@@ -84,6 +91,11 @@ dependencies {
     implementation deps.lifecycle.extensions
     implementation deps.lifecycle.java8
     kapt deps.lifecycle.compiler
+
+    /**
+     * Timber
+     */
+    implementation deps.timber
 
     /**
      * Testing
