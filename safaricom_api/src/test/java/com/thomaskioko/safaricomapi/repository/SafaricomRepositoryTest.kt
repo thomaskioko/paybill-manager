@@ -49,7 +49,7 @@ class SafaricomRepositoryTest {
         `when`(db.safaricomPushRequestDao()).thenReturn(pushRequestDao)
         `when`(db.runInTransaction(ArgumentMatchers.any())).thenCallRealMethod()
 
-        authInterceptor = SafaricomAuthInterceptor()
+        authInterceptor = mock(SafaricomAuthInterceptor::class.java)
         repository = SafaricomRepository(
                 InstantAppExecutors(), safaricomService, tokenService, tokenDao, pushRequestDao, authInterceptor
         )
@@ -62,9 +62,9 @@ class SafaricomRepositoryTest {
 
         val tokenResult = TestUtil.createToken()
         val call = successCall(tokenResult)
-        `when`(tokenService.accessToken).thenReturn(call)
+        `when`(tokenService.getAccessToken()).thenReturn(call)
 
-        val data = repository.accessToken
+        val data = repository.loadAccessToken()
         verify(tokenDao).getAccessToken()
         verifyNoMoreInteractions(safaricomService)
 
@@ -77,8 +77,8 @@ class SafaricomRepositoryTest {
         `when`(tokenDao.getAccessToken()).thenReturn(updatedDbData)
 
         dbData.postValue(null)
-        verify(tokenService).accessToken
-        verify(tokenDao).insertSafaricomToken(tokenResult)
+        verify(tokenService).getAccessToken()
+        verify(tokenDao).updateSafaricomToken(tokenResult)
 
         updatedDbData.postValue(tokenResult)
         verify(observer).onChanged(Resource.success(tokenResult))
