@@ -12,9 +12,9 @@ import com.thomaskioko.daraja.util.AppConstants.Companion.TRANSACTION_TYPE
 object TestUtil {
 
 
-    fun createToken() = SafaricomToken("3599", "jK13flUwxNhIsYPzvNAJwslDnruQ")
+    fun createToken() = SafaricomToken("3599", "jK13flUwxNhIsYPzvNAJwslDnruQ", 1528387279306)
 
-    fun createToken(token: String) = SafaricomToken("3599", token)
+    fun createToken(token: String) = SafaricomToken("3599", token, 1528387279306)
 
 
     fun createSafaricomPushRequest() = SafaricomPushRequest(
