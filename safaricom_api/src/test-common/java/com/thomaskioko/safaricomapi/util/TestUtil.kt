@@ -1,5 +1,6 @@
 package com.thomaskioko.safaricomapi.util
 
+import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.repository.db.entity.SafaricomPushRequest
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 import com.thomaskioko.daraja.util.AppConstants.Companion.CALLBACKURL
@@ -20,6 +21,22 @@ object TestUtil {
             12, TEST_BUSINESS_SHORT_CODE, TEST_PASSKEY, "1528378513",
             TRANSACTION_TYPE, "30", TEST_PARTYB, TEST_PARTYB, "0721000000",
             CALLBACKURL, "123-Test-Paybill", "Paybill"
+    )
+
+    fun createPushRequest() = PushRequestResponse(
+            "25745-1565482-1",
+            "0",
+            "Success. Request accepted for processing",
+            "ws_CO_DMZ_37595383_07062018174946163",
+            "Success. Request accepted for processing"
+    )
+
+    fun createPushRequest(checkoutRequestID: String) = PushRequestResponse(
+            "25745-1565482-1",
+            "0",
+            "Success. Request accepted for processing",
+            checkoutRequestID,
+            "Success. Request accepted for processing"
     )
 
 
