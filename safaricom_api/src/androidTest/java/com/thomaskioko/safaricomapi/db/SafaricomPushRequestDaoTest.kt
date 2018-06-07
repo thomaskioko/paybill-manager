@@ -24,13 +24,17 @@ class SafaricomPushRequestDaoTest : SafaricomDbTest() {
     @Test
     fun updateAndLoad() {
 
+        //Create a new object
         val safaricomRequest = TestUtil.createSafaricomPushRequest(12, "zuku-request")
         db.safaricomPushRequestDao().insert(safaricomRequest)
 
+        //Create an updated record
         val updatedSafaricomRequest = TestUtil.createSafaricomPushRequest(12, "zuku-request-june")
         db.safaricomPushRequestDao().insert(updatedSafaricomRequest)
 
-        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(safaricomRequest.id))
+        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(updatedSafaricomRequest.id))
+
+        //Check that the loaded request is the same as as the updated object
         assertThat(loadedRequest.accountReference, `is`(updatedSafaricomRequest.accountReference))
 
     }
