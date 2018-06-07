@@ -1,10 +1,11 @@
 package com.thomaskioko.daraja.repository
 
 import android.arch.lifecycle.LiveData
-import com.thomaskioko.daraja.repository.api.util.ApiResponse
+import com.thomaskioko.daraja.model.SafaricomPushRequest
 import com.thomaskioko.daraja.repository.api.interceptor.SafaricomAuthInterceptor
 import com.thomaskioko.daraja.repository.api.service.SafaricomService
 import com.thomaskioko.daraja.repository.api.service.SafaricomTokenService
+import com.thomaskioko.daraja.repository.api.util.ApiResponse
 import com.thomaskioko.daraja.repository.api.util.AppExecutors
 import com.thomaskioko.daraja.repository.api.util.NetworkBoundResource
 import com.thomaskioko.daraja.repository.api.util.Resource
@@ -12,68 +13,46 @@ import com.thomaskioko.daraja.repository.api.util.livedata.AbsentLiveData
 import com.thomaskioko.daraja.repository.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.repository.db.dao.SafaricomTokenDao
 import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
-import com.thomaskioko.daraja.model.SafaricomPushRequest
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SafaricomRepository @Inject
-constructor(private val mAppExecutors: AppExecutors, private val mSafaricomService: SafaricomService,
-            private val mSafaricomTokenService: SafaricomTokenService, private val mSafaricomTokenDao: SafaricomTokenDao,
-            private val mSafaricomPushRequestDao: SafaricomPushRequestDao,
-            private val mSafaricomAuthInterceptor: SafaricomAuthInterceptor) {
+class SafaricomRepository @Inject constructor(
+        private val appExecutors: AppExecutors,
+        private val safaricomService: SafaricomService,
+        private val safaricomTokenService: SafaricomTokenService,
+        private val safaricomTokenDao: SafaricomTokenDao,
+        private val safaricomPushRequestDao: SafaricomPushRequestDao,
+        private val safaricomAuthInterceptor: SafaricomAuthInterceptor
+) {
 
 
-    val accessToken: LiveData<Resource<SafaricomToken>>
-        get() = object : NetworkBoundResource<SafaricomToken, SafaricomToken>(mAppExecutors) {
-            private var safaricomToken: SafaricomToken? = null
-
+    fun loadAccessToken(): LiveData<Resource<SafaricomToken>> {
+        return object : NetworkBoundResource<SafaricomToken, SafaricomToken>(appExecutors) {
             override fun saveCallResult(item: SafaricomToken) {
 
-                mSafaricomTokenDao.insertSafaricomToken(item)
+                safaricomTokenDao.updateSafaricomToken(item)
 
-                mSafaricomAuthInterceptor.setAuthToken(item.accessToken)
-                if (mSafaricomTokenDao.getAccessToken().value != null) {
-                    safaricomToken = mSafaricomTokenDao.getAccessToken().value
-                }
+                safaricomAuthInterceptor.setAuthToken(item.accessToken)
             }
 
             override fun shouldFetch(data: SafaricomToken?): Boolean {
-
-                //TODO:: check if the time has expired
-                return true
+                return data == null || data.expireTime < System.currentTimeMillis()
             }
 
-            override fun loadFromDb(): LiveData<SafaricomToken> {
-                return if (safaricomToken == null) {
-                    AbsentLiveData.create()
-                } else {
-                    object : LiveData<SafaricomToken>() {
-                        override fun onActive() {
-                            super.onActive()
-                            value = safaricomToken
-                        }
-                    }
-                }
-            }
+            override fun loadFromDb() = safaricomTokenDao.getAccessToken()
 
             override fun createCall(): LiveData<ApiResponse<SafaricomToken>> {
-                return mSafaricomTokenService.accessToken
+                return safaricomTokenService.getAccessToken()
             }
         }.asLiveData()
+    }
 
     fun sendPaymentRequest(safaricomPushRequest: SafaricomPushRequest): LiveData<Resource<PushRequestResponse>> {
-        return object : NetworkBoundResource<PushRequestResponse, PushRequestResponse>(mAppExecutors) {
-            // Temp ResultType
-            private var safaricomToken: PushRequestResponse? = null
-
+        return object : NetworkBoundResource<PushRequestResponse, PushRequestResponse>(appExecutors) {
             override fun saveCallResult(item: PushRequestResponse) {
-                mSafaricomPushRequestDao.insert(item)
-
-                if (mSafaricomPushRequestDao.findAll().value != null) {
-                    safaricomToken = mSafaricomPushRequestDao.findAll().value!![0]
-                }
+                safaricomPushRequestDao.insert(item)
             }
 
             override fun shouldFetch(data: PushRequestResponse?): Boolean {
@@ -81,22 +60,10 @@ constructor(private val mAppExecutors: AppExecutors, private val mSafaricomServi
                 return true
             }
 
-            override fun loadFromDb(): LiveData<PushRequestResponse> {
-                //Fetch from the db
-                return if (safaricomToken == null) {
-                    AbsentLiveData.create()
-                } else {
-                    object : LiveData<PushRequestResponse>() {
-                        override fun onActive() {
-                            super.onActive()
-                            value = safaricomToken
-                        }
-                    }
-                }
-            }
+            override fun loadFromDb() = safaricomPushRequestDao.findById(safaricomPushRequest.accountReference)
 
             override fun createCall(): LiveData<ApiResponse<PushRequestResponse>> {
-                return mSafaricomService.sendPushRequest(safaricomPushRequest)
+                return safaricomService.sendPushRequest(safaricomPushRequest)
             }
         }.asLiveData()
     }
