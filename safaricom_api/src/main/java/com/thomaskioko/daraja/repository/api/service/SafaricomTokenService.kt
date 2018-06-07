@@ -8,6 +8,6 @@ import retrofit2.http.GET
 
 interface SafaricomTokenService {
 
-    @get:GET("generate?grant_type=client_credentials")
-    val accessToken: LiveData<ApiResponse<SafaricomToken>>
+    @GET("generate?grant_type=client_credentials")
+    fun getAccessToken(): LiveData<ApiResponse<SafaricomToken>>
 }
