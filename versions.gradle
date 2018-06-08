@@ -28,6 +28,8 @@ versions.kotlin = "1.2.41"
 versions.multidex = "1.0.1"
 versions.timber = "4.5.1"
 versions.threetenabp = "1.1.0"
+versions.jacoco = "0.1.2"
+versions.groovy = "2.4.12"
 def deps = [:]
 
 def build_versions = [:]
@@ -124,6 +126,8 @@ deps.paging = "android.arch.paging:runtime:$versions.paging"
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 deps.multidex = "com.android.support:multidex:$versions.multidex"
 deps.threetenabp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
+deps.jacoco = "com.dicedmelon.gradle:jacoco-android:$versions.jacoco"
+deps.groovy_all = "org.codehaus.groovy:groovy-all:$versions.groovy"
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
