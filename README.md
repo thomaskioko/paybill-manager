@@ -19,6 +19,12 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
 
 First off, you require the latest Android Studio 3.0 (or newer) to be able to build the app.
 
+## API Keys
+For the app to make requests you require a [Safaricom Dev Account](https://developer.safaricom.co.ke/ ). Once you have one, go ahead and [create an application](https://developer.safaricom.co.ke/user/1079/apps/add) in order to get your credentials
+
+Once you have it, open `gradle.properties` file and paste your API key in `SAFARICOM_CONSUMER_KEY` and `SAFARICOM_CONSUMER_SECRET` variables respectively.
+
+
 ## Contributions
 
 If you've found an error in this sample, please file an issue.
@@ -26,7 +32,7 @@ If you've found an error in this sample, please file an issue.
 Patches are encouraged, and may be submitted by forking this project and submitting a pull request. Since this project is still in its very early stages, if your change is substantial, please raise an issue first to discuss it.
 
 
-### TODO
+### RoadMap
 - [x] Setup Travis CI
 - [x] Add Kotlin Support
 - [ ] Create payment module
