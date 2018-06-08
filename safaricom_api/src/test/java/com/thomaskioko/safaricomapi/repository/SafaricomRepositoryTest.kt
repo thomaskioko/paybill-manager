@@ -84,4 +84,25 @@ class SafaricomRepositoryTest {
         verify(observer).onChanged(Resource.success(tokenResult))
     }
 
+    @Test
+    fun loadFromDb(){
+
+        //Given that data is create and result is set
+        val dbData = MutableLiveData<SafaricomToken>()
+        val tokenResult = TestUtil.createToken()
+
+        dbData.value = tokenResult
+        `when`(tokenDao.getAccessToken()).thenReturn(dbData)
+
+        //Create an observer
+        val observer = mock<Observer<Resource<SafaricomToken>>>()
+        repository.loadAccessToken().observeForever(observer)
+
+        //Verify that the service is not called
+        verify(tokenService, never()).getAccessToken()
+
+        //verify that data is successfully loaded
+        verify(observer).onChanged(Resource.success(tokenResult))
+    }
+
 }
