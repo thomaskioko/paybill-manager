@@ -19,6 +19,7 @@ env:
      - ANDROID_EMU_API_LEVEL=22
      - ANDROID_ABI=armeabi-v7a
      - ADB_INSTALL_TIMEOUT=20 #minutes
+     - ANDROID_SDK_ROOT=/opt/android  # any place `travis` can write to should work
 
 android:
    update_sdk: true
@@ -30,7 +31,7 @@ android:
      - android-$EMULATOR_API_LEVEL
      - android-p
      - android-27
-     - android-20
+     - android-21
      - extra-android-support
      - extra-google-m2repository
      - extra-android-m2repository # for design library
@@ -49,6 +50,7 @@ licenses:
   - google-gdk-license-.+
 
 before_install:
+  - mkdir -p $ANDROID_SDK_ROOT
   - yes | sdkmanager "platforms;android-27"
   - mkdir "$ANDROID_HOME/licenses" || true
 
@@ -60,8 +62,10 @@ before_install:
 
 before_script:
   - android list targets
-  - echo no | android create avd -f -a -s HVGA -n hudson_en-US_160_HVGA_android-20_armeabi-v7a -t android-20 --abi android-wear/armeabi-v7a
-# - echo no | android create avd -n testAVD -f -t android-25 --abi default/armeabi-v7a
+  # Install the system image
+  - sdkmanager "system-images;android-18;default;armeabi-v7a"
+  # Create and start emulator for the script. Meant to race the install task.
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-18;default;armeabi-v7a"
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
