@@ -53,7 +53,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     fun provideSafaricomAuthInterceptor(): SafaricomAuthInterceptor { // This is where the Interceptor object is constructed
-        return SafaricomAuthInterceptor()
+        return SafaricomAuthInterceptor
     }
 
     @Provides

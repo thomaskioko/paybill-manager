@@ -1,7 +1,6 @@
 package com.thomaskioko.daraja.repository.api.interceptor
 
 import android.support.annotation.NonNull
-import com.thomaskioko.safaricomapi.testing.OpenForTesting
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -20,8 +19,7 @@ import javax.inject.Singleton
  * Default constructor.
  */
 @Singleton
-@OpenForTesting
-class SafaricomAuthInterceptor : Interceptor {
+object SafaricomAuthInterceptor : Interceptor {
 
     private var authToken: String? = null
 

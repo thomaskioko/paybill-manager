@@ -49,7 +49,7 @@ class SafaricomRepositoryTest {
         `when`(db.safaricomPushRequestDao()).thenReturn(pushRequestDao)
         `when`(db.runInTransaction(ArgumentMatchers.any())).thenCallRealMethod()
 
-        authInterceptor = mock(SafaricomAuthInterceptor::class.java)
+        authInterceptor = SafaricomAuthInterceptor
         repository = SafaricomRepository(
                 InstantAppExecutors(), safaricomService, tokenService, tokenDao, pushRequestDao, authInterceptor
         )
