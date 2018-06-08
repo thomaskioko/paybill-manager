@@ -1,7 +1,7 @@
 package com.thomaskioko.safaricomapi.util
 
-import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.model.SafaricomPushRequest
+import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 import com.thomaskioko.daraja.util.AppConstants.Companion.CALLBACKURL
 import com.thomaskioko.daraja.util.AppConstants.Companion.TEST_BUSINESS_SHORT_CODE
@@ -12,9 +12,9 @@ import com.thomaskioko.daraja.util.AppConstants.Companion.TRANSACTION_TYPE
 object TestUtil {
 
 
-    fun createToken() = SafaricomToken("3599", "jK13flUwxNhIsYPzvNAJwslDnruQ", 1528387279306)
+    fun createToken() = SafaricomToken("3599", "jK13flUwxNhIsYPzvNAJwslDnruQ")
 
-    fun createToken(token: String) = SafaricomToken("3599", token, 1528387279306)
+    fun createToken(token: String) = SafaricomToken("3599", token)
 
 
     fun createSafaricomPushRequest() = SafaricomPushRequest(
