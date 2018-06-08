@@ -32,6 +32,7 @@ android:
      - android-p
      - android-27
      - android-21
+     - android-18
      - extra-android-support
      - extra-google-m2repository
      - extra-android-m2repository # for design library
