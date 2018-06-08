@@ -35,9 +35,10 @@ Patches are encouraged, and may be submitted by forking this project and submitt
 ### RoadMap
 - [x] Setup Travis CI
 - [x] Add Kotlin Support
-- [ ] Create payment module
+- [x] Create payment module
 - [ ] Setup LeakCanary
 - [ ] Setup CodeQuality Checks
+- [ ] Add CodeCov
 - [ ] Release Beta Version
 
 
