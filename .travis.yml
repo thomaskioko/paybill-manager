@@ -30,6 +30,7 @@ android:
      - android-$EMULATOR_API_LEVEL
      - android-p
      - android-27
+     - extra-android-support
      - extra-google-m2repository
      - extra-android-m2repository # for design library
      - addon-google_apis-google-23 # google play services
@@ -54,7 +55,7 @@ before_install:
   - ./gradlew dependencies || true
 
 before_script:
-  - echo no | android create avd --force -n test -t android-27 --abi armeabi-v7a --tag google_apis
+  - echo no | android create avd --force -n test -t android-27 --abi armeabi-v7a -c 32M
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
