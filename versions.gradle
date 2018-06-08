@@ -6,6 +6,7 @@
 ext.deps = [:]
 def versions = [:]
 versions.support = "27.1.1"
+versions.constraint_layout = "1.1.1"
 versions.arch_core = "1.1.1"
 versions.room = "1.1.0"
 versions.lifecycle = "1.1.1"
@@ -48,6 +49,7 @@ support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
 support.cardview = "com.android.support:cardview-v7:$versions.support"
 support.design = "com.android.support:design:$versions.support"
 support.v4 = "com.android.support:support-v4:$versions.support"
+support.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
 support.core_utils = "com.android.support:support-core-utils:$versions.support"
 deps.support = support
 
