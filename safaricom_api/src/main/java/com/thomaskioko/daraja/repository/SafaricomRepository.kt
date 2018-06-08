@@ -9,11 +9,13 @@ import com.thomaskioko.daraja.repository.api.util.ApiResponse
 import com.thomaskioko.daraja.repository.api.util.AppExecutors
 import com.thomaskioko.daraja.repository.api.util.NetworkBoundResource
 import com.thomaskioko.daraja.repository.api.util.Resource
-import com.thomaskioko.daraja.repository.api.util.livedata.AbsentLiveData
 import com.thomaskioko.daraja.repository.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.repository.db.dao.SafaricomTokenDao
 import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
+import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.ZoneId
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -38,7 +40,7 @@ class SafaricomRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: SafaricomToken?): Boolean {
-                return data == null || data.expireTime < System.currentTimeMillis()
+                return data == null || data.expireTime.isBefore(OffsetDateTime.now(ZoneId.of("Z")))
             }
 
             override fun loadFromDb() = safaricomTokenDao.getAccessToken()
