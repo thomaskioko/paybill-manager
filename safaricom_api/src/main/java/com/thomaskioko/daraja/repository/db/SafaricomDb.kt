@@ -18,7 +18,8 @@ import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
             SafaricomToken::class,
             PushRequestResponse::class
         ],
-        version = 1
+        version = 1,
+        exportSchema = false
 )
 @TypeConverters(DateTimeTypeConverters::class)
 abstract class SafaricomDb : RoomDatabase() {
