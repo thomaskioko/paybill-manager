@@ -85,7 +85,7 @@ class SafaricomRepositoryTest {
     }
 
     @Test
-    fun loadFromDb(){
+    fun loadFromDb() {
 
         //Given that data is create and result is set
         val dbData = MutableLiveData<SafaricomToken>()

@@ -15,7 +15,6 @@ import com.thomaskioko.daraja.repository.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneId
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 

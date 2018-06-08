@@ -8,7 +8,10 @@ import android.arch.lifecycle.Observer
 import com.thomaskioko.daraja.repository.api.util.ApiResponse
 import com.thomaskioko.daraja.repository.api.util.NetworkBoundResource
 import com.thomaskioko.daraja.repository.api.util.Resource
-import com.thomaskioko.safaricomapi.util.*
+import com.thomaskioko.safaricomapi.util.ApiUtil
+import com.thomaskioko.safaricomapi.util.CountingAppExecutors
+import com.thomaskioko.safaricomapi.util.InstantAppExecutors
+import com.thomaskioko.safaricomapi.util.mock
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.hamcrest.CoreMatchers.`is`

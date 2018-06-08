@@ -3,8 +3,6 @@ package com.thomaskioko.safaricomapi.db
 import android.support.test.runner.AndroidJUnit4
 import com.thomaskioko.safaricomapi.util.LiveDataTestUtil.getValue
 import com.thomaskioko.safaricomapi.util.TestUtil
-import junit.framework.Assert.assertNotNull
-import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.notNullValue
@@ -43,7 +41,7 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
     }
 
     @Test
-    fun timDateIsNotNul(){
+    fun timDateIsNotNul() {
 
         //Given that data is created and inserted
         val safaricomToken = TestUtil.createToken()

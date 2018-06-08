@@ -2,8 +2,6 @@ package com.thomaskioko.daraja.repository.db.dao
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
-import android.database.sqlite.SQLiteConstraintException
-import android.provider.SyncStateContract.Helpers.insert
 import com.thomaskioko.daraja.repository.db.entity.SafaricomToken
 
 
