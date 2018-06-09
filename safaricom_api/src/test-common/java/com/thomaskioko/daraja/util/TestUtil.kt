@@ -11,6 +11,12 @@ import com.thomaskioko.daraja.util.AppConstants.Companion.TRANSACTION_TYPE
 
 object TestUtil {
 
+    val pushResponseList = listOf(
+            createPushRequest("ws_CO_DMZ_37595383_07062018174946163"),
+            createPushRequest("ws_CO_DMZ_37595383_07062018174946164"),
+            createPushRequest("ws_CO_DMZ_37595383_07062018174946165")
+    )
+
 
     fun createToken() = SafaricomToken("3599", "jK13flUwxNhIsYPzvNAJwslDnruQ")
 

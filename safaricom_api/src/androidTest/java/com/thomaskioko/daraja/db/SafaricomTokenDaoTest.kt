@@ -6,6 +6,7 @@ import com.thomaskioko.daraja.util.TestUtil
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.notNullValue
+import org.hamcrest.core.IsNull
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -14,7 +15,7 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
 
 
     @Test
-    fun insertLoadToken() {
+    fun insert_SafaricomTokenDao_ShouldLoadInsertedRecord() {
 
         val safaricomToken = TestUtil.createToken()
         db.safaricomTokenDao().insertSafaricomToken(safaricomToken)
@@ -26,7 +27,7 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
     }
 
     @Test
-    fun updateAndLoad() {
+    fun update_SafaricomTokenDao_ShouldLoadUpdatedRecord() {
 
         val safaricomToken = TestUtil.createToken()
         db.safaricomTokenDao().insertSafaricomToken(safaricomToken)
@@ -38,6 +39,26 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
 
         //Verify that data from db is same as data updated
         assertThat(loadedToken.accessToken, `is`(updatedSafaricomToken.accessToken))
+    }
+
+    @Test
+    fun delete_SafaricomTokenDao_ShouldNotReturnData(){
+
+        val safaricomToken = TestUtil.createToken()
+        db.safaricomTokenDao().insertSafaricomToken(safaricomToken)
+
+
+        val loadedToken = getValue(db.safaricomTokenDao().getAccessToken())
+
+        //Verify that data from db is same as data created
+        assertThat(loadedToken.accessToken, `is`(safaricomToken.accessToken))
+
+
+        db.safaricomTokenDao().deleteAll()
+
+        val result = getValue(db.safaricomTokenDao().getAccessToken())
+        assertThat(result, `is`(IsNull.nullValue()))
+
     }
 
     @Test
