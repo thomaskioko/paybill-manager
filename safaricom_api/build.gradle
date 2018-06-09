@@ -8,7 +8,7 @@ apply plugin: 'jacoco'
 
 allOpen {
     // allows mocking for classes w/o directly opening them for release builds
-    annotation 'com.thomaskioko.safaricomapi.testing.OpenClass'
+    annotation 'com.thomaskioko.daraja.testing.OpenClass'
 }
 
 android {
@@ -22,7 +22,7 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
-        testInstrumentationRunner "com.thomaskioko.safaricomapi.util.SafaricomTestRunner"
+        testInstrumentationRunner "com.thomaskioko.daraja.util.SafaricomTestRunner"
 
     }
 

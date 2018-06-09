@@ -1,7 +1,7 @@
 package com.thomaskioko.daraja.di
 
-import com.thomaskioko.daraja.repository.api.service.SafaricomService
-import com.thomaskioko.daraja.repository.api.service.SafaricomTokenService
+import com.thomaskioko.daraja.api.service.SafaricomService
+import com.thomaskioko.daraja.api.service.SafaricomTokenService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

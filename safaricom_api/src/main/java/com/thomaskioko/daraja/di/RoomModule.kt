@@ -2,9 +2,9 @@ package com.thomaskioko.daraja.di
 
 import android.app.Application
 import android.arch.persistence.room.Room
-import com.thomaskioko.daraja.repository.db.SafaricomDb
-import com.thomaskioko.daraja.repository.db.dao.SafaricomPushRequestDao
-import com.thomaskioko.daraja.repository.db.dao.SafaricomTokenDao
+import com.thomaskioko.daraja.db.SafaricomDb
+import com.thomaskioko.daraja.db.dao.SafaricomPushRequestDao
+import com.thomaskioko.daraja.db.dao.SafaricomTokenDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

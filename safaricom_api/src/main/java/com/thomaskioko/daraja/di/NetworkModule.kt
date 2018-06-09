@@ -1,8 +1,8 @@
 package com.thomaskioko.daraja.di
 
-import com.thomaskioko.daraja.repository.api.interceptor.SafaricomAuthInterceptor
-import com.thomaskioko.daraja.repository.api.interceptor.SafaricomTokenInterceptor
-import com.thomaskioko.daraja.repository.api.util.livedata.LiveDataCallAdapterFactory
+import com.thomaskioko.daraja.api.interceptor.SafaricomAuthInterceptor
+import com.thomaskioko.daraja.api.interceptor.SafaricomTokenInterceptor
+import com.thomaskioko.daraja.api.util.livedata.LiveDataCallAdapterFactory
 import com.thomaskioko.daraja.util.AppConstants.Companion.CONNECT_TIMEOUT
 import com.thomaskioko.daraja.util.AppConstants.Companion.READ_TIMEOUT
 import com.thomaskioko.daraja.util.AppConstants.Companion.SAFARICOM_BASE_URL
