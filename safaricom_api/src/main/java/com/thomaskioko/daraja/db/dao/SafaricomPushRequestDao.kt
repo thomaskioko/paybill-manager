@@ -17,17 +17,14 @@ abstract class SafaricomPushRequestDao {
     @Query("SELECT * FROM PushRequestResponse")
     abstract fun findAll(): LiveData<List<PushRequestResponse>>
 
-    @Query("SELECT * FROM PushRequestResponse WHERE merchantRequestID = :merchantRequestID")
-    abstract fun findById(merchantRequestID: String): LiveData<PushRequestResponse>
+    @Query("SELECT * FROM PushRequestResponse WHERE checkoutRequestID = :checkoutRequestID")
+    abstract fun findById(checkoutRequestID: String): LiveData<PushRequestResponse>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(vararg pushRequestResponse: PushRequestResponse)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertPushResponse(pushRequestResponseList: List<PushRequestResponse>)
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun createPushResponseIfNotExists(pushRequestResponse: PushRequestResponse): Long
+    abstract fun insert(pushRequestResponseList: List<PushRequestResponse>)
 
     @Query("DELETE FROM PushRequestResponse")
     abstract fun deleteAll()

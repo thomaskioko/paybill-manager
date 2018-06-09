@@ -12,19 +12,16 @@ import com.thomaskioko.daraja.db.entity.SafaricomToken
 abstract class SafaricomTokenDao {
 
     @Query("SELECT * FROM SafaricomToken")
-    abstract fun getAccessToken(): LiveData<SafaricomToken>
+    abstract fun loadAccessToken(): LiveData<SafaricomToken>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertSafaricomToken(safaricomToken: SafaricomToken)
+    abstract fun insert(safaricomToken: SafaricomToken)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    open fun updateSafaricomToken(safaricomToken: SafaricomToken) {
+    open fun update(safaricomToken: SafaricomToken) {
         deleteAll()
-        insertSafaricomToken(safaricomToken)
+        insert(safaricomToken)
     }
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun update(safaricomToken: SafaricomToken)
 
     @Query("DELETE FROM SafaricomToken")
     abstract fun deleteAll()
