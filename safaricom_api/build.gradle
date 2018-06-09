@@ -180,7 +180,8 @@ task jacocoTestReport(type: JacocoReport) {
     sourceDirectories = files([mainSrc])
     classDirectories = files([debugTree])
     executionData = fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec"
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
     ])
 }
 
