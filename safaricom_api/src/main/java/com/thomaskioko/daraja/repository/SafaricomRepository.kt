@@ -1,7 +1,6 @@
 package com.thomaskioko.daraja.repository
 
 import android.arch.lifecycle.LiveData
-import com.thomaskioko.daraja.model.SafaricomPushRequest
 import com.thomaskioko.daraja.api.interceptor.SafaricomAuthInterceptor
 import com.thomaskioko.daraja.api.service.SafaricomService
 import com.thomaskioko.daraja.api.service.SafaricomTokenService
@@ -13,6 +12,7 @@ import com.thomaskioko.daraja.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.db.dao.SafaricomTokenDao
 import com.thomaskioko.daraja.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.db.entity.SafaricomToken
+import com.thomaskioko.daraja.model.SafaricomPushRequest
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneId
 import javax.inject.Inject
@@ -33,7 +33,7 @@ class SafaricomRepository @Inject constructor(
         return object : NetworkBoundResource<SafaricomToken, SafaricomToken>(appExecutors) {
             override fun saveCallResult(item: SafaricomToken) {
 
-                safaricomTokenDao.updateSafaricomToken(item)
+                safaricomTokenDao.update(item)
 
                 safaricomAuthInterceptor.setAuthToken(item.accessToken)
             }
@@ -42,7 +42,7 @@ class SafaricomRepository @Inject constructor(
                 return data == null || data.expireTime.isBefore(OffsetDateTime.now(ZoneId.of("Z")))
             }
 
-            override fun loadFromDb() = safaricomTokenDao.getAccessToken()
+            override fun loadFromDb() = safaricomTokenDao.loadAccessToken()
 
             override fun createCall(): LiveData<ApiResponse<SafaricomToken>> {
                 return safaricomTokenService.getAccessToken()
@@ -50,18 +50,17 @@ class SafaricomRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun sendPaymentRequest(safaricomPushRequest: SafaricomPushRequest): LiveData<Resource<PushRequestResponse>> {
+    fun sendPaymentRequest(checkoutRequestId: String, safaricomPushRequest: SafaricomPushRequest): LiveData<Resource<PushRequestResponse>> {
         return object : NetworkBoundResource<PushRequestResponse, PushRequestResponse>(appExecutors) {
             override fun saveCallResult(item: PushRequestResponse) {
                 safaricomPushRequestDao.insert(item)
             }
 
             override fun shouldFetch(data: PushRequestResponse?): Boolean {
-                //Always fetch data
-                return true
+                return data == null || data.checkoutRequestID != checkoutRequestId
             }
 
-            override fun loadFromDb() = safaricomPushRequestDao.findById(safaricomPushRequest.accountReference)
+            override fun loadFromDb() = safaricomPushRequestDao.findById(checkoutRequestId)
 
             override fun createCall(): LiveData<ApiResponse<PushRequestResponse>> {
                 return safaricomService.sendPushRequest(safaricomPushRequest)
