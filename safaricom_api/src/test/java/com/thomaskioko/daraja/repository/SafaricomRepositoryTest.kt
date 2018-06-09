@@ -10,6 +10,7 @@ import com.thomaskioko.daraja.api.util.Resource
 import com.thomaskioko.daraja.db.SafaricomDb
 import com.thomaskioko.daraja.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.db.dao.SafaricomTokenDao
+import com.thomaskioko.daraja.db.entity.PushRequestResponse
 import com.thomaskioko.daraja.db.entity.SafaricomToken
 import com.thomaskioko.daraja.util.ApiUtil.successCall
 import com.thomaskioko.daraja.util.InstantAppExecutors
@@ -55,16 +56,16 @@ class SafaricomRepositoryTest {
     }
 
     @Test
-    fun fetchFromNetwork() {
+    fun loadAccessToken_ShouldFetchFromNetwork_WhenDataIsNull() {
         val dbData = MutableLiveData<SafaricomToken>()
-        `when`(tokenDao.getAccessToken()).thenReturn(dbData)
+        `when`(tokenDao.loadAccessToken()).thenReturn(dbData)
 
         val tokenResult = TestUtil.createToken()
         val call = successCall(tokenResult)
         `when`(tokenService.getAccessToken()).thenReturn(call)
 
         val data = repository.loadAccessToken()
-        verify(tokenDao).getAccessToken()
+        verify(tokenDao).loadAccessToken()
         verifyNoMoreInteractions(safaricomService)
 
         val observer = mock<Observer<Resource<SafaricomToken>>>()
@@ -73,25 +74,25 @@ class SafaricomRepositoryTest {
         verify(observer).onChanged(Resource.loading(null))
 
         val updatedDbData = MutableLiveData<SafaricomToken>()
-        `when`(tokenDao.getAccessToken()).thenReturn(updatedDbData)
+        `when`(tokenDao.loadAccessToken()).thenReturn(updatedDbData)
 
         dbData.postValue(null)
         verify(tokenService).getAccessToken()
-        verify(tokenDao).updateSafaricomToken(tokenResult)
+        verify(tokenDao).update(tokenResult)
 
         updatedDbData.postValue(tokenResult)
         verify(observer).onChanged(Resource.success(tokenResult))
     }
 
     @Test
-    fun loadFromDb() {
+    fun loadAccessToken_ShouldFetchFromDB_WhenDataIsNotNullOrTimeIsNotExpired() {
 
         //Given that data is create and result is set
         val dbData = MutableLiveData<SafaricomToken>()
         val tokenResult = TestUtil.createToken()
 
         dbData.value = tokenResult
-        `when`(tokenDao.getAccessToken()).thenReturn(dbData)
+        `when`(tokenDao.loadAccessToken()).thenReturn(dbData)
 
         //Create an observer
         val observer = mock<Observer<Resource<SafaricomToken>>>()
@@ -103,5 +104,41 @@ class SafaricomRepositoryTest {
         //verify that data is successfully loaded
         verify(observer).onChanged(Resource.success(tokenResult))
     }
+
+    @Test
+    fun sendPaymentRequest_ShouldFetchFromNetwork_WhenDataIsNull() {
+
+        val safPushRequest = TestUtil.createSafaricomPushRequest()
+        val pushRequest = TestUtil.createPushRequest()
+
+        val dbData = MutableLiveData<PushRequestResponse>()
+        `when`(pushRequestDao.findById(pushRequest.checkoutRequestID)).thenReturn(dbData)
+
+
+        val call = successCall(pushRequest)
+        `when`(safaricomService.sendPushRequest(safPushRequest)).thenReturn(call)
+
+        val pushRequestResponse = repository.sendPaymentRequest(pushRequest.checkoutRequestID,
+                safPushRequest
+        )
+        verify(pushRequestDao).findById(pushRequest.checkoutRequestID)
+        verifyNoMoreInteractions(safaricomService)
+
+        val observer = mock<Observer<Resource<PushRequestResponse>>>()
+        pushRequestResponse.observeForever(observer)
+        verifyNoMoreInteractions(safaricomService)
+        verify(observer).onChanged(Resource.loading(null))
+
+        val updatedDbData = MutableLiveData<PushRequestResponse>()
+        `when`(pushRequestDao.findById(pushRequest.checkoutRequestID)).thenReturn(updatedDbData)
+
+        dbData.postValue(null)
+        verify(safaricomService).sendPushRequest(safPushRequest)
+        verify(pushRequestDao).insert(pushRequest)
+
+        updatedDbData.postValue(pushRequest)
+        verify(observer).onChanged(Resource.success(pushRequest))
+    }
+
 
 }
