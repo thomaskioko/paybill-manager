@@ -1,6 +1,7 @@
-package com.thomaskioko.daraja.db
+package com.thomaskioko.daraja.db.dao
 
 import android.support.test.runner.AndroidJUnit4
+import com.thomaskioko.daraja.db.SafaricomDbTest
 import com.thomaskioko.daraja.util.LiveDataTestUtil.getValue
 import com.thomaskioko.daraja.util.TestUtil
 import org.hamcrest.CoreMatchers.`is`
@@ -19,7 +20,7 @@ class SafaricomPushRequestDaoTest : SafaricomDbTest() {
         val safaricomRequest = TestUtil.createPushRequest()
         db.safaricomPushRequestDao().insert(safaricomRequest)
 
-        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(safaricomRequest.merchantRequestID))
+        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(safaricomRequest.checkoutRequestID))
         assertThat(loadedRequest.checkoutRequestID, `is`("ws_CO_DMZ_37595383_07062018174946163"))
     }
 
@@ -27,7 +28,7 @@ class SafaricomPushRequestDaoTest : SafaricomDbTest() {
     fun findAll_PushRequestDao_ShouldReturnRecords() {
         //Create a new object
 
-        db.safaricomPushRequestDao().insertPushResponse(TestUtil.pushResponseList)
+        db.safaricomPushRequestDao().insert(TestUtil.pushResponseList)
 
         //Given the db has records
         val result = getValue(db.safaricomPushRequestDao().findAll())
@@ -43,7 +44,7 @@ class SafaricomPushRequestDaoTest : SafaricomDbTest() {
         val safaricomRequest = TestUtil.createPushRequest("ws_CO_DMZ_37595383_07062018174946163")
         db.safaricomPushRequestDao().insert(safaricomRequest)
 
-        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(safaricomRequest.merchantRequestID))
+        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(safaricomRequest.checkoutRequestID))
 
         assertThat(loadedRequest, `is`(IsNull.notNullValue()))
     }
@@ -59,7 +60,7 @@ class SafaricomPushRequestDaoTest : SafaricomDbTest() {
         val updatedSafaricomRequest = TestUtil.createPushRequest("ws_CO_DMZ_37595383_07062018174946164")
         db.safaricomPushRequestDao().insert(updatedSafaricomRequest)
 
-        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(updatedSafaricomRequest.merchantRequestID))
+        val loadedRequest = getValue(db.safaricomPushRequestDao().findById(updatedSafaricomRequest.checkoutRequestID))
 
         //Check that the loaded request is the same as as the updated object
         assertThat(loadedRequest.checkoutRequestID, `is`("ws_CO_DMZ_37595383_07062018174946164"))
@@ -72,7 +73,7 @@ class SafaricomPushRequestDaoTest : SafaricomDbTest() {
         val safaricomToken = TestUtil.createPushRequest()
         db.safaricomPushRequestDao().insert(safaricomToken)
 
-        val loadedRecord = getValue(db.safaricomPushRequestDao().findById(safaricomToken.merchantRequestID))
+        val loadedRecord = getValue(db.safaricomPushRequestDao().findById(safaricomToken.checkoutRequestID))
 
         //Verify that data from db is same as data created
         assertThat(loadedRecord.checkoutRequestID, `is`(safaricomToken.checkoutRequestID))

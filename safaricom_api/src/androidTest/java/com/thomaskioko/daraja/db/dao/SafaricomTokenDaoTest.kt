@@ -1,6 +1,7 @@
-package com.thomaskioko.daraja.db
+package com.thomaskioko.daraja.db.dao
 
 import android.support.test.runner.AndroidJUnit4
+import com.thomaskioko.daraja.db.SafaricomTestDb
 import com.thomaskioko.daraja.util.LiveDataTestUtil.getValue
 import com.thomaskioko.daraja.util.TestUtil
 import org.hamcrest.CoreMatchers.`is`
@@ -11,31 +12,31 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class SafaricomTokenDaoTest : SafaricomDbTest() {
+class SafaricomTokenDaoTest : SafaricomTestDb() {
 
 
     @Test
     fun insert_SafaricomTokenDao_ShouldLoadInsertedRecord() {
 
         val safaricomToken = TestUtil.createToken()
-        db.safaricomTokenDao().insertSafaricomToken(safaricomToken)
+        db.safaricomTokenDao().insert(safaricomToken)
 
-        val loadedToken = getValue(db.safaricomTokenDao().getAccessToken())
+        val loadedToken = getValue(db.safaricomTokenDao().loadAccessToken())
 
         //Verify that data from db is same as data created
         assertThat(loadedToken.accessToken, `is`(safaricomToken.accessToken))
     }
 
     @Test
-    fun update_SafaricomTokenDao_ShouldLoadUpdatedRecord() {
+    fun update_SafaricomTokenDao_ShouldDeleteAndInsertRecord() {
 
         val safaricomToken = TestUtil.createToken()
-        db.safaricomTokenDao().insertSafaricomToken(safaricomToken)
+        db.safaricomTokenDao().insert(safaricomToken)
 
         val updatedSafaricomToken = TestUtil.createToken("vK13flUwxNhIsYPzvNAJwslDnruQE")
-        db.safaricomTokenDao().updateSafaricomToken(updatedSafaricomToken)
+        db.safaricomTokenDao().update(updatedSafaricomToken)
 
-        val loadedToken = getValue(db.safaricomTokenDao().getAccessToken())
+        val loadedToken = getValue(db.safaricomTokenDao().loadAccessToken())
 
         //Verify that data from db is same as data updated
         assertThat(loadedToken.accessToken, `is`(updatedSafaricomToken.accessToken))
@@ -45,10 +46,10 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
     fun delete_SafaricomTokenDao_ShouldNotReturnData(){
 
         val safaricomToken = TestUtil.createToken()
-        db.safaricomTokenDao().insertSafaricomToken(safaricomToken)
+        db.safaricomTokenDao().insert(safaricomToken)
 
 
-        val loadedToken = getValue(db.safaricomTokenDao().getAccessToken())
+        val loadedToken = getValue(db.safaricomTokenDao().loadAccessToken())
 
         //Verify that data from db is same as data created
         assertThat(loadedToken.accessToken, `is`(safaricomToken.accessToken))
@@ -56,7 +57,7 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
 
         db.safaricomTokenDao().deleteAll()
 
-        val result = getValue(db.safaricomTokenDao().getAccessToken())
+        val result = getValue(db.safaricomTokenDao().loadAccessToken())
         assertThat(result, `is`(IsNull.nullValue()))
 
     }
@@ -66,7 +67,7 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
 
         //Given that data is created and inserted
         val safaricomToken = TestUtil.createToken()
-        db.safaricomTokenDao().insertSafaricomToken(safaricomToken)
+        db.safaricomTokenDao().insert(safaricomToken)
 
         //Check that offsetTime is not null
         assertThat(safaricomToken.expireTime, `is`(notNullValue()))
