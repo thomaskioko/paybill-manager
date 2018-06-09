@@ -1,7 +1,7 @@
 package com.thomaskioko.daraja.db.dao
 
 import android.support.test.runner.AndroidJUnit4
-import com.thomaskioko.daraja.db.SafaricomTestDb
+import com.thomaskioko.daraja.db.SafaricomDbTest
 import com.thomaskioko.daraja.util.LiveDataTestUtil.getValue
 import com.thomaskioko.daraja.util.TestUtil
 import org.hamcrest.CoreMatchers.`is`
@@ -12,7 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class SafaricomTokenDaoTest : SafaricomTestDb() {
+class SafaricomTokenDaoTest : SafaricomDbTest() {
 
 
     @Test
