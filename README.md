@@ -30,8 +30,10 @@ Once you have it, open `gradle.properties` file and paste your API key in `SAFAR
 - [x] Add Kotlin Support
 - [x] Create payment module
 - [x] Add CodeCov
-- [ ] Setup CodeQuality Checks
+- [x] Setup CodeQuality Checks
+- [ ] Get CodeCoverage above 70%
 - [ ] Setup LeakCanary
+- [ ] Read SMSs & generate report
 - [ ] Release Beta Version
 
 ## Contributions
