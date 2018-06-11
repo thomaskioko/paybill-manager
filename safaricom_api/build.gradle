@@ -6,7 +6,7 @@ apply plugin: 'kotlin-allopen'
 
 apply plugin: 'jacoco'
 
-apply from: "$project.rootDir/config/findbugs/findbugs.gradle"
+apply from: "$project.rootDir/config/detekt/detekt.gradle"
 apply from: "$project.rootDir/config/checkstyle/checkstyle.gradle"
 apply from: "$project.rootDir/config/pmd/pmd.gradle"
 
@@ -164,7 +164,7 @@ task jacocoTestReport(type: JacocoReport) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
 
-    dependsOn 'testDebugUnitTest', 'findbugs', 'pmd', 'checkstyle'
+    dependsOn 'testDebugUnitTest', 'detektCheck', 'pmd', 'checkstyle'
     reports {
         xml.enabled = true
         html.enabled = true
