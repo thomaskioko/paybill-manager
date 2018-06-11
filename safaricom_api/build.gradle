@@ -6,6 +6,9 @@ apply plugin: 'kotlin-allopen'
 
 apply plugin: 'jacoco'
 
+apply from: "$project.rootDir/quality-check/checkstyle.gradle"
+apply from: "$project.rootDir/quality-check/pmd.gradle"
+
 allOpen {
     // allows mocking for classes w/o directly opening them for release builds
     annotation 'com.thomaskioko.daraja.testing.OpenClass'
@@ -160,7 +163,7 @@ task jacocoTestReport(type: JacocoReport) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
 
-    dependsOn 'testDebugUnitTest'
+    dependsOn 'testDebugUnitTest', 'findbugs', 'pmd', 'checkstyle'
     reports {
         xml.enabled = true
         html.enabled = true
