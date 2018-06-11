@@ -1,0 +1,10 @@
+detekt {
+    profile("main") {
+        input = file("${project.rootDir}/safaricom_api/src/main/java")
+        config = file("${project.rootDir}/config/detekt/rules-detekt.yml")
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+        output = "${project.buildDir}/reports/detekt/"
+        parallel = true
+        disableDefaultRuleSets = false
+    }
+}
