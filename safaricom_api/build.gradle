@@ -6,8 +6,9 @@ apply plugin: 'kotlin-allopen'
 
 apply plugin: 'jacoco'
 
-apply from: "$project.rootDir/quality-check/checkstyle.gradle"
-apply from: "$project.rootDir/quality-check/pmd.gradle"
+apply from: "$project.rootDir/config/findbugs/findbugs.gradle"
+apply from: "$project.rootDir/config/checkstyle/checkstyle.gradle"
+apply from: "$project.rootDir/config/pmd/pmd.gradle"
 
 allOpen {
     // allows mocking for classes w/o directly opening them for release builds

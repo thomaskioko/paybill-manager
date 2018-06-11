@@ -1,0 +1,23 @@
+apply plugin: 'findbugs'
+
+task findbugs(type: FindBugs, dependsOn: "assembleDebug") {
+    description 'Find bugs mainly design flaws, bad practices, multithreaded correctness and code vulnerabilities.'
+    group 'verification'
+
+    ignoreFailures = true
+    effort 'max'
+    reportLevel = "high"
+
+    excludeFilter = file("$project.rootDir/config/findbugs/rules-findbugs.xml")
+    classes = files("${project.rootDir}/app/build/intermediates/classes")
+    source = fileTree('src/main/java')
+
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        html.destination = "$project.buildDir/outputs/findbugs/findbugs.html"
+    }
+
+    classpath = files()
+}

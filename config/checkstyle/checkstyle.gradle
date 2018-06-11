@@ -3,7 +3,7 @@ apply plugin: 'checkstyle'
 task checkstyle(type: Checkstyle) {
     description 'Check code standard'
     group 'verification'
-    configFile file("${project.rootDir}/quality-check/rules/rules-checkstyle.xml")
+    configFile file("${project.rootDir}/config/checkstyle/rules-checkstyle.xml")
     source fileTree('src/main/java')
     include '**/*.java'
     exclude '**/gen/**'
