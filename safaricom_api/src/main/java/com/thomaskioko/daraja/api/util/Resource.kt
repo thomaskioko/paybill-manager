@@ -1,6 +1,8 @@
 package com.thomaskioko.daraja.api.util
 
-import com.thomaskioko.daraja.api.util.Status.*
+import com.thomaskioko.daraja.api.util.Status.SUCCESS
+import com.thomaskioko.daraja.api.util.Status.ERROR
+import com.thomaskioko.daraja.api.util.Status.LOADING
 
 /**
  * A generic class that holds a value with its loading status.

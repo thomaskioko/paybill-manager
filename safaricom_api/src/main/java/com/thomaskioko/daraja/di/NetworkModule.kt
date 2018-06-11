@@ -26,7 +26,8 @@ public class NetworkModule {
     @Provides
     @Singleton
     @Named("OkHttpSafaricomTokenClient")
-    fun okHttpSafaricomTokenClient(@Named("paymentLogger") httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun okHttpSafaricomTokenClient(
+            @Named("paymentLogger") httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
 
         return OkHttpClient.Builder()
                 .addInterceptor(SafaricomTokenInterceptor())
@@ -52,7 +53,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideSafaricomAuthInterceptor(): SafaricomAuthInterceptor { // This is where the Interceptor object is constructed
+    fun provideSafaricomAuthInterceptor(): SafaricomAuthInterceptor {
         return SafaricomAuthInterceptor
     }
 

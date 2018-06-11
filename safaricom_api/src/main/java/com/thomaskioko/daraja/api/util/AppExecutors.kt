@@ -2,10 +2,9 @@ package com.thomaskioko.daraja.api.util
 
 import android.os.Handler
 import android.os.Looper
-
+import com.thomaskioko.daraja.util.AppConstants.Companion.MAXIMUM_THREADS
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,7 +24,7 @@ open class AppExecutors(
     @Inject
     constructor() : this(
             Executors.newSingleThreadExecutor(),
-            Executors.newFixedThreadPool(3),
+            Executors.newFixedThreadPool(MAXIMUM_THREADS),
             MainThreadExecutor()
     )
 

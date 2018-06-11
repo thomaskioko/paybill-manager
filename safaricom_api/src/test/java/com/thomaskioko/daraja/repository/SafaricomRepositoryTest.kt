@@ -4,7 +4,7 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import com.thomaskioko.daraja.api.interceptor.SafaricomAuthInterceptor
-import com.thomaskioko.daraja.api.service.SafaricomService
+import com.thomaskioko.daraja.api.service.SafaricomRequestService
 import com.thomaskioko.daraja.api.service.SafaricomTokenService
 import com.thomaskioko.daraja.api.util.Resource
 import com.thomaskioko.daraja.db.SafaricomDb
@@ -34,7 +34,7 @@ class SafaricomRepositoryTest {
     private val tokenDao = mock(SafaricomTokenDao::class.java)
     private val pushRequestDao = mock(SafaricomPushRequestDao::class.java)
 
-    private val safaricomService = mock(SafaricomService::class.java)
+    private val safaricomService = mock(SafaricomRequestService::class.java)
     private val tokenService = mock(SafaricomTokenService::class.java)
 
 

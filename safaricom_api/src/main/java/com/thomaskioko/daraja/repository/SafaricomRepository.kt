@@ -2,7 +2,7 @@ package com.thomaskioko.daraja.repository
 
 import android.arch.lifecycle.LiveData
 import com.thomaskioko.daraja.api.interceptor.SafaricomAuthInterceptor
-import com.thomaskioko.daraja.api.service.SafaricomService
+import com.thomaskioko.daraja.api.service.SafaricomRequestService
 import com.thomaskioko.daraja.api.service.SafaricomTokenService
 import com.thomaskioko.daraja.api.util.ApiResponse
 import com.thomaskioko.daraja.api.util.AppExecutors
@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @Singleton
 class SafaricomRepository @Inject constructor(
         private val appExecutors: AppExecutors,
-        private val safaricomService: SafaricomService,
+        private val safaricomService: SafaricomRequestService,
         private val safaricomTokenService: SafaricomTokenService,
         private val safaricomTokenDao: SafaricomTokenDao,
         private val safaricomPushRequestDao: SafaricomPushRequestDao,
@@ -50,7 +50,8 @@ class SafaricomRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun sendPaymentRequest(checkoutRequestId: String, safaricomPushRequest: SafaricomPushRequest): LiveData<Resource<PushRequestResponse>> {
+    fun sendPaymentRequest(checkoutRequestId: String, safaricomPushRequest: SafaricomPushRequest
+    ): LiveData<Resource<PushRequestResponse>> {
         return object : NetworkBoundResource<PushRequestResponse, PushRequestResponse>(appExecutors) {
             override fun saveCallResult(item: PushRequestResponse) {
                 safaricomPushRequestDao.insert(item)

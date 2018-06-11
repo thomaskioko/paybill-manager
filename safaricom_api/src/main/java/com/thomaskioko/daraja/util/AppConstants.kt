@@ -5,6 +5,11 @@ open class AppConstants {
     companion object {
 
         /**
+         * Number of threads allowed for an executor
+         */
+        const val MAXIMUM_THREADS = 3
+
+        /**
          * Connection timeout duration
          */
         const val CONNECT_TIMEOUT = 60 * 1000

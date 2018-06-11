@@ -1,6 +1,6 @@
 package com.thomaskioko.daraja.di
 
-import com.thomaskioko.daraja.api.service.SafaricomService
+import com.thomaskioko.daraja.api.service.SafaricomRequestService
 import com.thomaskioko.daraja.api.service.SafaricomTokenService
 import dagger.Module
 import dagger.Provides
@@ -18,8 +18,8 @@ public class SafaricomAppModule {
 
     @Provides
     @Singleton
-    fun provideSafaricomService(@Named("safaricomApi") retrofit: Retrofit): SafaricomService {
-        return retrofit.create(SafaricomService::class.java)
+    fun provideSafaricomService(@Named("safaricomApi") retrofit: Retrofit): SafaricomRequestService {
+        return retrofit.create(SafaricomRequestService::class.java)
     }
 
     @Provides
