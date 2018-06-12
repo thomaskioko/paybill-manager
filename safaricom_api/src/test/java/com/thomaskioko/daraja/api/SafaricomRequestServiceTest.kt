@@ -1,7 +1,7 @@
 package com.thomaskioko.daraja.api
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.thomaskioko.daraja.api.service.SafaricomService
+import com.thomaskioko.daraja.api.service.SafaricomRequestService
 import com.thomaskioko.daraja.api.util.ApiSuccessResponse
 import com.thomaskioko.daraja.api.util.livedata.LiveDataCallAdapterFactory
 import com.thomaskioko.daraja.db.entity.PushRequestResponse
@@ -30,7 +30,7 @@ class SafaricomRequestServiceTest {
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var service: SafaricomService
+    private lateinit var service: SafaricomRequestService
     private lateinit var mockWebServer: MockWebServer
 
     @Before
@@ -41,7 +41,7 @@ class SafaricomRequestServiceTest {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .build()
-                .create(SafaricomService::class.java)
+                .create(SafaricomRequestService::class.java)
     }
 
     @After
