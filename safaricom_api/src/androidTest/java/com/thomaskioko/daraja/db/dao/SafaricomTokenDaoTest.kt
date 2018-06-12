@@ -63,7 +63,7 @@ class SafaricomTokenDaoTest : SafaricomDbTest() {
     }
 
     @Test
-    fun timDateIsNotNul() {
+    fun timDateIsNotNull() {
 
         //Given that data is created and inserted
         val safaricomToken = TestUtil.createToken()
