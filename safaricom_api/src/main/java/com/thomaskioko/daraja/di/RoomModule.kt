@@ -11,16 +11,16 @@ import javax.inject.Singleton
 
 
 @Module
-public class RoomModule constructor(
-        mApplication: Application
-) {
+class RoomModule {
 
-    var demoDatabase = Room.databaseBuilder(mApplication, SafaricomDb::class.java, "safaricom_db").build()
 
     @Singleton
     @Provides
-    fun providesRoomDatabase(): SafaricomDb {
-        return demoDatabase
+    fun provideRoomDb(app: Application): SafaricomDb {
+        return Room
+                .databaseBuilder(app, SafaricomDb::class.java, "safaricom_db")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 
     @Singleton
