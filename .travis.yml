@@ -62,6 +62,7 @@ before_script:
 
 script:
   - ./gradlew build jacocoTestReport assembleAndroidTest
+  - ./gradlew detektCheck
   - ./gradlew connectedCheck
 
 after_success:
