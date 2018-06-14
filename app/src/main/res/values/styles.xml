@@ -1,11 +1,44 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.PaybillManager" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
+
+        <item name="android:windowDisablePreview">true</item>
+
+        <!-- New MaterialComponents attributes. -->
+        <item name="colorPrimaryLight">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryLight">@color/secondaryLightColor</item>
+        <item name="colorSecondaryDark">@color/secondaryDarkColor</item>
+    </style>
+
+    <style name="Widget.PaybillManager.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">@style/Theme.PaybillManager</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/TextAppearance.PaybillManager.Toolbar</item>
+    </style>
+
+    <style name="TextAppearance.PaybillManager.Toolbar" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.PaybillManager.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.PaybillManager.Text.Error" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">?android:attr/colorAccent</item>
     </style>
 
 </resources>
