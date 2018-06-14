@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#157AC1</color>
+    <color name="colorPrimaryDark">#004e90</color>
+    <color name="colorPrimaryLight">#5ea8f4</color>
+    <color name="colorAccent">#C15D15</color>
+
+    <color name="secondaryColor">#c15d15</color>
+    <color name="secondaryLightColor">#f98c44</color>
+    <color name="secondaryDarkColor">#8a3000</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="colorControlActivated">#157AC1</color>
+    <color name="toolbarIconColor">@color/white</color>
+    <color name="error">#B00020</color>
+    <color name="gray_divider">#eeeeee</color>
 </resources>
