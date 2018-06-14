@@ -1,7 +1,7 @@
 package com.thomaskioko.daraja.di
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.thomaskioko.daraja.db.SafaricomDb
 import com.thomaskioko.daraja.db.dao.SafaricomPushRequestDao
 import com.thomaskioko.daraja.db.dao.SafaricomTokenDao

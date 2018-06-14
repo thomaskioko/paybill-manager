@@ -1,8 +1,8 @@
 package com.thomaskioko.daraja.repository
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.thomaskioko.daraja.api.interceptor.SafaricomAuthInterceptor
 import com.thomaskioko.daraja.api.service.SafaricomRequestService
 import com.thomaskioko.daraja.api.service.SafaricomTokenService

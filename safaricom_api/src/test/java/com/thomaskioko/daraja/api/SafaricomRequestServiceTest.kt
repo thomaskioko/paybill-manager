@@ -1,6 +1,6 @@
 package com.thomaskioko.daraja.api
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.thomaskioko.daraja.api.service.SafaricomRequestService
 import com.thomaskioko.daraja.api.util.ApiSuccessResponse
 import com.thomaskioko.daraja.api.util.livedata.LiveDataCallAdapterFactory

@@ -1,7 +1,7 @@
 package com.thomaskioko.daraja.db.entity
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneId

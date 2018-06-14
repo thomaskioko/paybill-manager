@@ -1,6 +1,6 @@
 package com.thomaskioko.daraja.api.service
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.thomaskioko.daraja.api.util.ApiResponse
 import com.thomaskioko.daraja.db.entity.SafaricomToken
 import retrofit2.http.GET

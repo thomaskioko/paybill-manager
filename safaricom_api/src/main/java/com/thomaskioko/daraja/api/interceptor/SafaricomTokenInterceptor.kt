@@ -1,7 +1,7 @@
 package com.thomaskioko.daraja.api.interceptor
 
-import android.support.annotation.NonNull
 import android.util.Base64
+import androidx.annotation.NonNull
 import com.thomaskioko.daraja.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response

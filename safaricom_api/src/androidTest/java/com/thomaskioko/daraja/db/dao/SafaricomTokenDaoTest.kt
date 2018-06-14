@@ -1,6 +1,6 @@
 package com.thomaskioko.daraja.db.dao
 
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.runner.AndroidJUnit4
 import com.thomaskioko.daraja.db.SafaricomDbTest
 import com.thomaskioko.daraja.util.LiveDataTestUtil.getValue
 import com.thomaskioko.daraja.util.TestUtil

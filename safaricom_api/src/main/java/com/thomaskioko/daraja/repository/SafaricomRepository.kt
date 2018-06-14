@@ -1,6 +1,6 @@
 package com.thomaskioko.daraja.repository
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.thomaskioko.daraja.api.interceptor.SafaricomAuthInterceptor
 import com.thomaskioko.daraja.api.service.SafaricomRequestService
 import com.thomaskioko.daraja.api.service.SafaricomTokenService

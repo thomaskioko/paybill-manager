@@ -1,8 +1,8 @@
 package com.thomaskioko.daraja.db
 
-import android.arch.core.executor.testing.CountingTaskExecutorRule
-import android.arch.persistence.room.Room
-import android.support.test.InstrumentationRegistry
+import androidx.arch.core.executor.testing.CountingTaskExecutorRule
+import androidx.room.Room
+import androidx.test.InstrumentationRegistry
 import com.thomaskioko.daraja.db.SafaricomDb
 import org.junit.After
 import org.junit.Before

@@ -1,6 +1,6 @@
 package com.thomaskioko.daraja.model
 
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.PrimaryKey
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.google.gson.annotations.SerializedName
 

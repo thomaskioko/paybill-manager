@@ -1,7 +1,7 @@
 package com.thomaskioko.daraja.util
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.thomaskioko.daraja.api.util.ApiResponse
 import retrofit2.Response
 
