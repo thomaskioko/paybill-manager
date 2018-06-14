@@ -5,7 +5,7 @@
 
 ext.deps = [:]
 def versions = [:]
-versions.support = "27.1.1"
+versions.support = "28.0.0-alpha1"
 versions.constraint_layout = "1.1.1"
 versions.arch_core = "1.1.1"
 versions.room = "1.1.0"
@@ -31,15 +31,23 @@ versions.timber = "4.5.1"
 versions.threetenabp = "1.1.0"
 versions.jacoco = "0.1.2"
 versions.groovy = "2.4.12"
+versions.rx_android = "2.0.1"
+versions.rx_binding = "2.1.1"
+versions.onboarder = "1.0.4"
+versions.google = "1.0.0-alpha1"
 def deps = [:]
 
 def build_versions = [:]
 build_versions.min_sdk = 15
-build_versions.target_sdk = '27'
-build_versions.compile_version = 27
+build_versions.target_sdk = '28'
+build_versions.compile_version = 'android-P'
 build_versions.build_tools = "27.0.3"
 ext.build_versions = build_versions
 
+
+def google = [:]
+google.material = "com.google.android.material:material:$versions.google"
+deps.google = google
 
 def support = [:]
 support.annotations = "com.android.support:support-annotations:$versions.support"
@@ -117,6 +125,11 @@ kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
 deps.kotlin = kotlin
 
+def rx_binding = [:]
+rx_binding.rx = "com.jakewharton.rxbinding2:rxbinding:$versions.rx_binding"
+rx_binding.appcompact = "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$versions.rx_binding"
+deps.rx_binding = rx_binding
+
 
 deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
@@ -130,11 +143,15 @@ deps.multidex = "com.android.support:multidex:$versions.multidex"
 deps.threetenabp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
 deps.jacoco = "com.dicedmelon.gradle:jacoco-android:$versions.jacoco"
 deps.groovy_all = "org.codehaus.groovy:groovy-all:$versions.groovy"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.onboarder = "com.codemybrainsout.onboarding:onboarder:$versions.onboarder"
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
     handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    handler.maven { url "https://maven.google.com" }
 }
+
 ext.addRepos = this.&addRepos
