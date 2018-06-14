@@ -78,7 +78,7 @@ dependencies {
     /**
      * Support
      */
-    implementation deps.support.annotations
+    implementation deps.androidx.annotations
 
     /**
      * Kotlin
@@ -138,18 +138,18 @@ dependencies {
     testImplementation deps.junit
     testImplementation deps.mock_web_server
     testImplementation(deps.arch_core.testing, {
-        exclude group: 'com.android.support', module: 'support-compat'
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.android.support', module: 'support-core-utils'
+        exclude group: 'androidx.core', module: 'core'
+        exclude group: 'androidx.annotation', module: 'annotation'
+        exclude group: 'androidx.legacy', module: 'legacy-support-core-utils'
     })
     testImplementation deps.mockito.core
 
     androidTestImplementation(deps.espresso.core, {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'androidx.annotation', module: 'annotations'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
     androidTestImplementation(deps.espresso.contrib, {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'androidx.annotation', module: 'annotation'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
 

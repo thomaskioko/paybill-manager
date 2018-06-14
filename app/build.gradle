@@ -47,9 +47,13 @@ jacoco {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation deps.support.app_compat
-    implementation deps.support.constraint_layout
-    implementation deps.support.annotations
+
+    /**
+     * Android X
+     */
+    implementation deps.androidx.material
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.annotations
 
     /**
      * Lifecycle
@@ -85,6 +89,21 @@ dependencies {
      */
     implementation deps.multidex
 
+    /**
+     * RX Android
+     */
+    implementation deps.rx_android
+
+    /**
+     * RX Binding
+     */
+    implementation deps.rx_binding.rx
+    implementation deps.rx_binding.appcompact
+
+    /**
+     * Onboarder
+     */
+    implementation deps.onboarder
 
     /**
      * Testing
@@ -92,23 +111,23 @@ dependencies {
     testImplementation deps.junit
     testImplementation deps.mock_web_server
     testImplementation(deps.arch_core.testing, {
-        exclude group: 'com.android.support', module: 'support-compat'
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.android.support', module: 'support-core-utils'
+        exclude group: 'androidx.core', module: 'core'
+        exclude group: 'androidx.annotation', module: 'annotation'
+        exclude group: 'androidx.legacy', module: 'legacy-support-core-utils'
     })
     testImplementation deps.mockito.core
 
-    androidTestImplementation deps.support.app_compat
-    androidTestImplementation deps.support.recyclerview
-    androidTestImplementation deps.support.cardview
-    androidTestImplementation deps.support.design
+    androidTestImplementation deps.androidx.app_compat
+    androidTestImplementation deps.androidx.recyclerview
+    androidTestImplementation deps.androidx.cardview
+    androidTestImplementation deps.androidx.material
 
     androidTestImplementation(deps.espresso.core, {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'androidx.annotation', module: 'annotations'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
     androidTestImplementation(deps.espresso.contrib, {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'androidx.annotation', module: 'annotation'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
     androidTestImplementation(deps.arch_core.testing, {
