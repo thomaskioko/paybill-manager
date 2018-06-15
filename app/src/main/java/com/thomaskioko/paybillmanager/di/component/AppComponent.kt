@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.di.component
 
 import android.app.Application
 import com.thomaskioko.paybillmanager.PaybillApp
+import com.thomaskioko.paybillmanager.di.module.ActivityModule
 import com.thomaskioko.paybillmanager.di.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
@@ -12,6 +13,7 @@ import javax.inject.Singleton
 @Component(
         modules = [
             AndroidInjectionModule::class,
+            ActivityModule::class,
             AppModule::class
         ]
 )
