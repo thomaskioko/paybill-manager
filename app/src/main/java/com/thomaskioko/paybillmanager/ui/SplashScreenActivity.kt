@@ -16,12 +16,9 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler().postDelayed({
-
-            Schedulers.io().createWorker().schedule({
-
-                startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
-
-            })
+            Schedulers.io().createWorker().schedule {
+                startActivity(Intent(this@SplashScreenActivity, IntroActivity::class.java))
+            }
             finish()
         }, 1500)
     }
