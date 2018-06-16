@@ -99,7 +99,7 @@ deps.dagger = dagger
 def espresso = [:]
 espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
 espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
-espresso.intents = "intents\tandroidx.test.espresso:espresso-intents:$versions.espresso"
+espresso.intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
 deps.espresso = espresso
 
 def atsl = [:]
@@ -142,7 +142,6 @@ deps.calligraphy = "uk.co.chrisjenx:calligraphy:$versions.calligraphy"
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
-    handler.google()
     handler.jcenter()
     handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     handler.maven { url "https://maven.google.com" }
