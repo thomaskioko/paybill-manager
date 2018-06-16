@@ -8,31 +8,39 @@ import androidx.core.content.ContextCompat.startActivity
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity
 import com.codemybrainsout.onboarder.AhoyOnboarderCard
 import com.thomaskioko.paybillmanager.R
+import com.thomaskioko.paybillmanager.util.SharedPrefsUtil
+import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 
 class IntroActivity : AhoyOnboarderActivity() {
+
+    @Inject
+    lateinit var sharedPrefsUtil: SharedPrefsUtil
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var cardAddBills = AhoyOnboarderCard("Hola!", "You can call me Bill. The only Manager you'll love. Let me show you around.", R.drawable.ic_drawable_hi)
-        cardAddBills = styleCards(cardAddBills)
+        AndroidInjection.inject(this)
 
-        var cardSaveBills = AhoyOnboarderCard("Save Bills", "No stress, you never have to worry about remembering long numbers.", R.drawable.ic_save_bills)
+        var cardHi = AhoyOnboarderCard(applicationContext.getString(R.string.intro_title_hi), applicationContext.getString(R.string.intro_message_hi), R.drawable.ic_drawable_hi)
+        cardHi = styleCards(cardHi)
+
+        var cardSaveBills = AhoyOnboarderCard(applicationContext.getString(R.string.intro_title_save_bills), applicationContext.getString(R.string.intro_message_save_bills), R.drawable.ic_save_bills)
         cardSaveBills = styleCards(cardSaveBills)
 
-        var cardNotification = AhoyOnboarderCard("Notifications", "Get notifications before your bill is due.  I've got your back", R.drawable.ic_notification)
+        var cardNotification = AhoyOnboarderCard(applicationContext.getString(R.string.intro_title_notifications), applicationContext.getString(R.string.intro_message_notifications), R.drawable.ic_notification)
         cardNotification = styleCards(cardNotification)
 
-        var cardReceipt = AhoyOnboarderCard("Overview", "View how much you are spending on your bills. I'll track them for you", R.drawable.ic_graph)
+        var cardReceipt = AhoyOnboarderCard(applicationContext.getString(R.string.intro_title_overview), applicationContext.getString(R.string.intro_message_overview), R.drawable.ic_graph)
         cardReceipt = styleCards(cardReceipt)
 
-        var cardStart = AhoyOnboarderCard("Let's Go", "Let me be your Bill keeper", R.drawable.ic_begin)
+        var cardStart = AhoyOnboarderCard(applicationContext.getString(R.string.intro_title_start), applicationContext.getString(R.string.intro_message_start), R.drawable.ic_begin)
         cardStart = styleCards(cardStart)
 
         val pages = mutableListOf(
-                cardAddBills,
+                cardHi,
                 cardSaveBills,
                 cardNotification,
                 cardReceipt,
@@ -50,6 +58,7 @@ class IntroActivity : AhoyOnboarderActivity() {
     }
 
     override fun onFinishButtonPressed() {
+        sharedPrefsUtil.setHasSeenIntroScreen(true)
         startActivity(Intent(this@IntroActivity, MainActivity::class.java))
     }
 
