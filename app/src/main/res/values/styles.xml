@@ -9,14 +9,11 @@
         <item name="colorControlActivated">@color/colorControlActivated</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
 
-        <item name="android:windowDisablePreview">true</item>
-
         <!-- New MaterialComponents attributes. -->
-        <item name="colorPrimaryLight">@color/colorPrimary</item>
         <item name="colorSecondary">@color/secondaryColor</item>
-        <item name="colorSecondaryLight">@color/secondaryLightColor</item>
-        <item name="colorSecondaryDark">@color/secondaryDarkColor</item>
 
+
+        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
 
         <!-- Text Styles-->
