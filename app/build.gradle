@@ -9,6 +9,12 @@ apply plugin: 'jacoco'
 apply from: "$project.rootDir/config/checkstyle/checkstyle.gradle"
 apply from: "$project.rootDir/config/pmd/pmd.gradle"
 
+
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'com.thomaskioko.paybillmanager.testing.OpenClass'
+}
+
 android {
     compileSdkVersion build_versions.compile_version
     buildToolsVersion build_versions.build_tools
@@ -21,7 +27,7 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.thomaskioko.paybillmanager.util.AppTestRunner"
     }
     buildTypes {
         release {
