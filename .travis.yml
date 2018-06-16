@@ -27,7 +27,6 @@ android:
      - build-tools-27.0.3
      - android-28
      - android-27
-     - android-P
      - android-$ANDROID_API_LEVEL
      - android-$EMULATOR_API_LEVEL
      - extra-google-m2repository
