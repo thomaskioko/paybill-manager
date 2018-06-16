@@ -40,7 +40,7 @@ def deps = [:]
 def build_versions = [:]
 build_versions.min_sdk = 16
 build_versions.target_sdk = '28'
-build_versions.compile_version = 'android-P'
+build_versions.compile_version = 28
 build_versions.build_tools = "27.0.3"
 ext.build_versions = build_versions
 
