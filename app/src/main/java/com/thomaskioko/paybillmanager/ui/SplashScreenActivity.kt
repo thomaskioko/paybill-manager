@@ -3,12 +3,16 @@ package com.thomaskioko.paybillmanager.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
 import com.thomaskioko.paybillmanager.R
+import com.thomaskioko.paybillmanager.util.SharedPrefsUtil
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : BaseActivity() {
+
+    @Inject
+    lateinit var sharedPrefsUtil: SharedPrefsUtil
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,9 +21,16 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             Schedulers.io().createWorker().schedule {
-                startActivity(Intent(this@SplashScreenActivity, IntroActivity::class.java))
+
+                if (sharedPrefsUtil.getHasSeenIntroScreen()) {
+                    startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+                } else {
+                    startActivity(Intent(this@SplashScreenActivity, IntroActivity::class.java))
+                }
+                finish()
             }
-            finish()
-        }, 1500)
+        }, 1000)
     }
+
+
 }
