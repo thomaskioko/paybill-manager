@@ -1,13 +1,14 @@
 package com.thomaskioko.paybillmanager.di.module
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import com.thomaskioko.daraja.di.NetworkModule
 import com.thomaskioko.daraja.di.RoomModule
 import com.thomaskioko.paybillmanager.R
 import dagger.Module
 import dagger.Provides
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
-import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan
-import uk.co.chrisjenx.calligraphy.TypefaceUtils
 import javax.inject.Singleton
 
 
@@ -16,6 +17,7 @@ import javax.inject.Singleton
             NetworkModule::class,
             RoomModule::class
         ])
+@Suppress("unused")
 class AppModule {
 
     @Provides
@@ -25,5 +27,11 @@ class AppModule {
                 .setDefaultFontPath("fonts/WorkSans-Regular.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharePreference(app: Application): SharedPreferences {
+        return app.getSharedPreferences("paybill_manager", Context.MODE_PRIVATE)
     }
 }
