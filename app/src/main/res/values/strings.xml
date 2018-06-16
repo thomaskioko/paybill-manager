@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Paybill Manager</string>
+
+    <!-- Intro Screens-->
+    <string name="intro_title_hi">Hola!</string>
+    <string name="intro_title_save_bills">Save Bills</string>
+    <string name="intro_title_notifications">Notifications</string>
+    <string name="intro_title_overview">Overview</string>
+    <string name="intro_title_start">Let\'s Go</string>
+    <string name="intro_message_hi">You can call me Bill. The only Manager you\'ll love. Let me show you around.</string>
+    <string name="intro_message_save_bills">No stress, you never have to worry about remembering long numbers.</string>
+    <string name="intro_message_start">Let me be your Bill keeper</string>
+    <string name="intro_message_overview">View how much you are spending on your bills. I\'ll track them for you</string>
+    <string name="intro_message_notifications">Get notifications before your bill is due.  I\'ve got your back</string>
+
+
 </resources>
