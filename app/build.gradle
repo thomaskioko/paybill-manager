@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-allopen'
+apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'jacoco'
 
@@ -83,7 +84,6 @@ dependencies {
      */
     implementation deps.kotlin.stdlib
 
-
     /**
      * Multidex
      */
@@ -104,6 +104,11 @@ dependencies {
      * Onboarder
      */
     implementation deps.onboarder
+
+    /**
+     * Calligraphy
+     */
+    implementation deps.calligraphy
 
     /**
      * Testing
