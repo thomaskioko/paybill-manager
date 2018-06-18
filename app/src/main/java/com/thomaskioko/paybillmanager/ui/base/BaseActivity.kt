@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.ui
+package com.thomaskioko.paybillmanager.ui.base
 
 import android.os.Bundle
 import android.os.StrictMode
