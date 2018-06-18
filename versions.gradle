@@ -36,6 +36,7 @@ versions.onboarder = "1.0.4"
 versions.androidx = "1.0.0-alpha3"
 versions.calligraphy = "2.3.0"
 versions.work = "1.0.0-alpha02"
+versions.materialviewpager = "1.2.3"
 def deps = [:]
 
 def build_versions = [:]
@@ -144,6 +145,7 @@ deps.groovy_all = "org.codehaus.groovy:groovy-all:$versions.groovy"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 deps.onboarder = "com.codemybrainsout.onboarding:onboarder:$versions.onboarder"
 deps.calligraphy = "uk.co.chrisjenx:calligraphy:$versions.calligraphy"
+deps.materialviewpager = "com.github.florent37:materialviewpager:$versions.materialviewpager"
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
