@@ -26,6 +26,12 @@ android {
         versionCode 1
         versionName "1.0"
 
+        renderscriptTargetApi 8
+        renderscriptSupportModeEnabled true
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
         multiDexEnabled true
         testInstrumentationRunner "com.thomaskioko.paybillmanager.util.AppTestRunner"
     }
@@ -115,6 +121,17 @@ dependencies {
      * Calligraphy
      */
     implementation deps.calligraphy
+
+    /**
+     * MaterialViewPager
+     */
+    implementation deps.materialviewpager
+
+    /**
+     * Work
+     */
+    implementation deps.work.runtime
+    androidTestImplementation deps.work.testing
 
     /**
      * Testing
