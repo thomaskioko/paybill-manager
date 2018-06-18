@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.thomaskioko.paybillmanager.R
+import com.thomaskioko.paybillmanager.ui.base.BaseActivity
 import com.thomaskioko.paybillmanager.util.SharedPrefsUtil
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -28,6 +29,7 @@ class SplashScreenActivity : BaseActivity() {
                     startActivity(Intent(this@SplashScreenActivity, IntroActivity::class.java))
                 }
                 finish()
+
             }
         }, 1000)
     }
