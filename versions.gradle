@@ -35,6 +35,7 @@ versions.rx_binding = "2.1.1"
 versions.onboarder = "1.0.4"
 versions.androidx = "1.0.0-alpha3"
 versions.calligraphy = "2.3.0"
+versions.work = "1.0.0-alpha02"
 def deps = [:]
 
 def build_versions = [:]
@@ -73,6 +74,11 @@ deps.lifecycle = lifecycle
 def arch_core = [:]
 arch_core.testing = "androidx.arch.core:core-testing:$versions.arch_core"
 deps.arch_core = arch_core
+
+def work = [:]
+work.runtime = "android.arch.work:work-runtime-ktx:$versions.work"
+work.testing = "android.arch.work:work-testing:$versions.work"
+deps.work = work
 
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
