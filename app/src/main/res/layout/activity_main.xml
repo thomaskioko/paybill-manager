@@ -1,48 +1,5 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
-
-    <com.github.florent37.materialviewpager.MaterialViewPager
-        android:id="@+id/material_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:viewpager_animatedHeaderImage="true"
-        app:viewpager_color="@color/colorPrimary"
-        app:viewpager_displayToolbarWhenSwipe="true"
-        app:viewpager_enableToolbarElevation="true"
-        app:viewpager_headerAdditionalHeight="20dp"
-        app:viewpager_headerAlpha="1.0"
-        app:viewpager_headerHeight="200dp"
-        app:viewpager_hideLogoWithFade="true"
-        app:viewpager_hideToolbarAndTitle="false"
-        app:viewpager_imageHeaderDarkLayerAlpha="0.2"
-        app:viewpager_logo="@layout/header_logo"
-        app:viewpager_logoMarginTop="80dp"
-        app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
-        app:viewpager_parallaxHeaderFactor="1.5"
-        app:viewpager_transparentToolbar="false"
-
-        />
-
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bar"
-        style="@style/Widget.MaterialComponents.BottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/colorPrimary"
-        app:fabAlignmentMode="center"
-        app:fabAttached="true"
-        app:navigationIcon="@drawable/ic_drawer_icon" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_add"
-        app:layout_anchor="@id/bar" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    android:layout_height="match_parent" />
