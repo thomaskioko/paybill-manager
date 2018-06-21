@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.thomaskioko.daraja.di.NetworkModule
-import com.thomaskioko.daraja.di.RoomModule
+import com.thomaskioko.daraja.di.DarajaRoomModule
 import com.thomaskioko.paybillmanager.R
 import dagger.Module
 import dagger.Provides
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Module(
         includes = [
             NetworkModule::class,
-            RoomModule::class
+            DarajaRoomModule::class
         ])
 @Suppress("unused")
 class AppModule {
