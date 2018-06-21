@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Module(includes = [
     NetworkModule::class,
-    RoomModule::class
+    DarajaRoomModule::class
 ])
 
 public class SafaricomAppModule {

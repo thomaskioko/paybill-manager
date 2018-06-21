@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 
 @Module
-class RoomModule {
+class DarajaRoomModule {
 
 
     @Singleton
