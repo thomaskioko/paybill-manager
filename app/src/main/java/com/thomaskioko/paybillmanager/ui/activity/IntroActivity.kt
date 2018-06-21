@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.ui
+package com.thomaskioko.paybillmanager.ui.activity
 
 import android.content.Intent
 import android.graphics.Typeface
