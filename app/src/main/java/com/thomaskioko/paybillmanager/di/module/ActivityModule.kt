@@ -1,8 +1,8 @@
 package com.thomaskioko.paybillmanager.di.module
 
-import com.thomaskioko.paybillmanager.ui.IntroActivity
-import com.thomaskioko.paybillmanager.ui.MainActivity
-import com.thomaskioko.paybillmanager.ui.SplashScreenActivity
+import com.thomaskioko.paybillmanager.ui.activity.IntroActivity
+import com.thomaskioko.paybillmanager.ui.activity.MainActivity
+import com.thomaskioko.paybillmanager.ui.activity.SplashScreenActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

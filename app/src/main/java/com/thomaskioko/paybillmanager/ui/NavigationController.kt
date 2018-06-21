@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.ui
 
 import com.thomaskioko.paybillmanager.R
 import com.thomaskioko.paybillmanager.testing.OpenForTesting
+import com.thomaskioko.paybillmanager.ui.activity.MainActivity
 import com.thomaskioko.paybillmanager.ui.fragment.DashboardFragment
 import javax.inject.Inject
 
