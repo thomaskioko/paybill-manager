@@ -35,7 +35,7 @@ versions.rx_binding = "2.1.1"
 versions.onboarder = "1.0.4"
 versions.androidx = "1.0.0-alpha3"
 versions.calligraphy = "2.3.0"
-versions.work = "1.0.0-alpha02"
+versions.work = "1.0.0-alpha03"
 versions.materialviewpager = "1.2.3"
 def deps = [:]
 
