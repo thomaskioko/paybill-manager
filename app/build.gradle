@@ -145,6 +145,7 @@ dependencies {
     })
     testImplementation deps.mockito.core
 
+    androidTestImplementation deps.test.rules
     androidTestImplementation deps.androidx.app_compat
     androidTestImplementation deps.androidx.recyclerview
     androidTestImplementation deps.androidx.cardview
