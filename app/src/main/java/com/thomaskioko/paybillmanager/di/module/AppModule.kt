@@ -3,8 +3,8 @@ package com.thomaskioko.paybillmanager.di.module
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.thomaskioko.daraja.di.NetworkModule
 import com.thomaskioko.daraja.di.DarajaRoomModule
+import com.thomaskioko.daraja.di.NetworkModule
 import com.thomaskioko.paybillmanager.R
 import dagger.Module
 import dagger.Provides
@@ -15,7 +15,8 @@ import javax.inject.Singleton
 @Module(
         includes = [
             NetworkModule::class,
-            DarajaRoomModule::class
+            DarajaRoomModule::class,
+            PaybillRoomModule::class
         ])
 @Suppress("unused")
 class AppModule {
