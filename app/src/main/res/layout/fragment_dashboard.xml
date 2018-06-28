@@ -15,19 +15,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:elevation="4dp"
+            app:elevation="0dp"
+            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:targetApi="lollipop">
+            app:layout_constraintTop_toTopOf="parent">
 
             <!-- Toolbar -->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/app_bar"
                 style="@style/Widget.PaybillManager.Toolbar"
                 android:layout_width="match_parent"
+                app:elevation="0dp"
                 android:layout_height="56dp"
-                android:background="@color/colorPrimaryDark">
+                android:background="@android:color/transparent">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/TextAppearance.PaybillManager.Toolbar"
@@ -39,7 +40,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="180dp"
                 android:backgroundTint="@color/colorPrimaryDark"
                 tools:targetApi="lollipop">
 
