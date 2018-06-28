@@ -77,6 +77,12 @@ dependencies {
     kapt deps.lifecycle.compiler
 
     /**
+     * Work
+     */
+    implementation deps.work.runtime
+    androidTestImplementation deps.work.testing
+
+    /**
      * Dagger
      */
     implementation deps.dagger.runtime
@@ -128,10 +134,11 @@ dependencies {
     implementation deps.materialviewpager
 
     /**
-     * Work
+     * ThreeTen
      */
-    implementation deps.work.runtime
-    androidTestImplementation deps.work.testing
+    implementation deps.threetenabp
+
+
 
     /**
      * Testing
@@ -145,7 +152,7 @@ dependencies {
     })
     testImplementation deps.mockito.core
 
-    androidTestImplementation deps.test.rules
+    androidTestImplementation deps.atsl.rules
     androidTestImplementation deps.androidx.app_compat
     androidTestImplementation deps.androidx.recyclerview
     androidTestImplementation deps.androidx.cardview
