@@ -7,8 +7,7 @@ ext.deps = [:]
 def versions = [:]
 versions.android_gradle_plugin = "3.2.0-beta01"
 versions.support = "28.0.0-alpha3"
-versions.atsl_runner = "1.1.0-alpha1"
-versions.androidx_test = "1.1.0-alpha1"
+versions.atsl_runner = "1.1.0-alpha3"
 versions.arch_core = "2.0.0-alpha1"
 versions.room = "2.0.0-alpha1"
 versions.lifecycle = "2.0.0-alpha1"
@@ -76,9 +75,6 @@ def arch_core = [:]
 arch_core.testing = "androidx.arch.core:core-testing:$versions.arch_core"
 deps.arch_core = arch_core
 
-def test = [:]
-test.rules = "androidx.test:rules:$versions.androidx_test"
-deps.test = test
 
 def work = [:]
 work.runtime = "android.arch.work:work-runtime-ktx:$versions.work"
