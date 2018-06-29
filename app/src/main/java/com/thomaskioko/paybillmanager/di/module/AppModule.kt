@@ -16,7 +16,8 @@ import javax.inject.Singleton
         includes = [
             NetworkModule::class,
             DarajaRoomModule::class,
-            PaybillRoomModule::class
+            PaybillRoomModule::class,
+            ViewModelModule::class
         ])
 @Suppress("unused")
 class AppModule {
