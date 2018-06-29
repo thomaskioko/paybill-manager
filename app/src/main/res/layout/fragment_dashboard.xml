@@ -14,7 +14,7 @@
             android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             app:elevation="0dp"
             android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorPrimary"
                 tools:targetApi="lollipop">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,7 +117,7 @@
                 tools:targetApi="lollipop" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
+                android:id="@+id/fab_add_bill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="4dp"
