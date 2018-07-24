@@ -7,9 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import com.thomaskioko.paybillmanager.R
+import com.thomaskioko.paybillmanager.di.Injectable
+import com.thomaskioko.paybillmanager.ui.NavigationController
+import kotlinx.android.synthetic.main.fragment_dashboard.*
+import javax.inject.Inject
 
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), Injectable {
+
+
+    @Inject
+    lateinit var navigationController: NavigationController
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -18,5 +26,13 @@ class DashboardFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        fab_add_bill.setOnClickListener {
+
+            navigationController.navigateToAddBillFragment()
+        }
+
+    }
 }
