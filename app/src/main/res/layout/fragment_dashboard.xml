@@ -112,7 +112,6 @@
                 android:layout_gravity="bottom"
                 android:backgroundTint="@color/colorPrimary"
                 app:fabAlignmentMode="center"
-                app:fabAttached="true"
                 app:navigationIcon="@drawable/ic_dashboard"
                 tools:targetApi="lollipop" />
 
