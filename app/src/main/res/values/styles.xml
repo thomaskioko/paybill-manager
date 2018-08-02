@@ -84,4 +84,26 @@
         <item name="android:textColor">?android:attr/colorAccent</item>
     </style>
 
+
+    <!-- Keyboard button style -->
+    <style name="TextAppearance.PaybillManager.CalculatorPad" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/calculator_background</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
+    <style name="ButtonNumberPad" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_num_pad</item>
+        <item name="android:textSize">34sp</item>
+    </style>
+
+
 </resources>
