@@ -85,19 +85,19 @@
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_1"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_1"
                 android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_2"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_2"
                 android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_3"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_3"
                 android:textIsSelectable="false" />
         </TableRow>
@@ -110,19 +110,19 @@
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_4"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_4"
                 android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_5"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_5"
                 android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_6"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_6"
                 android:textIsSelectable="false" />
         </TableRow>
@@ -135,19 +135,19 @@
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_7"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_7"
                 android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_8"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_8"
                 android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_9"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_9"
                 android:textIsSelectable="false" />
         </TableRow>
@@ -160,20 +160,20 @@
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_00"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
 
                 android:text="@string/keyboard_decimal"
                 android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/anti_theft_t9_key_0"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 android:text="@string/keyboard_0"
                 android:textIsSelectable="false" />
 
             <ImageButton
                 android:id="@+id/anti_theft_t9_key_clear"
-                style="@style/anti_theft_t9_key"
+                style="@style/TextAppearance.PaybillManager.CalculatorPad"
                 app:srcCompat="@drawable/ic_backspace"
                 android:gravity="center"
                 android:textIsSelectable="false" />
