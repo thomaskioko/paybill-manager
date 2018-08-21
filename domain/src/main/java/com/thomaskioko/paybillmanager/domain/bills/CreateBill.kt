@@ -11,15 +11,15 @@ open class CreateBill @Inject constructor(
         private val billsRepository: BillsRepository,
         postExecutionThread: PostExecutionThread
 ) : CompletableUseCase<CreateBill.Params>(postExecutionThread) {
-    override fun buildUseCaseCompletable(params: Params?): Completable {
-        if (params == null) throw IllegalArgumentException("Params can't be null!")
 
+    public override fun buildUseCaseCompletable(params: Params?): Completable {
+        if (params == null) throw IllegalArgumentException("Params can't be null!")
         return billsRepository.createBill(params.bill)
     }
 
     data class Params constructor(val bill: Bill) {
         companion object {
-            fun forProject(bill: Bill): Params {
+            fun forBill(bill: Bill): Params {
                 return Params(bill)
             }
         }
