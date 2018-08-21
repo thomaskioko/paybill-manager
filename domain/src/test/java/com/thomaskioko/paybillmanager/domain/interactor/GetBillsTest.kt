@@ -1,9 +1,9 @@
 package com.thomaskioko.paybillmanager.domain.interactor
 
 import com.nhaarman.mockitokotlin2.whenever
-import com.thomaskioko.paybillmanager.domain.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.domain.bills.GetBills
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Observable
@@ -27,15 +27,28 @@ class GetBillsTest {
     }
 
     @Test
-    fun getBillsCompletes(){
+    fun getBillsCompletes() {
         stubGetBillsRepository(Observable.just(BillsDataFactory.makeProjectList(3)))
 
         val testObservable = getBills.buildUseCaseObservable().test()
         testObservable.assertComplete()
     }
 
+    @Test
+    fun getBillsReturnsData() {
+        val bills = BillsDataFactory.makeProjectList(4)
 
-    private fun stubGetBillsRepository(observable: Observable<List<Bill>>){
+        //Stub the repository completes
+        stubGetBillsRepository(Observable.just(bills))
+
+        val testObserver = getBills.buildUseCaseObservable().test()
+
+        //Verify that the data returned is what is expected
+        testObserver.assertValue(bills)
+    }
+
+
+    private fun stubGetBillsRepository(observable: Observable<List<Bill>>) {
         whenever(billsRepository.getBills()).thenReturn(observable)
     }
 }
