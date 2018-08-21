@@ -1,1 +1,1 @@
-include ':app', ':safaricom_api'
+include ':app', ':safaricom_api', ':domain'
