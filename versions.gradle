@@ -5,37 +5,39 @@
 
 ext.deps = [:]
 def versions = [:]
-versions.android_gradle_plugin = "3.3.0-alpha03"
-versions.support = "28.0.0-alpha3"
-versions.atsl_runner = "1.1.0-alpha3"
+versions.android_gradle_plugin = "3.3.0-alpha06"
+versions.androidx = "1.0.0-rc01"
+versions.apache_commons = "2.5"
 versions.arch_core = "2.0.0-alpha1"
-versions.room = "2.0.0-alpha1"
-versions.lifecycle = "2.0.0-alpha1"
+versions.atsl_runner = "1.1.0-alpha3"
+versions.calligraphy = "2.3.0"
 versions.constraint_layout = "1.1.2"
 versions.dagger = "2.16"
-versions.junit = "4.12"
+versions.dexmaker = "2.2.0"
 versions.espresso = "3.1.0-alpha1"
-versions.retrofit = "2.3.0"
-versions.okhttp = "3.9.0"
+versions.groovy = "2.4.12"
+versions.hamcrest = "1.3"
+versions.jacoco = "0.1.2"
+versions.junit = "4.12"
+versions.kotlin = "1.2.50"
+versions.lifecycle = "2.0.0-alpha1"
+versions.materialviewpager = "1.2.3"
 versions.mockwebserver = "3.8.1"
-versions.apache_commons = "2.5"
 versions.mockito = "2.19.0"
 versions.mockito_all = "1.10.19"
-versions.dexmaker = "2.2.0"
-versions.hamcrest = "1.3"
-versions.kotlin = "1.2.50"
 versions.multidex = "1.0.1"
-versions.timber = "4.5.1"
-versions.threetenabp = "1.1.0"
-versions.jacoco = "0.1.2"
-versions.groovy = "2.4.12"
+versions.okhttp = "3.9.0"
+versions.onboarder = "1.0.4"
+versions.retrofit = "2.3.0"
+versions.room = "2.0.0-alpha1"
 versions.rx_android = "2.0.1"
 versions.rx_binding = "2.1.1"
-versions.onboarder = "1.0.4"
-versions.androidx = "1.0.0-beta01"
-versions.calligraphy = "2.3.0"
+versions.support = "28.0.0-alpha3"
+versions.timber = "4.5.1"
+versions.threetenabp = "1.1.0"
+
 versions.work = "1.0.0-alpha03"
-versions.materialviewpager = "1.2.3"
+
 def deps = [:]
 
 def build_versions = [:]
@@ -57,12 +59,37 @@ androidx.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.andro
 androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
 deps.androidx = androidx
 
-def room = [:]
-room.runtime = "androidx.room:room-runtime:$versions.room"
-room.compiler = "androidx.room:room-compiler:$versions.room"
-room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
-room.testing = "androidx.room:room-testing:$versions.room"
-deps.room = room
+def arch_core = [:]
+arch_core.testing = "androidx.arch.core:core-testing:$versions.arch_core"
+deps.arch_core = arch_core
+
+
+def atsl = [:]
+atsl.runner = "androidx.test:runner:$versions.atsl_runner"
+atsl.rules = "androidx.test:rules:$versions.atsl_runner"
+deps.atsl = atsl
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
+deps.dagger = dagger
+
+
+def espresso = [:]
+espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+deps.kotlin = kotlin
 
 def lifecycle = [:]
 lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
@@ -71,15 +98,12 @@ lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle
 lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 deps.lifecycle = lifecycle
 
-def arch_core = [:]
-arch_core.testing = "androidx.arch.core:core-testing:$versions.arch_core"
-deps.arch_core = arch_core
 
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$versions.mockito"
+mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
+deps.mockito = mockito
 
-def work = [:]
-work.runtime = "android.arch.work:work-runtime-ktx:$versions.work"
-work.testing = "android.arch.work:work-testing:$versions.work"
-deps.work = work
 
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
@@ -94,58 +118,41 @@ okhttp.okhttp = "com.squareup.okhttp3:okhttp:${versions.okhttp}"
 okhttp.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
 deps.okhttp = okhttp
 
-def dagger = [:]
-dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
-dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
-dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
-dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
-dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
-deps.dagger = dagger
 
-def espresso = [:]
-espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
-espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
-espresso.intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
-deps.espresso = espresso
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+room.testing = "androidx.room:room-testing:$versions.room"
+deps.room = room
 
-def atsl = [:]
-atsl.runner = "androidx.test:runner:$versions.atsl_runner"
-atsl.rules = "androidx.test:rules:$versions.atsl_runner"
-deps.atsl = atsl
-
-def mockito = [:]
-mockito.core = "org.mockito:mockito-core:$versions.mockito"
-mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
-deps.mockito = mockito
-
-def kotlin = [:]
-kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
-kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
-kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
-deps.kotlin = kotlin
 
 def rx_binding = [:]
 rx_binding.rx = "com.jakewharton.rxbinding2:rxbinding:$versions.rx_binding"
 rx_binding.appcompact = "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$versions.rx_binding"
 deps.rx_binding = rx_binding
 
+def work = [:]
+work.runtime = "android.arch.work:work-runtime-ktx:$versions.work"
+work.testing = "android.arch.work:work-testing:$versions.work"
+deps.work = work
 
-deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
-deps.junit = "junit:junit:$versions.junit"
-deps.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
-deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
-deps.paging = "android.arch.paging:runtime:$versions.paging"
-deps.timber = "com.jakewharton.timber:timber:$versions.timber"
-deps.multidex = "com.android.support:multidex:$versions.multidex"
-deps.threetenabp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
-deps.jacoco = "com.dicedmelon.gradle:jacoco-android:$versions.jacoco"
-deps.groovy_all = "org.codehaus.groovy:groovy-all:$versions.groovy"
-deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
-deps.onboarder = "com.codemybrainsout.onboarding:onboarder:$versions.onboarder"
 deps.calligraphy = "uk.co.chrisjenx:calligraphy:$versions.calligraphy"
+deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
+deps.groovy_all = "org.codehaus.groovy:groovy-all:$versions.groovy"
+deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+deps.jacoco = "com.dicedmelon.gradle:jacoco-android:$versions.jacoco"
+deps.junit = "junit:junit:$versions.junit"
 deps.materialviewpager = "com.github.florent37:materialviewpager:$versions.materialviewpager"
+deps.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
+deps.multidex = "com.android.support:multidex:$versions.multidex"
+deps.onboarder = "com.codemybrainsout.onboarding:onboarder:$versions.onboarder"
+deps.paging = "android.arch.paging:runtime:$versions.paging"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.threetenabp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
