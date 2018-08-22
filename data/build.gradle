@@ -1,7 +1,16 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':domain')
+
+    implementation deps.javax
+    implementation deps.javax_annotation
+    implementation deps.kotlin.stdlib
+    implementation deps.rx_java
+
+    testImplementation deps.junit
+    testImplementation deps.mockito.kotlin
+    testImplementation deps.assertj
 }
 
 sourceCompatibility = "8"
