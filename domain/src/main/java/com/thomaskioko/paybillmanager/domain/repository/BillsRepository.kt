@@ -10,5 +10,5 @@ interface BillsRepository {
 
     fun createBill(bill: Bill): Completable
 
-    fun updateBill(billId: String): Completable
+    fun updateBill(bill: Bill): Completable
 }
