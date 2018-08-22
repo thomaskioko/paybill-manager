@@ -15,10 +15,25 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
  * Uses [RxJava](https://github.com/ReactiveX/RxJava) 2
  * Uses all of the [Architecture Components](https://developer.android.com/topic/libraries/architecture/): Room, LiveData and Lifecycle-components
  * Uses [dagger-android](https://google.github.io/dagger/android.html) for dependency injection
+  
+# Architecture
 
-## Project Setup
+The architecture of this project is built around [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/).
+ 
 
-First off, you require the latest Android Studio 3.0 (or newer) to be able to build the app.
+# Development Environment
+
+The app is written entirely in Kotlin and uses the Gradle build system.
+
+To build the app, use the `gradlew build` command or use "Import Project" in
+Android Studio. A canary or stable version >= 3.2 of Android Studio is
+required and may be downloaded
+[here](https://developer.android.com/studio/archive).
+
+We followed the recommendations laid out in the [Guide to App Architecture](https://developer.android.com/jetpack/docs/guide) when deciding on the architecture for the app. We kept logic away from Activities and Fragments and moved it to [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
+We observed data using [LiveData](https://developer.android.com/topic/libraries/architecture/livedata).
+
+On top of this, We use a clean architecture approach to abstract all layers.
 
 ## API Keys
 For the app to make requests you require a [Safaricom Dev Account](https://developer.safaricom.co.ke/ ). Once you have one, go ahead and [create an application](https://developer.safaricom.co.ke/user/1079/apps/add) in order to get your credentials
