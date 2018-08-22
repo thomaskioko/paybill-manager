@@ -8,8 +8,9 @@ before_cache:
 
 cache:
   directories:
-     - $HOME/.gradle/caches/
-     - $HOME/.gradle/wrapper/
+    - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 
 env:
   global:
@@ -25,13 +26,12 @@ android:
      - platform-tools
      - build-tools-$ANDROID_BUILD_TOOLS
      - build-tools-27.0.3
-     - android-28
-     - android-27
      - android-$ANDROID_API_LEVEL
      - android-$EMULATOR_API_LEVEL
      - extra-google-m2repository
      - extra-android-m2repository # for design library
      - addon-google_apis-google-19 # google play services
+     - addon-google_apis-google-28
      - sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
      - sys-img-x86_64-android-$EMULATOR_API_LEVEL
      - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
