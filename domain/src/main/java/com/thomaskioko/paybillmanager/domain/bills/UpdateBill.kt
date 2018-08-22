@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.domain.bills
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
 import com.thomaskioko.paybillmanager.domain.interactor.CompletableUseCase
+import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Completable
 import javax.inject.Inject
@@ -13,13 +14,13 @@ open class UpdateBill @Inject constructor(
 
     public override fun buildUseCaseCompletable(params: Params?): Completable {
         if (params == null) throw IllegalArgumentException("Params can't be null!")
-        return billsRepository.updateBill(params.billId)
+        return billsRepository.updateBill(params.bill)
     }
 
-    data class Params constructor(val billId: String) {
+    data class Params constructor(val bill: Bill) {
         companion object {
-            fun forBill(billId: String): Params {
-                return Params(billId)
+            fun forBill(bill: Bill): Params {
+                return Params(bill)
             }
         }
     }
