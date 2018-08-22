@@ -8,14 +8,14 @@ import javax.inject.Inject
  * Helper class that decides which data source to use.
  */
 open class BillsDataStoreFactory @Inject constructor(
-        private val billCacheDataStore: BillCacheDataStore
+        private val billsCacheDataStore: BillsCacheDataStore
 ) {
 
-    open fun getBillCacheDataStore(): BillDataStore {
-        return billCacheDataStore
+    open fun getCacheDataStore(): BillDataStore {
+        return billsCacheDataStore
     }
 
-    open fun getBillRemoteDataStore(){
+    open fun getRemoteDataStore(){
 
     }
 }
