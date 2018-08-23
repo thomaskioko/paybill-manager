@@ -12,6 +12,12 @@ object BillsCachedFactory {
                 DataFactory.randomLong())
     }
 
+    fun makeUpdateCachedBill(billName: String): CachedBills {
+        return CachedBills(billName, DataFactory.randomUuid(),
+                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomInt(),
+                DataFactory.randomLong())
+    }
+
 
     fun makeBillEntity(): BillEntity {
         return BillEntity(DataFactory.randomInt(), DataFactory.randomUuid(), DataFactory.randomUuid(),
