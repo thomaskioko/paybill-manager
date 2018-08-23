@@ -19,7 +19,7 @@ class BillsDataRepository @Inject constructor(
         )
     }
 
-    override fun getBillById(billId: Int): Observable<Bill> {
+    override fun getBillById(billId: String): Observable<Bill> {
         return factory.getCacheDataStore().getBillById(billId).toObservable()
                 .map { mapper.mapFromEntity(it) }
     }

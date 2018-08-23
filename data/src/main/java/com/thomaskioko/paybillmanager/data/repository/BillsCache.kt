@@ -18,7 +18,7 @@ interface BillsCache {
 
     fun getBills(): Flowable<List<BillEntity>>
 
-    fun getBillById(billId: Int): Flowable<BillEntity>
+    fun getBillById(billId: String): Flowable<BillEntity>
 
     fun updateBill(billEntity: BillEntity): Completable
 }

@@ -12,7 +12,7 @@ class CachedBillMapper @Inject constructor() : CacheMapper<CachedBills, BillEnti
     }
 
     override fun mapToCached(type: BillEntity): CachedBills {
-        return CachedBills(type.billName, type.paybillNumber, type.accountNumber,
+        return CachedBills(type.billId, type.billName, type.paybillNumber, type.accountNumber,
                 type.amount, type.categoryId, type.reminderDate)
     }
 

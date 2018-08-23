@@ -18,9 +18,9 @@ open class GetBillById @Inject constructor(
     }
 
 
-    data class Params constructor(val billId: Int) {
+    data class Params constructor(val billId: String) {
         companion object {
-            fun forBill(billId: Int): Params {
+            fun forBill(billId: String): Params {
                 return Params(billId)
             }
         }
