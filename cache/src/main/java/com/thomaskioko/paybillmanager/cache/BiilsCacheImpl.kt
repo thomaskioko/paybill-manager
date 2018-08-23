@@ -13,6 +13,13 @@ class BiilsCacheImpl @Inject constructor(
         private val mapper: CachedBillMapper
 ) : BillsCache {
 
+    override fun getBillById(billId: Int): Flowable<BillEntity> {
+        return database.billsDao().getBill(billId)
+                .map {
+                    mapper.mapFromCached(it)
+                }
+    }
+
     override fun deleteBills(): Completable {
         return Completable.defer {
             database.billsDao().deleteBills()
