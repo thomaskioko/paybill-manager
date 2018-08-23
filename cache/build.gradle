@@ -7,7 +7,6 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        applicationId "com.thomaskioko.paybillmanager"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
@@ -29,8 +28,24 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    implementation project(':data')
+
+    compileOnly deps.javax_annotation
+    implementation deps.javax
+    implementation deps.kotlin.stdlib
+    implementation deps.rx_kotlin
+
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    kapt deps.room.compiler
+
+    testImplementation deps.junit
+    testImplementation deps.kotlin.test
+    testImplementation deps.mockito.kotlin
+    testImplementation deps.assertj
+    testImplementation deps.robolectric
+    testImplementation deps.arch_core.testing
+    testImplementation deps.room.testing
+    androidTestImplementation deps.androidx.annotations
+    androidTestImplementation deps.junit
 }
