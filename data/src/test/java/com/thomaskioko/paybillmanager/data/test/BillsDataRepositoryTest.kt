@@ -64,6 +64,15 @@ class BillsDataRepositoryTest {
     }
 
     @Test
+    fun createBillsCompletes() {
+
+        stubCreateBill(Completable.complete())
+
+        val testObserver = store.createBill(BillsDataFactory.makeBillEntity()).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
     fun updateBillCompletes() {
 
         stubUpdateBill(Completable.complete())
