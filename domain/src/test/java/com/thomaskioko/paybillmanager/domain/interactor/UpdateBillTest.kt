@@ -31,7 +31,7 @@ class UpdateBillTest {
         stubCreateBillRepository(Completable.complete())
 
         val testObserver = updateBill.buildUseCaseCompletable(
-                UpdateBill.Params.forBill(BillsDataFactory.randomUuid())
+                UpdateBill.Params.forBill(BillsDataFactory.makeBill())
         ).test()
 
         //Verify that the observable completes
