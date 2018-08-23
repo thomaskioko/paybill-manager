@@ -1,8 +1,8 @@
 package com.thomaskioko.paybillmanager.data.store
 
 import com.thomaskioko.paybillmanager.data.model.BillEntity
-import com.thomaskioko.paybillmanager.data.repository.BillsCache
 import com.thomaskioko.paybillmanager.data.repository.BillDataStore
+import com.thomaskioko.paybillmanager.data.repository.BillsCache
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
@@ -19,8 +19,12 @@ open class BillsCacheDataStore @Inject constructor(
         return billsCache.createBill(billEntity)
     }
 
+    override fun createBills(billEntities: List<BillEntity>): Completable {
+        return billsCache.createBills(billEntities)
+    }
+
     override fun updateBill(billEntity: BillEntity): Completable {
-       return billsCache.updateBill(billEntity)
+        return billsCache.updateBill(billEntity)
     }
 
     override fun getBills(): Flowable<List<BillEntity>> {

@@ -13,6 +13,8 @@ interface BillDataStore {
 
     fun createBill(billEntity: BillEntity): Completable
 
+    fun createBills(billEntities: List<BillEntity>): Completable
+
     fun getBills(): Flowable<List<BillEntity>>
 
     fun getBillById(billId: Int): Flowable<BillEntity>

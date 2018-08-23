@@ -20,6 +20,15 @@ class BillsCacheImpl @Inject constructor(
         }
     }
 
+    override fun createBills(billEntity: List<BillEntity>): Completable {
+        return Completable.defer {
+            database.billsDao().insertCachedBills(
+                    billEntity.map { mapper.mapToCached(it) }
+            )
+            Completable.complete()
+        }
+    }
+
     override fun updateBill(billEntity: BillEntity): Completable {
         return Completable.defer {
             database.billsDao().updateBill(mapper.mapToCached(billEntity))
@@ -36,7 +45,7 @@ class BillsCacheImpl @Inject constructor(
 
     override fun getBillById(billId: Int): Flowable<BillEntity> {
         return database.billsDao().getBill(billId)
-                .map {  mapper.mapFromCached(it) }
+                .map { mapper.mapFromCached(it) }
     }
 
     override fun deleteBills(): Completable {

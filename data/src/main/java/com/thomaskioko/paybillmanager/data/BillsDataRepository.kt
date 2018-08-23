@@ -13,6 +13,12 @@ class BillsDataRepository @Inject constructor(
         private val factory: BillsDataStoreFactory
 ) : BillsRepository {
 
+    override fun createBills(bills: List<Bill>): Completable {
+        return factory.getCacheDataStore().createBills(
+                bills.map { mapper.mapToEntity(it) }
+        )
+    }
+
     override fun getBillById(billId: Int): Observable<Bill> {
         return factory.getCacheDataStore().getBillById(billId).toObservable()
                 .map { mapper.mapFromEntity(it) }
