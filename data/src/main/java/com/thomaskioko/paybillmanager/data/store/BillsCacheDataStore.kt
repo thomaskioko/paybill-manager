@@ -11,6 +11,10 @@ open class BillsCacheDataStore @Inject constructor(
         private val billsCache: BillsCache
 ) : BillDataStore {
 
+    override fun getBillById(billId: Int): Flowable<BillEntity> {
+        return billsCache.getBillById(billId)
+    }
+
     override fun createBill(billEntity: BillEntity): Completable {
         return billsCache.createBill(billEntity)
     }
