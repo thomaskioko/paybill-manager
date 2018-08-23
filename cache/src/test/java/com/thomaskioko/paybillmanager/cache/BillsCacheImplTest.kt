@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
 import com.thomaskioko.paybillmanager.cache.factory.BillsCachedFactory
-import com.thomaskioko.paybillmanager.cache.factory.DataFactory
 import com.thomaskioko.paybillmanager.cache.mapper.CachedBillMapper
 import org.junit.Rule
 import org.junit.Test
@@ -36,10 +35,18 @@ class BillsCacheImplTest {
 
 
     @Test
-    fun createBillsCompletes() {
+    fun createBillCompletes() {
         val bills = BillsCachedFactory.makeBillEntity()
 
         val testObserver = cache.createBill(bills).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun createBillsCompletes() {
+        val bills = BillsCachedFactory.makeBillEntityList(3)
+
+        val testObserver = cache.createBills(bills).test()
         testObserver.assertComplete()
     }
 
@@ -50,6 +57,14 @@ class BillsCacheImplTest {
         val testObserver = cache.updateBill(bills).test()
         testObserver.assertComplete()
     }
-    
+
+    @Test
+    fun getBillsReturnsData() {
+        val bills = listOf(BillsCachedFactory.makeBillEntity())
+        cache.createBills(bills).test()
+
+        val testObserver = cache.getBills().test()
+        testObserver.assertValue(bills)
+    }
 
 }
