@@ -2,9 +2,11 @@ package com.thomaskioko.paybillmanager.cache.dao
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
+import com.nhaarman.mockitokotlin2.any
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
 import com.thomaskioko.paybillmanager.cache.factory.BillsCachedFactory
 import com.thomaskioko.paybillmanager.cache.factory.DataFactory
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Rule
 import org.junit.Test
@@ -45,7 +47,7 @@ class CachedBillsDaoTest {
         val bill = BillsCachedFactory.makeCachedBill()
         database.billsDao().insertBill(bill)
 
-        val testObserver = database.billsDao().getBill(DataFactory.randomInt()).test()
+        val testObserver = database.billsDao().getBillById(bill.id).test()
         testObserver.assertValue(bill)
     }
 
@@ -60,7 +62,7 @@ class CachedBillsDaoTest {
 
     @Test
     fun getUpdateReturnsData() {
-        val bill = BillsCachedFactory.makeUpdateCachedBill("Zuku")
+        val bill = BillsCachedFactory.makeCachedBill(DataFactory.randomUuid())
         database.billsDao().updateBill(bill)
 
         val testObserver = database.billsDao().getBills().test()
