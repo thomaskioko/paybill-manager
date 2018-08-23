@@ -59,7 +59,16 @@ class BillsDataRepositoryTest {
 
         stubCreateBill(Completable.complete())
 
-        val testObserver = repository.createBill(BillsDataFactory.makeBill()).test()
+        val testObserver = store.createBill(BillsDataFactory.makeBillEntity()).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun updateBillCompletes() {
+
+        stubUpdateBill(Completable.complete())
+
+        val testObserver = store.updateBill(BillsDataFactory.makeBillEntity()).test()
         testObserver.assertComplete()
     }
 
@@ -71,6 +80,11 @@ class BillsDataRepositoryTest {
 
     private fun stubCreateBill(completable: Completable) {
         whenever(store.createBill(any()))
+                .thenReturn(completable)
+    }
+
+    private fun stubUpdateBill(completable: Completable) {
+        whenever(store.updateBill(any()))
                 .thenReturn(completable)
     }
 
