@@ -8,28 +8,21 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-class BiilsCacheImpl @Inject constructor(
+class BillsCacheImpl @Inject constructor(
         private val database: PayBillManagerDatabase,
         private val mapper: CachedBillMapper
 ) : BillsCache {
 
-    override fun getBillById(billId: Int): Flowable<BillEntity> {
-        return database.billsDao().getBill(billId)
-                .map {
-                    mapper.mapFromCached(it)
-                }
-    }
-
-    override fun deleteBills(): Completable {
+    override fun createBill(billEntity: BillEntity): Completable {
         return Completable.defer {
-            database.billsDao().deleteBills()
+            database.billsDao().insertBill(mapper.mapToCached(billEntity))
             Completable.complete()
         }
     }
 
-    override fun createBill(billEntity: BillEntity): Completable {
+    override fun updateBill(billEntity: BillEntity): Completable {
         return Completable.defer {
-            database.billsDao().insertBill(mapper.mapToCached(billEntity))
+            database.billsDao().updateBill(mapper.mapToCached(billEntity))
             Completable.complete()
         }
     }
@@ -41,9 +34,14 @@ class BiilsCacheImpl @Inject constructor(
                 }
     }
 
-    override fun updateBill(billEntity: BillEntity): Completable {
+    override fun getBillById(billId: Int): Flowable<BillEntity> {
+        return database.billsDao().getBill(billId)
+                .map {  mapper.mapFromCached(it) }
+    }
+
+    override fun deleteBills(): Completable {
         return Completable.defer {
-            database.billsDao().updateBill(mapper.mapToCached(billEntity))
+            database.billsDao().deleteBills()
             Completable.complete()
         }
     }
