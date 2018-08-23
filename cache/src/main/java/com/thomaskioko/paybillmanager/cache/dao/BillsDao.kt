@@ -17,6 +17,10 @@ abstract class BillsDao {
     @JvmSuppressWildcards
     abstract fun getBills(): Flowable<List<CachedBills>>
 
+    @Query("SELECT * FROM bills where id = :billId")
+    @JvmSuppressWildcards
+    abstract fun getBill(billId: Int): Flowable<CachedBills>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
     abstract fun insertCachedBills(cachedBills: List<CachedBills>)
