@@ -1,14 +1,19 @@
 package com.thomaskioko.paybillmanager.cache.db
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.thomaskioko.paybillmanager.cache.dao.BillsDao
+import com.thomaskioko.paybillmanager.cache.model.CachedBills
 import javax.inject.Inject
 
-abstract class PayBillManagerDatabase @Inject constructor(): RoomDatabase() {
+@Database(entities = [
+    CachedBills::class
+], version = 1)
+abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
 
-    abstract fun billsDao() : BillsDao
+    abstract fun billsDao(): BillsDao
 
     companion object {
         private var INSTANCE: PayBillManagerDatabase? = null
@@ -19,7 +24,7 @@ abstract class PayBillManagerDatabase @Inject constructor(): RoomDatabase() {
                 synchronized(lock) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(context.applicationContext,
-                                PayBillManagerDatabase::class.java, "projects.db")
+                                PayBillManagerDatabase::class.java, "bills.db")
                                 .build()
                     }
                     return INSTANCE as PayBillManagerDatabase
