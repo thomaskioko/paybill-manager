@@ -67,4 +67,22 @@ class BillsCacheImplTest {
         testObserver.assertValue(bills)
     }
 
+    @Test
+    fun createBillReturnsData() {
+        val bill = BillsCachedFactory.makeBillEntity()
+        cache.createBill(bill).test()
+
+        val testObserver = cache.getBillById(bill.billId).test()
+        testObserver.assertValue(bill)
+    }
+
+    @Test
+    fun updateBillReturnsData() {
+        val bill = BillsCachedFactory.makeBillEntity()
+        cache.updateBill(bill).test()
+
+        val testObserver = cache.getBillById(bill.billId).test()
+        testObserver.assertValue(bill)
+    }
+
 }
