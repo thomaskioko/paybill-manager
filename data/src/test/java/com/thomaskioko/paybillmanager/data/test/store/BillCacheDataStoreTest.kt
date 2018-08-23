@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.data.repository.BillsCache
 import com.thomaskioko.paybillmanager.data.store.BillsCacheDataStore
 import com.thomaskioko.paybillmanager.data.test.factory.BillsDataFactory
+import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import org.junit.Test
@@ -39,6 +40,31 @@ class BillCacheDataStoreTest {
 
         //Create test observer
         val testObserver = store.getBills().test()
+        //confirm that the observer completes
+        testObserver.assertValue(data)
+    }
+
+    @Test
+    fun getBillByIdCompletes() {
+
+        val observable = Flowable.just(BillsDataFactory.makeBillEntity())
+
+        //Stub getBills call
+        whenever(cache.getBillById(any())).thenReturn(observable)
+
+        val testObserver = store.getBillById(DataFactory.randomInt()).test()
+        testObserver.assertComplete()
+    }
+
+
+    @Test
+    fun getBillByIdReturnData() {
+        val data = BillsDataFactory.makeBillEntity()
+
+        whenever(cache.getBillById(any())).thenReturn(Flowable.just(data))
+
+        //Create test observer
+        val testObserver = store.getBillById(DataFactory.randomInt()).test()
         //confirm that the observer completes
         testObserver.assertValue(data)
     }
