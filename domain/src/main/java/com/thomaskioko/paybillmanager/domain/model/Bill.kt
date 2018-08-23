@@ -2,7 +2,7 @@ package com.thomaskioko.paybillmanager.domain.model
 
 
 class Bill(
-        var billId: String,
+        var billId: Int,
         var billName: String,
         var paybillNumber: String,
         var accountNumber: String,

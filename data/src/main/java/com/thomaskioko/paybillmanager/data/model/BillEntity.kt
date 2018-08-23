@@ -2,7 +2,7 @@ package com.thomaskioko.paybillmanager.data.model
 
 
 class BillEntity(
-        var billId: String,
+        var billId: Int,
         var billName: String,
         var paybillNumber: String,
         var accountNumber: String,

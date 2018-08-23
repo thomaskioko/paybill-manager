@@ -9,20 +9,20 @@ import com.thomaskioko.paybillmanager.domain.model.Bill
 object BillsDataFactory {
 
     fun makeBill(): Bill {
-        return Bill(randomUuid(), randomUuid(), randomUuid(),
+        return Bill(randomInt(), randomUuid(), randomUuid(),
                 randomUuid(), randomUuid(), randomInt(),
                 randomLong())
     }
 
     fun makeUpdateBill(name: String): Bill {
-        return Bill(name, randomUuid(), randomUuid(),
+        return Bill(randomInt(), name, randomUuid(),
                 randomUuid(), randomUuid(), randomInt(),
                 randomLong())
     }
 
 
     fun makeBillEntity(): BillEntity {
-        return BillEntity(randomUuid(), randomUuid(), randomUuid(),
+        return BillEntity(randomInt(), randomUuid(), randomUuid(),
                 randomUuid(), randomUuid(), randomInt(),
                 randomLong())
     }
