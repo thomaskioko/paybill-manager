@@ -96,6 +96,19 @@ class BillCacheDataStoreTest {
     }
 
     @Test
+    fun createBillsCompletes() {
+
+        //Stub create bill
+        whenever(cache.createBills(any())).thenReturn(Completable.complete())
+
+        val data = BillsDataFactory.makeBillEntityList(3)
+
+        val testObserver = store.createBills(data).test()
+        //confirm that the observer completes
+        testObserver.assertComplete()
+    }
+
+    @Test
     fun updateBillCompletes() {
         val data = BillsDataFactory.makeBillEntity()
 
