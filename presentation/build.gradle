@@ -55,7 +55,7 @@ dependencies {
 
     implementation project(':domain')
 
-    implementation deps.javax
+    implementation deps.javax_inject
     implementation deps.kotlin.stdlib
     implementation deps.rx_kotlin
 
