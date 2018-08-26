@@ -8,5 +8,5 @@ data class BillEntity(
         var accountNumber: String,
         var amount: String,
         var categoryId: Int,
-        var reminderDate: Long?
+        var reminderDate: Long
 )
