@@ -16,4 +16,8 @@ object DataFactory {
         return Math.random().toLong()
     }
 
+    fun randomString(): String {
+        return UUID.randomUUID().toString()
+    }
+
 }
