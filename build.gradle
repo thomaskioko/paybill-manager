@@ -34,7 +34,7 @@ task clean(type: Delete) {
 detekt {
 
     profile("main") {
-        input = file("${project.rootDir}/app/src/main/java")
+        input = file("${project.rootDir}/mobile/src/main/java")
         config = file("${project.rootDir}/config/detekt/rules-detekt.yml")
         filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
         output = "${project.rootDir}/app/build/reports/detekt/"
