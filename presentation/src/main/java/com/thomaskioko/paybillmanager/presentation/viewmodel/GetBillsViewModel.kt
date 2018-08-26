@@ -14,7 +14,7 @@ import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
 open class GetBillsViewModel @Inject internal constructor(
-        private val getBillById: GetBillById,
+        private val getBillById: GetBillById?,
         private val getBills: GetBills?,
         private val mapper: BillViewMapper
 ) : ViewModel() {
@@ -25,7 +25,7 @@ open class GetBillsViewModel @Inject internal constructor(
 
     override fun onCleared() {
         getBills?.dispose()
-        getBillById.dispose()
+        getBillById?.dispose()
         super.onCleared()
     }
 
@@ -45,7 +45,7 @@ open class GetBillsViewModel @Inject internal constructor(
 
     fun fetchBillById(billId: String) {
         billLiveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getBillById.execute(BillSubscriber(), GetBillById.Params.forBill(billId))
+        getBillById?.execute(BillByIdSubscriber(), GetBillById.Params.forBill(billId))
     }
 
 
@@ -62,7 +62,7 @@ open class GetBillsViewModel @Inject internal constructor(
         }
     }
 
-    inner class BillSubscriber : DisposableObserver<Bill>() {
+    inner class BillByIdSubscriber : DisposableObserver<Bill>() {
         override fun onNext(t: Bill) {
             billLiveData.postValue(Resource(ResourceState.SUCCESS, mapper.mapToView(t), null))
         }
