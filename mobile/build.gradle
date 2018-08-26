@@ -15,15 +15,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        renderscriptTargetApi 8
-        renderscriptSupportModeEnabled true
-        vectorDrawables {
-            useSupportLibrary true
-        }
-
         multiDexEnabled true
 
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        dexInProcess = false
+        javaMaxHeapSize "4g"
     }
 
     buildTypes {
@@ -45,6 +44,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation deps.multidex
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
