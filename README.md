@@ -19,6 +19,27 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
 # Architecture
 
 The architecture of this project is built around [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/).
+
+### Module Layers
+
+This project uses [clean architecture](https://github.com/android10/Android-CleanArchitecture) to abstract all functionality. We've done this by isolation functionality in respective modules.
+
+![Architecture Layers](art/ArchitectureLayer.png "Architecture Layers")
+
+
+* **UI (mobile):** This layer is responsible for the UI of the app. This layer contains Android framework application implementation. At the moment we are only supporting Phones but we may add tablet support later on and  we'll create a separate module for this 
+
+* **Presentation:** The Presentation layer allows us to abstract the presentation logic from the framework specific implementation of our user interface. We'll be using [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) and [android architecture components library](https://developer.android.com/topic/libraries/architecture/) to handle presentation of our app.
+ 
+* **Domain:** This houses business rules/use case classes. This provides the core functionality of the project, think of it as rules of the projects. eg, Add Bill, Update Bill, Make payment. e.t.c
+
+* **Data:** The Data layer allows us to abstract the sources of the data that our application uses. It implements the domain later to help us satisfy the required functionality. It will help us determine where we should fetch data from, Cache or remote.
+
+* **Remote:** The Remote layer allows us to abstract the sources of the remote data that our application uses. We'll use [Retrofit](https://square.github.io/retrofit/) to handle networking functionality. 
+
+* **Cache:** The Cache layer allows us to abstract the local source of data that our application uses. We'll use [Room](https://developer.android.com/topic/libraries/architecture/room) to handle local storage.
+
+
  
 
 # Development Environment
