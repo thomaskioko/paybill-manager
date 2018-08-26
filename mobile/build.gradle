@@ -55,6 +55,15 @@ android {
         lintConfig rootProject.file('lint.xml')
     }
 
+    testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        animationsDisabled true
+
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
 }
 
 
@@ -87,7 +96,7 @@ task jacocoTestReport(type: JacocoReport) {
                       '**/*_*Factory.class',
                       '**/*ComponentImpl.class',
                       '**/*SubComponentBuilder.class']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
 
     sourceDirectories = files([mainSrc])
