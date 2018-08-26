@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/ft-architecture-restructure)](https://travis-ci.org/kioko/paybill-manager)
-[![codecov](https://codecov.io/gh/kioko/paybill-manager/branch/feature/ft-architecture-restructure/graph/badge.svg)](https://codecov.io/gh/kioko/paybill-manager)
+[![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/clean-architecture-implementation)](https://travis-ci.org/kioko/paybill-manager)
+[![codecov](https://codecov.io/gh/kioko/paybill-manager/branch/feature/clean-architecture-implementation/graph/badge.svg)](https://codecov.io/gh/kioko/paybill-manager)
 <p align="center">
   <img src="https://github.com/kioko/paybill-manager/blob/master/app/src/main/ic_launcher_web.png?raw=true" alt="Paybill-Manager"/>
 </p>
