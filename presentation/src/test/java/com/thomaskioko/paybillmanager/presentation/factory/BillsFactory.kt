@@ -13,7 +13,7 @@ object BillsFactory {
     }
 
 
-    fun makeBillEntityList(count: Int): List<Bill> {
+    fun makeBillList(count: Int): List<Bill> {
         val billEntities = mutableListOf<Bill>()
         repeat(count) {
             billEntities.add(makeBill())
