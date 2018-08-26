@@ -22,7 +22,7 @@ object BillsDataFactory {
     }
 
     fun makeBill(): Bill {
-        return Bill(randomInt(), randomUuid(), randomUuid(),
+        return Bill(randomUuid(), randomUuid(), randomUuid(),
                 randomUuid(), randomUuid(), randomInt(),
                 randomLong())
     }

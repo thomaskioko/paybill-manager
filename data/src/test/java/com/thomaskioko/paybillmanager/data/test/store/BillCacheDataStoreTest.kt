@@ -52,7 +52,7 @@ class BillCacheDataStoreTest {
         //Stub getBills call
         whenever(cache.getBillById(any())).thenReturn(observable)
 
-        val testObserver = store.getBillById(DataFactory.randomInt()).test()
+        val testObserver = store.getBillById(DataFactory.randomUuid()).test()
         testObserver.assertComplete()
     }
 
@@ -64,7 +64,7 @@ class BillCacheDataStoreTest {
         whenever(cache.getBillById(any())).thenReturn(Flowable.just(data))
 
         //Create test observer
-        val testObserver = store.getBillById(DataFactory.randomInt()).test()
+        val testObserver = store.getBillById(DataFactory.randomUuid()).test()
         //confirm that the observer completes
         testObserver.assertValue(data)
     }
