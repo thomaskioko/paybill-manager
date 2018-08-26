@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/clean-architecture-implementation)](https://travis-ci.org/kioko/paybill-manager)
 [![codecov](https://codecov.io/gh/kioko/paybill-manager/branch/feature/clean-architecture-implementation/graph/badge.svg)](https://codecov.io/gh/kioko/paybill-manager)
-<p align="center">
-  <img src="https://github.com/kioko/paybill-manager/blob/master/app/src/main/ic_launcher_web.png?raw=true" alt="Paybill-Manager"/>
-</p>
+
+![PaybillManager](art/PaybillManager.png "Paybill Manager")
 
 
 PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
