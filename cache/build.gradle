@@ -12,6 +12,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled = true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
@@ -31,7 +33,7 @@ dependencies {
     implementation project(':data')
 
     compileOnly deps.javax_annotation
-    implementation deps.javax
+    implementation deps.javax_inject
     implementation deps.kotlin.stdlib
     implementation deps.rx_kotlin
 

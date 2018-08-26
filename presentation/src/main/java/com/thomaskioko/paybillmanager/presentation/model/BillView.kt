@@ -1,7 +1,6 @@
-package com.thomaskioko.paybillmanager.domain.model
+package com.thomaskioko.paybillmanager.presentation.model
 
-
-data class Bill(
+class BillView(
         var billId: String,
         var billName: String,
         var paybillNumber: String,

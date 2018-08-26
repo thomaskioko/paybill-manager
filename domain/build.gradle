@@ -1,11 +1,10 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.rx_java
+    implementation deps.rx_kotlin
     implementation deps.javax_annotation
-    implementation deps.javax
+    implementation deps.javax_inject
 
     testImplementation deps.junit
     testImplementation deps.mockito.kotlin
