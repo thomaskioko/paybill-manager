@@ -1,0 +1,196 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+
+apply plugin: 'jacoco'
+
+apply from: "$project.rootDir/config/checkstyle/checkstyle.gradle"
+apply from: "$project.rootDir/config/pmd/pmd.gradle"
+
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'com.thomaskioko.daraja.testing.OpenClass'
+}
+
+android {
+    compileSdkVersion build_versions.compile_version
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+        testInstrumentationRunner "com.thomaskioko.daraja.util.SafaricomTestRunner"
+
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled !project.hasProperty('android.injected.invoked.from.ide')
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        lintConfig rootProject.file('lint.xml')
+    }
+
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+    }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'SAFARICOM_CONSUMER_KEY', SAFARICOM_CONSUMER_KEY
+        it.buildConfigField 'String', 'SAFARICOM_CONSUMER_SECRET', SAFARICOM_CONSUMER_SECRET
+    }
+
+    lintOptions {
+        abortOnError false
+        lintConfig rootProject.file('lint.xml')
+    }
+}
+
+jacoco {
+    toolVersion = "0.7.4+"
+    reportsDir = file("$buildDir/reports")
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.multidex
+
+    /**
+     * Support
+     */
+    implementation deps.androidx.annotations
+
+    /**
+     * Kotlin
+     */
+    implementation deps.kotlin.stdlib
+
+    /**
+     * Retrofit
+     */
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.jackson
+    implementation deps.retrofit.rxjava2
+
+    /**
+     * OkHTTP
+     */
+    implementation deps.okhttp.okhttp
+    implementation deps.okhttp.okhttp_logging_interceptor
+
+    /**
+     * Room
+     */
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
+    /**
+     * Dagger
+     */
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.compiler
+
+    /**
+     * Lifecycle
+     */
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
+
+    /**
+     * Timber
+     */
+    implementation deps.timber
+
+    /**
+     * ThreeTen
+     */
+    implementation deps.threetenabp
+
+    /**
+     * Testing
+     */
+    testImplementation deps.junit
+    testImplementation deps.mock_web_server
+    testImplementation(deps.arch_core.testing, {
+        exclude group: 'androidx.core', module: 'core'
+        exclude group: 'androidx.annotation', module: 'annotation'
+        exclude group: 'androidx.legacy', module: 'legacy-support-core-utils'
+    })
+    testImplementation deps.mockito.core
+
+    androidTestImplementation(deps.espresso.core, {
+        exclude group: 'androidx.annotation', module: 'annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    androidTestImplementation(deps.espresso.contrib, {
+        exclude group: 'androidx.annotation', module: 'annotation'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+
+    androidTestImplementation(deps.arch_core.testing, {
+    })
+    androidTestImplementation deps.dexmaker
+    androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
+}
+
+task jacocoTestReport(type: JacocoReport) {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+    dependsOn 'testDebugUnitTest', 'pmd', 'checkstyle'
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
+                      '**/*Test*.*', 'android/**/*.*',
+                      '**/*_MembersInjector.class',
+                      '**/Dagger*Component.class',
+                      '**/Dagger*Component$Builder.class',
+                      '**/*_*Factory.class',
+                      '**/*ComponentImpl.class',
+                      '**/*SubComponentBuilder.class']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ])
+}
+
+// we need all open to run tests which  a we enable only for debug builds.
+project.tasks.whenTaskAdded {
+    if (it.name == "testReleaseUnitTest") {
+        it.enabled = false
+    }
+}
