@@ -25,18 +25,20 @@ class GetBillsViewModelTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @Captor
+    val captorList = argumentCaptor<DisposableObserver<List<Bill>>>()
+
+    @Captor
+    val captor = argumentCaptor<DisposableObserver<Bill>>()
+
     private var getBills = mock<GetBills>()
     private var getBillById = mock<GetBillById>()
     private var mapper = mock<BillViewMapper>()
     private var billViewModel = GetBillsViewModel(getBillById, getBills, mapper)
 
 
-    @Captor
-    val captorList = argumentCaptor<DisposableObserver<List<Bill>>>()
-
-
     @Test
-    fun fetchBillsExecutesUseCase(){
+    fun fetchBillsExecutesUseCase() {
         billViewModel.fetchBills()
 
         //verify that fetch bills use case is called once
@@ -44,8 +46,16 @@ class GetBillsViewModelTest {
     }
 
     @Test
+    fun fetchBillExecutesUseCase() {
+        billViewModel.fetchBillById("24")
+
+        //verify that fetch bill by id use case is called once
+        verify(getBillById, times(1)).execute(any(), eq(GetBillById.Params.forBill("24")))
+    }
+
+    @Test
     fun fetchBillsReturnsSuccess() {
-        val bills = BillsFactory.makeBillEntityList(2)
+        val bills = BillsFactory.makeBillList(2)
         val billViews = BillsFactory.makeBillViewList(2)
         stubBillMapperMapToView(billViews[0], bills[0])
         stubBillMapperMapToView(billViews[1], bills[1])
@@ -65,8 +75,27 @@ class GetBillsViewModelTest {
     }
 
     @Test
+    fun fetchBillByIdReturnsSuccess() {
+        val bill = BillsFactory.makeBill()
+        val billView = BillsFactory.makeBillView()
+        stubBillMapperMapToView(billView, bill)
+
+        //invoke fetch fetchBillById
+        billViewModel.fetchBillById("24")
+
+        //Use captor to capture the response when execute is called
+        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+
+        //Pass data to onNext callback
+        captor.firstValue.onNext(bill)
+
+        //Verify that resource type returned is of type success
+        TestCase.assertEquals(ResourceState.SUCCESS, billViewModel.getBill().value?.status)
+    }
+
+    @Test
     fun fetchBillsReturnsData() {
-        val bills = BillsFactory.makeBillEntityList(2)
+        val bills = BillsFactory.makeBillList(2)
         val billViews = BillsFactory.makeBillViewList(2)
         stubBillMapperMapToView(billViews[0], bills[0])
         stubBillMapperMapToView(billViews[1], bills[1])
@@ -81,8 +110,26 @@ class GetBillsViewModelTest {
         captorList.firstValue.onNext(bills)
 
         //Verify that the data returned is what is returned
-        TestCase.assertEquals(billViews,
-                billViewModel.getBills().value?.data)
+        TestCase.assertEquals(billViews, billViewModel.getBills().value?.data)
+    }
+
+    @Test
+    fun fetchBillByIdReturnsData() {
+        val bill = BillsFactory.makeBill()
+        val billView = BillsFactory.makeBillView()
+        stubBillMapperMapToView(billView, bill)
+
+        //invoke fetch fetchBillById
+        billViewModel.fetchBillById("24")
+
+        //Use captor to capture the response when execute is called
+        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+
+        //Pass data to onNext callback
+        captor.firstValue.onNext(bill)
+
+        //Verify that the data returned is what is returned
+        TestCase.assertEquals(billView, billViewModel.getBill().value?.data)
     }
 
     @Test
@@ -97,8 +144,23 @@ class GetBillsViewModelTest {
         captorList.firstValue.onError(RuntimeException())
 
         //Verify that resource type returned is of type error
-        TestCase.assertEquals(ResourceState.ERROR,
-                billViewModel.getBills().value?.status)
+        TestCase.assertEquals(ResourceState.ERROR, billViewModel.getBills().value?.status)
+    }
+
+    @Test
+    fun fetchBillByIdReturnsError() {
+        //invoke fetch bill by id
+        billViewModel.fetchBillById("24")
+
+        //Use captor to capture the response when execute is called
+        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+
+
+        //Pass Exception to onError callback
+        captor.firstValue.onError(RuntimeException())
+
+        //Verify that resource type returned is of type error
+        TestCase.assertEquals(ResourceState.ERROR, billViewModel.getBill().value?.status)
     }
 
     @Test
@@ -114,16 +176,30 @@ class GetBillsViewModelTest {
         captorList.firstValue.onError(RuntimeException(errorMessage))
 
         //Verify that the error message returned is what is expected
-        TestCase.assertEquals(errorMessage,
-                billViewModel.getBills().value?.message)
+        TestCase.assertEquals(errorMessage, billViewModel.getBills().value?.message)
     }
 
-    private fun stubBillMapperMapToView(projectView: BillView,
-                                        project: Bill) {
-        whenever(mapper.mapToView(project))
-                .thenReturn(projectView)
+    @Test
+    fun fetchBillByIdReturnsMessageForError() {
+        val errorMessage = DataFactory.randomString()
+
+        //invoke fetch bill by id
+        billViewModel.fetchBillById("24")
+
+        //Use captor to capture the response when execute is called
+        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+
+
+        //Pass error message to onError callback
+        captor.firstValue.onError(RuntimeException(errorMessage))
+
+        //Verify that the error message returned is what is expected
+        TestCase.assertEquals(errorMessage, billViewModel.getBill().value?.message)
     }
 
+    private fun stubBillMapperMapToView(projectView: BillView, project: Bill) {
+        whenever(mapper.mapToView(project)).thenReturn(projectView)
+    }
 
 
 }
