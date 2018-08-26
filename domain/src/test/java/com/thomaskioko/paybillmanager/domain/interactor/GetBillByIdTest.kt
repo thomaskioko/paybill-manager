@@ -32,7 +32,7 @@ class GetBillByIdTest {
         stubGetBillsRepository(Observable.just(BillsDataFactory.makeBill()))
 
         val testObservable = getBillById.buildUseCaseObservable(
-                GetBillById.Params.forBill(BillsDataFactory.randomInt())
+                GetBillById.Params.forBill(BillsDataFactory.randomUuid())
         ).test()
         testObservable.assertComplete()
     }
@@ -45,7 +45,7 @@ class GetBillByIdTest {
         stubGetBillsRepository(Observable.just(bills))
 
         val testObserver = getBillById.buildUseCaseObservable(
-                GetBillById.Params.forBill(BillsDataFactory.randomInt())
+                GetBillById.Params.forBill(BillsDataFactory.randomUuid())
         ).test()
 
         //Verify that the data returned is what is expected
