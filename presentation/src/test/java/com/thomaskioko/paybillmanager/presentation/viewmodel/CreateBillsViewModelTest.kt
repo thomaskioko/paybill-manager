@@ -31,17 +31,28 @@ class CreateBillsViewModelTest {
     private var mapper = mock<BillViewMapper>()
     private var createBill = mock<CreateBill>()
     private var updateBill = mock<UpdateBill>()
-    private var createBillsViewModel = CreateBillsViewModel(createBill, updateBill)
+    private var viewModel = CreateBillsViewModel(createBill, updateBill)
 
     @Test
     fun createBillExecutesUseCase() {
         val bill = BillsFactory.makeStaticBill()
 
         //invoke create bill
-        createBillsViewModel.createBill(bill)
+        viewModel.createBill(bill)
 
         //Use captor to capture the response when execute is called
         verify(createBill).execute(captor.capture(), eq(CreateBill.Params.forBill(bill)))
+    }
+
+    @Test
+    fun updateBillExecutesUseCase() {
+        val bill = BillsFactory.makeStaticBill()
+
+        //invoke update bill
+        viewModel.updateBill(bill)
+
+        //Use captor to capture the response when execute is called
+        verify(updateBill).execute(captor.capture(), eq(UpdateBill.Params.forBill(bill)))
     }
 
     @Test
@@ -52,7 +63,7 @@ class CreateBillsViewModelTest {
         stubBillMapperMapToView(billView, bill)
 
         //invoke create bill
-        createBillsViewModel.createBill(BillsFactory.makeStaticBill())
+        viewModel.createBill(BillsFactory.makeStaticBill())
 
         //Use captor to capture the response when execute is called
         verify(createBill).execute(captor.capture(), eq(CreateBill.Params.forBill(billObject)))
@@ -62,7 +73,28 @@ class CreateBillsViewModelTest {
 
         //Verify that resource type returned is of type success
         TestCase.assertEquals(ResourceState.SUCCESS,
-                createBillsViewModel.getBill().value?.status)
+                viewModel.getBill().value?.status)
+    }
+
+    @Test
+    fun updateBillReturnsSuccess() {
+        val billObject = BillsFactory.makeStaticBill()
+        val bill = BillsFactory.makeBill()
+        val billView = BillsFactory.makeBillView()
+        stubBillMapperMapToView(billView, bill)
+
+        //invoke update bill
+        viewModel.updateBill(BillsFactory.makeStaticBill())
+
+        //Use captor to capture the response when execute is called
+        verify(updateBill).execute(captor.capture(), eq(UpdateBill.Params.forBill(billObject)))
+
+        //Pass data to onNext callback
+        captor.firstValue.onComplete()
+
+        //Verify that resource type returned is of type success
+        TestCase.assertEquals(ResourceState.SUCCESS,
+                viewModel.getBill().value?.status)
     }
 
     @Test
@@ -71,7 +103,7 @@ class CreateBillsViewModelTest {
         val bill = BillsFactory.makeStaticBill()
 
         //invoke create bill
-        createBillsViewModel.createBill(bill)
+        viewModel.createBill(bill)
 
         //Use captor to capture the response when execute is called
         verify(createBill).execute(captor.capture(), eq(CreateBill.Params.forBill(bill)))
@@ -81,7 +113,25 @@ class CreateBillsViewModelTest {
         captor.firstValue.onError(RuntimeException())
 
         //Verify that resource type returned is of type error
-        TestCase.assertEquals(ResourceState.ERROR, createBillsViewModel.getBill().value?.status)
+        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
+    }
+
+    @Test
+    fun updateBillReturnsError() {
+
+        val bill = BillsFactory.makeStaticBill()
+
+        //invoke update bill
+        viewModel.updateBill(bill)
+
+        //Use captor to capture the response when execute is called
+        verify(updateBill).execute(captor.capture(), eq(UpdateBill.Params.forBill(bill)))
+
+        //Pass Exception to onError callback
+        captor.firstValue.onError(RuntimeException())
+
+        //Verify that resource type returned is of type error
+        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
     }
 
     @Test
@@ -91,7 +141,7 @@ class CreateBillsViewModelTest {
         val bill = BillsFactory.makeStaticBill()
 
         //invoke create bill
-        createBillsViewModel.createBill(bill)
+        viewModel.createBill(bill)
 
         //Use captor to capture the response when execute is called
         verify(createBill).execute(captor.capture(), eq(CreateBill.Params.forBill(bill)))
@@ -101,7 +151,27 @@ class CreateBillsViewModelTest {
         captor.firstValue.onError(RuntimeException(errorMessage))
 
         //Verify that the error message returned is what is expected
-        TestCase.assertEquals(errorMessage, createBillsViewModel.getBill().value?.message)
+        TestCase.assertEquals(errorMessage, viewModel.getBill().value?.message)
+    }
+
+    @Test
+    fun updateBillMessageForError() {
+        val errorMessage = DataFactory.randomString()
+
+        val bill = BillsFactory.makeStaticBill()
+
+        //invoke update bill
+        viewModel.updateBill(bill)
+
+        //Use captor to capture the response when execute is called
+        verify(updateBill).execute(captor.capture(), eq(UpdateBill.Params.forBill(bill)))
+
+
+        //Pass error message to onError callback
+        captor.firstValue.onError(RuntimeException(errorMessage))
+
+        //Verify that the error message returned is what is expected
+        TestCase.assertEquals(errorMessage, viewModel.getBill().value?.message)
     }
 
     private fun stubBillMapperMapToView(projectView: BillView, project: Bill) {
