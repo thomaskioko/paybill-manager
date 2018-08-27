@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.data.store
+package com.thomaskioko.paybillmanager.data.store.bills
 
 import com.thomaskioko.paybillmanager.data.model.BillEntity
 import com.thomaskioko.paybillmanager.data.repository.bills.BillDataStore
