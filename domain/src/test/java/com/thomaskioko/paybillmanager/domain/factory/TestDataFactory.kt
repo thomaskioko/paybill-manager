@@ -1,9 +1,10 @@
 package com.thomaskioko.paybillmanager.domain.factory
 
 import com.thomaskioko.paybillmanager.domain.model.Bill
+import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
 import java.util.*
 
-object BillsDataFactory {
+object TestDataFactory {
 
     fun randomUuid(): String {
         return UUID.randomUUID().toString()
@@ -25,6 +26,10 @@ object BillsDataFactory {
         return Bill(randomUuid(), randomUuid(), randomUuid(),
                 randomUuid(), randomUuid(), randomInt(),
                 randomLong())
+    }
+
+    fun makeSafaricomToken(): SafaricomToken {
+        return SafaricomToken(randomInt(), randomUuid(), randomUuid())
     }
 
     fun makeProjectList(count: Int): List<Bill> {

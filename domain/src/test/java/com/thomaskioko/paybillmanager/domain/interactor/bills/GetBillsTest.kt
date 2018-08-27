@@ -3,7 +3,7 @@ package com.thomaskioko.paybillmanager.domain.interactor.bills
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.bills.GetBills
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
-import com.thomaskioko.paybillmanager.domain.factory.BillsDataFactory
+import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Observable
@@ -28,7 +28,7 @@ class GetBillsTest {
 
     @Test
     fun getBillsCompletes() {
-        stubGetBillsRepository(Observable.just(BillsDataFactory.makeProjectList(3)))
+        stubGetBillsRepository(Observable.just(TestDataFactory.makeProjectList(3)))
 
         val testObservable = getBills.buildUseCaseObservable().test()
         testObservable.assertComplete()
@@ -36,7 +36,7 @@ class GetBillsTest {
 
     @Test
     fun getBillsReturnsData() {
-        val bills = BillsDataFactory.makeProjectList(4)
+        val bills = TestDataFactory.makeProjectList(4)
 
         //Stub the repository completes
         stubGetBillsRepository(Observable.just(bills))

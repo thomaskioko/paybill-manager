@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.bills.GetBillById
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
-import com.thomaskioko.paybillmanager.domain.factory.BillsDataFactory
+import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Observable
@@ -29,23 +29,23 @@ class GetBillByIdTest {
 
     @Test
     fun getBillCompletes() {
-        stubGetBillsRepository(Observable.just(BillsDataFactory.makeBill()))
+        stubGetBillsRepository(Observable.just(TestDataFactory.makeBill()))
 
         val testObservable = getBillById.buildUseCaseObservable(
-                GetBillById.Params.forBill(BillsDataFactory.randomUuid())
+                GetBillById.Params.forBill(TestDataFactory.randomUuid())
         ).test()
         testObservable.assertComplete()
     }
 
     @Test
     fun getBillReturnsData() {
-        val bills = BillsDataFactory.makeBill()
+        val bills = TestDataFactory.makeBill()
 
         //Stub the repository completes
         stubGetBillsRepository(Observable.just(bills))
 
         val testObserver = getBillById.buildUseCaseObservable(
-                GetBillById.Params.forBill(BillsDataFactory.randomUuid())
+                GetBillById.Params.forBill(TestDataFactory.randomUuid())
         ).test()
 
         //Verify that the data returned is what is expected

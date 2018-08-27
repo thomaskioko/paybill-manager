@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.bills.CreateBill
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
-import com.thomaskioko.paybillmanager.domain.factory.BillsDataFactory
+import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Completable
 import org.junit.Before
@@ -31,7 +31,7 @@ class CreateBillTest {
         stubCreateBillRepository(Completable.complete())
 
         val testObserver = createBill.buildUseCaseCompletable(
-                CreateBill.Params.forBill(BillsDataFactory.makeBill())
+                CreateBill.Params.forBill(TestDataFactory.makeBill())
         ).test()
 
         //Verify that the observable completes
