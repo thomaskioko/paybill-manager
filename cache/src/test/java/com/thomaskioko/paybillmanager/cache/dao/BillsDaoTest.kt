@@ -16,7 +16,7 @@ import org.robolectric.RuntimeEnvironment
 
 
 @RunWith(RobolectricTestRunner::class)
-class CachedBillsDaoTest {
+class BillsDaoTest {
 
     @Rule
     @JvmField
