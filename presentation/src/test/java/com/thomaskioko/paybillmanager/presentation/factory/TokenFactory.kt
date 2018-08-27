@@ -7,12 +7,12 @@ import com.thomaskioko.paybillmanager.presentation.model.TokenView
 object TokenFactory {
 
     fun makeSafaricomToken(): SafaricomToken {
-        return SafaricomToken(DataFactory.randomInt(), DataFactory.randomUuid(), DataFactory.randomUuid())
+        return SafaricomToken(DataFactory.randomInt(), DataFactory.randomLong(), DataFactory.randomUuid())
     }
 
 
     fun makeSafaricomTokenView(): TokenView {
-        return TokenView(DataFactory.randomInt(), DataFactory.randomUuid(), DataFactory.randomUuid())
+        return TokenView(DataFactory.randomInt(), DataFactory.randomLong(), DataFactory.randomUuid())
     }
 
 }

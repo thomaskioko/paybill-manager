@@ -6,7 +6,7 @@ import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
 object TokenDataFactory {
 
     fun makeSafaricomToken(): SafaricomToken {
-        return SafaricomToken(DataFactory.randomInt(), DataFactory.randomUuid(), DataFactory.randomUuid())
+        return SafaricomToken(DataFactory.randomInt(), DataFactory.randomLong(), DataFactory.randomUuid())
     }
 
     fun makeSafaricomTokenEntity(): SafaricomTokenEntity {

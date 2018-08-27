@@ -29,7 +29,7 @@ object TestDataFactory {
     }
 
     fun makeSafaricomToken(): SafaricomToken {
-        return SafaricomToken(randomInt(), randomUuid(), randomUuid())
+        return SafaricomToken(randomInt(), randomLong(), randomUuid())
     }
 
     fun makeProjectList(count: Int): List<Bill> {

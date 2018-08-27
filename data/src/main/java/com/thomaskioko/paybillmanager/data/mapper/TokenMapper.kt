@@ -7,11 +7,11 @@ import javax.inject.Inject
 open class TokenMapper @Inject constructor() : EntityMapper<SafaricomTokenEntity, SafaricomToken> {
 
     override fun mapFromEntity(entity: SafaricomTokenEntity): SafaricomToken {
-        return SafaricomToken(entity.id, entity.expiresIn.toString(), entity.accessToken)
+        return SafaricomToken(entity.id, entity.expiresIn, entity.accessToken)
     }
 
     override fun mapToEntity(domain: SafaricomToken): SafaricomTokenEntity {
-        return SafaricomTokenEntity(domain.id, domain.expiresIn.toLong(), domain.accessToken)
+        return SafaricomTokenEntity(domain.id, domain.expiresIn, domain.accessToken)
     }
 
 }
