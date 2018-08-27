@@ -2,6 +2,38 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.rx_kotlin
+    implementation deps.javax_annotation
+    implementation deps.javax_inject
+    implementation deps.kotlin.stdlib
+
+    /**
+     * Retrofit
+     */
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.jackson
+    implementation deps.retrofit.rxjava2
+
+    /**
+     * OkHTTP
+     */
+    implementation deps.okhttp.okhttp
+    implementation deps.okhttp.okhttp_logging_interceptor
+
+    /**
+     * Testing
+     */
+    testImplementation deps.junit
+    testImplementation deps.assertj
+    testImplementation deps.kotlin.test
+    testImplementation deps.mock_web_server
+
+    testImplementation deps.mockito.core
+    testImplementation deps.mockito.kotlin
+
+
 }
 
 sourceCompatibility = "7"
