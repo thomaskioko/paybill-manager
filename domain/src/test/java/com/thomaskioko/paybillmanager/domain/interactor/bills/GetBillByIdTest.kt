@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.domain.interactor
+package com.thomaskioko.paybillmanager.domain.interactor.bills
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
