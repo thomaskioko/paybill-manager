@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
-import com.thomaskioko.paybillmanager.data.store.BillsCacheDataStore
+import com.thomaskioko.paybillmanager.data.store.bills.BillsCacheDataStore
 import com.thomaskioko.paybillmanager.data.test.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
 import io.reactivex.Completable

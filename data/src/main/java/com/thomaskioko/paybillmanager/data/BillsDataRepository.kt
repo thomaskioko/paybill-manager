@@ -1,7 +1,7 @@
 package com.thomaskioko.paybillmanager.data
 
 import com.thomaskioko.paybillmanager.data.mapper.BillMapper
-import com.thomaskioko.paybillmanager.data.store.BillsDataStoreFactory
+import com.thomaskioko.paybillmanager.data.store.bills.BillsDataStoreFactory
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Completable
