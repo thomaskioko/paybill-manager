@@ -6,8 +6,8 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.data.BillsDataRepository
 import com.thomaskioko.paybillmanager.data.mapper.BillMapper
 import com.thomaskioko.paybillmanager.data.model.BillEntity
-import com.thomaskioko.paybillmanager.data.repository.BillDataStore
-import com.thomaskioko.paybillmanager.data.store.BillsDataStoreFactory
+import com.thomaskioko.paybillmanager.data.repository.bills.BillDataStore
+import com.thomaskioko.paybillmanager.data.store.bills.BillsDataStoreFactory
 import com.thomaskioko.paybillmanager.data.test.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import io.reactivex.Completable

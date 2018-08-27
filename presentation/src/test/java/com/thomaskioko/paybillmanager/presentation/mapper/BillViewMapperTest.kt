@@ -31,6 +31,7 @@ class BillViewMapperTest {
         assertEquals(model.billName, entity.billName)
         assertEquals(model.paybillNumber, entity.paybillNumber)
         assertEquals(model.accountNumber, entity.accountNumber)
+        assertEquals(model.amount, entity.amount)
         assertEquals(model.categoryId, entity.categoryId)
         assertEquals(model.reminderDate, entity.reminderDate)
     }

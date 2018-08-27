@@ -61,6 +61,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation deps.kotlin.stdlib
+
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation deps.multidex
     testImplementation 'junit:junit:4.12'
