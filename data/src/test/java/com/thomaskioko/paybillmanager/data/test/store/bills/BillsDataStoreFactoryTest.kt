@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.data.test.store
+package com.thomaskioko.paybillmanager.data.test.store.bills
 
 import com.nhaarman.mockitokotlin2.mock
 import com.thomaskioko.paybillmanager.data.store.BillsCacheDataStore

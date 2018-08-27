@@ -1,6 +1,6 @@
 package com.thomaskioko.paybillmanager.data.store
 
-import com.thomaskioko.paybillmanager.data.repository.BillDataStore
+import com.thomaskioko.paybillmanager.data.repository.bills.BillDataStore
 import javax.inject.Inject
 
 

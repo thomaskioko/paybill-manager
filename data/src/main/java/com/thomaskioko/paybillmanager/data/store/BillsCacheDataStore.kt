@@ -1,8 +1,8 @@
 package com.thomaskioko.paybillmanager.data.store
 
 import com.thomaskioko.paybillmanager.data.model.BillEntity
-import com.thomaskioko.paybillmanager.data.repository.BillDataStore
-import com.thomaskioko.paybillmanager.data.repository.BillsCache
+import com.thomaskioko.paybillmanager.data.repository.bills.BillDataStore
+import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject

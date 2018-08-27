@@ -3,7 +3,7 @@ package com.thomaskioko.paybillmanager.cache
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
 import com.thomaskioko.paybillmanager.cache.mapper.CachedBillMapper
 import com.thomaskioko.paybillmanager.data.model.BillEntity
-import com.thomaskioko.paybillmanager.data.repository.BillsCache
+import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject

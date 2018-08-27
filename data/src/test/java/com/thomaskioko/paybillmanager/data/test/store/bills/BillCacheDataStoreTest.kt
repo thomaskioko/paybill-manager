@@ -1,10 +1,10 @@
-package com.thomaskioko.paybillmanager.data.test.store
+package com.thomaskioko.paybillmanager.data.test.store.bills
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.thomaskioko.paybillmanager.data.repository.BillsCache
+import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import com.thomaskioko.paybillmanager.data.store.BillsCacheDataStore
 import com.thomaskioko.paybillmanager.data.test.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
