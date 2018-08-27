@@ -4,8 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.thomaskioko.paybillmanager.cache.db.BillsConstants.DELETE_BILLS
-import com.thomaskioko.paybillmanager.cache.db.BillsConstants.QUERY_BILLS
 import com.thomaskioko.paybillmanager.cache.model.CachedBills
 import io.reactivex.Flowable
 
@@ -13,7 +11,7 @@ import io.reactivex.Flowable
 @Dao
 abstract class BillsDao {
 
-    @Query(QUERY_BILLS)
+    @Query("SELECT * FROM bills")
     @JvmSuppressWildcards
     abstract fun getBills(): Flowable<List<CachedBills>>
 
@@ -33,7 +31,7 @@ abstract class BillsDao {
     @JvmSuppressWildcards
     abstract fun updateBill(cachedBills: CachedBills)
 
-    @Query(DELETE_BILLS)
+    @Query("DELETE FROM bills")
     abstract fun deleteBills()
 
 }
