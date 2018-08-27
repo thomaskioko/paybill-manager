@@ -1,7 +1,47 @@
-apply plugin: 'java-library'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion build_versions.compile_version
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled = true
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'SAFARICOM_CONSUMER_KEY', SAFARICOM_CONSUMER_KEY
+        it.buildConfigField 'String', 'SAFARICOM_CONSUMER_SECRET', SAFARICOM_CONSUMER_SECRET
+    }
+
+    lintOptions {
+        abortOnError false
+        lintConfig rootProject.file('lint.xml')
+    }
+
+}
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':data')
 
     implementation deps.rx_kotlin
     implementation deps.javax_annotation
