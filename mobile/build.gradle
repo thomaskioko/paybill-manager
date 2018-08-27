@@ -59,15 +59,118 @@ android {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':presentation')
+    implementation project(':data')
+    implementation project(':remote')
+    implementation project(':cache')
 
     implementation deps.kotlin.stdlib
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation deps.javax_inject
+    implementation deps.rx_kotlin
+
+    /**
+     * Android X
+     */
+    implementation deps.androidx.material
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.annotations
+    implementation deps.androidx.recyclerview
+
+    /**
+     * Lifecycle
+     */
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
+
+
+    /**
+     * Dagger
+     */
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.processor
+    kapt deps.dagger.compiler
+
+
+
+
+    /**
+     * Room
+     */
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    kapt deps.room.compiler
+
+
+    /**
+     * Multidex
+     */
     implementation deps.multidex
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    /**
+     * RX Android
+     */
+    implementation deps.rx_android
+
+    /**
+     * RX Binding
+     */
+    implementation deps.rx_binding.rx
+    implementation deps.rx_binding.appcompact
+
+    /**
+     * Timber
+     */
+    implementation deps.timber
+
+
+    /**
+     * Testing
+     */
+    compileOnly deps.glassfish
+
+    testImplementation deps.junit
+    testImplementation deps.kotlin.test
+
+    androidTestImplementation deps.androidx.app_compat
+    androidTestImplementation deps.androidx.recyclerview
+    androidTestImplementation deps.androidx.cardview
+    androidTestImplementation deps.androidx.material
+
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+
+    androidTestImplementation(deps.espresso.core, {
+        exclude group: 'androidx.annotation', module: 'annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    androidTestImplementation(deps.espresso.contrib, {
+        exclude group: 'androidx.annotation', module: 'annotation'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    androidTestImplementation(deps.espresso.intents, {
+        exclude group: 'androidx.annotation', module: 'annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+
+    androidTestImplementation(deps.espresso.intents, {
+        exclude group: 'androidx.annotation', module: 'annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+
+    androidTestImplementation deps.mockito.kotlin, {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    }
+
+
+
+    kaptTest deps.dagger.compiler
+    kaptAndroidTest deps.dagger.compiler
 }
 
 
