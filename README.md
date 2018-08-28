@@ -6,7 +6,7 @@
 
 PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
 -------------------
-Paybill manger is an Android app meant to help you manage your bill.
+Paybill manger is an Android app meant to help you manage your bill using [Daraja API](https://developer.safaricom.co.ke/docs)
 
 It attempts to use the latest cutting edge libraries and tools. As a summary:
 
@@ -14,10 +14,25 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
  * Uses [RxJava](https://github.com/ReactiveX/RxJava) 2
  * Uses all of the [Architecture Components](https://developer.android.com/topic/libraries/architecture/): Room, LiveData and Lifecycle-components
  * Uses [dagger-android](https://google.github.io/dagger/android.html) for dependency injection
+ * Implements [clean architecture](https://github.com/android10/Android-CleanArchitecture)
   
+ 
+ 
+# Development Environment
+
+The app is written entirely in Kotlin and uses the Gradle build system. You require the latest Android Studio 3.0 (or newer) to be able to build the app. You can get it [here](https://developer.android.com/studio/archive).
+
+## API Keys
+For the app to make requests you require a [Safaricom Dev Account](https://developer.safaricom.co.ke/ ). Once you have one, go ahead and [create an application](https://developer.safaricom.co.ke/user/1079/apps/add) in order to get your credentials
+
+Once you have it, open `gradle.properties` file and paste your API key in `SAFARICOM_CONSUMER_KEY` and `SAFARICOM_CONSUMER_SECRET` variables respectively.
+
+
 # Architecture
 
-The architecture of this project is built around [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/).
+We followed the recommendations laid out in the [Guide to App Architecture](https://developer.android.com/jetpack/docs/guide) when deciding on the architecture for the app. We kept logic away from Activities and Fragments and moved it to [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
+
+On top of this, We use a [clean architecture](https://github.com/android10/Android-CleanArchitecture) approach to abstract functionality to respective modules. This has been explained below. 🤓
 
 ### Module Layers
 
@@ -39,26 +54,6 @@ This project uses [clean architecture](https://github.com/android10/Android-Clea
 * **Cache:** The Cache layer allows us to abstract the local source of data that our application uses. We'll use [Room](https://developer.android.com/topic/libraries/architecture/room) to handle local storage.
 
 
- 
-
-# Development Environment
-
-The app is written entirely in Kotlin and uses the Gradle build system.
-
-To build the app, use the `gradlew build` command or use "Import Project" in
-Android Studio. A canary or stable version >= 3.2 of Android Studio is
-required and may be downloaded
-[here](https://developer.android.com/studio/archive).
-
-We followed the recommendations laid out in the [Guide to App Architecture](https://developer.android.com/jetpack/docs/guide) when deciding on the architecture for the app. We kept logic away from Activities and Fragments and moved it to [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
-We observed data using [LiveData](https://developer.android.com/topic/libraries/architecture/livedata).
-
-On top of this, We use a clean architecture approach to abstract all layers.
-
-## API Keys
-For the app to make requests you require a [Safaricom Dev Account](https://developer.safaricom.co.ke/ ). Once you have one, go ahead and [create an application](https://developer.safaricom.co.ke/user/1079/apps/add) in order to get your credentials
-
-Once you have it, open `gradle.properties` file and paste your API key in `SAFARICOM_CONSUMER_KEY` and `SAFARICOM_CONSUMER_SECRET` variables respectively.
 
 ## RoadMap
 - [x] Setup Travis CI
