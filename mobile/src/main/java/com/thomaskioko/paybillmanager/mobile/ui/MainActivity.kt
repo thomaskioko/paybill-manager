@@ -1,7 +1,8 @@
-package com.thomaskioko.paybillmanager.mobile
+package com.thomaskioko.paybillmanager.mobile.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.thomaskioko.paybillmanager.mobile.R
 
 class MainActivity : AppCompatActivity() {
 
