@@ -9,35 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- AppBar Layout -->
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_layout_add_bill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <!-- Toolbar -->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/app_bar_add_bill"
-                style="@style/Widget.PayBillManager.Toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dime_toolbar_height"
-                android:background="@android:color/transparent"
-                app:elevation="0dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/TextAppearance.PayBillManager.Toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/toolbar_add_bill" />
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
 
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
