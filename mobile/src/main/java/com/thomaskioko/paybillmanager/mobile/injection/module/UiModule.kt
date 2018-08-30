@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
 import com.thomaskioko.paybillmanager.mobile.ui.MainActivity
+import com.thomaskioko.paybillmanager.mobile.ui.SplashScreenActivity
 import com.thomaskioko.paybillmanager.mobile.util.UiThread
 import dagger.Binds
 import dagger.Module
@@ -17,5 +18,8 @@ abstract class UiModule {
 
     @ContributesAndroidInjector
     abstract fun contributesMainActivity(): MainActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributesSplashScreenActivity(): SplashScreenActivity
 
 }
