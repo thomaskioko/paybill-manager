@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_bills_list_fragment">
+
+    <fragment
+        android:id="@+id/nav_bills_list_fragment"
+        android:name="com.thomaskioko.paybillmanager.mobile.ui.fragment.BillsListFragment"
+        android:label="fragment_bills_list"
+        tools:layout="@layout/fragment_bills_list">
+        <action
+            android:id="@+id/action_bills_list_fragment_to_add_bill_fragment"
+            app:destination="@id/nav_add_bill_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_bill_fragment"
+        android:name="com.thomaskioko.paybillmanager.mobile.ui.fragment.AddBillFragment"
+        android:label="fragment_add_bill"
+        tools:layout="@layout/fragment_add_bill" />
+    <fragment
+        android:id="@+id/nav_bill_detail_fragment"
+        android:name="com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailFragment"
+        android:label="fragment_bill_detail"
+        tools:layout="@layout/fragment_bill_detail" />
+</navigation>
