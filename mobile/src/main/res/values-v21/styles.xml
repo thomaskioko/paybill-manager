@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.PayBillManager.Progressbar" parent="Theme.PayBillManager">
+        <item name="android:indeterminateTint">@color/colorAccent</item>
+    </style>
+</resources>
