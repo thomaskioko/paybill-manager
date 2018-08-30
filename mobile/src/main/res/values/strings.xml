@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">PayBill Manager</string>
+
+    <!-- Toolbar Titles -->
+    <string name="toolbar_upcoming_bills">Upcoming Bills</string>
+    <string name="toolbar_add_bill">Add Bill</string>
+
+    <!-- Text-->
+    <string name="text_bill_data">04</string>
+    <string name="text_bill_month">JUN</string>
+    <string name="text_bill_title">Safaricom PostPaid</string>
+    <string name="text_bill_number">Paybill Number: 200200</string>
+    <string name="text_bill_amount">kes 4, 700</string>
+    <string name="text_current_expenses">Current Expenses</string>
+    <string name="text_amount">Kes 22,400</string>
 </resources>
