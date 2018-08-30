@@ -16,7 +16,7 @@ import javax.inject.Inject
     CachedBills::class,
     CachedToken::class,
     Config::class
-], version = 1)
+], version = 1, exportSchema = false)
 abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun billsDao(): BillsDao
