@@ -29,6 +29,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
+        vectorDrawables.useSupportLibrary = true
+
     }
 
     dexOptions {
@@ -110,6 +112,12 @@ dependencies {
      * Multidex
      */
     implementation deps.multidex
+
+    /**
+     * Navigation
+     */
+    implementation deps.navigation.fragment
+    implementation deps.navigation.ui
 
     /**
      * RX Android

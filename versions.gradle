@@ -32,6 +32,7 @@ versions.mockito = "2.19.0"
 versions.mockito_all = "1.10.19"
 versions.mockito_kotlin = '2.0.0-RC1'
 versions.multidex = "2.0.0"
+versions.navigation = "1.0.0-alpha05"
 versions.okhttp = "3.9.0"
 versions.onboarder = "1.0.4"
 versions.retrofit = "2.3.0"
@@ -112,6 +113,13 @@ mockito.core = "org.mockito:mockito-core:$versions.mockito"
 mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
 mockito.kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 deps.mockito = mockito
+
+
+def navigation = [:]
+navigation.fragment = "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}"
+navigation.testing = "android.arch.navigation:navigation-testing-ktx::${versions.navigation}"
+navigation.ui = "android.arch.navigation:navigation-ui-ktx:${versions.navigation}"
+deps.navigation = navigation
 
 
 def retrofit = [:]
