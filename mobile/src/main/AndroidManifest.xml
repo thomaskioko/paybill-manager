@@ -18,7 +18,7 @@
             android:resource="@array/preloaded_fonts" />
 
 
-        <activity android:name=".ui.SplashScreenActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
