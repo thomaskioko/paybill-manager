@@ -118,6 +118,7 @@ dependencies {
      */
     implementation deps.navigation.fragment
     implementation deps.navigation.ui
+    implementation deps.navigation.testing
 
     /**
      * RX Android
