@@ -19,13 +19,4 @@ class AddBillFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_add_bill, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        fab_add_bill_back.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.nav_bills_list_fragment)
-        }
-    }
-
-
 }

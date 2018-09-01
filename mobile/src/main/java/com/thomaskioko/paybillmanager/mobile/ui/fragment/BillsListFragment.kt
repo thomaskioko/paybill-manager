@@ -22,8 +22,6 @@ class BillsListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        fab_add_bill.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.nav_add_bill_fragment)
-        }
+
     }
 }

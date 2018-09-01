@@ -13,7 +13,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_upcoming_bills"
+            android:id="@+id/recycler_view_add_bills"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,39 +33,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinatorLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimes_coordinator_layout_height"
-            android:elevation="@dimen/elevation_default"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:targetApi="lollipop">
-
-            <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bar"
-                style="@style/Widget.MaterialComponents.BottomAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:backgroundTint="@color/colorPrimary"
-                app:fabAlignmentMode="center"
-                app:navigationIcon="@drawable/ic_dashboard"
-                tools:targetApi="lollipop" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_add_bill"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="@dimen/elevation_default"
-                app:layout_anchor="@id/bar"
-                app:srcCompat="@drawable/ic_add"
-                tools:targetApi="lollipop" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
