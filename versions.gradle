@@ -116,8 +116,8 @@ deps.mockito = mockito
 
 
 def navigation = [:]
-navigation.fragment = "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}"
-navigation.testing = "android.arch.navigation:navigation-testing-ktx::${versions.navigation}"
+navigation.fragment = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+navigation.testing = "android.arch.navigation:navigation-testing-ktx:$versions.navigation"
 navigation.ui = "android.arch.navigation:navigation-ui-ktx:${versions.navigation}"
 deps.navigation = navigation
 
