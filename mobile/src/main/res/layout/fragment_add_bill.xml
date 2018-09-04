@@ -1,18 +1,196 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:orientation="vertical">
 
 
 
+            <!-- Currency and country code. -->
+            <LinearLayout
+                android:id="@+id/layoutAmount"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_gravity="center|bottom"
+                android:background="@color/colorPrimary"
+                android:gravity="end"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvCurrencyAmount"
+                    style="@style/TextAppearance.PayBillManager.Category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center|start"
+                    android:text="4,600"
+                    android:textColor="@color/white"
+                    android:textSize="80sp" />
+
+                <TextView
+                    android:id="@+id/tvCurrency"
+                    style="@style/TextAppearance.PayBillManager.Category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:fontFamily="sans-serif-thin"
+                    android:gravity="center|end|bottom"
+                    android:text="@string/text_view_currency_code"
+                    android:textColor="#ffffff"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_t9_key_1"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_1"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_4"
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutAmount" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_2"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_2"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_5"
+
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_1"
+                app:layout_constraintTop_toBottomOf="@+id/layoutAmount" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_3"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_3"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_2"
+                app:layout_constraintTop_toBottomOf="@+id/layoutAmount" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_4"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_4"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_7"
+
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_1" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_5"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_5"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_8"
+
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_4"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_2" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_6"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_6"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_9"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_5"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_3" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_7"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_7"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_0"
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_4" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_8"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_8"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_clear"
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_9"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_7"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_5" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_9"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_9"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_t9_key_00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_8"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_6" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <TextView
+                android:id="@+id/tv_t9_key_0"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_0"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_clear"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_7" />
+
+            <ImageButton
+                android:id="@+id/tv_t9_key_clear"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:gravity="center"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_t9_key_00"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_0"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_8"
+                app:srcCompat="@drawable/ic_backspace" />
+
+            <TextView
+                android:id="@+id/tv_t9_key_00"
+                style="@style/TextAppearance.PayBillManager.CalculatorPad"
+                android:text="@string/keyboard_decimal"
+                android:textIsSelectable="false"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_t9_key_clear"
+                app:layout_constraintTop_toBottomOf="@+id/tv_t9_key_9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
