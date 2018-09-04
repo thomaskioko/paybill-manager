@@ -13,4 +13,19 @@
     <string name="text_bill_amount">kes 4, 700</string>
     <string name="text_current_expenses">Current Expenses</string>
     <string name="text_amount">Kes 22,400</string>
+    <string name="text_view_currency_code">KSh</string>
+
+    <!-- Calculator Keyboard TextViews -->
+    <string name="keyboard_1">1</string>
+    <string name="keyboard_2">2</string>
+    <string name="keyboard_3">3</string>
+    <string name="keyboard_4">4</string>
+    <string name="keyboard_5">5</string>
+    <string name="keyboard_6">6</string>
+    <string name="keyboard_7">7</string>
+    <string name="keyboard_8">8</string>
+    <string name="keyboard_9">9</string>
+    <string name="keyboard_decimal">.</string>
+    <string name="keyboard_0">0</string>
+    <string name="keyboard_clear">Clear</string>
 </resources>
