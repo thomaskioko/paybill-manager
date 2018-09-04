@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_bills_list_fragment_to_add_bill_fragment"
             app:destination="@id/nav_add_bill_fragment" />
+        <action
+            android:id="@+id/action_nav_bills_list_fragment_to_nav_bill_detail_fragment"
+            app:destination="@id/nav_bill_detail_fragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_add_bill_fragment"
