@@ -11,17 +11,19 @@
         android:label="fragment_bills_list"
         tools:layout="@layout/fragment_bills_list">
         <action
-            android:id="@+id/action_bills_list_fragment_to_add_bill_fragment"
+            android:id="@+id/action_nav_bills_list_fragment_to_nav_add_bill_fragment"
             app:destination="@id/nav_add_bill_fragment" />
-        <action
-            android:id="@+id/action_nav_bills_list_fragment_to_nav_bill_detail_fragment"
-            app:destination="@id/nav_bill_detail_fragment" />
     </fragment>
+
     <fragment
         android:id="@+id/nav_add_bill_fragment"
         android:name="com.thomaskioko.paybillmanager.mobile.ui.fragment.AddBillFragment"
         android:label="fragment_add_bill"
-        tools:layout="@layout/fragment_add_bill" />
+        tools:layout="@layout/fragment_add_bill" >
+        <action
+            android:id="@+id/action_nav_add_bill_fragment_to_nav_bills_list_fragment"
+            app:destination="@id/nav_bills_list_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_bill_detail_fragment"
         android:name="com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailFragment"
