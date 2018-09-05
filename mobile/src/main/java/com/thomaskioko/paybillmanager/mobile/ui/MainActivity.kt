@@ -41,13 +41,14 @@ class MainActivity : AppCompatActivity() {
 
         fab_main.setOnClickListener {
             if (bottom_bar.fabAlignmentMode == BottomAppBar.FAB_ALIGNMENT_MODE_CENTER) {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_add_bill_fragment, null, options)
                 bottom_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                 fab_main.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_back))
             } else {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_bills_list_fragment, null, options)
                 bottom_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                 fab_main.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_add))
             }
-            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_add_bill_fragment, null, options)
         }
 
     }
