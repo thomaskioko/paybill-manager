@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.factory
 
 import com.thomaskioko.paybillmanager.domain.model.Bill
+import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
 import java.util.*
 
@@ -36,6 +37,18 @@ object TestDataFactory {
         val projects = mutableListOf<Bill>()
         repeat(count) {
             projects.add(makeBill())
+        }
+        return projects
+    }
+
+    fun makeCategory(): Category {
+        return Category(randomUuid(), randomUuid(), randomUuid())
+    }
+
+    fun makeCategoriesList(count: Int): List<Category> {
+        val projects = mutableListOf<Category>()
+        repeat(count) {
+            projects.add(makeCategory())
         }
         return projects
     }
