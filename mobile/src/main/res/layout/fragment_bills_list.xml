@@ -1,4 +1,5 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bills_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,12 +11,40 @@
         android:layout_height="match_parent">
 
         <!-- AppBar Layout -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout_add_bill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <!-- Toolbar -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_bill_list"
+                style="@style/Widget.PayBillManager.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dime_toolbar_height"
+                android:background="@android:color/transparent"
+                app:elevation="0dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TextAppearance.PayBillManager.Toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|start"
+                    android:text="@string/app_name" />
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_add_bills"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dime_toolbar_height"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +65,15 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:layout_behavior="com.thomaskioko.paybillmanager.mobile.ui.view.ScrollAwareFABBehavior"
+        app:srcCompat="@drawable/ic_add"
+        android:layout_margin="16dp"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
