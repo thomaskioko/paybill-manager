@@ -48,8 +48,8 @@ android {
 
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     lintOptions {
@@ -76,6 +76,7 @@ dependencies {
      */
     implementation deps.androidx.material
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.core
     implementation deps.androidx.annotations
     implementation deps.androidx.recyclerview
 
@@ -98,14 +99,24 @@ dependencies {
     kapt deps.dagger.compiler
 
 
-
-
     /**
      * Room
      */
     implementation deps.room.runtime
     implementation deps.room.rxjava2
     kapt deps.room.compiler
+
+    /**
+     * Material Libs
+     */
+    implementation deps.material_libs.fontawesome
+    implementation deps.material_libs.iconics
+    implementation deps.material_libs.octicons
+    implementation deps.material_libs.item_animators
+    implementation deps.material_libs.iconics_views
+    implementation(deps.material_libs.drawer) {
+        transitive = true
+    }
 
 
     /**
