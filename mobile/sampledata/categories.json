@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "name": "Fitness",
+      "drawableIcon": "@drawable/ic_fitness_center_24dp"
+    },
+    {
+      "name": "Food & Drinks",
+      "drawableIcon": "@drawable/ic_local_dining_24dp"
+    },
+    {
+      "name": "Shopping",
+      "drawableIcon": "@drawable/ic_shopping_cart_24dp"
+    },
+    {
+      "name": "Baby",
+      "drawableIcon": "@drawable/ic_baby_buggy_24dp"
+    },
+    {
+      "name": "Health",
+      "drawableIcon": "@drawable/ic_health_24dp"
+    },
+    {
+      "name": "House",
+      "drawableIcon": "@drawable/ic_house_24dp"
+    },
+    {
+      "name": "Travelling",
+      "drawableIcon": "@drawable/ic_travel_24dp"
+    },
+    {
+      "name": "Transportation",
+      "drawableIcon": "@drawable/ic_transport_24dp"
+    },
+    {
+      "name": "Education",
+      "drawableIcon": "@drawable/ic_education_24dp"
+    },
+    {
+      "name": "Internet",
+      "drawableIcon": "@drawable/ic_wifi_24dp"
+    },
+    {
+      "name": "Fuel",
+      "drawableIcon": "@drawable/ic_fuel_center_24dp"
+    }
+  ]
+}
