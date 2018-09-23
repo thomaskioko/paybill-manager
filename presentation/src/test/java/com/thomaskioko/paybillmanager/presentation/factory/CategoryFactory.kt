@@ -7,12 +7,12 @@ import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 object CategoryFactory {
 
     fun makeStaticCategory(): Category {
-        return Category("12", "Utilities", "320320"
+        return Category("12", "Utilities", 123456
         )
     }
 
     fun makeCategory(): Category {
-        return Category(DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid())
+        return Category(DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomInt())
     }
 
 
@@ -25,10 +25,10 @@ object CategoryFactory {
     }
 
     fun makeCategoryView(): CategoryView {
-        return CategoryView(DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid())
+        return CategoryView(DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomInt())
     }
 
-    fun makeBillViewList(count: Int): List<CategoryView> {
+    fun makeCategoryViewList(count: Int): List<CategoryView> {
         val billEntities = mutableListOf<CategoryView>()
         repeat(count) {
             billEntities.add(makeCategoryView())
