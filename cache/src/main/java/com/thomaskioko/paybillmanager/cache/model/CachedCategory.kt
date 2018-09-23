@@ -8,5 +8,5 @@ data class CachedCategory(
         @PrimaryKey
         var id: String,
         var categoryName: String,
-        var drawableUrl: String
+        var drawableUrl: Int
 )

@@ -1,17 +1,18 @@
 package com.thomaskioko.paybillmanager.data.test.factory
 
 import com.thomaskioko.paybillmanager.data.model.CategoryEntity
+import com.thomaskioko.paybillmanager.data.test.factory.DataFactory.randomInt
 import com.thomaskioko.paybillmanager.data.test.factory.DataFactory.randomUuid
 import com.thomaskioko.paybillmanager.domain.model.Category
 
 object CategoryDataFactory {
 
     fun makeCategory(): Category {
-        return Category(randomUuid(), randomUuid(), randomUuid())
+        return Category(randomUuid(), randomUuid(), randomInt())
     }
 
     fun makeCategoryEntity(): CategoryEntity {
-        return CategoryEntity(randomUuid(), randomUuid(), randomUuid())
+        return CategoryEntity(randomUuid(), randomUuid(), randomInt())
     }
 
     fun makeCategoryList(count: Int): List<Category> {
