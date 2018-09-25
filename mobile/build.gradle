@@ -79,6 +79,7 @@ dependencies {
     implementation deps.androidx.core
     implementation deps.androidx.annotations
     implementation deps.androidx.recyclerview
+    implementation deps.androidx.recyclerview_selection
 
     /**
      * Lifecycle
@@ -147,12 +148,11 @@ dependencies {
      */
     implementation deps.timber
 
+    compileOnly deps.glassfish
 
     /**
      * Testing
      */
-    compileOnly deps.glassfish
-
     testImplementation deps.junit
     testImplementation deps.kotlin.test
 
