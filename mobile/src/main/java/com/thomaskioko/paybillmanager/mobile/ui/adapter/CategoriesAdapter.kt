@@ -1,17 +1,22 @@
 package com.thomaskioko.paybillmanager.mobile.ui.adapter
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import javax.inject.Inject
 
+
 class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
-    var categories: List<Category> = arrayListOf()
+    var categoriesList: List<Category> = arrayListOf()
+    lateinit var selectionTracker: SelectionTracker<Long>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater
@@ -20,8 +25,12 @@ class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesA
         return ViewHolder(itemView)
     }
 
+    fun setRecyclerSelectionTracker(tracker: SelectionTracker<Long>) {
+        selectionTracker = tracker
+    }
+
     override fun getItemCount(): Int {
-        return categories.count()
+        return categoriesList.count()
     }
 
     override fun getItemId(position: Int): Long {
@@ -29,11 +38,20 @@ class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesA
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val category = categories[position]
+        val category = categoriesList[position]
+        val key = getItemId(position)
+
+        val selected = selectionTracker.isSelected(key)
+
+        if (selected) {
+            holder.fabButton.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(holder.context,
+                    R.color.colorPrimaryDark))
+        } else {
+            holder.fabButton.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(holder.context,
+                    R.color.white))
+        }
 
         holder.fabButton.setImageDrawable(holder.context.resources.getDrawable(category.drawableUrl))
-        holder.itemView.setOnClickListener {
-        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -42,4 +60,9 @@ class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesA
 
     }
 
+
+    fun setData(categories: List<Category>) {
+        categoriesList = categories
+        notifyDataSetChanged()
+    }
 }
