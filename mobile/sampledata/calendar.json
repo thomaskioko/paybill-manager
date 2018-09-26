@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "day": "Mon",
+      "date": "14"
+    },
+    {
+      "day": "Tue",
+      "date": "15"
+    },
+    {
+      "day": "Wed",
+      "date": "16"
+    },
+    {
+      "day": "Thur",
+      "date": "17"
+    },
+    {
+      "day": "Fri",
+      "date": "18"
+    },
+    {
+      "day": "Sat",
+      "date": "19"
+    },
+    {
+      "day": "Sun",
+      "date": "20"
+    }
+  ]
+}
