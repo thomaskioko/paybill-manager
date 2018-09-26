@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.domain.repository
 
-import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.model.Category
 import io.reactivex.Completable
 import io.reactivex.Observable
