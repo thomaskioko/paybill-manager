@@ -4,8 +4,10 @@ import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.AddBillFragment
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailFragment
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillsListFragment
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.BottomDialogFragment
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import javax.inject.Inject
+
 
 /**
  * Class responsible for navigating between views
@@ -42,6 +44,11 @@ open class NavigationController @Inject constructor(private var mainActivity: Ma
                 .replace(containerId, fragment)
                 .addToBackStack("BillDetailFragment")
                 .commitAllowingStateLoss()
+    }
+
+    fun navigateToBottomDialogFragment() {
+        val bottomSheetDialogFragment = BottomDialogFragment()
+        bottomSheetDialogFragment.show(fragmentManager, bottomSheetDialogFragment.tag)
     }
 
 
