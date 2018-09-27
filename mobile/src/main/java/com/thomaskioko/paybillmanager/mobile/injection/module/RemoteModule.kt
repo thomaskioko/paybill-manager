@@ -17,7 +17,7 @@ abstract class RemoteModule {
     companion object {
         @Provides
         @JvmStatic
-        fun provideGithubService(): TokenService {
+        fun provideTokenService(): TokenService {
             return TokenServiceFactory.makeTokenService(BuildConfig.DEBUG)
         }
     }
