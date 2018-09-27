@@ -1,0 +1,42 @@
+package com.thomaskioko.paybillmanager.mobile.injection.module
+
+import android.app.Application
+import com.nhaarman.mockitokotlin2.mock
+import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
+import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
+import com.thomaskioko.paybillmanager.data.repository.category.CategoryCache
+import com.thomaskioko.paybillmanager.data.repository.token.TokenCache
+import dagger.Module
+import dagger.Provides
+
+
+@Module
+object TestCacheModule {
+
+
+    @Provides
+    @JvmStatic
+    fun providesDataBase(application: Application): PayBillManagerDatabase {
+        return PayBillManagerDatabase.getInstance(application)
+    }
+
+
+    @Provides
+    @JvmStatic
+    fun providesTokenCache(): TokenCache {
+        return mock()
+    }
+
+    @Provides
+    @JvmStatic
+    fun providesBillsCache(): BillsCache {
+        return mock()
+    }
+
+    @Provides
+    @JvmStatic
+    fun providesCategoryCache(): CategoryCache {
+        return mock()
+    }
+
+}
