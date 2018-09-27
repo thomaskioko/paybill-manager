@@ -6,7 +6,7 @@
 ext.deps = [:]
 def versions = [:]
 versions.android_gradle_plugin = '3.3.0-alpha10'
-versions.androidx = "1.0.0"
+versions.androidx = "1.0.0-rc01"
 versions.androidx_annotation = "1.0.0-alpha1"
 versions.apache_commons = "2.5"
 versions.arch_core = "2.0.0-alpha1"
