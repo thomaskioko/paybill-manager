@@ -1,38 +1,34 @@
 package com.thomaskioko.paybillmanager.presentation.mapper
 
-import com.thomaskioko.paybillmanager.domain.model.Bill
-import com.thomaskioko.paybillmanager.presentation.factory.BillsFactory
-import com.thomaskioko.paybillmanager.presentation.model.BillView
+import com.thomaskioko.paybillmanager.domain.model.Category
+import com.thomaskioko.paybillmanager.presentation.factory.CategoryFactory
+import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 class CategoryViewMapperTest {
 
-    private val mapper = BillViewMapper()
+    private val mapper = CategoryViewMapper()
 
     @Test
     fun mapFromCachedMapsData() {
-        val bill = BillsFactory.makeBill()
-        val billView = mapper.mapToView(bill)
+        val category = CategoryFactory.makeCategory()
+        val categoryView = mapper.mapToView(category)
 
-        assertEqualData(bill, billView)
+        assertEqualData(category, categoryView)
     }
 
     @Test
     fun mapToCachedMapsData() {
-        val bill = BillsFactory.makeBill()
-        val billView = mapper.mapToView(bill)
+        val category = CategoryFactory.makeCategory()
+        val categoryView = mapper.mapToView(category)
 
-        assertEqualData(bill, billView)
+        assertEqualData(category, categoryView)
     }
 
-    private fun assertEqualData(model: Bill, entity: BillView) {
-        assertEquals(model.billId, entity.billId)
-        assertEquals(model.billName, entity.billName)
-        assertEquals(model.paybillNumber, entity.paybillNumber)
-        assertEquals(model.accountNumber, entity.accountNumber)
-        assertEquals(model.amount, entity.amount)
-        assertEquals(model.categoryId, entity.categoryId)
-        assertEquals(model.reminderDate, entity.reminderDate)
+    private fun assertEqualData(model: Category, entity: CategoryView) {
+        assertEquals(model.id, entity.id)
+        assertEquals(model.categoryName, entity.categoryName)
+        assertEquals(model.drawableUrl, entity.drawableUrl)
     }
 }
