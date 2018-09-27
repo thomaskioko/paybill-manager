@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.mobile.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -16,7 +17,6 @@ import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.thomaskioko.paybillmanager.mobile.R
-import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.HasSupportFragmentInjector
@@ -39,10 +39,14 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        AndroidInjection.inject(this)
 
         navigationController.navigateToBillsListFragment()
 
+        setUpDrawer()
+    }
+
+
+    private fun setUpDrawer() {
         val profile = ProfileDrawerItem()
                 .withName("")
                 .withEmail("")
@@ -90,8 +94,6 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
     }
 
 
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
@@ -118,7 +120,7 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
             super.onBackPressed()
         }
 
-        if(supportFragmentManager.backStackEntryCount == 0 ){
+        if (supportFragmentManager.backStackEntryCount == 0) {
             navigationController.navigateToBillsListFragment()
         }
     }
