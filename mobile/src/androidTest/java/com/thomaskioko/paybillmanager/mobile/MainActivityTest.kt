@@ -12,16 +12,15 @@ import org.junit.Test
 
 class MainActivityTest {
 
+
     @Rule
     @JvmField
-    val activityRule = ActivityTestRule(MainActivity::class.java)
+    val activityRule = ActivityTestRule(SimpleFragmentActivity::class.java, true, true)
+
 
 
     @Test
     fun viewIsShown() {
-
-        //Verify that the toolbar is displayed
-        onView(allOf(ViewMatchers.withId(R.id.toolbar_main))).check(matches(isDisplayed()))
 
     }
 
