@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clipToPadding="false"
+    app:cardCornerRadius="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_details_title"
+            style="@style/TextAppearance.PayBillManager.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/text_details"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_reminder"
+            style="@style/TextAppearance.PayBillManager.Headline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_access_alarm_black_24dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_details_title" />
+
+        <TextView
+            android:id="@+id/tv_date_title"
+            style="@style/TextAppearance.PayBillManager.Headline2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/dp_8"
+            android:gravity="center|start"
+            android:text="@string/text_reminder"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_h3"
+            app:fontFamily="@font/gotham_rounded_light"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_reminder"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/iv_reminder"
+            app:layout_constraintTop_toBottomOf="@+id/tv_details_title" />
+
+        <ImageButton
+            android:id="@+id/btn_calender"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button_bg"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_add_circle_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view_dates"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/recycler_view_dates" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_dates"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_calender"
+            app:layout_constraintTop_toBottomOf="@+id/iv_reminder"
+            tools:listitem="@layout/item_date" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_paybill_number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="?attr/colorPrimaryDark"
+            app:fontFamily="@font/gotham_rounded_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_dates">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotham_rounded_light"
+                android:hint="@string/hint_paybill_number"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_notes"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="?attr/colorPrimaryDark"
+            app:fontFamily="@font/gotham_rounded_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/til_paybill_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotham_rounded_light"
+                android:hint="@string/hint_add_a_note"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_bottom_sheet_dialog_fragment"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:background="@color/colorAccent"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/gotham_rounded_medium"
+            android:text="@string/text_finish"
+            android:textColor="@color/white"
+            app:cornerRadius="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_notes" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp_16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_end="@dimen/dp_8" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
