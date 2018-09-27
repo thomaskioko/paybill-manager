@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.mobile
 
 import android.app.Activity
 import android.app.Application
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.thomaskioko.paybillmanager.mobile.injection.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -15,10 +16,11 @@ class PaybillManagerApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+        AppInjector.init(this)
 
         setupTimber()
 
-        AppInjector.init(this)
+        AndroidThreeTen.init(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
