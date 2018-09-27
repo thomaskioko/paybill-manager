@@ -131,6 +131,7 @@ def mockito = [:]
 mockito.core = "org.mockito:mockito-core:$versions.mockito"
 mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
 mockito.kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+mockito.android = "org.mockito:mockito-android:$versions.mockito"
 deps.mockito = mockito
 
 
