@@ -1,7 +1,6 @@
 package com.thomaskioko.paybillmanager.mobile.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -20,6 +19,7 @@ import com.thomaskioko.paybillmanager.mobile.R
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.HasSupportFragmentInjector
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
@@ -87,6 +87,7 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
                 )
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     if (drawerItem != null) {
+                        Timber.d("Implement Navigation")
                     }
                     false
                 }
@@ -103,9 +104,6 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
                 } else {
                     drawer!!.openDrawer()
                 }
-            }
-
-            else -> {
             }
         }
 

@@ -13,10 +13,10 @@ private const val animationDuration = 550.toLong()
 fun registerCircularRevealAnimation(view: View,
                                     revealSettings: RevealAnimationSettings,
                                     startColor: Int,
-                                    endColor: Int){
+                                    endColor: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        view.addOnLayoutChangeListener( object : View.OnLayoutChangeListener {
-            override fun onLayoutChange(p0: View?, p1: Int,  p2: Int, p3: Int, p4: Int,  p5: Int,
+        view.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+            override fun onLayoutChange(p0: View?, p1: Int, p2: Int, p3: Int, p4: Int, p5: Int,
                                         p6: Int, p7: Int, p8: Int) {
                 view.removeOnLayoutChangeListener(this)
                 val cx = revealSettings.centerX
@@ -24,7 +24,8 @@ fun registerCircularRevealAnimation(view: View,
                 val width = revealSettings.width
                 val height = revealSettings.height
                 val finalRadius: Float = Math.sqrt((width * width + height * height).toDouble()).toFloat()
-                val anim = ViewAnimationUtils.createCircularReveal(p0, cx, cy, 0f, finalRadius).setDuration(animationDuration)
+                val anim = ViewAnimationUtils.createCircularReveal(p0, cx, cy, 0f, finalRadius)
+                        .setDuration(animationDuration)
                 anim.interpolator = FastOutSlowInInterpolator()
                 anim.start()
                 startColorAnimation(view, startColor, endColor, animationDuration.toInt())
@@ -32,18 +33,23 @@ fun registerCircularRevealAnimation(view: View,
         })
     }
 }
-fun startCircularExitAnimation(view: View, revealSettings: RevealAnimationSettings, startColor: Int,
-                               endColor: Int, listener: DismissableAnimation.OnDismissedListener) {
+
+fun startCircularExitAnimation(view: View,
+                               revealSettings: RevealAnimationSettings,
+                               startColor: Int,
+                               endColor: Int,
+                               listener: DismissableAnimation.OnDismissedListener) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         val cx = revealSettings.centerX
         val cy = revealSettings.centerY
         val width = revealSettings.width
         val height = revealSettings.height
         val initRadius: Float = Math.sqrt((width * width + height * height).toDouble()).toFloat()
-        val anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, initRadius, 0f).setDuration(animationDuration)
+        val anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, initRadius, 0f)
+                .setDuration(animationDuration)
         anim.duration = animationDuration
         anim.interpolator = FastOutSlowInInterpolator()
-        anim.addListener( object : AnimatorListenerAdapter() {
+        anim.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {
                 super.onAnimationEnd(animation)
                 view.visibility = View.GONE
@@ -56,11 +62,14 @@ fun startCircularExitAnimation(view: View, revealSettings: RevealAnimationSettin
         listener.onDismissed()
     }
 }
+
 fun startColorAnimation(view: View, startColor: Int, endColor: Int, duration: Int) {
     val anim = ValueAnimator()
     anim.setIntValues(startColor, endColor)
     anim.setEvaluator(ArgbEvaluator())
-    anim.addUpdateListener { valueAnimator -> view.setBackgroundColor(valueAnimator.animatedValue as Int) }
+    anim.addUpdateListener { valueAnimator ->
+        view.setBackgroundColor(valueAnimator.animatedValue as Int)
+    }
     anim.duration = duration.toLong()
     anim.start()
 }

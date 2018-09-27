@@ -30,5 +30,4 @@ class PaybillManagerApp : Application(), HasActivityInjector {
     private fun setupTimber() {
         Timber.plant(Timber.DebugTree())
     }
-
 }
