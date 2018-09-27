@@ -26,7 +26,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.thomaskioko.paybillmanager.mobile.test.TestRunner"
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
@@ -150,6 +150,7 @@ dependencies {
     implementation deps.threetenabp
 
     compileOnly deps.glassfish
+    implementation deps.javax_annotation
 
     /**
      * Testing
@@ -164,6 +165,8 @@ dependencies {
 
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules
+
+    androidTestImplementation deps.mockito.android
 
     androidTestImplementation(deps.espresso.core, {
         exclude group: 'androidx.annotation', module: 'annotations'
