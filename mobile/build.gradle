@@ -7,6 +7,7 @@ apply plugin: 'jacoco'
 
 apply from: "$project.rootDir/config/checkstyle/checkstyle.gradle"
 apply from: "$project.rootDir/config/pmd/pmd.gradle"
+apply from: "$project.rootDir/config/detekt/detekt.gradle"
 
 
 jacoco {
