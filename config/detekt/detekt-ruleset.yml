@@ -304,7 +304,7 @@ style:
     active: false
     maxJumpCount: 1
   MagicNumber:
-    active: true
+    active: false
     ignoreNumbers: '-1,0,1,2'
     ignoreHashCodeFunction: false
     ignorePropertyDeclaration: false
@@ -323,7 +323,7 @@ style:
   NestedClassesVisibility:
     active: false
   NewLineAtEndOfFile:
-    active: true
+    active: false
   OptionalAbstractKeyword:
     active: true
   OptionalReturnKeyword:
@@ -365,5 +365,5 @@ style:
   UtilityClassWithPublicConstructor:
     active: false
   WildcardImport:
-    active: true
+    active: false
     excludeImports: 'java.util.*,kotlinx.android.synthetic.*'
