@@ -18,11 +18,6 @@ buildscript {
     }
 }
 
-
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC7-2"
-}
-
 allprojects {
     addRepos(repositories)
 }
@@ -30,26 +25,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-detekt {
-
-    profile("main") {
-        input = file("${project.rootDir}/mobile/src/main/java")
-        config = file("${project.rootDir}/config/detekt/rules-detekt.yml")
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
-        output = "${project.rootDir}/app/build/reports/detekt/"
-        parallel = true
-        disableDefaultRuleSets = false
-    }
-
-    profile("module") {
-        input = file("${project.rootDir}/safaricom_api/src/main/java")
-        config = file("${project.rootDir}/config/detekt/rules-detekt.yml")
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
-        output = "${project.rootDir}/safaricom_api/build/reports/detekt/"
-        parallel = true
-        disableDefaultRuleSets = false
-    }
-
 }
