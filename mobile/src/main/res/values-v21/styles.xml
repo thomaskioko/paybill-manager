@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Widget.PayBillManager.Progressbar" parent="Theme.PayBillManager">
-        <item name="android:indeterminateTint">@color/colorAccent</item>
+        <item name="android:indeterminateTint">@color/colorPrimaryDark</item>
     </style>
 </resources>
