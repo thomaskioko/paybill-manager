@@ -6,7 +6,8 @@
 ext.deps = [:]
 def versions = [:]
 versions.android_gradle_plugin = '3.3.0-alpha10'
-versions.androidx = "1.0.0-rc01"
+versions.androidx = "1.0.0"
+versions.androidx_annotation = "1.0.0-alpha1"
 versions.apache_commons = "2.5"
 versions.arch_core = "2.0.0-alpha1"
 versions.assertj = "3.8.0"
@@ -66,7 +67,7 @@ ext.build_versions = build_versions
 
 def androidx = [:]
 androidx.material = "com.google.android.material:material:$versions.androidx"
-androidx.annotations = "androidx.annotation:annotation:$versions.androidx"
+androidx.annotations = "androidx.annotation:annotation:$versions.androidx_annotation"
 androidx.app_compat = "androidx.appcompat:appcompat:$versions.androidx"
 androidx.core = "androidx.core:core-ktx:$versions.androidx"
 androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.androidx"
