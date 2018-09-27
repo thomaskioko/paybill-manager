@@ -42,7 +42,7 @@ object TestDataFactory {
     }
 
     fun makeCategory(): Category {
-        return Category(randomUuid(), randomUuid(), randomUuid())
+        return Category(randomUuid(), randomUuid(), randomInt())
     }
 
     fun makeCategoriesList(count: Int): List<Category> {
