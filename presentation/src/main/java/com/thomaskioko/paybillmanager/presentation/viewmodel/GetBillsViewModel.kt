@@ -29,16 +29,17 @@ open class GetBillsViewModel @Inject internal constructor(
         super.onCleared()
     }
 
-    fun getBills(): LiveData<Resource<List<BillView>>> {
+    open fun getBills(): LiveData<Resource<List<BillView>>> {
+        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         return billsLiveData
     }
 
     fun getBill(): LiveData<Resource<BillView>> {
+        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         return billLiveData
     }
 
     fun fetchBills() {
-        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getBills?.execute(BillsSubscriber())
     }
 
