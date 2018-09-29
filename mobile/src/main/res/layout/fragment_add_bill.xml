@@ -25,7 +25,7 @@
 
             <!-- Toolbar -->
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_bill_list"
+                android:id="@+id/toolbar_add_bill"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dime_toolbar_height"
                 app:elevation="0dp"

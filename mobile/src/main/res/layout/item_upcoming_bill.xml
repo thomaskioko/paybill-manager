@@ -96,6 +96,7 @@
 
 
             <TextView
+                android:id="@+id/tv_bill_name"
                 style="@style/TextAppearance.PayBillManager.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
