@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
