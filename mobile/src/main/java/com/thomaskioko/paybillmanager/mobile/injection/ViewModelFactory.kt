@@ -33,5 +33,4 @@ open class ViewModelFactory @Inject constructor(
             throw RuntimeException(e)
         }
     }
-
 }

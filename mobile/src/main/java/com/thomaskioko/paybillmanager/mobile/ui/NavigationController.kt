@@ -50,6 +50,4 @@ open class NavigationController @Inject constructor(private var mainActivity: Ma
         val bottomSheetDialogFragment = BottomDialogFragment()
         bottomSheetDialogFragment.show(fragmentManager, bottomSheetDialogFragment.tag)
     }
-
-
 }

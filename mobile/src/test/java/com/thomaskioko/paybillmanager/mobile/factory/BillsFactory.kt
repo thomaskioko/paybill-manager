@@ -7,7 +7,7 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 
 
 object BillsFactory {
-    
+
     fun makeBillView(): BillView {
         return BillView(randomUuid(), randomUuid(), randomUuid(),
                 randomUuid(), randomUuid(), randomInt(),

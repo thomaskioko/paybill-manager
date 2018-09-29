@@ -10,5 +10,4 @@ class CategoryViewMapper @Inject constructor() : ViewMapper<CategoryView, Catego
         return Category(presentation.id, presentation.categoryName, presentation.drawableUrl)
 
     }
-
 }

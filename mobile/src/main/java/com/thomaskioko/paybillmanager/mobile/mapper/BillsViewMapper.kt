@@ -12,5 +12,4 @@ open class BillsViewMapper @Inject constructor(): ViewMapper<BillView, Bill>{
                 presentation.accountNumber,
                 presentation.amount, presentation.categoryId, presentation.reminderDate)
     }
-
 }

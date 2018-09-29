@@ -34,3 +34,4 @@ abstract class PresentationModule {
     @ViewModelKey(GetCategoriesViewModel::class)
     abstract fun bindGetCategoriesViewModel(viewModel: GetCategoriesViewModel): ViewModel
 }
+

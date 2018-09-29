@@ -17,5 +17,4 @@ abstract class UiModule {
 
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     abstract fun contributesMainActivity(): MainActivity
-
 }

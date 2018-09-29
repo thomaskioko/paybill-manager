@@ -6,5 +6,5 @@ interface DismissableAnimation {
         fun onDismissed()
     }
 
-    fun dismiss(listner: OnDismissedListener)
+    fun dismiss(listener: OnDismissedListener)
 }
