@@ -1,12 +1,10 @@
 package com.thomaskioko.paybillmanager.mobile.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thomaskioko.paybillmanager.mobile.R
+import com.thomaskioko.paybillmanager.mobile.extension.inflate
 import kotlinx.android.synthetic.main.item_date.view.*
 import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
@@ -18,10 +16,7 @@ class DaysAdapter @Inject constructor() : RecyclerView.Adapter<DaysAdapter.ViewH
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_date, parent, false)
-        return ViewHolder(itemView)
+        return ViewHolder(parent.inflate(R.layout.item_date))
     }
 
     override fun getItemCount(): Int {

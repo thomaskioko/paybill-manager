@@ -1,15 +1,13 @@
 package com.thomaskioko.paybillmanager.mobile.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
+import com.thomaskioko.paybillmanager.mobile.extension.inflate
 import javax.inject.Inject
 
 
@@ -19,10 +17,7 @@ class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesA
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_category, parent, false)
-        return ViewHolder(itemView)
+        return ViewHolder(parent.inflate(R.layout.item_category))
     }
 
     override fun getItemCount(): Int {
