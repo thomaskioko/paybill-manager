@@ -8,18 +8,41 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thomaskioko.paybillmanager.mobile.R
+import com.thomaskioko.paybillmanager.mobile.extension.hide
+import com.thomaskioko.paybillmanager.mobile.extension.show
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
+import com.thomaskioko.paybillmanager.mobile.mapper.BillsViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
+import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
+import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
+import com.thomaskioko.paybillmanager.presentation.model.BillView
+import com.thomaskioko.paybillmanager.presentation.state.Resource
+import com.thomaskioko.paybillmanager.presentation.state.ResourceState
+import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
 import kotlinx.android.synthetic.main.fragment_bills_list.*
 import javax.inject.Inject
 
 class BillsListFragment : Fragment(), Injectable {
 
     @Inject
-    lateinit var navigationController: NavigationController
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModel: GetBillsViewModel
+    @Inject
+    lateinit var mapper: BillsViewMapper
 
+    @Inject
+    lateinit var adapter: BillsAdapter
+
+
+    @Inject
+    lateinit var navigationController: NavigationController
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -42,12 +65,53 @@ class BillsListFragment : Fragment(), Injectable {
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_drawer_white)
 
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(GetBillsViewModel::class.java)
+
+        setupBillsRecycler()
+
+        mapper = BillsViewMapper()
 
         fab_add_bill.setOnClickListener {
             navigationController.navigateToAddBillFragment(constructRevealSettings())
         }
 
     }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getBills().observe(this,
+                Observer<Resource<List<BillView>>> { it ->
+                    it?.let { observeBillsData(it) }
+                })
+
+        viewModel.fetchBills()
+    }
+
+    private fun setupBillsRecycler() {
+        adapter = BillsAdapter()
+        recycler_view_add_bills.layoutManager = LinearLayoutManager(activity)
+        recycler_view_add_bills.adapter = adapter
+    }
+
+    private fun observeBillsData(resource: Resource<List<BillView>>) {
+        when (resource.status) {
+            ResourceState.LOADING -> {
+                progress_bar.show()
+            }
+            ResourceState.SUCCESS -> {
+                progress_bar.hide()
+                resource.data?.let {
+                    adapter.billsList = it.map { mapper.mapToView(it) }
+                    adapter.notifyDataSetChanged()
+                }
+            }
+            ResourceState.ERROR -> {
+                progress_bar.hide()
+            }
+        }
+    }
+
 
     private fun constructRevealSettings(): RevealAnimationSettings {
         val fabX = (fab_add_bill.x + fab_add_bill.width / 2).toInt()
