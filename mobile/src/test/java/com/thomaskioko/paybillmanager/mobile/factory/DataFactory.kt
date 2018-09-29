@@ -10,7 +10,11 @@ object DataFactory {
     }
 
     fun randomInt(): Int {
-        return ThreadLocalRandom.current().nextInt(0, 1000 + 1)
+        return Math.random().toInt()
+    }
+
+    fun randomLong(): Long {
+        return Math.random().toLong()
     }
 
 }
