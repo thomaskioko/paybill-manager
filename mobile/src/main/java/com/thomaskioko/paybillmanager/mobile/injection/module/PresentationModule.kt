@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.thomaskioko.paybillmanager.mobile.injection.ViewModelFactory
 import com.thomaskioko.paybillmanager.mobile.injection.annotation.ViewModelKey
+import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoryViewModel
@@ -33,5 +34,10 @@ abstract class PresentationModule {
     @IntoMap
     @ViewModelKey(GetCategoriesViewModel::class)
     abstract fun bindGetCategoriesViewModel(viewModel: GetCategoriesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GetBillsViewModel::class)
+    abstract fun bindGetBillsViewModel(viewModel: GetBillsViewModel): ViewModel
 }
 
