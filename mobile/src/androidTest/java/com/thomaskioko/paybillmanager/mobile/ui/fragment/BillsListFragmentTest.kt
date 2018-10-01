@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 import androidx.appcompat.widget.Toolbar
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
@@ -12,17 +13,20 @@ import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
+import com.nhaarman.mockitokotlin2.whenever
+import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
+import com.thomaskioko.paybillmanager.mobile.test.TestApplication
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
-import com.thomaskioko.xapotest.util.EspressoTestUtil
 import com.thomaskioko.xapotest.util.ViewModelUtil
+import io.reactivex.Observable
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -57,10 +61,7 @@ class BillsListFragmentTest {
         fragment.viewModelFactory = ViewModelUtil.createFor(viewModel)
         activityRule.activity.setFragment(fragment)
 
-        activityRule.runOnUiThread {
-
-        }
-        EspressoTestUtil.disableProgressBarAnimations(activityRule)
+        navigationController = Mockito.mock(NavigationController::class.java)
     }
 
     @Test
@@ -100,8 +101,7 @@ class BillsListFragmentTest {
 
         billsList.forEachIndexed { index, bill ->
             onView(withId(R.id.recycler_view_add_bills))
-                    .perform(RecyclerViewActions.scrollToPosition<BillsAdapter.ViewHolder>(
-                            index))
+                    .perform(RecyclerViewActions.scrollToPosition<BillsAdapter.ViewHolder>(index))
 
             onView(withId(R.id.recycler_view_add_bills))
                     .check(matches(hasDescendant(withText(bill.billName))))
