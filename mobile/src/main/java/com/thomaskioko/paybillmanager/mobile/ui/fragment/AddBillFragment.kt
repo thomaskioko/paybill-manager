@@ -81,7 +81,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
 
         view.isFocusableInTouchMode = true
         view.requestFocus()
-        view.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        view.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
                 Timber.d("@onKey Back listener is working!!!")
                 navigationController.navigateToBillsListFragment()
@@ -107,7 +107,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
 
 
         fab_add_bill.setOnClickListener {
-          navigationController.navigateToBottomDialogFragment()
+            navigationController.navigateToBottomDialogFragment()
         }
     }
 
@@ -123,8 +123,10 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
 
 
     private fun setUpRecyclerView() {
-        recycler_view_add_bills.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
-        recycler_view_add_bills.adapter = categoriesAdapter
+        recycler_view_categories.layoutManager = LinearLayoutManager(
+                activity, RecyclerView.HORIZONTAL, false
+        )
+        recycler_view_categories.adapter = categoriesAdapter
 
     }
 
@@ -137,7 +139,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
                 })
             }
             ResourceState.LOADING -> {
-                recycler_view_add_bills.hide()
+                recycler_view_categories.hide()
             }
 
             ResourceState.ERROR -> {
@@ -147,7 +149,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
     }
 
     private fun updateCategories(list: List<Category>?) {
-        recycler_view_add_bills.show()
+        recycler_view_categories.show()
         if (list!!.isEmpty()) {
             for (category in categoriesList()) {
                 createCategoryViewModel.createCategory(category)
@@ -159,14 +161,14 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
     }
 
 
-    override fun dismiss(listner: DismissableAnimation.OnDismissedListener) {
+    override fun dismiss(listener: DismissableAnimation.OnDismissedListener) {
         val revealAnim: RevealAnimationSettings = arguments?.getParcelable(ARG_REVEAL)!!
         startCircularExitAnimation(view!!, revealAnim,
                 ContextCompat.getColor(context!!, R.color.colorPrimaryDark),
                 ContextCompat.getColor(context!!, R.color.white),
                 object : DismissableAnimation.OnDismissedListener {
                     override fun onDismissed() {
-                        listner.onDismissed()
+                        listener.onDismissed()
                     }
                 })
     }
@@ -190,6 +192,5 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
 
         return categories
     }
-
-
 }
+
