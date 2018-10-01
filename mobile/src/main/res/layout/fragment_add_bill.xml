@@ -99,7 +99,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_add_bills"
+                    android:id="@+id/recycler_view_categories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -117,7 +117,7 @@
                     android:background="@color/gray_divider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recycler_view_add_bills" />
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_view_categories" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
