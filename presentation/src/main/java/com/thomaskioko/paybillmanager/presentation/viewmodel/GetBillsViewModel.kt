@@ -30,12 +30,10 @@ open class GetBillsViewModel @Inject internal constructor(
     }
 
     open fun getBills(): LiveData<Resource<List<BillView>>> {
-        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         return billsLiveData
     }
 
     fun getBill(): LiveData<Resource<BillView>> {
-        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         return billLiveData
     }
 
