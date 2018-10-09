@@ -5,7 +5,7 @@
 
 ext.deps = [:]
 def versions = [:]
-versions.android_gradle_plugin = '3.3.0-alpha12'
+versions.android_gradle_plugin = '3.3.0-alpha13'
 versions.androidx = "1.0.0"
 versions.androidx_annotation = "1.0.0-alpha1"
 versions.apache_commons = "2.5"
@@ -61,7 +61,7 @@ def build_versions = [:]
 build_versions.min_sdk = 21
 build_versions.target_sdk = '28'
 build_versions.compile_version = 28
-build_versions.build_tools = "28.0.2"
+build_versions.build_tools = "28.0.3"
 ext.build_versions = build_versions
 
 
