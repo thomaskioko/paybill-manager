@@ -14,10 +14,12 @@ import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.DaysAdapter
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils
 import kotlinx.android.synthetic.main.fragment_bottom_dialog.*
+import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
 
 
-class BottomDialogFragment : BottomSheetDialogFragment() , Injectable {
+class BottomDialogFragment : BottomSheetDialogFragment() , Injectable, DaysAdapter.OnRecyclerViewItemClickListener {
+
 
     @Inject
     lateinit var daysAdapter: DaysAdapter
@@ -32,12 +34,17 @@ class BottomDialogFragment : BottomSheetDialogFragment() , Injectable {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        daysAdapter = DaysAdapter(this)
+
         recycler_view_dates.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
         recycler_view_dates.adapter = daysAdapter
 
         daysAdapter.offsetDateTimeLists = DateUtils.getDaysOfWeek()
         daysAdapter.notifyDataSetChanged()
 
+    }
+
+    override fun selectedDateItem(offsetDateTime: OffsetDateTime) {
 
     }
 }
