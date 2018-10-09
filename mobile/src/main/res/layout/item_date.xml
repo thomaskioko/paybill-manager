@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cl_date"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_date"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/dp_8"
@@ -36,12 +36,12 @@
         android:layout_marginTop="@dimen/dp_8"
         android:layout_marginEnd="@dimen/dp_8"
         android:gravity="center"
+        android:paddingBottom="@dimen/dp_8"
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/text_size_title"
         app:fontFamily="@font/gotham_rounded_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingBottom="@dimen/dp_8"
         app:layout_constraintTop_toBottomOf="@+id/tv_day"
         tools:text="@sample/calendar.json/data/date" />
 
