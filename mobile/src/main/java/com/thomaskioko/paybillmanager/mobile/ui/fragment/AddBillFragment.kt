@@ -5,7 +5,6 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -31,7 +30,6 @@ import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import kotlinx.android.synthetic.main.fragment_add_bill.*
-import kotlinx.android.synthetic.main.layout_keypad.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -41,20 +39,16 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation, Categories
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
     @Inject
     lateinit var mapper: CategoryViewMapper
-
-    lateinit var categoriesAdapter: CategoriesAdapter
-
     @Inject
     lateinit var getCategoriesViewModel: GetCategoriesViewModel
-
     @Inject
     lateinit var createCategoryViewModel: CreateCategoryViewModel
-
     @Inject
     lateinit var navigationController: NavigationController
+
+    private lateinit var categoriesAdapter: CategoriesAdapter
 
 
     companion object {
@@ -104,11 +98,18 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation, Categories
                 .get(GetCategoriesViewModel::class.java)
 
 
+        custom_keyboard.showKeyboard(tv_amount)
         setUpRecyclerView()
 
+        btn_delete.setOnClickListener{
 
-        fab_add_bill.setOnClickListener {
-            navigationController.navigateToBottomDialogFragment()
+            val stringBuilder = StringBuilder(tv_amount.text)
+
+            if (stringBuilder.isNotEmpty() && stringBuilder.toString() != "0.0") {
+                stringBuilder.delete(stringBuilder.length - 1, stringBuilder.length)
+                tv_amount.text = stringBuilder.toString()
+                custom_keyboard.showKeyboard(tv_amount)
+            }
         }
     }
 

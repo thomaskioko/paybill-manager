@@ -135,37 +135,30 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/view2" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_amount"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <TextView
+                    android:id="@+id/tv_amount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    app:fontFamily="@font/gotham_rounded_light"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_currency_symbol"
+                    android:textSize="46sp"
+                    app:fontFamily="@font/work_sans_light"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_currency_symbol"
                     app:layout_constraintEnd_toStartOf="@+id/btn_delete"
                     app:layout_constraintStart_toEndOf="@+id/tv_currency_symbol"
-                    app:layout_constraintTop_toTopOf="@+id/tv_currency_symbol">
+                    tools:text="4,599">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/gotham_rounded_light"
-                        android:hint="@string/hint_bill_amount"
-                        android:inputType="numberDecimal"
-                        android:textColor="@color/colorPrimaryDark" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </TextView>
 
 
                 <ImageView
                     android:id="@+id/btn_delete"
                     android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_height="0dp"
                     android:layout_marginEnd="@dimen/dp_16"
+                    android:layout_marginRight="@dimen/dp_16"
                     android:background="@null"
                     android:gravity="center"
                     android:textIsSelectable="false"
@@ -178,17 +171,19 @@
                     android:id="@+id/view3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:background="@color/gray_divider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_currency_symbol" />
 
 
-                <include
-                    layout="@layout/layout_keypad"
+                <com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
+                    android:id="@+id/custom_keyboard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:keyPreviewOffset="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
