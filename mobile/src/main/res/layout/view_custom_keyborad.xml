@@ -13,6 +13,7 @@
         android:shadowRadius="0.0"
         android:keyTextSize="24sp"
         android:shadowColor="#fff"
+        android:background="@color/white"
         android:keyTextColor="@color/colorPrimaryDark"
         android:focusableInTouchMode="true"
         android:keyBackground="@drawable/key_bg" />
