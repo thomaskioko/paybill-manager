@@ -179,7 +179,7 @@
 
 
                 <com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
-                    android:id="@+id/custom_keyboard"
+                    android:id="@+id/keyboardView"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@color/white"

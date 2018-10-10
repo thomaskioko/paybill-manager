@@ -5,14 +5,12 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
 
 import com.thomaskioko.paybillmanager.mobile.R
-import kotlinx.android.synthetic.main.view_custom_keyborad.view.*
 
 class CustomKeyboardView : LinearLayout, CustomKeyboard.KeyboardListener {
 
-    private var customKeyboard: CustomKeyboard? = null
+    private var keyboard: CustomKeyboard? = null
 
     constructor(context: Context) : super(context)
 
@@ -22,8 +20,8 @@ class CustomKeyboardView : LinearLayout, CustomKeyboard.KeyboardListener {
 
     private fun init() {
         View.inflate(context, R.layout.view_custom_keyborad, this)
-        customKeyboard = findViewById(R.id.custom_keyboard)
-        customKeyboard!!.setKeyboardListener(this)
+        keyboard = findViewById(R.id.keyboard)
+        keyboard!!.setKeyboardListener(this)
 
     }
 

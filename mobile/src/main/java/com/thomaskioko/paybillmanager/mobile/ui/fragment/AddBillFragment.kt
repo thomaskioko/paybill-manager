@@ -98,7 +98,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation, Categories
                 .get(GetCategoriesViewModel::class.java)
 
 
-        custom_keyboard.showKeyboard(tv_amount)
+        keyboardView.showKeyboard(tv_amount)
         setUpRecyclerView()
 
         btn_delete.setOnClickListener{
@@ -108,7 +108,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation, Categories
             if (stringBuilder.isNotEmpty() && stringBuilder.toString() != "0.0") {
                 stringBuilder.delete(stringBuilder.length - 1, stringBuilder.length)
                 tv_amount.text = stringBuilder.toString()
-                custom_keyboard.showKeyboard(tv_amount)
+                keyboardView.showKeyboard(tv_amount)
             }
         }
     }
