@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -35,7 +36,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
+class AddBillFragment : Fragment(), Injectable, DismissableAnimation, CategoriesAdapter.OnRecyclerViewItemClickListener {
+
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -43,7 +45,6 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
     @Inject
     lateinit var mapper: CategoryViewMapper
 
-    @Inject
     lateinit var categoriesAdapter: CategoriesAdapter
 
     @Inject
@@ -123,11 +124,16 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation {
 
 
     private fun setUpRecyclerView() {
+        categoriesAdapter = CategoriesAdapter(this)
         recycler_view_categories.layoutManager = LinearLayoutManager(
                 activity, RecyclerView.HORIZONTAL, false
         )
         recycler_view_categories.adapter = categoriesAdapter
+        categoriesAdapter.notifyDataSetChanged()
 
+    }
+
+    override fun selectedCategoryItem(category: Category) {
     }
 
 

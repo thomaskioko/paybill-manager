@@ -2,18 +2,21 @@ package com.thomaskioko.paybillmanager.mobile.ui.adapter
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.inflate
+import kotlinx.android.synthetic.main.item_category.view.*
 import javax.inject.Inject
 
 
-class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+class CategoriesAdapter @Inject constructor(
+        private val recyclerViewItemClickListener: OnRecyclerViewItemClickListener
+) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     var categoriesList: List<Category> = arrayListOf()
+    var lastSelectedPosition = -1
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,13 +34,39 @@ class CategoriesAdapter @Inject constructor() : RecyclerView.Adapter<CategoriesA
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = categoriesList[position]
 
-        holder.fabButton.setImageDrawable(AppCompatResources.getDrawable(holder.context, category.drawableUrl))
+        holder.imageDrawable.background = ResourcesCompat.getDrawable(
+                holder.context.resources, category.drawableUrl, null
+        )
+
+        if (lastSelectedPosition == position) {
+            holder.imageBackground.background = ResourcesCompat.getDrawable(
+                    holder.context.resources, R.drawable.background_circle_dark, null
+            )
+        } else {
+            holder.imageBackground.background = ResourcesCompat.getDrawable(
+                    holder.context.resources, R.drawable.background_circle_light, null
+            )
+        }
+
+
+        holder.itemView.setOnClickListener {
+            lastSelectedPosition = holder.adapterPosition
+            notifyDataSetChanged()
+
+            recyclerViewItemClickListener.selectedCategoryItem(category)
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var context = view.context!!
-        var fabButton: FloatingActionButton = view.findViewById(R.id.fab_icon_category)
+        val layout = view.layout_item!!
+        val imageBackground = view.image_button_background!!
+        val imageDrawable = view.image_button_drawable!!
 
+    }
+
+    interface OnRecyclerViewItemClickListener {
+        fun selectedCategoryItem(category: Category)
     }
 
 }

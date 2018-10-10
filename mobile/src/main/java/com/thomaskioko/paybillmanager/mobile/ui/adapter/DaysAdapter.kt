@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.mobile.ui.adapter
 
-import android.util.SparseBooleanArray
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
@@ -17,7 +16,7 @@ class DaysAdapter @Inject constructor(
 ) : RecyclerView.Adapter<DaysAdapter.ViewHolder>() {
 
     var offsetDateTimeLists: List<OffsetDateTime> = arrayListOf()
-    var sparseBooleanArray: SparseBooleanArray = SparseBooleanArray()
+    var lastSelectedPosition = -1
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,27 +39,27 @@ class DaysAdapter @Inject constructor(
         holder.tvDay.text = offsetDateTime.dayOfWeek.name.substring(0, Math.min(day.length, 3))
         holder.tvDate.text = offsetDateTime.dayOfMonth.toString()
 
-        if (sparseBooleanArray[position]) {
-            holder.layoutDate.background = ResourcesCompat.getDrawable(holder.context.resources, R.drawable.background_dark, null)
-            holder.tvDate.setTextColor(ResourcesCompat.getColor(holder.context.resources, R.color.white, null))
-            holder.tvDay.setTextColor(ResourcesCompat.getColor(holder.context.resources, R.color.white, null))
+        if (lastSelectedPosition == position) {
+            holder.layoutDate.background = ResourcesCompat.getDrawable(
+                    holder.context.resources, R.drawable.background_dark, null)
+            holder.tvDate.setTextColor(ResourcesCompat.getColor(
+                    holder.context.resources, R.color.white, null))
+            holder.tvDay.setTextColor(ResourcesCompat.getColor(
+                    holder.context.resources, R.color.white, null))
 
         } else {
-            holder.layoutDate.background = ResourcesCompat.getDrawable(holder.context.resources, R.drawable.background_light, null)
-            holder.tvDay.setTextColor(ResourcesCompat.getColor(holder.context.resources, R.color.colorPrimaryDark, null))
-            holder.tvDate.setTextColor(ResourcesCompat.getColor(holder.context.resources, R.color.secondary_text, null))
+            holder.layoutDate.background = ResourcesCompat.getDrawable(
+                    holder.context.resources, R.drawable.background_light, null)
+            holder.tvDay.setTextColor(ResourcesCompat.getColor(
+                    holder.context.resources, R.color.colorPrimaryDark, null))
+            holder.tvDate.setTextColor(ResourcesCompat.getColor(
+                    holder.context.resources, R.color.secondary_text, null))
         }
 
         holder.itemView.setOnClickListener {
 
-            if (!sparseBooleanArray.get(holder.adapterPosition)) {
-                sparseBooleanArray.put(holder.adapterPosition, true)
-                notifyItemChanged(holder.adapterPosition)
-            } else {
-                sparseBooleanArray.put(holder.adapterPosition, false)
-                notifyItemChanged(holder.adapterPosition)
-            }
-
+            lastSelectedPosition = holder.adapterPosition
+            notifyDataSetChanged()
             recyclerViewItemClickListener.selectedDateItem(offsetDateTime)
         }
     }
