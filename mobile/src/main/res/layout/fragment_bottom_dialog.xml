@@ -29,16 +29,67 @@
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_paybill_number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="?attr/colorPrimaryDark"
+            app:fontFamily="@font/gotham_rounded_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_details_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotham_rounded_light"
+                android:hint="@string/hint_label"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_notes"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="?attr/colorPrimaryDark"
+            app:fontFamily="@font/gotham_rounded_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/til_paybill_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:fontFamily="@font/gotham_rounded_light"
+                android:hint="@string/hint_paybill_number"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <ImageView
             android:id="@+id/iv_reminder"
             style="@style/TextAppearance.PayBillManager.Headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginTop="8dp"
             android:contentDescription="@null"
             android:src="@drawable/ic_access_alarm_black_24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_details_title" />
+            app:layout_constraintTop_toBottomOf="@+id/til_notes" />
 
         <TextView
             android:id="@+id/tv_date_title"
@@ -46,7 +97,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/dp_8"
             android:gravity="center|start"
             android:text="@string/text_reminder"
             android:textColor="@color/colorPrimaryDark"
@@ -54,8 +104,7 @@
             app:fontFamily="@font/gotham_rounded_light"
             app:layout_constraintBottom_toBottomOf="@+id/iv_reminder"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toEndOf="@+id/iv_reminder"
-            app:layout_constraintTop_toBottomOf="@+id/tv_details_title" />
+            app:layout_constraintStart_toEndOf="@+id/iv_reminder" />
 
         <ImageButton
             android:id="@+id/btn_calender"
@@ -83,59 +132,12 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_reminder"
             tools:listitem="@layout/item_date" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_paybill_number"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:textColor="?attr/colorPrimaryDark"
-            app:fontFamily="@font/gotham_rounded_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view_dates">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gotham_rounded_light"
-                android:hint="@string/hint_paybill_number"
-                android:textColor="@color/colorPrimaryDark" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_notes"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:textColor="?attr/colorPrimaryDark"
-            app:fontFamily="@font/gotham_rounded_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/til_paybill_number">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gotham_rounded_light"
-                android:hint="@string/hint_add_a_note"
-                android:inputType="textMultiLine"
-                android:lines="2"
-                android:textColor="@color/colorPrimaryDark" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:id="@+id/btn_bottom_sheet_dialog_fragment"
             android:layout_width="0dp"
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="@dimen/dp_8"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="@dimen/dp_8"
             android:background="@color/colorAccent"
@@ -147,7 +149,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_notes" />
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_dates" />
 
 
         <androidx.constraintlayout.widget.Guideline
