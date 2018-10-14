@@ -135,35 +135,48 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/view2" />
 
-                <TextView
-                    android:id="@+id/tv_amount"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_amount"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="46sp"
-                    app:fontFamily="@font/work_sans_light"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_currency_symbol"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:focusable="false"
+                    android:textColor="?attr/colorPrimaryDark"
+                    app:fontFamily="@font/gotham_rounded_light"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_currency_symbol"
                     app:layout_constraintEnd_toStartOf="@+id/btn_delete"
                     app:layout_constraintStart_toEndOf="@+id/tv_currency_symbol"
-                    tools:text="4,599">
+                    app:layout_constraintTop_toTopOf="@+id/tv_currency_symbol">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_amount"
+                        android:focusable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotham_rounded_light"
+                        android:hint="@string/hint_amount"
+                        android:inputType="number"
+                        android:textSize="28sp"
+                        app:fontFamily="@font/work_sans_light"
+                        android:textColor="@color/colorPrimaryDark" />
 
-                </TextView>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <ImageView
                     android:id="@+id/btn_delete"
                     android:layout_width="32dp"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="@dimen/dp_16"
-                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@null"
                     android:gravity="center"
                     android:textIsSelectable="false"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_currency_symbol"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/til_amount"
                     app:layout_constraintTop_toTopOf="@+id/tv_currency_symbol"
                     app:srcCompat="@drawable/ic_backspace" />
 
