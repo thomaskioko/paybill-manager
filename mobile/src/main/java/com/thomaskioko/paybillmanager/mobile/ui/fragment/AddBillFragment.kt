@@ -1,6 +1,8 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +26,7 @@ import com.thomaskioko.paybillmanager.mobile.ui.util.DismissableAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import com.thomaskioko.paybillmanager.mobile.ui.util.registerCircularRevealAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.startCircularExitAnimation
+import com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
@@ -34,7 +37,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class AddBillFragment : Fragment(), Injectable, DismissableAnimation, CategoriesAdapter.OnRecyclerViewItemClickListener {
+class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
+        CategoriesAdapter.OnRecyclerViewItemClickListener, CustomKeyboardView.KeyboardListener {
 
 
     @Inject
@@ -98,17 +102,27 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation, Categories
                 .get(GetCategoriesViewModel::class.java)
 
 
-        keyboardView.showKeyboard(tv_amount)
+        keyboardView.showKeyboard(et_amount)
+        keyboardView.setKeyboardListener(this)
         setUpRecyclerView()
 
-        btn_delete.setOnClickListener{
+        et_amount.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
 
-            val stringBuilder = StringBuilder(tv_amount.text)
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (til_amount.isErrorEnabled)
+                    til_amount.isErrorEnabled = false
+            }
+        })
+
+        btn_delete.setOnClickListener {
+            val stringBuilder = StringBuilder(et_amount.text.toString())
             if (stringBuilder.isNotEmpty() && stringBuilder.toString() != "0.0") {
                 stringBuilder.delete(stringBuilder.length - 1, stringBuilder.length)
-                tv_amount.text = stringBuilder.toString()
-                keyboardView.showKeyboard(tv_amount)
+                et_amount.setText(stringBuilder.toString())
+                keyboardView.showKeyboard(et_amount)
             }
         }
     }
@@ -121,6 +135,15 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation, Categories
                 })
 
         getCategoriesViewModel.fetchCategories()
+    }
+
+    override fun onOKResult(amount: String) {
+        if (amount.isEmpty()) {
+            til_amount.isErrorEnabled = true
+            til_amount.error = resources.getString(R.string.error_no_amount)
+        } else {
+            navigationController.navigateToBottomDialogFragment()
+        }
     }
 
 

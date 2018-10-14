@@ -1,22 +1,19 @@
 package com.thomaskioko.paybillmanager.mobile.ui.view
 
 import android.content.Context
-import android.graphics.*
 import android.inputmethodservice.Keyboard
 import android.inputmethodservice.KeyboardView
 import android.util.AttributeSet
 import android.widget.TextView
 import com.thomaskioko.paybillmanager.mobile.R
 import timber.log.Timber
-import java.lang.reflect.Field
 import java.text.NumberFormat
 import java.util.*
 
 class CustomKeyboard(context: Context, attrs: AttributeSet) : KeyboardView(context, attrs) {
     private val contentStr = StringBuilder()
     private var currentTextView: TextView? = null
-    private var keyboardListener: KeyboardListener? = null
-    private lateinit var mContext: Context
+    private var keyboardListener: CustomKeyboardView.KeyboardListener? = null
 
     private val mOnKeyboardActionListener = object : KeyboardView.OnKeyboardActionListener {
 
@@ -40,7 +37,8 @@ class CustomKeyboard(context: Context, attrs: AttributeSet) : KeyboardView(conte
                 }
 
                 val numberFormat = NumberFormat.getNumberInstance(Locale.US)
-                currentTextView!!.text = numberFormat.format(contentStr.toString().toInt())
+                if (!contentStr.toString().isEmpty())
+                    currentTextView!!.text = numberFormat.format(contentStr.toString().toInt())
             } else {
                 Timber.e("You didn't register textView!")
             }
@@ -81,15 +79,10 @@ class CustomKeyboard(context: Context, attrs: AttributeSet) : KeyboardView(conte
     }
 
     private fun init(context: Context) {
-        mContext = context
         val mKeyboard = Keyboard(context, R.xml.keyboard)
         onKeyboardActionListener = mOnKeyboardActionListener
         keyboard = mKeyboard
         isPreviewEnabled = false
-    }
-
-    interface KeyboardListener {
-        fun onOKResult(amount: String)
     }
 
     /**
@@ -102,7 +95,7 @@ class CustomKeyboard(context: Context, attrs: AttributeSet) : KeyboardView(conte
         deleteCharacter()
     }
 
-    fun setKeyboardListener(keyboardListener: KeyboardListener) {
+    fun setKeyboardListener(keyboardListener: CustomKeyboardView.KeyboardListener) {
         this.keyboardListener = keyboardListener
     }
 

@@ -5,10 +5,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import com.thomaskioko.paybillmanager.mobile.R
 
-class CustomKeyboardView : LinearLayout, CustomKeyboard.KeyboardListener {
+class CustomKeyboardView : LinearLayout {
 
     private var keyboard: CustomKeyboard? = null
 
@@ -21,7 +20,7 @@ class CustomKeyboardView : LinearLayout, CustomKeyboard.KeyboardListener {
     private fun init() {
         View.inflate(context, R.layout.view_custom_keyborad, this)
         keyboard = findViewById(R.id.keyboard)
-        keyboard!!.setKeyboardListener(this)
+
 
     }
 
@@ -47,9 +46,12 @@ class CustomKeyboardView : LinearLayout, CustomKeyboard.KeyboardListener {
     }
 
 
-    override fun onOKResult(amount: String) {
-        //TODO:: Show BottomSheet
-
+    fun setKeyboardListener(keyboardListener: KeyboardListener) {
+        keyboard!!.setKeyboardListener(keyboardListener)
     }
 
+
+    interface KeyboardListener {
+        fun onOKResult(amount: String)
+    }
 }
