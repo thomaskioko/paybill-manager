@@ -1,12 +1,19 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 
+import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
@@ -16,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_bottom_dialog.*
 import org.threeten.bp.OffsetDateTime
 
 
-class BottomDialogFragment : BottomSheetDialogFragment() , Injectable, DaysAdapter.OnRecyclerViewItemClickListener {
+class BottomDialogFragment : BottomSheetDialogFragment(), Injectable, DaysAdapter.OnRecyclerViewItemClickListener {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +35,7 @@ class BottomDialogFragment : BottomSheetDialogFragment() , Injectable, DaysAdapt
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         val adapter = DaysAdapter(this)
 
         recycler_view_dates.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
@@ -36,6 +44,23 @@ class BottomDialogFragment : BottomSheetDialogFragment() , Injectable, DaysAdapt
         adapter.offsetDateTimeLists = DateUtils.getDaysOfWeek()
         adapter.notifyDataSetChanged()
 
+    }
+
+    @SuppressLint("RestrictedApi")
+    override fun setupDialog(dialog: Dialog?, style: Int) {
+        super.setupDialog(dialog, style)
+
+        activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog!!.setOnShowListener {
+            val handler = Handler()
+            handler.postDelayed({
+                val bottomSheetDialog = dialog as BottomSheetDialog
+                val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout?
+
+                //Force l'ouverture maximale de la bottomSheet
+                BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
+            }, 250)
+        }
     }
 
     override fun selectedDateItem(offsetDateTime: OffsetDateTime) {
