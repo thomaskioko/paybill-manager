@@ -25,7 +25,7 @@ open class GetCategoriesViewModel @Inject internal constructor(
         super.onCleared()
     }
 
-    fun getCategories(): LiveData<Resource<List<CategoryView>>> {
+    open fun getCategories(): LiveData<Resource<List<CategoryView>>> {
         return billsLiveData
     }
 

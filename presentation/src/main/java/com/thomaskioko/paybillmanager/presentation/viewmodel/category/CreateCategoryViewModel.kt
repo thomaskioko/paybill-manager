@@ -26,7 +26,7 @@ open class CreateCategoryViewModel @Inject internal constructor(
         super.onCleared()
     }
 
-    fun getCategory(): LiveData<Resource<CategoryView>> {
+    open fun getCategory(): LiveData<Resource<CategoryView>> {
         return liveData
     }
 
