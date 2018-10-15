@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_bottom_dialog.*
 import org.threeten.bp.OffsetDateTime
 
 
-class BottomDialogFragment : BottomSheetDialogFragment(), Injectable, DaysAdapter.OnRecyclerViewItemClickListener {
+class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable, DaysAdapter.OnRecyclerViewItemClickListener {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -56,13 +56,16 @@ class BottomDialogFragment : BottomSheetDialogFragment(), Injectable, DaysAdapte
             handler.postDelayed({
                 val bottomSheetDialog = dialog as BottomSheetDialog
                 val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout?
-
-                //Force l'ouverture maximale de la bottomSheet
                 BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
             }, 250)
         }
     }
 
     override fun selectedDateItem(offsetDateTime: OffsetDateTime) {
+    }
+
+    companion object {
+        const val BUNDLE_AMOUNT = "bundle_amount"
+        const val BUNDLE_CATEGORY_ID = "bundle_category_id"
     }
 }
