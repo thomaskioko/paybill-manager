@@ -3,7 +3,7 @@ package com.thomaskioko.paybillmanager.mobile.injection.module
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.AddBillFragment
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailFragment
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillsListFragment
-import com.thomaskioko.paybillmanager.mobile.ui.fragment.BottomDialogFragment
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailsBottomDialogFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -21,6 +21,6 @@ abstract class FragmentBuildersModule {
     abstract fun contributeBillDetailFragment(): BillDetailFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeBottomDialogFragment(): BottomDialogFragment
+    abstract fun contributeBillDetailsBottomDialogFragment(): BillDetailsBottomDialogFragment
 
 }
