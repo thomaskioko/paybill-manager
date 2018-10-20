@@ -1,11 +1,13 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
+import com.thomaskioko.xapotest.util.EspressoTestUtil
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -22,6 +24,7 @@ class BillDetailsBottomDialogFragmentTest {
         val fragment = BillDetailsBottomDialogFragment()
 
         activityRule.activity.setFragment(fragment)
+        EspressoTestUtil.disableProgressBarAnimations(activityRule)
     }
 
     @Test
