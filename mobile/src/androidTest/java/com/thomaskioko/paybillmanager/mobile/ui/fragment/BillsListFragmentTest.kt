@@ -21,7 +21,8 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
-import com.thomaskioko.xapotest.util.ViewModelUtil
+import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
+import com.thomaskioko.xapotest.util.EspressoTestUtil
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -56,7 +57,7 @@ class BillsListFragmentTest {
         fragment.viewModelFactory = ViewModelUtil.createFor(viewModel)
         activityRule.activity.setFragment(fragment)
 
-        navigationController = Mockito.mock(NavigationController::class.java)
+        EspressoTestUtil.disableProgressBarAnimations(activityRule)
     }
 
     @Test
