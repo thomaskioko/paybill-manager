@@ -110,14 +110,31 @@
                     app:layout_constraintTop_toBottomOf="@+id/view"
                     tools:listitem="@layout/item_category" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:gravity="center|start"
+                    android:visibility="gone"
+                    android:text="@string/error_category_not_selected"
+                    android:textColor="@color/md_red_A700"
+                    app:fontFamily="@font/gotham_rounded_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_view_categories" />
+
                 <View
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/gray_divider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recycler_view_categories" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_error" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -152,15 +169,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_amount"
-                        android:focusable="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:focusable="false"
                         android:fontFamily="@font/gotham_rounded_light"
                         android:hint="@string/hint_amount"
                         android:inputType="number"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="28sp"
-                        app:fontFamily="@font/work_sans_light"
-                        android:textColor="@color/colorPrimaryDark" />
+                        app:fontFamily="@font/work_sans_light" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,7 +195,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/til_amount"
                     app:layout_constraintTop_toTopOf="@+id/tv_currency_symbol"
-                    app:srcCompat="@drawable/ic_backspace" />
+                    app:srcCompat="@drawable/ic_backspace_disabled" />
 
                 <View
                     android:id="@+id/view3"
