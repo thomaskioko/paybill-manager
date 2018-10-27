@@ -1,10 +1,13 @@
 package com.thomaskioko.paybillmanager.mobile.ui
 
+import android.os.Bundle
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.AddBillFragment
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailFragment
 import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillsListFragment
-import com.thomaskioko.paybillmanager.mobile.ui.fragment.BottomDialogFragment
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailsBottomDialogFragment
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailsBottomDialogFragment.Companion.BUNDLE_AMOUNT
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailsBottomDialogFragment.Companion.BUNDLE_CATEGORY_ID
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import javax.inject.Inject
 
@@ -46,8 +49,13 @@ open class NavigationController @Inject constructor(private var mainActivity: Ma
                 .commitAllowingStateLoss()
     }
 
-    fun navigateToBottomDialogFragment() {
-        val bottomSheetDialogFragment = BottomDialogFragment()
+    fun navigateToBillDetailsBottomDialogFragment(amount: String, categoryId: String) {
+        val bundle = Bundle()
+        bundle.putString(BUNDLE_AMOUNT, amount)
+        bundle.putString(BUNDLE_CATEGORY_ID, categoryId)
+
+        val bottomSheetDialogFragment = BillDetailsBottomDialogFragment()
+        bottomSheetDialogFragment.arguments = bundle
         bottomSheetDialogFragment.show(fragmentManager, bottomSheetDialogFragment.tag)
     }
 }
