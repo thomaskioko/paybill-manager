@@ -40,5 +40,11 @@
     <string name="hint_bill_amount">Bill Amount</string>
     <string name="hint_paybill_number">PayBill Number</string>
     <string name="hint_add_a_note">Add a note</string>
+    <string name="hint_amount">Amount</string>
+    <string name="hint_label">Label/Name</string>
+
+    <!-- Error Messages -->
+    <string name="error_no_amount">Please enter an amount</string>
+    <string name="error_category_not_selected">Please select a category</string>
 
 </resources>
