@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:shadowRadius="0.0"
-        android:keyTextSize="24sp"
+        android:keyTextSize="28sp"
         android:shadowColor="#fff"
         android:background="@color/white"
         android:keyTextColor="@color/colorPrimaryDark"
