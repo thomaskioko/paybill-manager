@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,7 +31,6 @@ import com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import kotlinx.android.synthetic.main.fragment_add_bill.*
 import timber.log.Timber
@@ -48,11 +48,10 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     @Inject
     lateinit var getCategoriesViewModel: GetCategoriesViewModel
     @Inject
-    lateinit var createCategoryViewModel: CreateCategoryViewModel
-    @Inject
     lateinit var navigationController: NavigationController
 
     private lateinit var categoriesAdapter: CategoriesAdapter
+    private var categoryId: String = ""
 
 
     companion object {
@@ -72,17 +71,19 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
 
         val view = inflater.inflate(R.layout.fragment_add_bill, container, false)
 
-        val revealAnim: RevealAnimationSettings = arguments?.getParcelable(ARG_REVEAL)!!
-        registerCircularRevealAnimation(view!!,
-                revealAnim,
-                ContextCompat.getColor(context!!, R.color.colorPrimaryDark),
-                ContextCompat.getColor(context!!, R.color.white))
+        if (activity!!.intent.hasExtra(ARG_REVEAL)) {
+            val revealAnim: RevealAnimationSettings = arguments?.getParcelable(ARG_REVEAL)!!
+            registerCircularRevealAnimation(view!!,
+                    revealAnim,
+                    ContextCompat.getColor(context!!, R.color.colorPrimaryDark),
+                    ContextCompat.getColor(context!!, R.color.white))
+        }
+
 
         view.isFocusableInTouchMode = true
         view.requestFocus()
         view.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
-                Timber.d("@onKey Back listener is working!!!")
                 navigationController.navigateToBillsListFragment()
                 return@OnKeyListener true
             }
@@ -95,12 +96,10 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        createCategoryViewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(CreateCategoryViewModel::class.java)
-
         getCategoriesViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(GetCategoriesViewModel::class.java)
 
+        btn_delete.isEnabled = false
 
         keyboardView.showKeyboard(et_amount)
         keyboardView.setKeyboardListener(this)
@@ -114,6 +113,19 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (til_amount.isErrorEnabled)
                     til_amount.isErrorEnabled = false
+
+                if (s.isNullOrEmpty()) {
+                    btn_delete.isEnabled = false
+                    btn_delete.setImageDrawable(
+                            ResourcesCompat.getDrawable(resources, R.drawable.ic_backspace_disabled, null)
+                    )
+                } else {
+                    btn_delete.isEnabled = true
+                    btn_delete.setImageDrawable(
+                            ResourcesCompat.getDrawable(resources, R.drawable.ic_backspace_enabled, null)
+                    )
+                }
+
             }
         })
 
@@ -137,15 +149,6 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
         getCategoriesViewModel.fetchCategories()
     }
 
-    override fun onOKResult(amount: String) {
-        if (amount.isEmpty()) {
-            til_amount.isErrorEnabled = true
-            til_amount.error = resources.getString(R.string.error_no_amount)
-        } else {
-            navigationController.navigateToBottomDialogFragment()
-        }
-    }
-
 
     private fun setUpRecyclerView() {
         categoriesAdapter = CategoriesAdapter(this)
@@ -158,6 +161,23 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     }
 
     override fun selectedCategoryItem(category: Category) {
+        if (tv_error.visibility == View.VISIBLE) {
+            tv_error.hide()
+        }
+        categoryId = category.id
+    }
+
+    override fun onOKResult(amount: String) {
+        when {
+            amount.isEmpty() -> {
+                til_amount.isErrorEnabled = true
+                til_amount.error = resources.getString(R.string.error_no_amount)
+            }
+            categoryId.isEmpty() -> {
+                tv_error.show()
+            }
+            else -> navigationController.navigateToBillDetailsBottomDialogFragment(amount, categoryId)
+        }
     }
 
 
@@ -180,11 +200,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
 
     private fun updateCategories(list: List<Category>?) {
         recycler_view_categories.show()
-        if (list!!.isEmpty()) {
-            for (category in categoriesList()) {
-                createCategoryViewModel.createCategory(category)
-            }
-        } else {
+        if (!list!!.isEmpty()) {
             categoriesAdapter.categoriesList = list
             categoriesAdapter.notifyDataSetChanged()
         }
@@ -204,23 +220,5 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     }
 
 
-    private fun categoriesList(): List<Category> {
-        val categories: MutableList<Category> = mutableListOf()
-
-        categories.add(Category("1", "Baby", R.drawable.ic_baby_buggy_24dp))
-        categories.add(Category("2", "Education", R.drawable.ic_education_24dp))
-        categories.add(Category("3", "Fitness", R.drawable.ic_fitness_center_24dp))
-        categories.add(Category("4", "Food & Drinks", R.drawable.ic_local_dining_24dp))
-        categories.add(Category("5", "Fuel", R.drawable.ic_fuel_24dp))
-        categories.add(Category("6", "Health", R.drawable.ic_health_24dp))
-        categories.add(Category("7", "House", R.drawable.ic_house_24dp))
-        categories.add(Category("8", "Internet", R.drawable.ic_wifi_24dp))
-        categories.add(Category("9", "Pets", R.drawable.ic_pets_24dp))
-        categories.add(Category("10", "Shopping", R.drawable.ic_shopping_cart_24dp))
-        categories.add(Category("11", "Transportation", R.drawable.ic_transport_24dp))
-        categories.add(Category("12", "Travelling", R.drawable.ic_travel_24dp))
-
-        return categories
-    }
 }
 
