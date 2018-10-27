@@ -16,7 +16,7 @@ class CategoriesAdapter @Inject constructor(
 ) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     var categoriesList: List<Category> = arrayListOf()
-    var lastSelectedPosition = -1
+    private var lastSelectedPosition = -1
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,7 +49,7 @@ class CategoriesAdapter @Inject constructor(
         }
 
 
-        holder.itemView.setOnClickListener {
+        holder.imageDrawable.setOnClickListener {
             lastSelectedPosition = holder.adapterPosition
             notifyDataSetChanged()
 
