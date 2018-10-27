@@ -18,6 +18,9 @@
     <color name="error">#B00020</color>
     <color name="gray_divider">#eeeeee</color>
 
+    <color name="transparent">#00000000</color>
+    <color name="greyAccent">#E4E8F0</color>
+
     <color name="overlay_dark_10">#1A000000</color>
     <color name="overlay_dark_20">#33000000</color>
     <color name="overlay_dark_30">#4D000000</color>
