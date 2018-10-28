@@ -10,15 +10,17 @@ import androidx.test.espresso.contrib.DrawerMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.rule.ActivityTestRule
 import com.thomaskioko.paybillmanager.mobile.R
+import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito
 
 class MainActivityTest {
     @Rule
     @JvmField
     var activityTestRule = ActivityTestRule(MainActivity::class.java)
 
-    @Test
     fun clickDrawerIconOpensAndClosesNavigationDrawer() {
         Espresso.onView(ViewMatchers.withId(R.id.material_drawer_layout)).check(ViewAssertions.matches(DrawerMatchers.isClosed(Gravity.START)))
 
