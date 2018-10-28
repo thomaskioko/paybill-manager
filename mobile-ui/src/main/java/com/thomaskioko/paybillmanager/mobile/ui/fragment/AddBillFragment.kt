@@ -19,6 +19,7 @@ import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.hide
 import com.thomaskioko.paybillmanager.mobile.extension.show
+import com.thomaskioko.paybillmanager.mobile.extension.showErrorMessage
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
@@ -31,6 +32,7 @@ import com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
+import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import kotlinx.android.synthetic.main.fragment_add_bill.*
 import timber.log.Timber
@@ -48,10 +50,12 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     @Inject
     lateinit var getCategoriesViewModel: GetCategoriesViewModel
     @Inject
+    lateinit var createBillsViewModel: CreateBillsViewModel
+    @Inject
     lateinit var navigationController: NavigationController
 
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private var categoryId: String = ""
+    private lateinit var categoryId: String
 
 
     companion object {
@@ -98,6 +102,9 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
 
         getCategoriesViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(GetCategoriesViewModel::class.java)
+
+        createBillsViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
+                .get(CreateBillsViewModel::class.java)
 
         btn_delete.isEnabled = false
 
@@ -170,13 +177,17 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     override fun onOKResult(amount: String) {
         when {
             amount.isEmpty() -> {
-                til_amount.isErrorEnabled = true
-                til_amount.error = resources.getString(R.string.error_no_amount)
+                til_amount.showErrorMessage(resources.getString(R.string.error_no_amount))
             }
             categoryId.isEmpty() -> {
                 tv_error.show()
             }
-            else -> navigationController.navigateToBillDetailsBottomDialogFragment(amount, categoryId)
+            else -> {
+                createBillsViewModel.setAmount(amount)
+                createBillsViewModel.setCategoryId(categoryId)
+
+                navigationController.navigateToBillDetailsBottomDialogFragment()
+            }
         }
     }
 
