@@ -31,7 +31,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_paybill_number"
+            android:id="@+id/input_layout_bill_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_details_title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ti_bill_label"
+                android:id="@+id/et_bill_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gotham_rounded_light"
@@ -56,7 +56,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_notes"
+            android:id="@+id/input_layout_account_number"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -66,10 +66,35 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/til_paybill_number">
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_bill_name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ti_bill_number"
+                android:id="@+id/et_account_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:fontFamily="@font/gotham_rounded_light"
+                android:hint="@string/hint_account_number"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_bill_number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="?attr/colorPrimaryDark"
+            app:fontFamily="@font/gotham_rounded_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_account_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_bill_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -91,7 +116,7 @@
             android:contentDescription="@null"
             android:src="@drawable/ic_access_alarm_black_24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/til_notes" />
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_bill_number" />
 
         <TextView
             android:id="@+id/tv_date_title"
