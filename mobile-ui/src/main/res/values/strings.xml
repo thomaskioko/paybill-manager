@@ -31,7 +31,7 @@
     <string name="keyboard_clear">Clear</string>
 
     <string name="text_finish">Finish</string>
-    <string name="text_details">Details</string>
+    <string name="text_details">Bill Details</string>
     <string name="text_reminder">Set Reminder</string>
     <string name="toolbar_title_add_bill">Add Bill</string>
     <string name="text_choose_category">Choose Category</string>
@@ -39,12 +39,16 @@
     <!-- Text Hints-->
     <string name="hint_bill_amount">Bill Amount</string>
     <string name="hint_paybill_number">PayBill Number</string>
+    <string name="hint_account_number">Account Number</string>
     <string name="hint_add_a_note">Add a note</string>
     <string name="hint_amount">Amount</string>
     <string name="hint_label">Label/Name</string>
 
     <!-- Error Messages -->
     <string name="error_no_amount">Please enter an amount</string>
+    <string name="error_no_name">Please enter PayBill name</string>
+    <string name="error_no_pay_bill_number">Please enter PayBill number</string>
+    <string name="error_no_account_number">Please enter Account number</string>
     <string name="error_category_not_selected">Please select a category</string>
 
 </resources>
