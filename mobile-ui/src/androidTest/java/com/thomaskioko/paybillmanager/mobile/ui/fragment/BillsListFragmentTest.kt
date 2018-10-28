@@ -17,11 +17,11 @@ import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
+import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
-import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
 import com.thomaskioko.xapotest.util.EspressoTestUtil
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.Description
@@ -40,10 +40,9 @@ class BillsListFragmentTest {
     val activityRule = ActivityTestRule(SimpleFragmentActivity::class.java, true, true)
 
     private lateinit var viewModel: GetBillsViewModel
+    private lateinit var navigationController: NavigationController
 
     private val liveData = MutableLiveData<Resource<List<BillView>>>()
-
-    private lateinit var navigationController: NavigationController
 
     @Before
     fun init() {
