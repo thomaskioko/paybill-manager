@@ -19,6 +19,7 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
  * Uses all of the [Architecture Components](https://developer.android.com/topic/libraries/architecture/): Room, LiveData and Lifecycle-components
  * Uses [dagger-android](https://google.github.io/dagger/android.html) for dependency injection
  * Implements [clean architecture](https://github.com/android10/Android-CleanArchitecture)
+ * Uses [Material Design Tools](https://material.io/tools/) and [Material Design components](https://material.io/develop/android/)
   
  
  
@@ -109,6 +110,8 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
 - [x] Create payment module
 - [x] Add CodeCov
 - [x] Setup CodeQuality Checks
+- [ ] Setup Crashlytics
+- [ ] Use WorkManager for reminders
 - [ ] Get CodeCoverage above 70%
 - [ ] Setup LeakCanary
 - [ ] Release Beta Version
