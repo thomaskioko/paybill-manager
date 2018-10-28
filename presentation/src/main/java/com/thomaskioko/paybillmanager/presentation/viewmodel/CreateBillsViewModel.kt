@@ -17,6 +17,8 @@ open class CreateBillsViewModel @Inject internal constructor(
         private val updateBill: UpdateBill
 ) : ViewModel() {
 
+    val categoryIdLiveData = MutableLiveData<String>()
+    val amountLiveData = MutableLiveData<String>()
     private val liveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
 
 
@@ -26,7 +28,7 @@ open class CreateBillsViewModel @Inject internal constructor(
     }
 
 
-    fun getBill(): LiveData<Resource<BillView>> {
+    open fun getBill(): LiveData<Resource<BillView>> {
         return liveData
     }
 
@@ -45,6 +47,23 @@ open class CreateBillsViewModel @Inject internal constructor(
         )
     }
 
+
+    fun setAmount(amount: String) {
+        amountLiveData.value = amount
+    }
+
+
+    fun setCategoryId(categoryId: String) {
+        categoryIdLiveData.value = categoryId
+    }
+
+    open fun getAmount(): MutableLiveData<String> {
+        return amountLiveData
+    }
+
+    open fun getCategoryId(): MutableLiveData<String> {
+        return categoryIdLiveData
+    }
 
 
     inner class CreateBillSubscriber : DisposableCompletableObserver() {
