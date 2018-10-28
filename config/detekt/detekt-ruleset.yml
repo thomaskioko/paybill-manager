@@ -323,7 +323,7 @@ style:
   NestedClassesVisibility:
     active: false
   NewLineAtEndOfFile:
-    active: true
+    active: false
   OptionalAbstractKeyword:
     active: true
   OptionalReturnKeyword:
