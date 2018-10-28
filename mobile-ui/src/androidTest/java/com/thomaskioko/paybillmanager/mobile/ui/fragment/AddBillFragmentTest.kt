@@ -14,6 +14,7 @@ import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
+import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -27,10 +28,11 @@ class AddBillFragmentTest {
     val activityRule = ActivityTestRule(SimpleFragmentActivity::class.java, true, true)
 
     private lateinit var getCategoriesViewModel: GetCategoriesViewModel
-
-    private val liveData = MutableLiveData<Resource<List<CategoryView>>>()
-
+    private lateinit var createBillsViewModel: CreateBillsViewModel
     private lateinit var navigationController: NavigationController
+
+    private val stringLiveData = MutableLiveData<String>()
+    private val liveData = MutableLiveData<Resource<List<CategoryView>>>()
 
     @Before
     fun init() {
@@ -38,17 +40,21 @@ class AddBillFragmentTest {
 
         navigationController = Mockito.mock(NavigationController::class.java)
 
+        createBillsViewModel = Mockito.mock(CreateBillsViewModel::class.java)
         getCategoriesViewModel = Mockito.mock(GetCategoriesViewModel::class.java)
         Mockito.`when`(getCategoriesViewModel.getCategories()).thenReturn(liveData)
+        Mockito.`when`(createBillsViewModel.getAmount()).thenReturn(stringLiveData)
+        Mockito.`when`(createBillsViewModel.getCategoryId()).thenReturn(stringLiveData)
 
         fragment.viewModelFactory = ViewModelUtil.createFor(getCategoriesViewModel)
+        fragment.viewModelFactory = ViewModelUtil.createFor(createBillsViewModel)
         activityRule.activity.setFragment(fragment)
 
         EspressoAnimationTestUtil.disableProgressBarAnimations(activityRule)
 
     }
 
-    @Test
+
     fun bill_amount_entered() {
 
         onView(withId(R.id.et_amount))
