@@ -11,6 +11,7 @@ import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.observers.DisposableObserver
+import junit.framework.Assert.assertEquals
 import junit.framework.TestCase
 import org.junit.Rule
 import org.junit.Test
