@@ -127,6 +127,5 @@ class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable,
 
 
     override fun selectedDateItem(offsetDateTime: OffsetDateTime) {
-        //TODO::Implement work manager
     }
 }

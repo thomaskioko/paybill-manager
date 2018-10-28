@@ -24,10 +24,10 @@ import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.CategoriesAdapter
+import com.thomaskioko.paybillmanager.mobile.ui.util.AnimationUtils.registerCircularRevealAnimation
+import com.thomaskioko.paybillmanager.mobile.ui.util.AnimationUtils.startCircularExitAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.DismissableAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
-import com.thomaskioko.paybillmanager.mobile.ui.util.registerCircularRevealAnimation
-import com.thomaskioko.paybillmanager.mobile.ui.util.startCircularExitAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
