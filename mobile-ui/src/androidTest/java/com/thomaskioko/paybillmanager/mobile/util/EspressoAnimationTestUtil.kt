@@ -1,4 +1,4 @@
-package com.thomaskioko.xapotest.util
+package com.thomaskioko.paybillmanager.mobile.util
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,9 +12,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.test.rule.ActivityTestRule
 
 /**
- * Utility methods for espresso tests.
+ * Utility methods for espresso animation ui tests.
  */
-object EspressoTestUtil {
+object EspressoAnimationTestUtil {
     /**
      * Disables progress bar animations for the views of the given activity rule
      *
