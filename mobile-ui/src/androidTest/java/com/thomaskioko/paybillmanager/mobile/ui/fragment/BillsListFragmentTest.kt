@@ -22,7 +22,7 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
-import com.thomaskioko.xapotest.util.EspressoTestUtil
+import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -56,7 +56,7 @@ class BillsListFragmentTest {
         fragment.viewModelFactory = ViewModelUtil.createFor(viewModel)
         activityRule.activity.setFragment(fragment)
 
-        EspressoTestUtil.disableProgressBarAnimations(activityRule)
+        EspressoAnimationTestUtil.disableProgressBarAnimations(activityRule)
     }
 
     @Test
