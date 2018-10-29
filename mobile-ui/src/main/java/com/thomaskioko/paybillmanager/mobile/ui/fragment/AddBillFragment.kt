@@ -55,7 +55,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     lateinit var navigationController: NavigationController
 
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private lateinit var categoryId: String
+    private  var categoryId : String = ""
 
 
     companion object {
