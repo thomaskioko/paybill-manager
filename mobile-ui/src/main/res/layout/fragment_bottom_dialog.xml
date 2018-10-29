@@ -98,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:fontFamily="@font/gotham_rounded_light"
                 android:hint="@string/hint_paybill_number"
