@@ -15,7 +15,7 @@ env:
   - EMULATOR_API_LEVEL=22
   - ANDROID_BUILD_TOOLS=28
   - ADB_INSTALL_TIMEOUT=5
-  - secure: UUXY5AdbqHj9CdZ8dJQny0bgtDawajVicNZ4xc3QbhUeTqBAqEq692d3TfI7E2NzCAI5c/axP6aZIKyKoIHdJ0o3Mul/hWaXaqn1yImP+xHcmmr/SP1eAakhhMuW8t+A1tdMvZtcM/PkBPthGP7I/1D8abEl4cTxX4/2Xh/41jjHVxWm67581ut+ZvzSP/19yPh0uWZSlhh4+TEKDMSfDTb+QBXkqMNIKCfXix3ivDAa5Mi2k49t3bKucg5VH8Lh3bUsMMlqZ1ZE+xM4l93qrOIVpxSdjgXtqxZZDAikt9s46aUaEKBbb/M0n+FCD5Ezs270rKvGBPl+s8RHf6l52m/3B1kgSgM4O9X1HNC/0X7tBvmTyemVHicWeyUDP3vu3HQqrGji4PBkRlunEwgzmo9YzCldoYDtiHRvkB3xOYtXKGI6O76W9ah4sc14iogAYsAC7bz1tvAZCkVI/T/rrHkbigl+DTnhfrNyIKfxFzPC33SnQ/YKC+fOWdGC18eG31LoSsPq0mQLx9aUW66bJpfQYo8wmlGJlj9Wz9ncrLWXdi///NuxDPm0oU4wTUhXHs8JpBNxz84uw/xsdBBoZTCoay9WKEnAOZdyVy4D7WVjUuBJJzvMy/hYNZ1N50Hc2FnaxWctjURmi/e7wAQ8StIWjCM462jYa49VlgvD2ZY=
+  - secure: ApZ20ntauRkfnZi+/nFr0exc/uuReSgI5e/c9dfIyxpiYT40BQ1IvcYVuy02Q6BAiFW3L1GldML8uLeCwpM1emAW4muycbojNxjyjSZWoAFQPo0B9sPKEhvIa8pl+6TgQovjLL1SwcCgLrOvRgLmfud9p9VR2yUb+cYbFKcKkfM0vXi7GcL+/R/nTXMH1d2U89adgAB3fRRqhh2GkAI3lERK6iBCBu0ZNRS7b0SpUYHFr7QAdUgkM2O6ZAP/emd8rxTpp2L/rVqWnJo0Tz/79KDubwnAZ0xfu0/MQ+/c2G+zOwwffz37JmTSfu+K/CRMnDozNnCIzH4NVh6UDEBS08KFnZ9hGDKGx7lqdFRzt9v1wND/5Dteqy3BK3xfy+VLSNAXF4Ms8BhmNriAs1qSxyA2YNccjip3DBEZNcXE/TDzBxvGdt2GZbERNwKiJtJn2jan3v5Xe5YceY86D7MvsHA2XmdYHFibSQp2apwv7UvmV7fDyCkqaGcdBgZyFyEyrNiX9wa+sltljHBys5hL1miU2JbdME63lA01XbJAQTYH6gs10bRAayoHMXArHH4NJrEIisuxfUV3nlR81CCPk3kmT2PodLJERwqBCL1r+Dvr0sb+HsCrwPXMQo4Fq04XlnKR7rgOlXLDhzdimKl+Tu6tkj8nGzwY8Mvtuha669k=
 android:
   update_sdk: true
   components:
@@ -38,7 +38,7 @@ android:
   - android-sdk-license-.+
   - google-gdk-license-.+
 before_install:
-- openssl aes-256-cbc -k "$super_secret_password" -in signing/google-services.enc -out mobile-ui/google-services.json
+- openssl aes-256-cbc -k "$ENC_SECRET_KEY" -in signing/google-services.enc -out mobile-ui/google-services.json
 - yes | sdkmanager "platforms;android-28"
 - yes | sdkmanager "platforms;android-27"
 - mkdir "$ANDROID_HOME/licenses" || true
