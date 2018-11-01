@@ -104,13 +104,13 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
 [16]: http://robolectric.org/
 
 
-## RoadMap
+## Development Progress
 - [x] Setup Travis CI
 - [x] Add Kotlin Support
 - [x] Create payment module
 - [x] Add CodeCov
 - [x] Setup CodeQuality Checks
-- [ ] Setup Crashlytics
+- [x] Setup Crashlytics
 - [ ] Use WorkManager for reminders
 - [ ] Get CodeCoverage above 70%
 - [ ] Setup LeakCanary
