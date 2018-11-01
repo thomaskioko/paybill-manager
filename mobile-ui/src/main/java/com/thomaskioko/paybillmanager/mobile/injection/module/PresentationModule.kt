@@ -44,6 +44,6 @@ abstract class PresentationModule {
     @Binds
     @IntoMap
     @ViewModelKey(CreateBillsViewModel::class)
-    abstract fun bindCreateBillsViewModell(viewModel: CreateBillsViewModel): ViewModel
+    abstract fun bindCreateBillsViewModel(viewModel: CreateBillsViewModel): ViewModel
 }
 
