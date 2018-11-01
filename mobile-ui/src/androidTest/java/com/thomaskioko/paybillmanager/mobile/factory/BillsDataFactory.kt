@@ -18,7 +18,7 @@ object BillsDataFactory {
 
     fun makeBill(): Bill {
         return Bill(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomUuid(), randomInt(),
+                randomUuid(), "2400", randomInt(),
                 randomLong())
     }
 
@@ -33,7 +33,7 @@ object BillsDataFactory {
 
     fun makeBillView(): BillView {
         return BillView(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomUuid(), randomInt(),
+                randomUuid(), "2400", randomInt(),
                 randomLong())
     }
 
