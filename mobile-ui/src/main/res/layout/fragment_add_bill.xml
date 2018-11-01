@@ -211,7 +211,7 @@
                 <com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
                     android:id="@+id/keyboardView"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:keyPreviewOffset="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"

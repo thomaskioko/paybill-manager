@@ -91,6 +91,14 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="TextAppearance.PayBillManager.SubTitle" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="TextAppearance.PayBillManager.Text.Error" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="textAllCaps">false</item>
         <item name="android:textColor">?android:attr/colorAccent</item>

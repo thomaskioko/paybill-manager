@@ -10,6 +10,7 @@
     <string name="text_bill_month">JUN</string>
     <string name="text_bill_title">Safaricom PostPaid</string>
     <string name="text_bill_number">Paybill Number: 200200</string>
+    <string name="text_account_number">Account Number: ZUKU213432</string>
     <string name="text_bill_amount">kes 4, 700</string>
     <string name="text_current_expenses">Current Expenses</string>
     <string name="text_amount">2,400</string>
@@ -50,5 +51,10 @@
     <string name="error_no_pay_bill_number">Please enter PayBill number</string>
     <string name="error_no_account_number">Please enter Account number</string>
     <string name="error_category_not_selected">Please select a category</string>
+
+    <!-- Placeholder Text -->
+    <string name="placeholder_bill_account">Account No: %1$s</string>
+    <string name="placeholder_bill_number">Paybill No: %1$s</string>
+    <string name="placeholder_bill_amount">-Kes: %1$s</string>
 
 </resources>
