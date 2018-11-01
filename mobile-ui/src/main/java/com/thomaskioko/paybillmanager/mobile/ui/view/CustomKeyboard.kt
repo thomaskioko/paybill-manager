@@ -6,6 +6,7 @@ import android.inputmethodservice.KeyboardView
 import android.util.AttributeSet
 import android.widget.TextView
 import com.thomaskioko.paybillmanager.mobile.R
+import com.thomaskioko.paybillmanager.mobile.ui.util.NumberFormatter.formatNumber
 import timber.log.Timber
 import java.text.NumberFormat
 import java.util.*
@@ -38,7 +39,7 @@ class CustomKeyboard(context: Context, attrs: AttributeSet) : KeyboardView(conte
 
                 val numberFormat = NumberFormat.getNumberInstance(Locale.US)
                 if (!contentStr.toString().isEmpty())
-                    currentTextView!!.text = numberFormat.format(contentStr.toString().toInt())
+                    currentTextView!!.text = formatNumber(contentStr.toString())
             } else {
                 Timber.e("You didn't register textView!")
             }
