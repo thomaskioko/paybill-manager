@@ -46,7 +46,7 @@ before_install:
 - chmod +x keysSetup.sh
 - bash keysSetup.sh
 - chmod +x gradlew
-- "./gradlew dependencies || true"
+- "./gradlew dependencies -q --console=plain || true"
 before_script:
 - android list sdk --extended --no-ui --all
 - android list targets
@@ -56,8 +56,8 @@ before_script:
 - android-wait-for-emulator
 - adb shell input keyevent 82 &
 script:
-- "./gradlew build jacocoTestReport assembleAndroidTest"
-- "./gradlew check"
-- "./gradlew connectedCheck"
+- "./gradlew build jacocoTestReport assembleAndroidTest  -q --console=plain"
+- "./gradlew check -q --console=plain"
+- "./gradlew connectedCheck -q --console=plain"
 after_success:
 - bash <(curl -s https://codecov.io/bash)
