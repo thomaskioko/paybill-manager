@@ -15,6 +15,7 @@ env:
   - EMULATOR_API_LEVEL=22
   - ANDROID_BUILD_TOOLS=28
   - ADB_INSTALL_TIMEOUT=5
+  - secure: UUXY5AdbqHj9CdZ8dJQny0bgtDawajVicNZ4xc3QbhUeTqBAqEq692d3TfI7E2NzCAI5c/axP6aZIKyKoIHdJ0o3Mul/hWaXaqn1yImP+xHcmmr/SP1eAakhhMuW8t+A1tdMvZtcM/PkBPthGP7I/1D8abEl4cTxX4/2Xh/41jjHVxWm67581ut+ZvzSP/19yPh0uWZSlhh4+TEKDMSfDTb+QBXkqMNIKCfXix3ivDAa5Mi2k49t3bKucg5VH8Lh3bUsMMlqZ1ZE+xM4l93qrOIVpxSdjgXtqxZZDAikt9s46aUaEKBbb/M0n+FCD5Ezs270rKvGBPl+s8RHf6l52m/3B1kgSgM4O9X1HNC/0X7tBvmTyemVHicWeyUDP3vu3HQqrGji4PBkRlunEwgzmo9YzCldoYDtiHRvkB3xOYtXKGI6O76W9ah4sc14iogAYsAC7bz1tvAZCkVI/T/rrHkbigl+DTnhfrNyIKfxFzPC33SnQ/YKC+fOWdGC18eG31LoSsPq0mQLx9aUW66bJpfQYo8wmlGJlj9Wz9ncrLWXdi///NuxDPm0oU4wTUhXHs8JpBNxz84uw/xsdBBoZTCoay9WKEnAOZdyVy4D7WVjUuBJJzvMy/hYNZ1N50Hc2FnaxWctjURmi/e7wAQ8StIWjCM462jYa49VlgvD2ZY=
 android:
   update_sdk: true
   components:
@@ -37,6 +38,7 @@ android:
   - android-sdk-license-.+
   - google-gdk-license-.+
 before_install:
+- openssl aes-256-cbc -k "$super_secret_password" -in signing/google-services.enc -out mobile-ui/google-services.json
 - yes | sdkmanager "platforms;android-28"
 - yes | sdkmanager "platforms;android-27"
 - mkdir "$ANDROID_HOME/licenses" || true
@@ -45,7 +47,7 @@ before_install:
 - chmod +x keysSetup.sh
 - bash keysSetup.sh
 - chmod +x gradlew
-- ./gradlew dependencies || true
+- "./gradlew dependencies || true"
 before_script:
 - android list sdk --extended --no-ui --all
 - android list targets
@@ -55,8 +57,8 @@ before_script:
 - android-wait-for-emulator
 - adb shell input keyevent 82 &
 script:
-- ./gradlew build jacocoTestReport assembleAndroidTest
-- ./gradlew check
-- ./gradlew connectedCheck
+- "./gradlew build jacocoTestReport assembleAndroidTest"
+- "./gradlew check"
+- "./gradlew connectedCheck"
 after_success:
 - bash <(curl -s https://codecov.io/bash)
