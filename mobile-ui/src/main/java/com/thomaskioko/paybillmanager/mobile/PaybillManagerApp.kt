@@ -9,6 +9,10 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import timber.log.Timber
 import javax.inject.Inject
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
+
+
 
 class PaybillManagerApp : Application(), HasActivityInjector {
     @Inject
@@ -21,6 +25,12 @@ class PaybillManagerApp : Application(), HasActivityInjector {
         setupTimber()
 
         AndroidThreeTen.init(this)
+
+        val fabric = Fabric.Builder(this)
+                .kits(Crashlytics())
+                .debuggable(false)
+                .build()
+        Fabric.with(fabric)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
