@@ -7,6 +7,8 @@ buildscript {
     addRepos(repositories)
     dependencies {
         classpath deps.android_gradle_plugin
+        classpath deps.fabric
+        classpath deps.google_services
         classpath deps.kotlin.plugin
         classpath deps.kotlin.allopen
         // NOTE: Do not place your application dependencies here; they belong

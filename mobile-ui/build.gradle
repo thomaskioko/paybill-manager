@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -83,6 +84,11 @@ dependencies {
     implementation deps.androidx.recyclerview_selection
 
     /**
+     * Crashlytics
+     */
+    implementation deps.crashlytics
+
+    /**
      * Lifecycle
      */
     implementation deps.lifecycle.runtime
@@ -99,6 +105,11 @@ dependencies {
     implementation deps.dagger.android_support
     kapt deps.dagger.processor
     kapt deps.dagger.compiler
+
+    /**
+     * Firebase
+     */
+    implementation deps.firebase.core
 
 
     /**
@@ -234,3 +245,5 @@ project.tasks.whenTaskAdded {
         it.enabled = false
     }
 }
+
+apply plugin: 'com.google.gms.google-services'

@@ -13,10 +13,14 @@ versions.arch_core = "2.0.0-alpha1"
 versions.assertj = "3.8.0"
 versions.atsl_runner = "1.1.0-alpha4"
 versions.calligraphy = "2.3.0"
+versions.crashlytics = "2.9.5"
 versions.constraint_layout = "2.0.0-alpha2"
 versions.dagger = "2.16"
 versions.dexmaker = "2.2.0"
 versions.espresso = "3.1.0-alpha4"
+versions.fabric = "1.25.4"
+versions.firebase = "16.0.4"
+versions.google_services = "4.2.0"
 versions.glassfish = "10.0-b28"
 versions.glide = "4.8.0"
 versions.groovy = "2.4.12"
@@ -103,6 +107,10 @@ espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
 espresso.intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
 deps.espresso = espresso
 
+def firebase = [:]
+firebase.core = "com.google.firebase:firebase-core:$versions.firebase"
+deps.firebase = firebase
+
 def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
@@ -179,7 +187,10 @@ deps.work = work
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 deps.assertj = "org.assertj:assertj-core:$versions.assertj"
 deps.calligraphy = "uk.co.chrisjenx:calligraphy:$versions.calligraphy"
+deps.crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
 deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
+deps.fabric = "io.fabric.tools:gradle:$versions.fabric"
+deps.google_services = "com.google.gms:google-services:$versions.google_services"
 deps.groovy_all = "org.codehaus.groovy:groovy-all:$versions.groovy"
 deps.glassfish = "org.glassfish:javax.annotation:$versions.glassfish"
 deps.glide = "com.github.bumptech.glide:glide:$versions.glide"
@@ -204,6 +215,7 @@ def addRepos(RepositoryHandler handler) {
     handler.jcenter()
     handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     handler.maven { url "https://maven.google.com" }
+    handler.maven { url 'https://maven.fabric.io/public' }
 }
 
 ext.addRepos = this.&addRepos
