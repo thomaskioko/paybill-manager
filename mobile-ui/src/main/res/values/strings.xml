@@ -55,6 +55,8 @@
     <!-- Placeholder Text -->
     <string name="placeholder_bill_account">Account No: %1$s</string>
     <string name="placeholder_bill_number">Paybill No: %1$s</string>
-    <string name="placeholder_bill_amount">-Kes: %1$s</string>
+    <string name="placeholder_bill_amount">Kes: %1$s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
 
 </resources>
