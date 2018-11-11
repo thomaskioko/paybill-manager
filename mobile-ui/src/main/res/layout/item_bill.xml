@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:foreground="@drawable/selectable_item_background"
     android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/image_button_drawable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="@dimen/dp_2"
         android:background="@null"
         android:contentDescription="@null"
         android:elevation="4dp"
@@ -26,13 +26,11 @@
         android:id="@+id/image_button_background2"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:layout_margin="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="@dimen/dp_2"
         android:layout_marginTop="8dp"
         android:background="@drawable/background_circle_dark"
         android:contentDescription="@null"
         android:elevation="2dp"
-        android:padding="@dimen/dp_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -90,6 +88,21 @@
         app:layout_constraintStart_toStartOf="@+id/tv_bill_paybill"
         app:layout_constraintTop_toBottomOf="@+id/tv_bill_paybill"
         tools:text="@string/text_account_number" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Paid"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/white"
+        android:background="@drawable/drawable_status"
+        app:layout_constraintEnd_toEndOf="@+id/tv_bill_amount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bill_amount" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

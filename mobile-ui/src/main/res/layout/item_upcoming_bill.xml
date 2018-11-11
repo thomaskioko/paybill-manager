@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:foreground="@drawable/selectable_item_background"
+    android:orientation="horizontal"
+    tools:targetApi="m">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_date_view"
@@ -100,9 +102,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:text="@string/text_bill_amount" />
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
