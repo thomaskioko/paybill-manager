@@ -7,6 +7,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -27,20 +28,21 @@ import com.thomaskioko.paybillmanager.mobile.ui.adapter.CategoriesAdapter
 import com.thomaskioko.paybillmanager.mobile.ui.util.AnimationUtils.registerCircularRevealAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.AnimationUtils.startCircularExitAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.DismissableAnimation
+import com.thomaskioko.paybillmanager.mobile.ui.util.NumberFormatter
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
-import com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import kotlinx.android.synthetic.main.fragment_add_bill.*
+import kotlinx.android.synthetic.main.layout_keypad.*
 import timber.log.Timber
 import javax.inject.Inject
 
 
 class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
-        CategoriesAdapter.OnRecyclerViewItemClickListener, CustomKeyboardView.KeyboardListener {
+        CategoriesAdapter.OnRecyclerViewItemClickListener, View.OnClickListener {
 
 
     @Inject
@@ -56,6 +58,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
 
     private lateinit var categoriesAdapter: CategoriesAdapter
     private var categoryId: String = ""
+    private var stringBuilder = StringBuilder()
 
 
     companion object {
@@ -108,9 +111,19 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
 
         btn_delete.isEnabled = false
 
-        keyboardView.showKeyboard(et_amount)
-        keyboardView.setKeyboardListener(this)
+
         setUpRecyclerView()
+
+        tv_t9_key_0.setOnClickListener(this)
+        tv_t9_key_1.setOnClickListener(this)
+        tv_t9_key_2.setOnClickListener(this)
+        tv_t9_key_3.setOnClickListener(this)
+        tv_t9_key_4.setOnClickListener(this)
+        tv_t9_key_5.setOnClickListener(this)
+        tv_t9_key_6.setOnClickListener(this)
+        tv_t9_key_7.setOnClickListener(this)
+        tv_t9_key_8.setOnClickListener(this)
+        tv_t9_key_9.setOnClickListener(this)
 
         et_amount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -136,12 +149,27 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
             }
         })
 
+        fab_add_bill.setOnClickListener {
+            when {
+                et_amount.text!!.isEmpty() -> {
+                    til_amount.showErrorMessage(resources.getString(R.string.error_no_amount))
+                }
+                categoryId.isEmpty() -> {
+                    tv_error.show()
+                }
+                else -> {
+                    createBillsViewModel.setAmount(et_amount.text.toString())
+                    createBillsViewModel.setCategoryId(categoryId)
+
+                    navigationController.navigateToBillDetailsBottomDialogFragment()
+                }
+            }
+        }
+
         btn_delete.setOnClickListener {
-            val stringBuilder = StringBuilder(et_amount.text.toString())
-            if (stringBuilder.isNotEmpty() && stringBuilder.toString() != "0.0") {
+            if (stringBuilder.isNotEmpty()) {
                 stringBuilder.delete(stringBuilder.length - 1, stringBuilder.length)
                 et_amount.setText(stringBuilder.toString())
-                keyboardView.showKeyboard(et_amount)
             }
         }
     }
@@ -156,6 +184,46 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
         getCategoriesViewModel.fetchCategories()
     }
 
+    override fun onClick(view: View?) {
+        when (view!!.id) {
+            R.id.tv_t9_key_0 -> {
+                setAmountText("0")
+            }
+            R.id.tv_t9_key_1 -> {
+                setAmountText("1")
+            }
+            R.id.tv_t9_key_2 -> {
+                setAmountText("2")
+            }
+            R.id.tv_t9_key_3 -> {
+                setAmountText("3")
+            }
+            R.id.tv_t9_key_4 -> {
+                setAmountText("4")
+            }
+            R.id.tv_t9_key_5 -> {
+                setAmountText("5")
+            }
+            R.id.tv_t9_key_6 -> {
+                setAmountText("6")
+            }
+            R.id.tv_t9_key_7 -> {
+                setAmountText("7")
+            }
+            R.id.tv_t9_key_8 -> {
+                setAmountText("8")
+            }
+            R.id.tv_t9_key_9 -> {
+                setAmountText("9")
+            }
+        }
+    }
+
+    private fun setAmountText(amount: String) {
+        stringBuilder.append(amount)
+        et_amount.setText(NumberFormatter.formatNumber(stringBuilder.toString()))
+
+    }
 
     private fun setUpRecyclerView() {
         categoriesAdapter = CategoriesAdapter(this)
@@ -173,24 +241,6 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
         }
         categoryId = category.id
     }
-
-    override fun onOKResult(amount: String) {
-        when {
-            amount.isEmpty() -> {
-                til_amount.showErrorMessage(resources.getString(R.string.error_no_amount))
-            }
-            categoryId.isEmpty() -> {
-                tv_error.show()
-            }
-            else -> {
-                createBillsViewModel.setAmount(amount)
-                createBillsViewModel.setCategoryId(categoryId)
-
-                navigationController.navigateToBillDetailsBottomDialogFragment()
-            }
-        }
-    }
-
 
     private fun handleCategoriesData(listResource: Resource<List<CategoryView>>) {
         when (listResource.status) {

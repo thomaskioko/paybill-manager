@@ -118,9 +118,9 @@
                     android:layout_marginLeft="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center|start"
-                    android:visibility="gone"
                     android:text="@string/error_category_not_selected"
                     android:textColor="@color/md_red_A700"
+                    android:visibility="gone"
                     app:fontFamily="@font/gotham_rounded_light"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -154,11 +154,12 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_amount"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/PayBillManager.TextInputLayoutStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:focusable="false"
                     android:textColor="?attr/colorPrimaryDark"
                     app:fontFamily="@font/gotham_rounded_light"
@@ -208,12 +209,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_currency_symbol" />
 
 
-                <com.thomaskioko.paybillmanager.mobile.ui.view.CustomKeyboardView
-                    android:id="@+id/keyboardView"
+                <include
+                    layout="@layout/layout_keypad"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:keyPreviewOffset="0dp"
+                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
