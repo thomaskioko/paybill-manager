@@ -51,9 +51,9 @@ class DaysAdapter @Inject constructor(
             holder.layoutDate.background = ResourcesCompat.getDrawable(
                     holder.context.resources, R.drawable.background_light, null)
             holder.tvDay.setTextColor(ResourcesCompat.getColor(
-                    holder.context.resources, R.color.colorPrimaryDark, null))
-            holder.tvDate.setTextColor(ResourcesCompat.getColor(
                     holder.context.resources, R.color.secondary_text, null))
+            holder.tvDate.setTextColor(ResourcesCompat.getColor(
+                    holder.context.resources, R.color.colorPrimaryDark, null))
         }
 
         holder.itemView.setOnClickListener {
