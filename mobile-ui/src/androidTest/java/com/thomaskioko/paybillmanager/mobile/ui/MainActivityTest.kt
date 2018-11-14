@@ -10,11 +10,8 @@ import androidx.test.espresso.contrib.DrawerMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.rule.ActivityTestRule
 import com.thomaskioko.paybillmanager.mobile.R
-import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
-import org.junit.Before
+import com.thomaskioko.paybillmanager.mobile.ui.activity.MainActivity
 import org.junit.Rule
-import org.junit.Test
-import org.mockito.Mockito
 
 class MainActivityTest {
     @Rule

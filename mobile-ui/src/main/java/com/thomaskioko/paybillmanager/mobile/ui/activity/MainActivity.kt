@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.ui
+package com.thomaskioko.paybillmanager.mobile.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -15,18 +15,20 @@ import com.mikepenz.itemanimators.AlphaCrossFadeAnimator
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
+import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.HasSupportFragmentInjector
-import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
+class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCheckedChangeListener {
+    
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -42,12 +44,14 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
     private var drawer: Drawer? = null
 
 
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+
+        setContentView(R.layout.activity_main)
 
         navigationController.navigateToBillsListFragment()
 
@@ -64,8 +68,8 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
 
     private fun setUpDrawer() {
         val profile = ProfileDrawerItem()
-                .withName("")
-                .withEmail("")
+                .withName("Admin")
+                .withEmail("admin@app.com")
                 .withIcon(AppCompatResources.getDrawable(this, R.drawable.ic_launcher_icon))
 
         // Create the AccountHeader
@@ -73,7 +77,6 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
                 .withActivity(this)
                 .withTranslucentStatusBar(true)
                 .withHeaderBackground(R.drawable.header)
-                .addProfiles(profile)
                 .withSelectionListEnabled(false)
                 .build()
 
@@ -83,7 +86,7 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
                 .withHasStableIds(true)
                 .withDisplayBelowStatusBar(true)
                 .withItemAnimator(AlphaCrossFadeAnimator())
-                .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
+                .withAccountHeader(headerResult)
                 .addDrawerItems(
                         PrimaryDrawerItem()
                                 .withName("Home")
@@ -103,7 +106,11 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
                 )
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     if (drawerItem != null) {
-                        Timber.d("Implement Navigation")
+                        when (drawerItem.identifier.toInt()) {
+                            1 -> {
+                                navigationController.navigateToBillsListFragment()
+                            }
+                        }
                     }
                     false
                 }
@@ -128,14 +135,18 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
 
     override fun onBackPressed() {
         //handle the back press :D close the drawer first and if the drawer is closed close the activity
+        closeDrawer()
+
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            navigationController.navigateToBillsListFragment()
+        }
+    }
+
+    private fun closeDrawer() {
         if (drawer != null && drawer!!.isDrawerOpen) {
             drawer!!.closeDrawer()
         } else {
             super.onBackPressed()
-        }
-
-        if (supportFragmentManager.backStackEntryCount == 0) {
-            navigationController.navigateToBillsListFragment()
         }
     }
 
