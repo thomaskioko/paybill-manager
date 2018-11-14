@@ -5,9 +5,10 @@
 
 ext.deps = [:]
 def versions = [:]
-versions.android_gradle_plugin = '3.3.0-beta01'
+versions.android_gradle_plugin = '3.3.0-beta04'
 versions.androidx = "1.0.0"
 versions.androidx_annotation = "1.0.0-alpha1"
+versions.animated_pie = "1.2.4"
 versions.apache_commons = "2.5"
 versions.arch_core = "2.0.0-alpha1"
 versions.assertj = "3.8.0"
@@ -33,7 +34,7 @@ versions.junit = "4.12"
 versions.kotlin = "1.2.51"
 versions.lifecycle = "2.0.0-rc01"
 versions.materialviewpager = "1.2.3"
-versions.mikepenz_material_drawer = "6.1.0-rc02"
+versions.mikepenz_material_drawer = "6.1.1"
 versions.mikepenz_google_material = "3.0.1.2.original@aar"
 versions.mikepenz_font_awesome = "5.0.6.0@aar"
 versions.mikepenz_iconics = "3.0.3@aar"
@@ -70,16 +71,17 @@ ext.build_versions = build_versions
 
 
 def androidx = [:]
-androidx.material = "com.google.android.material:material:$versions.androidx"
-androidx.annotations = "androidx.annotation:annotation:$versions.androidx_annotation"
 androidx.app_compat = "androidx.appcompat:appcompat:$versions.androidx"
-androidx.core = "androidx.core:core-ktx:$versions.androidx"
-androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.androidx"
-androidx.recyclerview_selection = "androidx.recyclerview:recyclerview-selection:$versions.androidx"
+androidx.annotations = "androidx.annotation:annotation:$versions.androidx_annotation"
 androidx.cardview = "androidx.cardview:cardview:$versions.androidx"
-androidx.v4 = "androidx.legacy:legacy-support-v4:$versions.androidx"
+androidx.core = "androidx.core:core-ktx:$versions.androidx"
 androidx.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.androidx"
 androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+androidx.material = "com.google.android.material:material:$versions.androidx"
+androidx.preference = "androidx.preference:preference:$versions.androidx"
+androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.androidx"
+androidx.recyclerview_selection = "androidx.recyclerview:recyclerview-selection:$versions.androidx"
+androidx.v4 = "androidx.legacy:legacy-support-v4:$versions.androidx"
 deps.androidx = androidx
 
 def arch_core = [:]
@@ -185,6 +187,7 @@ deps.work = work
 
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.animated_pie = "com.github.razerdp:AnimatedPieView:$versions.animated_pie"
 deps.assertj = "org.assertj:assertj-core:$versions.assertj"
 deps.calligraphy = "uk.co.chrisjenx:calligraphy:$versions.calligraphy"
 deps.crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
