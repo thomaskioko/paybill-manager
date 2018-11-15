@@ -1,10 +1,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bills_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bills_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?themePrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,11 +15,11 @@
             android:id="@+id/appbar_layout_add_bill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+            android:background="?themePrimary"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="@dimen/elevation_0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:elevation="0dp"
             app:layout_constraintTop_toTopOf="parent">
 
             <!-- Toolbar -->
@@ -27,31 +27,71 @@
                 android:id="@+id/toolbar_bill_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dime_toolbar_height"
-                app:navigationIcon="@drawable/ic_drawer_white"
-                app:elevation="0dp">
+                app:elevation="@dimen/elevation_0dp"
+                app:navigationIcon="@drawable/ic_drawer_white">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/TextAppearance.PayBillManager.Toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center|start"
-                    android:text="@string/app_name"/>
+                    android:text="@string/app_name" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <com.razerdp.widget.animatedpieview.AnimatedPieView
+            android:id="@+id/animated_pie_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar_layout_add_bill" />
+
+
+        <TextView
+            android:id="@+id/tv_bill_percent"
+            style="@style/TextAppearance.PayBillManager.Headline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:gravity="center"
+            android:text="24%"
+            app:layout_constraintBottom_toBottomOf="@+id/animated_pie_view"
+            app:layout_constraintEnd_toEndOf="@+id/animated_pie_view"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/animated_pie_view"
+            app:layout_constraintTop_toTopOf="@+id/animated_pie_view"
+            app:layout_constraintVertical_bias="0.447" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            style="@style/TextAppearance.PayBillManager.Headline3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:gravity="center"
+            android:text="Health "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bill_percent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_add_bills"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:background="?themeContentBackgroundLight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar_layout_add_bill"
+            app:layout_constraintTop_toBottomOf="@+id/animated_pie_view"
             tools:listitem="@layout/item_bill" />
 
 
@@ -63,10 +103,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -75,12 +113,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_margin="16dp"
+        style="@style/TextAppearance.PayBillManager.Keypad"
         app:elevation="0dp"
-        app:backgroundTint="@color/colorPrimaryDark"
         app:layout_behavior="com.thomaskioko.paybillmanager.mobile.ui.view.ScrollAwareFABBehavior"
-        app:srcCompat="@drawable/ic_add"
-        android:layout_margin="16dp"/>
+        app:srcCompat="@drawable/ic_add" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

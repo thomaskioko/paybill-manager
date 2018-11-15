@@ -1,10 +1,12 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -12,6 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
+import com.razerdp.widget.animatedpieview.data.SimplePieInfo
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.hide
 import com.thomaskioko.paybillmanager.mobile.extension.show
@@ -68,8 +72,25 @@ class BillsListFragment : Fragment(), Injectable {
                 .get(GetBillsViewModel::class.java)
 
         setupBillsRecycler()
-
         mapper = BillsViewMapper()
+
+        val animatedConfig = AnimatedPieViewConfig()
+        animatedConfig.startAngle((-90).toFloat())// Starting angle offset
+                .strokeMode(true)// Whether to draw ring-chart(default:true)
+                .strokeWidth(35)// Stroke width for ring-chart
+                .splitAngle(1.toFloat())// Clearance angle
+                .focusAlphaType(AnimatedPieViewConfig.FOCUS_WITH_ALPHA_REV)// Alpha change mode for selected pie
+                .interpolator( DecelerateInterpolator())// Set animation interpolator
+                .focusAlpha(150)// Alpha for selected pie (depend on focusAlphaType)
+                .focusAlphaType(AnimatedPieViewConfig.FOCUS_WITH_ALPHA)
+                .addData(SimplePieInfo(30.toDouble(), Color.parseColor("#FFC5FF8C"), "Shopping"))
+                .addData(SimplePieInfo(18.0, Color.parseColor("#2E7D32"), "Internet"))
+                .addData(SimplePieInfo(18.0, Color.parseColor("#C15D15"), "Internet"))
+                .addData(SimplePieInfo(18.0, Color.parseColor("#FFB300"), "Internet"))
+                .addData(SimplePieInfo(5.0, Color.parseColor("#6A1B9A"), "Internet"))
+                .duration(2000)
+        animated_pie_view.applyConfig(animatedConfig)
+        animated_pie_view.start()
 
         fab_add_bill.setOnClickListener {
             navigationController.navigateToAddBillFragment(constructRevealSettings())

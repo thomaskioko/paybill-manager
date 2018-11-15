@@ -1,10 +1,8 @@
 package com.thomaskioko.paybillmanager.mobile.ui
 
 import com.thomaskioko.paybillmanager.mobile.R
-import com.thomaskioko.paybillmanager.mobile.ui.fragment.AddBillFragment
-import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailFragment
-import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillDetailsBottomDialogFragment
-import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillsListFragment
+import com.thomaskioko.paybillmanager.mobile.ui.activity.MainActivity
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.*
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import javax.inject.Inject
 

@@ -6,12 +6,17 @@
         <item name="colorPrimary">?themePrimary</item>
         <item name="colorPrimaryDark">?themePrimaryDark</item>
         <item name="colorAccent">?themeAccent</item>
+
+
+        <item name="android:textColorHint">?themeContentTextColorWhite</item>
+        <item name="colorControlNormal">?themeContentTextColorWhite</item>
+        <item name="colorControlActivated">?themeContentTextColorWhite</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Light">
-        <item name="themePrimary">@color/indigo</item>
-        <item name="themePrimaryDark">@color/indigoDark</item>
-        <item name="themeAccent">@color/indigoAccent</item>
+        <item name="themePrimary">@color/lightPrimary</item>
+        <item name="themePrimaryDark">@color/lightPrimaryDark</item>
+        <item name="themeAccent">@color/lightAccent</item>
         <item name="themeContentBackground">@color/greyAccent</item>
         <item name="themeContentBackgroundLight">@color/white</item>
         <item name="themeContentTextColor">@color/colorPrimaryDark</item>
@@ -19,9 +24,10 @@
         <item name="themeContentTextColorLight">@color/grey_60</item>
         <item name="themeContentTextColoOnPrimary">@color/greyAccent</item>
         <item name="themeContentTextColorDivider">@color/gray_divider</item>
-        <item name="themeTextColorSuccess">@color/green_A700</item>
+        <item name="themeTextColorSuccess">@color/greenSuccess</item>
         <item name="themeTextColorFailure">@color/error</item>
         <item name="themeTextInputLayoutBorder">@color/colorPrimaryDark</item>
+        <item name="themeTextInputInactive">@color/lightAccentGreen</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Dark">
@@ -35,9 +41,10 @@
         <item name="themeContentTextColorWhite">@color/white</item>
         <item name="themeContentTextColoOnPrimary">@color/darkPrimaryLighter</item>
         <item name="themeContentTextColorDivider">@color/overlay_light_20</item>
-        <item name="themeTextColorSuccess">@color/green_A700</item>
+        <item name="themeTextColorSuccess">@color/greenSuccess</item>
         <item name="themeTextColorFailure">@color/error</item>
         <item name="themeTextInputLayoutBorder">@color/white</item>
+        <item name="themeTextInputInactive">@color/darkAccentGreen</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -175,7 +182,7 @@
 
     <!-- TextAppearance TextInputLayout Error-->
     <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
-    <item name="android:textColor">?themeTextInputLayoutBorder</item>
+        <item name="android:textColor">?themeTextInputLayoutBorder</item>
     </style>
 
     <!-- TextAppearance TextInputLayout Error-->
@@ -184,13 +191,28 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- TextAppearance Floating label TextInputLayout -->
+    <style name="PayBillManager.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">?themeAccent</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:layout_margin">@dimen/dp_8</item>
+        <item name="android:textCursorDrawable">@drawable/edit_text_cursor</item>
+        <item name="android:colorActivatedHighlight">?themeAccent</item>
+        <item name="colorControlNormal">?themeAccent</item>
+        <item name="colorControlActivated">?themeAccent</item>
+        <item name="colorControlHighlight">?themeAccent</item>
+        <item name="android:textColorHint">?themeAccent</item>
+        <item name="colorAccent">?themeAccent</item>
+        <item name="editTextColor">?themeContentTextColorWhite</item>
+    </style>
+
     <!-- CheckBoxStyle-->
     <style name="CheckBoxStyle" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="android:colorControlNormal">?themePrimary</item>
+        <item name="android:colorControlNormal">?themeTextInputInactive</item>
         <item name="android:colorControlActivated">?themeAccent</item>
-        <item name="android:colorControlHighlight">?themeAccent</item>
-        <item name="android:textColor">?themePrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:colorControlHighlight">?themeTextInputInactive</item>
+        <item name="android:textColor">?themeTextInputInactive</item>
+        <item name="android:textAppearance">@style/TextAppearance.PayBillManager.Body</item>
     </style>
 
     <style name="SelectableItemTheme">
@@ -200,6 +222,12 @@
     <style name="SelectableItemBackground">
         <item name="android:theme">@style/SelectableItemTheme</item>
         <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="TextInputEditTextSingleLine">
+        <item name="android:textColor">?themeContentTextColorWhite</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">@font/gotham_rounded_light</item>
     </style>
 
     <!-- TextAppearance Error-->

@@ -39,5 +39,9 @@
     <dimen name="dimes_coordinator_layout_height">84dp</dimen>
     <dimen name="elevation_default">4dp</dimen>
     <dimen name="dime_toolbar_height">56dp</dimen>
+    <dimen name="elevation_0dp">0dp</dimen>
+    <dimen name="elevation_2dp">2dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">8dp</dimen>
+    <dimen name="bottom_sheet_top_padding">10dp</dimen>
 
 </resources>

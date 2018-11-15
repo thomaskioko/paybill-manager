@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.PayBillManager.Progressbar" parent="Theme.PayBillManager">
-        <item name="android:indeterminateTint">@color/colorPrimaryDark</item>
+    <style name="Widget.PayBillManager.Progressbar" parent="AppTheme">
+        <item name="android:indeterminateTint">?themeAccent</item>
     </style>
+
+
+    <!-- set the rounded drawable as background to your bottom sheet -->
+    <style name="BottomSheet" parent="@style/Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_dialog_fragment</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <!--<item name="android:windowIsFloating">false</item>-->
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
 </resources>

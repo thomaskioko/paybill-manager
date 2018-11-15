@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FB">
+    android:background="?themePrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_add_bill"
@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:elevation="0dp"
+            app:elevation="@dimen/elevation_0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,16 +27,14 @@
                 android:id="@+id/toolbar_add_bill"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dime_toolbar_height"
-                app:elevation="0dp"
+                app:elevation="@dimen/elevation_0dp"
                 app:navigationIcon="@drawable/ic_close_24dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/TextAppearance.PayBillManager.Toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center|start"
-                    android:text="@string/toolbar_title_add_bill"
-                    app:fontFamily="@font/gotham_rounded_medium" />
+                    android:text="@string/toolbar_title_add_bill" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -52,7 +49,8 @@
             android:layout_marginEnd="@dimen/dp_16"
             android:layout_marginRight="@dimen/dp_16"
             android:layout_marginBottom="@dimen/dp_16"
-            android:elevation="2dp"
+            android:backgroundTint="?themeContentBackgroundLight"
+            android:elevation="@dimen/elevation_2dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,28 +69,21 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView"
-                    style="@style/TextAppearance.PayBillManager.Headline1"
+                    style="@style/TextAppearance.PayBillManager.MainTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_16"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="@dimen/dp_8"
                     android:gravity="center|start"
                     android:text="@string/text_choose_category"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/gotham_rounded_book"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:background="@color/gray_divider"
+                    style="@style/DividerView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
@@ -119,7 +110,7 @@
                     android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center|start"
                     android:text="@string/error_category_not_selected"
-                    android:textColor="@color/md_red_A700"
+                    android:textColor="?themeTextColorFailure"
                     android:visibility="gone"
                     app:fontFamily="@font/gotham_rounded_light"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -128,10 +119,7 @@
 
                 <View
                     android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/gray_divider"
+                    style="@style/DividerView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_error" />
@@ -139,6 +127,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_currency_symbol"
+                    style="@style/TextAppearance.PayBillManager.Headline1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
@@ -146,41 +135,26 @@
                     android:layout_marginTop="@dimen/dp_16"
                     android:gravity="center|start"
                     android:text="@string/text_view_currency_code"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="48sp"
-                    app:fontFamily="@font/gotham_rounded_medium"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/view2" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_amount"
-                    style="@style/PayBillManager.TextInputLayoutStyle"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_bill_amount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:focusable="false"
-                    android:textColor="?attr/colorPrimaryDark"
-                    app:fontFamily="@font/gotham_rounded_light"
+                    style="@style/TextAppearance.PayBillManager.MainTitle.Light"
+                    android:text="0"
+                    app:errorTextAppearance="@style/error_appearance"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_currency_symbol"
                     app:layout_constraintEnd_toStartOf="@+id/btn_delete"
                     app:layout_constraintStart_toEndOf="@+id/tv_currency_symbol"
                     app:layout_constraintTop_toTopOf="@+id/tv_currency_symbol">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:fontFamily="@font/gotham_rounded_light"
-                        android:hint="@string/hint_amount"
-                        android:inputType="number"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="28sp"
-                        app:fontFamily="@font/work_sans_light" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.AppCompatTextView>
 
 
                 <ImageView
@@ -194,16 +168,13 @@
                     android:textIsSelectable="false"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_currency_symbol"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/til_amount"
+                    app:layout_constraintStart_toEndOf="@+id/tv_bill_amount"
                     app:layout_constraintTop_toTopOf="@+id/tv_currency_symbol"
                     app:srcCompat="@drawable/ic_backspace_disabled" />
 
                 <View
                     android:id="@+id/view3"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/gray_divider"
+                    style="@style/DividerView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_currency_symbol" />

@@ -33,6 +33,7 @@ import javax.inject.Inject
 class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable,
         DaysAdapter.OnRecyclerViewItemClickListener {
 
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
@@ -44,7 +45,7 @@ class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogStyle)
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

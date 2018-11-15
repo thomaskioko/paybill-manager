@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#223581</color>
     <color name="colorPrimaryDark">#15246B</color>
     <color name="colorPrimaryLight">#97a6e4</color>
@@ -10,7 +10,7 @@
     <color name="secondaryColor">#c15d15</color>
     <color name="secondaryLightColor">#f98c44</color>
     <color name="secondaryDarkColor">#8a3000</color>
-    <color name="primaryTextColor">#ffffff</color>
+    <color name="primaryTextColor">@color/colorPrimary</color>
     <color name="secondaryTextColor">#000000</color>
 
     <color name="white">#FFFFFF</color>
@@ -18,7 +18,25 @@
     <color name="secondary_text">#A5ADCA</color>
     <color name="colorControlActivated">#812235</color>
     <color name="error">#B00020</color>
-    <color name="gray_divider">#eeeeee</color>
+    <color name="gray_divider">#ECF2FC</color>
+
+    <color name="lightPrimary">#E4E8F0</color>
+    <color name="lightPrimaryDark">#667daa</color>
+    <color name="lightAccent">#812235</color>
+    <color name="greenSuccess">#4ab0a7</color>
+    <color name="red">#ff0000</color>
+    <color name="dark_gray">#a9a9a9</color>
+    <color name="lightAccentGreen">#D0DBEA</color>
+
+    <color name="darkPrimary">#101226</color>
+    <color name="darkPrimaryDark">#010102</color>
+    <color name="darkPrimaryBackground">#2B2C3B</color>
+    <color name="darkPrimaryLight">#26283A</color>
+    <color name="darkPrimaryLighter">#2B2C3B</color>
+    <color name="darkAccent">#FF2466</color>
+    <color name="darkAccentGreen">#3e948d</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/darkAccentGreen</color>
 
     <color name="transparent">#00000000</color>
     <color name="greyAccent">#E4E8F0</color>

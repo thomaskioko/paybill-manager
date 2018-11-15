@@ -13,7 +13,6 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_day"
-        style="@style/TextAppearance.PayBillManager.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_8"
@@ -30,7 +29,6 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_date"
-        style="@style/TextAppearance.PayBillManager.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

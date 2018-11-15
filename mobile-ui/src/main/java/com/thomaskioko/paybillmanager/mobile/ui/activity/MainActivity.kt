@@ -1,9 +1,11 @@
 package com.thomaskioko.paybillmanager.mobile.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.CompoundButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
@@ -18,6 +20,9 @@ import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
+import com.mikepenz.materialdrawer.model.SectionDrawerItem
+import com.mikepenz.materialdrawer.model.SwitchDrawerItem
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
@@ -28,7 +33,9 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCheckedChangeListener {
-    
+
+    val INDIGO = "indigo"
+    val PINK = "pink"
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -42,14 +49,15 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
     lateinit var createCategoryViewModel: CreateCategoryViewModel
 
     private var drawer: Drawer? = null
-
+    private var isThemeDark = false
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setTheme(getSavedTheme())
+        isThemeDark = getSavedTheme() != R.style.AppTheme_NoActionBar_Light
 
         setContentView(R.layout.activity_main)
 
@@ -102,7 +110,16 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
                                 .withName("History")
                                 .withDescription("View previous transactions")
                                 .withIcon(FontAwesome.Icon.faw_gamepad)
-                                .withIdentifier(3)
+                                .withIdentifier(3),
+                        SectionDrawerItem()
+                                .withName("Settings"),
+                        SwitchDrawerItem()
+                                .withName("App Theme")
+                                .withDescription("Switch between to dark theme")
+                                .withIcon(GoogleMaterial.Icon.gmd_color_lens)
+                                .withChecked(isThemeDark)
+                                .withIdentifier(4)
+                                .withOnCheckedChangeListener(this)
                 )
                 .withOnDrawerItemClickListener { _, _, drawerItem ->
                     if (drawerItem != null) {
@@ -172,4 +189,33 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
         return categories
     }
 
+    override fun onCheckedChanged(drawerItem: IDrawerItem<*, *>?, buttonView: CompoundButton?, isChecked: Boolean) {
+
+        when (drawerItem!!.identifier.toInt()) {
+            4 -> {
+                if (isChecked) {
+                    saveTheme(PINK)
+                } else {
+                    saveTheme(INDIGO)
+                }
+                closeDrawer()
+            }
+        }
+    }
+
+    private fun saveTheme(value: String) {
+        val editor = getPreferences(Activity.MODE_PRIVATE).edit()
+        editor.putString("theme", value)
+        editor.apply()
+        recreate()
+    }
+
+    private fun getSavedTheme(): Int {
+        val theme = getPreferences(Activity.MODE_PRIVATE).getString("theme", INDIGO)
+        return when (theme) {
+            INDIGO -> R.style.AppTheme_NoActionBar_Light
+            PINK -> R.style.AppTheme_NoActionBar_Dark
+            else -> R.style.AppTheme_NoActionBar_Light
+        }
+    }
 }

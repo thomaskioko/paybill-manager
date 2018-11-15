@@ -7,9 +7,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +18,6 @@ import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.hide
 import com.thomaskioko.paybillmanager.mobile.extension.show
-import com.thomaskioko.paybillmanager.mobile.extension.showErrorMessage
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
@@ -125,24 +122,25 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
         tv_t9_key_8.setOnClickListener(this)
         tv_t9_key_9.setOnClickListener(this)
 
-        et_amount.addTextChangedListener(object : TextWatcher {
+        tv_bill_amount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (til_amount.isErrorEnabled)
-                    til_amount.isErrorEnabled = false
 
                 if (s.isNullOrEmpty()) {
+                    tv_bill_amount.text = resources.getString(R.string.keyboard_0)
+                    tv_bill_amount.isEnabled = false
                     btn_delete.isEnabled = false
                     btn_delete.setImageDrawable(
-                            ResourcesCompat.getDrawable(resources, R.drawable.ic_backspace_disabled, null)
+                            ContextCompat.getDrawable(activity!!, R.drawable.ic_backspace_disabled)
                     )
                 } else {
                     btn_delete.isEnabled = true
+                    tv_bill_amount.isEnabled = true
                     btn_delete.setImageDrawable(
-                            ResourcesCompat.getDrawable(resources, R.drawable.ic_backspace_enabled, null)
+                            ContextCompat.getDrawable(activity!!, R.drawable.ic_backspace_enabled)
                     )
                 }
 
@@ -151,14 +149,12 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
 
         fab_add_bill.setOnClickListener {
             when {
-                et_amount.text!!.isEmpty() -> {
-                    til_amount.showErrorMessage(resources.getString(R.string.error_no_amount))
-                }
+
                 categoryId.isEmpty() -> {
                     tv_error.show()
                 }
                 else -> {
-                    createBillsViewModel.setAmount(et_amount.text.toString())
+                    createBillsViewModel.setAmount(stringBuilder.toString())
                     createBillsViewModel.setCategoryId(categoryId)
 
                     navigationController.navigateToBillDetailsBottomDialogFragment()
@@ -169,7 +165,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
         btn_delete.setOnClickListener {
             if (stringBuilder.isNotEmpty()) {
                 stringBuilder.delete(stringBuilder.length - 1, stringBuilder.length)
-                et_amount.setText(stringBuilder.toString())
+                tv_bill_amount.text = stringBuilder.toString()
             }
         }
     }
@@ -221,7 +217,7 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
 
     private fun setAmountText(amount: String) {
         stringBuilder.append(amount)
-        et_amount.setText(NumberFormatter.formatNumber(stringBuilder.toString()))
+        tv_bill_amount.text = NumberFormatter.formatNumber(stringBuilder.toString())
 
     }
 

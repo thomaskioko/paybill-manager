@@ -1,7 +1,7 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
-import com.thomaskioko.paybillmanager.mobile.ui.MainActivity
+import com.thomaskioko.paybillmanager.mobile.ui.activity.MainActivity
 import com.thomaskioko.paybillmanager.mobile.util.UiThread
 import dagger.Binds
 import dagger.Module

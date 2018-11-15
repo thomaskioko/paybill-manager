@@ -11,7 +11,7 @@ import io.reactivex.Flowable
 @Dao
 abstract class CategoryDao {
 
-    @Query("SELECT * FROM category ORDER BY id DESC")
+    @Query("SELECT * FROM category ORDER BY categoryName DESC")
     @JvmSuppressWildcards
     abstract fun getCachedCategories(): Flowable<List<CachedCategory>>
 

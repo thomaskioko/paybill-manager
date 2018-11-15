@@ -10,7 +10,6 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_date_view"
-        style="@style/TextAppearance.PayBillManager.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -24,7 +23,6 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_month_view"
-        style="@style/TextAppearance.PayBillManager.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_date_view"
@@ -65,7 +63,6 @@
 
     <TextView
         android:id="@+id/tv_bill_name"
-        style="@style/TextAppearance.PayBillManager.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -83,7 +80,6 @@
 
     <TextView
         android:id="@+id/textView3"
-        style="@style/TextAppearance.PayBillManager.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/spacing_medium"
@@ -94,7 +90,6 @@
 
 
     <TextView
-        style="@style/TextAppearance.PayBillManager.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/spacing_medium"

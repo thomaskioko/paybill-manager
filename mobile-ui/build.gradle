@@ -82,6 +82,7 @@ dependencies {
     implementation deps.androidx.annotations
     implementation deps.androidx.recyclerview
     implementation deps.androidx.recyclerview_selection
+    implementation deps.androidx.preference
 
     /**
      * Crashlytics
@@ -96,7 +97,6 @@ dependencies {
     implementation deps.lifecycle.java8
     kapt deps.lifecycle.compiler
 
-
     /**
      * Dagger
      */
@@ -110,7 +110,6 @@ dependencies {
      * Firebase
      */
     implementation deps.firebase.core
-
 
     /**
      * Room
@@ -130,7 +129,6 @@ dependencies {
     implementation(deps.material_libs.drawer) {
         transitive = true
     }
-
 
     /**
      * Multidex
@@ -160,6 +158,8 @@ dependencies {
      */
     implementation deps.timber
     implementation deps.threetenabp
+
+    implementation deps.animated_pie
 
     compileOnly deps.glassfish
     implementation deps.javax_annotation
