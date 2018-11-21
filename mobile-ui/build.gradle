@@ -160,6 +160,8 @@ dependencies {
     implementation deps.threetenabp
 
     implementation deps.animated_pie
+    implementation deps.stepper
+    implementation deps.ticketView
 
     compileOnly deps.glassfish
     implementation deps.javax_annotation
