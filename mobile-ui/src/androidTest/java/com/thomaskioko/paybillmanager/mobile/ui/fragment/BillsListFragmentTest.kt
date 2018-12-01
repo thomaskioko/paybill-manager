@@ -13,7 +13,7 @@ import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
 import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
-import com.thomaskioko.paybillmanager.mobile.util.ToolbarViewMarcher.matchToolbarTitle
+import com.thomaskioko.paybillmanager.mobile.util.matcher.ToolbarViewMarcher.matchToolbarTitle
 import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
