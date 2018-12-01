@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
  */
 class SimpleFragmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme_NoActionBar_Light)
         super.onCreate(savedInstanceState)
         val content = FrameLayout(this).apply {
             layoutParams = FrameLayout.LayoutParams(
