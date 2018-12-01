@@ -110,8 +110,8 @@ class BillsListFragment : Fragment(), Injectable {
 
     private fun setupBillsRecycler() {
         adapter = BillsAdapter()
-        recycler_view_add_bills.layoutManager = LinearLayoutManager(activity)
-        recycler_view_add_bills.adapter = adapter
+        recycler_view_bill_list.layoutManager = LinearLayoutManager(activity)
+        recycler_view_bill_list.adapter = adapter
     }
 
     private fun observeBillsData(resource: Resource<List<BillView>>) {
