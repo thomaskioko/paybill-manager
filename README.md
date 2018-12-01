@@ -83,7 +83,11 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
   * [Timber][12] - for logging  
   * [Okhttp][13] - for networking with Retrofit
   * [Okhttp Logging Interceptor][14] - for logging network traffic
-  * [RxAndroid][15] for writing reactive componects
+  * [RxAndroid][15] for writing reactive components
+  * [RxAndroid][17] TicketView
+  * [RxAndroid][18] Android Material Stepper
+  * [RxAndroid][19] Android SpinKit
+  * [RxAndroid][20] Collapsible Calendar View
   
 [0]: https://developer.android.com/jetpack/foundation/
 [1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
@@ -102,6 +106,10 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
 [14]: https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
 [15]: https://github.com/ReactiveX/RxAndroid
 [16]: http://robolectric.org/
+[17]: https://github.com/vipulasri/TicketView
+[18]: https://github.com/stepstone-tech/android-material-stepper
+[19]: https://github.com/ybq/Android-SpinKit
+[20]: https://github.com/shrikanth7698/Collapsible-Calendar-View-Android?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=6829
 
 
 ## Development Progress
