@@ -7,10 +7,15 @@
         <item name="colorPrimaryDark">?themePrimaryDark</item>
         <item name="colorAccent">?themeAccent</item>
 
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@null</item>
 
         <item name="android:textColorHint">?themeContentTextColorWhite</item>
         <item name="colorControlNormal">?themeContentTextColorWhite</item>
         <item name="colorControlActivated">?themeContentTextColorWhite</item>
+
+        <item name="ms_stepperStyle">@style/CustomStepperLayoutThemeSample</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Light">
@@ -94,6 +99,52 @@
         <item name="android:textSize">45sp</item>
         <item name="android:textColor">?themeContentTextColor</item>
         <item name="fontFamily">@font/gotham_rounded_light</item>
+    </style>
+
+    <style name="TextAppearance.PayBillManager.MainTitle.Dark" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">?themeContentTextColorWhite</item>
+        <item name="fontFamily">@font/gotham_rounded_light</item>
+    </style>
+
+    <style name="TextAppearance.PayBillManager.28sp.Light" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">?themeContentTextColorWhite</item>
+        <item name="fontFamily">@font/gotham_rounded_medium</item>
+    </style>
+
+    <style name="TextAppearance.PayBillManager.22sp.Dark" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?themeContentTextColor</item>
+        <item name="fontFamily">@font/gotham_rounded_medium</item>
+    </style>
+
+    <style name="TextAppearance.PayBillManager.22sp.light.Dark" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?themeContentTextColorLight</item>
+        <item name="fontFamily">@font/gotham_rounded_light</item>
+    </style>
+
+
+    <style name="TextAppearance.PayBillManager.45sp" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">?themeContentTextColor</item>
+        <item name="fontFamily">@font/gotham_rounded_medium</item>
     </style>
 
     <!-- TextAppearance Medium Title  -->
@@ -260,6 +311,57 @@
         <item name="material_drawer_legacy_style">false</item> <!-- Enables legacy Material 1 style -->
 
         <item name="material_drawer_window_background">?themeContentBackground</item>
+    </style>
+
+
+
+    <style name="DarkBottomNavigationStyle" parent="MSBottomNavigation">
+        <item name="android:background">?themePrimaryDark</item>
+    </style>
+
+    <style name="DarkStepTabsContainerStyle" parent="MSStepTabsContainer">
+        <item name="android:background">?themePrimary</item>
+    </style>
+
+    <style name="DarkStepTabTitleStyle" parent="MSStepTabTitle">
+        <item name="android:textColor">?themeContentTextColor</item>
+    </style>
+
+    <style name="DarkStepTabSubtitleStyle" parent="MSStepTabSubtitle">
+        <item name="android:textColor">@color/ms_white_54_opacity</item>
+    </style>
+
+    <style name="CustomNextButtonStyle" parent="MSNavBarButton.Next">
+        <item name="fontFamily">@font/gotham_rounded_medium</item>
+    </style>
+
+
+
+    <style name="DarkCustomStepperLayoutTheme" parent="MSDefaultStepperLayoutTheme">
+        <item name="ms_bottomNavigationStyle">@style/DarkBottomNavigationStyle</item>
+        <item name="ms_tabsContainerStyle">@style/DarkStepTabsContainerStyle</item>
+        <item name="ms_stepTabTitleStyle">@style/DarkStepTabTitleStyle</item>
+        <item name="ms_stepTabSubtitleStyle">@style/DarkStepTabSubtitleStyle</item>
+        <item name="ms_nextNavigationButtonStyle">@style/CustomNextButtonStyle</item>
+    </style>
+
+
+    <style name="CustomStepperLayoutThemeSample">
+        <item name="ms_stepperType">tabs</item>
+        <item name="ms_stepperLayoutTheme">@style/DarkCustomStepperLayoutTheme</item>
+        <item name="ms_activeStepColor">#006867</item>
+        <item name="ms_inactiveStepColor">#62807f</item>
+    </style>
+
+    <style name="DotStepperStyle">
+        <item name="ms_stepperType">dots</item>
+        <item name="ms_activeStepColor">#FFFFFF</item>
+        <item name="ms_inactiveStepColor">#006867</item>
+        <item name="ms_backButtonColor">@color/ms_custom_button_text_color</item>
+        <item name="ms_nextButtonColor">@color/ms_custom_button_text_color</item>
+        <item name="ms_errorColor">@color/ms_errorColor</item>
+        <item name="ms_completeButtonColor">@color/ms_custom_button_text_color</item>
+        <item name="ms_bottomNavigationBackground">?attr/colorAccent</item>
     </style>
 
 
