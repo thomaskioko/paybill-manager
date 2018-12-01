@@ -40,7 +40,7 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var context = view.context!!
-        var tvBillName: TextView = view.tv_bill_name
+        var tvBillName: TextView = view.tv_detail_bill_text
         var tvBillNumber: TextView = view.tv_bill_paybill
         var tvBillAmount: TextView = view.tv_bill_amount
         var tvBillAccountNumber: TextView = view.tv_bill_account_number

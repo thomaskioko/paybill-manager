@@ -4,6 +4,9 @@
     <!-- Toolbar Titles -->
     <string name="toolbar_upcoming_bills">Upcoming Bills</string>
     <string name="toolbar_add_bill">Add Bill</string>
+    <string name="toolbar_new_bill">New Bill</string>
+    <string name="toolbar_bill_details">Bill Details</string>
+    <string name="toolbar_confirm_details">Confirm Details</string>
 
     <!-- Text-->
     <string name="text_bill_data">04</string>

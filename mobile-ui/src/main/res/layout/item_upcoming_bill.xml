@@ -62,7 +62,7 @@
 
 
     <TextView
-        android:id="@+id/tv_bill_name"
+        android:id="@+id/tv_detail_bill_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -85,8 +85,8 @@
         android:lineSpacingExtra="@dimen/spacing_medium"
         android:text="@string/text_bill_number"
         android:textColor="@color/grey_60"
-        app:layout_constraintStart_toStartOf="@+id/tv_bill_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bill_name" />
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_bill_text"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_bill_text" />
 
 
     <TextView

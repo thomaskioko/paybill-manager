@@ -29,10 +29,10 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_date"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="@dimen/spacing_x_medium"
+        android:layout_marginStart="@dimen/dp_8"
         android:layout_marginTop="@dimen/dp_8"
         android:layout_marginEnd="@dimen/dp_8"
         android:gravity="center"

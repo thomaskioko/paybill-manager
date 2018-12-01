@@ -3,7 +3,6 @@ package com.thomaskioko.paybillmanager.mobile.ui.fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.stepstone.stepper.Step
+import com.stepstone.stepper.VerificationError
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.hide
@@ -22,24 +23,20 @@ import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.CategoriesAdapter
-import com.thomaskioko.paybillmanager.mobile.ui.util.AnimationUtils.registerCircularRevealAnimation
-import com.thomaskioko.paybillmanager.mobile.ui.util.AnimationUtils.startCircularExitAnimation
-import com.thomaskioko.paybillmanager.mobile.ui.util.DismissableAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.NumberFormatter
-import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
-import kotlinx.android.synthetic.main.fragment_add_bill.*
+import kotlinx.android.synthetic.main.fragment_bill_amount.*
 import kotlinx.android.synthetic.main.layout_keypad.*
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
-        CategoriesAdapter.OnRecyclerViewItemClickListener, View.OnClickListener {
+class BillAmountFragment : Fragment(), Injectable,
+        CategoriesAdapter.OnRecyclerViewItemClickListener, View.OnClickListener, Step {
 
 
     @Inject
@@ -58,43 +55,10 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
     private var stringBuilder = StringBuilder()
 
 
-    companion object {
-        const val ARG_REVEAL = "args_reveal"
-        fun newInstance(revealAnimationSettings: RevealAnimationSettings): AddBillFragment {
-            val bundle = Bundle()
-            bundle.putParcelable(ARG_REVEAL, revealAnimationSettings)
-            val fragment = AddBillFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-
-        val view = inflater.inflate(R.layout.fragment_add_bill, container, false)
-
-        if (activity!!.intent.hasExtra(ARG_REVEAL)) {
-            val revealAnim: RevealAnimationSettings = arguments?.getParcelable(ARG_REVEAL)!!
-            registerCircularRevealAnimation(view!!,
-                    revealAnim,
-                    ContextCompat.getColor(context!!, R.color.colorPrimaryDark),
-                    ContextCompat.getColor(context!!, R.color.white))
-        }
-
-
-        view.isFocusableInTouchMode = true
-        view.requestFocus()
-        view.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
-                navigationController.navigateToBillsListFragment()
-                return@OnKeyListener true
-            }
-            false
-        })
-
-        return view
+        return inflater.inflate(R.layout.fragment_bill_amount, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -147,21 +111,6 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
             }
         })
 
-        fab_add_bill.setOnClickListener {
-            when {
-
-                categoryId.isEmpty() -> {
-                    tv_error.show()
-                }
-                else -> {
-                    createBillsViewModel.setAmount(stringBuilder.toString())
-                    createBillsViewModel.setCategoryId(categoryId)
-
-                    navigationController.navigateToBillDetailsBottomDialogFragment()
-                }
-            }
-        }
-
         btn_delete.setOnClickListener {
             if (stringBuilder.isNotEmpty()) {
                 stringBuilder.delete(stringBuilder.length - 1, stringBuilder.length)
@@ -178,6 +127,26 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
                 })
 
         getCategoriesViewModel.fetchCategories()
+    }
+
+    override fun onSelected() {
+
+    }
+
+    override fun verifyStep(): VerificationError? {
+
+        return if (!categoryId.isEmpty()) {
+            createBillsViewModel.setAmount(stringBuilder.toString())
+            createBillsViewModel.setCategoryId(categoryId)
+            null
+        } else {
+            tv_error.show()
+            VerificationError(resources.getString(R.string.error_category_not_selected))
+        }
+    }
+
+    override fun onError(error: VerificationError) {
+        Timber.e("onError! -> ${error.errorMessage}")
     }
 
     override fun onClick(view: View?) {
@@ -261,19 +230,6 @@ class AddBillFragment : Fragment(), Injectable, DismissableAnimation,
             categoriesAdapter.categoriesList = list
             categoriesAdapter.notifyDataSetChanged()
         }
-    }
-
-
-    override fun dismiss(listener: DismissableAnimation.OnDismissedListener) {
-        val revealAnim: RevealAnimationSettings = arguments?.getParcelable(ARG_REVEAL)!!
-        startCircularExitAnimation(view!!, revealAnim,
-                ContextCompat.getColor(context!!, R.color.colorPrimaryDark),
-                ContextCompat.getColor(context!!, R.color.white),
-                object : DismissableAnimation.OnDismissedListener {
-                    override fun onDismissed() {
-                        listener.onDismissed()
-                    }
-                })
     }
 
 

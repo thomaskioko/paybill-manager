@@ -14,7 +14,6 @@ open class NavigationController @Inject constructor(private var mainActivity: Ma
 
     private val containerId = R.id.container
     private val fragmentManager = mainActivity.supportFragmentManager
-    private lateinit var fragmentAddBill: AddBillFragment
 
     fun navigateToBillsListFragment() {
         val fragment = BillsListFragment()
@@ -23,16 +22,6 @@ open class NavigationController @Inject constructor(private var mainActivity: Ma
                 .replace(containerId, fragment)
                 .addToBackStack("BillsListFragment")
                 .commit()
-    }
-
-    fun navigateToAddBillFragment(revealSettings: RevealAnimationSettings) {
-        fragmentAddBill = AddBillFragment.newInstance(revealSettings)
-        fragmentManager.beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(containerId, fragmentAddBill)
-                .addToBackStack("AddBillFragment")
-                .commit()
-
     }
 
     fun navigateToBillDetailFragment() {
@@ -44,9 +33,13 @@ open class NavigationController @Inject constructor(private var mainActivity: Ma
                 .commit()
     }
 
-    fun navigateToBillDetailsBottomDialogFragment() {
+    fun navigateToCreateBillFragment(revealSettings: RevealAnimationSettings) {
+        val fragment = CreateBillFragment.newInstance(revealSettings)
+        fragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(containerId, fragment)
+                .addToBackStack("CreateBillFragment")
+                .commit()
 
-        val bottomSheetDialogFragment = BillDetailsBottomDialogFragment()
-        bottomSheetDialogFragment.show(fragmentManager, bottomSheetDialogFragment.tag)
     }
 }

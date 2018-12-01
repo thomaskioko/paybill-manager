@@ -55,24 +55,29 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         setTheme(getSavedTheme())
+        super.onCreate(savedInstanceState)
+
         isThemeDark = getSavedTheme() != R.style.AppTheme_NoActionBar_Light
 
         setContentView(R.layout.activity_main)
 
-        navigationController.navigateToBillsListFragment()
-
-
         createCategoryViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(CreateCategoryViewModel::class.java)
+
+
+        setUpDrawer()
+
+        navigationController.navigateToBillsListFragment()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
         for (category in categoriesList()) {
             createCategoryViewModel.createCategory(category)
         }
-
-        setUpDrawer()
     }
-
 
     private fun setUpDrawer() {
         val profile = ProfileDrawerItem()

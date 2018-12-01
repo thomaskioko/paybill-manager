@@ -37,6 +37,16 @@
     <color name="darkAccentGreen">#3e948d</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/darkAccentGreen</color>
+    <color name="ms_material_blue_500">#2196f3</color>
+    <color name="ms_material_grey_400">#BDBDBD</color>
+    <color name="ms_errorColor">#f44336</color>
+    <color name="ms_selectedColor">@color/ms_material_blue_500</color>
+    <color name="ms_unselectedColor">@color/ms_material_grey_400</color>
+    <color name="ms_bottomNavigationButtonTextColor">@color/ms_material_grey_400</color>
+    <color name="ms_bottomNavigationBackgroundColor">#FFFFFF</color>
+    <color name="ms_defaultButtonBackgroundColor">#15000000</color>
+    <color name="ms_defaultContentOverlayColor">@color/ms_white_54_opacity</color>
+    <color name="verification_failed_color">#30BDBDBD</color>
 
     <color name="transparent">#00000000</color>
     <color name="greyAccent">#E4E8F0</color>

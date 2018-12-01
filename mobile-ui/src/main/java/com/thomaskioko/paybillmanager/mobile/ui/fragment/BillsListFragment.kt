@@ -93,7 +93,7 @@ class BillsListFragment : Fragment(), Injectable {
         animated_pie_view.start()
 
         fab_add_bill.setOnClickListener {
-            navigationController.navigateToAddBillFragment(constructRevealSettings())
+            navigationController.navigateToCreateBillFragment(constructRevealSettings())
         }
 
     }

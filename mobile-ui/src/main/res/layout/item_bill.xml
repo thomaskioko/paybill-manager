@@ -34,11 +34,11 @@
         android:contentDescription="@null"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <TextView
-        android:id="@+id/tv_bill_name"
+        android:id="@+id/tv_detail_bill_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,9 +58,9 @@
         android:layout_marginEnd="16dp"
         android:lineSpacingExtra="@dimen/spacing_medium"
         style="@style/TextAppearance.PayBillManager.Body.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_bill_name"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_bill_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_bill_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_detail_bill_text"
         tools:text="@string/text_bill_amount" />
 
     <TextView
@@ -96,12 +96,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/spacing_medium"
-        app:layout_constraintStart_toStartOf="@+id/tv_bill_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_bill_text"
         app:layout_constraintTop_toTopOf="@+id/tv_bill_status"
         tools:text="@string/text_bill_number" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

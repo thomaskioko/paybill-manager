@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.stepstone.stepper.Step
+import com.stepstone.stepper.VerificationError
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.showErrorMessage
@@ -28,10 +29,12 @@ import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 
 
-class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable,
-        DaysAdapter.OnRecyclerViewItemClickListener {
+class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewItemClickListener,
+        Step {
 
 
     @Inject
@@ -43,10 +46,6 @@ class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable,
     private lateinit var amount: String
     private lateinit var categoryId: String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -81,36 +80,57 @@ class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable,
         adapter.offsetDateTimeLists = DateUtils.getDaysOfWeek()
         adapter.notifyDataSetChanged()
 
-        btn_bottom_sheet_dialog_fragment.setOnClickListener {
-            when {
-                et_bill_name.text!!.isEmpty() -> {
-                    input_layout_bill_name.showErrorMessage(resources.getString(R.string.error_no_name))
-                }
-                et_bill_number.text!!.isEmpty() -> {
-                    input_layout_bill_number.showErrorMessage(resources.getString(R.string.error_no_pay_bill_number))
-                }
-                et_account_number.text!!.isEmpty() -> {
-                    input_layout_account_number.showErrorMessage(resources.getString(R.string.error_no_account_number))
-                }
-                else -> {
+    }
 
-                    val bill = Bill(
-                            UUID.randomUUID().toString(),
-                            et_bill_name.text.toString(),
-                            et_bill_number.text.toString(),
-                            et_account_number.text.toString(),
-                            amount,
-                            categoryId.toInt(),
-                            OffsetDateTime.now().toEpochSecond()
-                    )
-
-                    createBillsViewModel.createBill(bill)
-
-                }
-            }
-        }
+    override fun onSelected() {
 
     }
+
+    override fun verifyStep(): VerificationError? {
+
+        return when {
+            et_bill_name.text!!.isEmpty() -> {
+                input_layout_bill_name.showErrorMessage(resources.getString(R.string.error_no_name))
+                VerificationError(resources.getString(R.string.error_no_name))
+            }
+            et_bill_number.text!!.isEmpty() -> {
+                input_layout_bill_number.showErrorMessage(resources.getString(R.string.error_no_pay_bill_number))
+                VerificationError(resources.getString(R.string.error_no_pay_bill_number))
+            }
+            et_account_number.text!!.isEmpty() -> {
+                input_layout_account_number.showErrorMessage(resources.getString(R.string.error_no_account_number))
+                VerificationError(resources.getString(R.string.error_no_account_number))
+            }
+            else -> {
+                val bill = Bill(
+                        UUID.randomUUID().toString(),
+                        et_bill_name.text.toString(),
+                        et_bill_number.text.toString(),
+                        et_account_number.text.toString(),
+                        amount,
+                        categoryId.toInt(),
+                        OffsetDateTime.now().toEpochSecond()
+                )
+
+//                createBillsViewModel.createBill(bill)
+                closeKeyboard()
+                null
+            }
+        }
+    }
+
+    private fun closeKeyboard() {
+        val view = activity!!.currentFocus
+        if (view != null) {
+            val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm!!.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    override fun onError(error: VerificationError) {
+        Timber.e("onError! -> ${error.errorMessage}")
+    }
+
 
     private fun observeBillView(resource: Resource<BillView>) {
         when (resource.status) {
@@ -120,7 +140,6 @@ class BillDetailsBottomDialogFragment : BottomSheetDialogFragment(), Injectable,
             ResourceState.LOADING -> {
             }
             ResourceState.SUCCESS -> {
-                dismiss()
                 navigationController.navigateToBillsListFragment()
             }
         }

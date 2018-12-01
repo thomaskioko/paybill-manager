@@ -12,50 +12,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_layout_add_bill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:elevation="@dimen/elevation_0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <!-- Toolbar -->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_add_bill"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dime_toolbar_height"
-                app:elevation="@dimen/elevation_0dp"
-                app:navigationIcon="@drawable/ic_close_24dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/TextAppearance.PayBillManager.Toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/toolbar_title_add_bill" />
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_add_bill"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginLeft="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_16"
-            android:layout_marginEnd="@dimen/dp_16"
-            android:layout_marginRight="@dimen/dp_16"
-            android:layout_marginBottom="@dimen/dp_16"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:backgroundTint="?themeContentBackgroundLight"
             android:elevation="@dimen/elevation_2dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar_layout_add_bill">
+            app:layout_constraintTop_toTopOf="parent">
             <!-- Currency and country code. -->
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,12 +111,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_bill_amount"
+                    style="@style/TextAppearance.PayBillManager.MainTitle.Dark"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    style="@style/TextAppearance.PayBillManager.MainTitle.Light"
                     android:text="0"
                     app:errorTextAppearance="@style/error_appearance"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_currency_symbol"

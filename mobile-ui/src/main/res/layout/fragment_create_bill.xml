@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_add_bill"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?themePrimary">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_layout_add_bill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="@dimen/elevation_0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_create_bill"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dime_toolbar_height"
+            app:elevation="@dimen/elevation_0dp"
+            app:navigationIcon="@drawable/ic_close_24dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/toolbar_title"
+                style="@style/TextAppearance.PayBillManager.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:text="@string/toolbar_title_add_bill" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.stepstone.stepper.StepperLayout
+        android:id="@+id/stepper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:background="?themePrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_layout_add_bill"
+        app:ms_activeStepColor="?attr/colorAccent"
+        app:ms_backButtonColor="#FFFFFF"
+        app:ms_bottomNavigationBackground="?themeAccent"
+        app:ms_completeButtonColor="#FFFFFF"
+        app:ms_inactiveStepColor="#44000000"
+        app:ms_nextButtonColor="#FFFFFF"
+        app:ms_stepperType="tabs"
+        app:ms_completeButtonText="Finish"
+        app:ms_tabStepDividerWidth="138dp"
+        app:ms_showErrorStateEnabled="true"
+        tools:theme="@style/AppTheme" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
