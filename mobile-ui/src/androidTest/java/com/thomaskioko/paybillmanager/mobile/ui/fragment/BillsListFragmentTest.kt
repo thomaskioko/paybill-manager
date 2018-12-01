@@ -1,15 +1,10 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.MutableLiveData
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.BoundedMatcher
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.thomaskioko.paybillmanager.mobile.R
@@ -17,15 +12,14 @@ import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
+import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
+import com.thomaskioko.paybillmanager.mobile.util.ToolbarViewMarcher.matchToolbarTitle
 import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
-import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.Description
-import org.hamcrest.Matcher
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.core.IsNot
 import org.junit.Before
 import org.junit.Rule
@@ -42,20 +36,25 @@ class BillsListFragmentTest {
     private lateinit var viewModel: GetBillsViewModel
     private lateinit var navigationController: NavigationController
 
-    private val liveData = MutableLiveData<Resource<List<BillView>>>()
+    private val billsLiveData = MutableLiveData<Resource<List<BillView>>>()
+    private val billLiveData = MutableLiveData<Resource<BillView>>()
 
     @Before
     fun init() {
         val fragment = BillsListFragment()
 
         viewModel = Mockito.mock(GetBillsViewModel::class.java)
-        Mockito.`when`(viewModel.getBills()).thenReturn(liveData)
+        Mockito.`when`(viewModel.getBills()).thenReturn(billsLiveData)
+        Mockito.`when`(viewModel.billsLiveData).thenReturn(billsLiveData)
+        Mockito.`when`(viewModel.getBill()).thenReturn(billLiveData)
+        Mockito.`when`(viewModel.billLiveData).thenReturn(billLiveData)
 
         navigationController = Mockito.mock(NavigationController::class.java)
 
         fragment.viewModelFactory = ViewModelUtil.createFor(viewModel)
         activityRule.activity.setFragment(fragment)
 
+        activityRule.runOnUiThread { }
         EspressoAnimationTestUtil.disableProgressBarAnimations(activityRule)
     }
 
@@ -63,7 +62,7 @@ class BillsListFragmentTest {
     fun onStart_toolBarTitleIsCorrect() {
 
         onView(withId(R.id.toolbar_bill_list)).check(matches(isDisplayed()))
-        matchToolbarTitle("PayBill Manager")
+        matchToolbarTitle(activityRule.activity.resources.getString(R.string.app_name))
 
     }
 
@@ -71,55 +70,54 @@ class BillsListFragmentTest {
     @Test
     fun onDataLoading_progressBarIsDisplayed() {
 
-        liveData.postValue(Resource(ResourceState.LOADING, null, null))
+        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
 
         //Verify that the progressbar is displayed
-        Espresso.onView(withId(R.id.progress_bar)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.progress_bar)).check(matches(isDisplayed()))
     }
 
     @Test
     fun onDataLoaded_progressBarNotDisplayed() {
 
-        liveData.postValue(Resource(ResourceState.SUCCESS, null, null))
+        billsLiveData.postValue(Resource(ResourceState.SUCCESS, null, null))
 
         //Verify that the progressbar is not displayed
-        Espresso.onView(withId(R.id.progress_bar)).check(ViewAssertions.matches(IsNot.not(ViewMatchers.isDisplayed())))
+        onView(withId(R.id.progress_bar)).check(matches(IsNot.not(isDisplayed())))
     }
 
     @Test
-    fun onDataLoaded_favoriteProjectsDisplay() {
+    fun onDataLoaded_BillLisIsDisplayed() {
 
         val billsList = listOf(BillsDataFactory.makeBillView(),
                 BillsDataFactory.makeBillView(), BillsDataFactory.makeBillView())
 
-        liveData.postValue(Resource(ResourceState.SUCCESS, billsList, null))
+        billsLiveData.postValue(Resource(ResourceState.SUCCESS, billsList, null))
 
+        //Loop through the list and populate the list with data
         billsList.forEachIndexed { index, bill ->
-            onView(withId(R.id.recycler_view_add_bills))
+            onView(withId(R.id.recycler_view_bill_list))
                     .perform(RecyclerViewActions.scrollToPosition<BillsAdapter.ViewHolder>(index))
 
-            onView(withId(R.id.recycler_view_add_bills))
+            //verify that the
+            onView(withId(R.id.recycler_view_bill_list))
                     .check(matches(hasDescendant(withText(bill.billName))))
         }
     }
 
+    @Test
+    fun onBillIsClickable() {
 
-    private fun matchToolbarTitle(title: CharSequence): ViewInteraction {
-        return onView(isAssignableFrom(Toolbar::class.java))
-                .check(matches(withToolbarTitle(`is`(title))))
-    }
+        val billsList = listOf(BillsDataFactory.makeBillView(),
+                BillsDataFactory.makeBillView(), BillsDataFactory.makeBillView())
 
-    private fun withToolbarTitle(textMatcher: Matcher<CharSequence>): Matcher<Any> {
-        return object : BoundedMatcher<Any, Toolbar>(Toolbar::class.java) {
-            public override fun matchesSafely(toolbar: Toolbar): Boolean {
-                return textMatcher.matches(toolbar.title)
-            }
+        billsLiveData.postValue(Resource(ResourceState.SUCCESS, billsList, null))
 
-            override fun describeTo(description: Description) {
-                description.appendText("with toolbar title: ")
-                textMatcher.describeTo(description)
-            }
-        }
+        //Verify the progressbar is not visible
+        onView(withId(R.id.progress_bar)).check(matches(not(isDisplayed())))
+
+        //Check if a view item is clickable
+        onView(withId(R.id.recycler_view_bill_list)).perform(click())
+
     }
 
 }
