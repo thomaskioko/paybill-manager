@@ -19,8 +19,8 @@ open class GetBillsViewModel @Inject internal constructor(
         private val mapper: BillViewMapper
 ) : ViewModel() {
 
-    private val billsLiveData: MutableLiveData<Resource<List<BillView>>> = MutableLiveData()
-    private val billLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
+    open val billsLiveData: MutableLiveData<Resource<List<BillView>>> = MutableLiveData()
+    open val billLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
 
 
     override fun onCleared() {
@@ -38,6 +38,7 @@ open class GetBillsViewModel @Inject internal constructor(
     }
 
     fun fetchBills() {
+        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getBills?.execute(BillsSubscriber())
     }
 
