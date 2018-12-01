@@ -32,9 +32,9 @@ object BillsDataFactory {
     }
 
     fun makeBillView(): BillView {
-        return BillView(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), "2400", randomInt(),
-                randomLong())
+        return BillView("12", "Zuku", "320320",
+                "Zuku123443", "4900", 2,
+                156223772)
     }
 
     fun makeBillViewList(count: Int): List<BillView> {
