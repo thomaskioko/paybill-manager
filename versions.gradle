@@ -147,6 +147,10 @@ mockito.kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_k
 mockito.android = "org.mockito:mockito-android:$versions.mockito"
 deps.mockito = mockito
 
+def material_stepper = [:]
+material_stepper.esporesso = "com.stepstone.stepper:espresso-material-stepper:$versions.stepper"
+material_stepper.core = "com.stepstone.stepper:material-stepper:$versions.stepper"
+deps.material_stepper = material_stepper
 
 def navigation = [:]
 navigation.fragment = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
@@ -223,6 +227,7 @@ def addRepos(RepositoryHandler handler) {
     handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     handler.maven { url "https://maven.google.com" }
     handler.maven { url 'https://maven.fabric.io/public' }
+    handler.maven { url "https://dl.bintray.com/fabian/maven" }
 }
 
 ext.addRepos = this.&addRepos

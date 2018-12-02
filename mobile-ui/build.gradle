@@ -131,6 +131,12 @@ dependencies {
     }
 
     /**
+     * Material Stepper
+     */
+    implementation deps.material_stepper.core
+
+
+    /**
      * Multidex
      */
     implementation deps.multidex
@@ -160,7 +166,6 @@ dependencies {
     implementation deps.threetenabp
 
     implementation deps.animated_pie
-    implementation deps.stepper
     implementation deps.ticketView
 
     compileOnly deps.glassfish
@@ -204,6 +209,10 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     }
+
+    androidTestImplementation(deps.material_stepper.esporesso, {
+        exclude group: 'com.android.support.test.espresso'
+    })
 
 
 
