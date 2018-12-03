@@ -19,7 +19,7 @@ open class CreateBillsViewModel @Inject internal constructor(
 
     val categoryIdLiveData = MutableLiveData<String>()
     val amountLiveData = MutableLiveData<String>()
-    private val liveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
+    open val billViewLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
 
 
     override fun onCleared() {
@@ -29,19 +29,19 @@ open class CreateBillsViewModel @Inject internal constructor(
 
 
     open fun getBill(): LiveData<Resource<BillView>> {
-        return liveData
+        return billViewLiveData
     }
 
 
     fun createBill(bill: Bill) {
-        liveData.postValue(Resource(ResourceState.LOADING, null, null))
+        billViewLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         return createBill.execute(CreateBillSubscriber(),
                 CreateBill.Params.forBill(bill)
         )
     }
 
     fun updateBill(bill: Bill) {
-        liveData.postValue(Resource(ResourceState.LOADING, null, null))
+        billViewLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         return updateBill.execute(UpdateBillSubscriber(),
                 UpdateBill.Params.forBill(bill)
         )
@@ -68,22 +68,22 @@ open class CreateBillsViewModel @Inject internal constructor(
 
     inner class CreateBillSubscriber : DisposableCompletableObserver() {
         override fun onComplete() {
-            liveData.postValue(Resource(ResourceState.SUCCESS, liveData.value?.data, null))
+            billViewLiveData.postValue(Resource(ResourceState.SUCCESS, billViewLiveData.value?.data, null))
         }
 
         override fun onError(e: Throwable) {
-            liveData.postValue(Resource(ResourceState.ERROR, liveData.value?.data, e.localizedMessage))
+            billViewLiveData.postValue(Resource(ResourceState.ERROR, billViewLiveData.value?.data, e.localizedMessage))
         }
     }
 
 
     inner class UpdateBillSubscriber : DisposableCompletableObserver() {
         override fun onComplete() {
-            liveData.postValue(Resource(ResourceState.SUCCESS, liveData.value?.data, null))
+            billViewLiveData.postValue(Resource(ResourceState.SUCCESS, billViewLiveData.value?.data, null))
         }
 
         override fun onError(e: Throwable) {
-            liveData.postValue(Resource(ResourceState.ERROR, liveData.value?.data, e.localizedMessage))
+            billViewLiveData.postValue(Resource(ResourceState.ERROR, billViewLiveData.value?.data, e.localizedMessage))
         }
     }
 }
