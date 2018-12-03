@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?themePrimary">
+    android:background="?themePrimary"
+    android:scrollbars="none"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_16"
-        android:layout_marginTop="60dp"
         android:layout_marginRight="@dimen/dp_16"
-        android:layout_marginBottom="60dp"
-        android:background="?themePrimary"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_marginTop="20dp"
+        android:paddingBottom="60dp"
+        android:background="?themePrimary">
 
 
         <com.vipulasri.ticketview.TicketView
             android:id="@+id/ticketView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="520dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:ticketBorderColor="@color/colorAccent"
             app:ticketBorderWidth="1dp"
             app:ticketCornerType="normal"
@@ -29,7 +36,7 @@
             app:ticketDividerType="dash"
             app:ticketElevation="8dp"
             app:ticketOrientation="horizontal"
-            app:ticketScallopPositionPercent="70"
+            app:ticketScallopPositionPercent="75"
             app:ticketScallopRadius="10dp"
             app:ticketShowBorder="false"
             app:ticketShowDivider="true" />
@@ -40,7 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.70" />
+            app:layout_constraintGuide_percent="0.75"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <View
@@ -138,7 +146,6 @@
             app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_bill_account_title" />
 
 
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_bill_detail_category_title"
             style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
@@ -172,9 +179,8 @@
             style="@style/TextAppearance.PayBillManager.Headline.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="50dp"
             android:text="Kes"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_bill_detail_amount"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ticketView"
@@ -199,7 +205,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</ScrollView>
