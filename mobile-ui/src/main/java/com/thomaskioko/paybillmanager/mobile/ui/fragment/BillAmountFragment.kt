@@ -27,8 +27,7 @@ import com.thomaskioko.paybillmanager.mobile.ui.util.NumberFormatter
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
-import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_bill_amount.*
 import kotlinx.android.synthetic.main.layout_keypad.*
 import timber.log.Timber
@@ -44,9 +43,7 @@ class BillAmountFragment : Fragment(), Injectable,
     @Inject
     lateinit var mapper: CategoryViewMapper
     @Inject
-    lateinit var getCategoriesViewModel: GetCategoriesViewModel
-    @Inject
-    lateinit var createBillsViewModel: CreateBillsViewModel
+    lateinit var sharedViewModel: SharedViewModel
     @Inject
     lateinit var navigationController: NavigationController
 
@@ -64,11 +61,8 @@ class BillAmountFragment : Fragment(), Injectable,
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        getCategoriesViewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(GetCategoriesViewModel::class.java)
-
-        createBillsViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
-                .get(CreateBillsViewModel::class.java)
+        sharedViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
+                .get(SharedViewModel::class.java)
 
         btn_delete.isEnabled = false
 
@@ -121,12 +115,12 @@ class BillAmountFragment : Fragment(), Injectable,
 
     override fun onStart() {
         super.onStart()
-        getCategoriesViewModel.getCategories().observe(this,
+        sharedViewModel.getCategories().observe(this,
                 Observer<Resource<List<CategoryView>>> { it ->
                     it?.let { handleCategoriesData(it) }
                 })
 
-        getCategoriesViewModel.fetchCategories()
+        sharedViewModel.fetchCategories()
     }
 
     override fun onSelected() {
@@ -136,8 +130,8 @@ class BillAmountFragment : Fragment(), Injectable,
     override fun verifyStep(): VerificationError? {
 
         return if (!categoryId.isEmpty()) {
-            createBillsViewModel.setAmount(stringBuilder.toString())
-            createBillsViewModel.setCategoryId(categoryId)
+            sharedViewModel.setAmount(stringBuilder.toString())
+            sharedViewModel.setCategoryId(categoryId)
             null
         } else {
             tv_error.show()

@@ -1,10 +1,12 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,14 +25,12 @@ import com.thomaskioko.paybillmanager.mobile.util.DateUtils
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_bottom_dialog.*
 import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
-import android.content.Context
-import android.view.inputmethod.InputMethodManager
 
 
 class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewItemClickListener,
@@ -40,7 +40,7 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
-    lateinit var createBillsViewModel: CreateBillsViewModel
+    lateinit var sharedViewModel: SharedViewModel
     @Inject
     lateinit var navigationController: NavigationController
     private lateinit var amount: String
@@ -56,18 +56,18 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        createBillsViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
-                .get(CreateBillsViewModel::class.java)
+        sharedViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
+                .get(SharedViewModel::class.java)
 
-        createBillsViewModel.getAmount().observe(this, Observer {
+        sharedViewModel.getAmount().observe(this, Observer {
             amount = it
         })
 
-        createBillsViewModel.getCategoryId().observe(this, Observer {
+        sharedViewModel.getCategoryId().observe(this, Observer {
             categoryId = it
         })
 
-        createBillsViewModel.getBill().observe(this, Observer<Resource<BillView>> { it ->
+        sharedViewModel.getBill().observe(this, Observer<Resource<BillView>> { it ->
             it?.let { observeBillView(it) }
         })
 
@@ -112,7 +112,7 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
                         OffsetDateTime.now().toEpochSecond()
                 )
 
-//                createBillsViewModel.createBill(bill)
+//                sharedViewModel.createBill(bill)
                 closeKeyboard()
                 null
             }
