@@ -37,7 +37,7 @@ open class SharedViewModel @Inject internal constructor(
     }
 
 
-    open fun getBill(): LiveData<Resource<BillView>> {
+    open fun getBillLiveData(): LiveData<Resource<BillView>> {
         return billViewLiveData
     }
 
@@ -58,7 +58,7 @@ open class SharedViewModel @Inject internal constructor(
 
 
     fun setAmount(amount: String) {
-        amountLiveData.value = amount
+        amountLiveData.postValue(amount)
     }
 
 
