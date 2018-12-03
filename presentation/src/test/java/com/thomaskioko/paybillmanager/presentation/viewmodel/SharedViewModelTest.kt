@@ -83,7 +83,7 @@ class SharedViewModelTest {
 
         //Verify that resource type returned is of type success
         TestCase.assertEquals(ResourceState.SUCCESS,
-                viewModel.getBill().value?.status)
+                viewModel.getBillLiveData().value?.status)
     }
 
     @Test
@@ -104,7 +104,7 @@ class SharedViewModelTest {
 
         //Verify that resource type returned is of type success
         TestCase.assertEquals(ResourceState.SUCCESS,
-                viewModel.getBill().value?.status)
+                viewModel.getBillLiveData().value?.status)
     }
 
     @Test
@@ -123,7 +123,7 @@ class SharedViewModelTest {
         disposableCaptor.firstValue.onError(RuntimeException())
 
         //Verify that resource type returned is of type error
-        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
+        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBillLiveData().value?.status)
     }
 
     @Test
@@ -141,7 +141,7 @@ class SharedViewModelTest {
         disposableCaptor.firstValue.onError(RuntimeException())
 
         //Verify that resource type returned is of type error
-        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
+        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBillLiveData().value?.status)
     }
 
     @Test
@@ -161,7 +161,7 @@ class SharedViewModelTest {
         disposableCaptor.firstValue.onError(RuntimeException(errorMessage))
 
         //Verify that the error message returned is what is expected
-        TestCase.assertEquals(errorMessage, viewModel.getBill().value?.message)
+        TestCase.assertEquals(errorMessage, viewModel.getBillLiveData().value?.message)
     }
 
     @Test
@@ -181,7 +181,7 @@ class SharedViewModelTest {
         disposableCaptor.firstValue.onError(RuntimeException(errorMessage))
 
         //Verify that the error message returned is what is expected
-        TestCase.assertEquals(errorMessage, viewModel.getBill().value?.message)
+        TestCase.assertEquals(errorMessage, viewModel.getBillLiveData().value?.message)
     }
 
 
