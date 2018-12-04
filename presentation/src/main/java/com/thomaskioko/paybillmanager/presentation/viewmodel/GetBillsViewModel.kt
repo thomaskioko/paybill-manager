@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.presentation.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,14 +14,17 @@ import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
-open class GetBillsViewModel @Inject internal constructor(
+@VisibleForTesting
+class GetBillsViewModel @Inject internal constructor(
         private val getBillById: GetBillById?,
         private val getBills: GetBills?,
         private val mapper: BillViewMapper
 ) : ViewModel() {
 
-    open val billsLiveData: MutableLiveData<Resource<List<BillView>>> = MutableLiveData()
-    open val billLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
+    @VisibleForTesting
+    val billsLiveData: MutableLiveData<Resource<List<BillView>>> = MutableLiveData()
+    @VisibleForTesting
+    val billLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
 
 
     override fun onCleared() {
@@ -29,7 +33,8 @@ open class GetBillsViewModel @Inject internal constructor(
         super.onCleared()
     }
 
-    open fun getBills(): LiveData<Resource<List<BillView>>> {
+    @VisibleForTesting
+    fun getBills(): LiveData<Resource<List<BillView>>> {
         return billsLiveData
     }
 

@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.presentation.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,27 +18,32 @@ import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
+@VisibleForTesting
 open class SharedViewModel @Inject internal constructor(
         private val createBill: CreateBill,
         private val updateBill: UpdateBill,
-        private val getCategories: GetCategories?,
+        private val getCategories: GetCategories,
         private val mapper: CategoryViewMapper
 ) : ViewModel() {
 
     val categoryIdLiveData = MutableLiveData<String>()
     val amountLiveData = MutableLiveData<String>()
-    open val billViewLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
-    open val categoriesLiveData: MutableLiveData<Resource<List<CategoryView>>> = MutableLiveData()
+
+    @VisibleForTesting
+    val billViewLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
+    @VisibleForTesting
+    val categoriesLiveData: MutableLiveData<Resource<List<CategoryView>>> = MutableLiveData()
 
 
     override fun onCleared() {
         createBill.dispose()
-        getCategories?.dispose()
+        getCategories.dispose()
         super.onCleared()
     }
 
 
-    open fun getBillLiveData(): LiveData<Resource<BillView>> {
+    @VisibleForTesting
+    fun getBillLiveData(): LiveData<Resource<BillView>> {
         return billViewLiveData
     }
 
@@ -66,22 +72,25 @@ open class SharedViewModel @Inject internal constructor(
         categoryIdLiveData.value = categoryId
     }
 
-    open fun getAmount(): MutableLiveData<String> {
+    @VisibleForTesting
+    fun getAmount(): MutableLiveData<String> {
         return amountLiveData
     }
 
-    open fun getCategoryId(): MutableLiveData<String> {
+    @VisibleForTesting
+    fun getCategoryId(): MutableLiveData<String> {
         return categoryIdLiveData
     }
 
-    open fun getCategories(): LiveData<Resource<List<CategoryView>>> {
+    @VisibleForTesting
+    fun getCategories(): LiveData<Resource<List<CategoryView>>> {
         return categoriesLiveData
     }
 
 
     fun fetchCategories() {
         categoriesLiveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getCategories?.execute(CategoriesSubscriber())
+        getCategories.execute(CategoriesSubscriber())
     }
 
 

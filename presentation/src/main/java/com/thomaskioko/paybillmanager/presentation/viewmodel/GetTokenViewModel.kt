@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.presentation.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,8 @@ import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
-open class GetTokenViewModel @Inject internal constructor(
+@VisibleForTesting
+class GetTokenViewModel @Inject internal constructor(
         private val getSafaricomToken: GetSafaricomToken?,
         private val mapper: TokenViewMapper
 ) : ViewModel() {

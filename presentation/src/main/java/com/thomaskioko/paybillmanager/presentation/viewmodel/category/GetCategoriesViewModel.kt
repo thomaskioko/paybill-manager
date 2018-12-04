@@ -17,7 +17,7 @@ open class GetCategoriesViewModel @Inject internal constructor(
         private val mapper: CategoryViewMapper
 ) : ViewModel() {
 
-    private val billsLiveData: MutableLiveData<Resource<List<CategoryView>>> = MutableLiveData()
+    open val categoriesLiveData: MutableLiveData<Resource<List<CategoryView>>> = MutableLiveData()
 
 
     override fun onCleared() {
@@ -26,26 +26,26 @@ open class GetCategoriesViewModel @Inject internal constructor(
     }
 
     open fun getCategories(): LiveData<Resource<List<CategoryView>>> {
-        return billsLiveData
+        return categoriesLiveData
     }
 
 
     fun fetchCategories() {
-        billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
+        categoriesLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getBills?.execute(CategoriesSubscriber())
     }
 
 
     inner class CategoriesSubscriber : DisposableObserver<List<Category>>() {
         override fun onNext(t: List<Category>) {
-            billsLiveData.postValue(Resource(ResourceState.SUCCESS,
+            categoriesLiveData.postValue(Resource(ResourceState.SUCCESS,
                     t.map { mapper.mapToView(it) }, null))
         }
 
         override fun onComplete() {}
 
         override fun onError(e: Throwable) {
-            billsLiveData.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
+            categoriesLiveData.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
         }
     }
 

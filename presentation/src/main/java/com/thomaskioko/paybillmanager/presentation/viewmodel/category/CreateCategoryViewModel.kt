@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.presentation.viewmodel.category
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,11 +13,13 @@ import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.observers.DisposableCompletableObserver
 import javax.inject.Inject
 
-open class CreateCategoryViewModel @Inject internal constructor(
+@VisibleForTesting
+class CreateCategoryViewModel @Inject internal constructor(
         private val createCategory: CreateCategory,
         private val updateCategory: UpdateCategory
 ) : ViewModel() {
 
+    @VisibleForTesting
     private val liveData: MutableLiveData<Resource<CategoryView>> = MutableLiveData()
 
 
@@ -26,7 +29,8 @@ open class CreateCategoryViewModel @Inject internal constructor(
         super.onCleared()
     }
 
-    open fun getCategory(): LiveData<Resource<CategoryView>> {
+    @VisibleForTesting
+    fun getCategory(): LiveData<Resource<CategoryView>> {
         return liveData
     }
 
