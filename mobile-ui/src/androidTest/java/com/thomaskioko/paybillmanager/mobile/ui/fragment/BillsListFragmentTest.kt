@@ -51,7 +51,7 @@ class BillsListFragmentTest {
 
         navigationController = Mockito.mock(NavigationController::class.java)
 
-        fragment.viewModelFactory = ViewModelUtil.createFor(viewModel)
+        fragment.viewModelFactory = ViewModelUtil.createViewModelFactory(viewModel)
         activityRule.activity.setFragment(fragment)
 
         activityRule.runOnUiThread { }

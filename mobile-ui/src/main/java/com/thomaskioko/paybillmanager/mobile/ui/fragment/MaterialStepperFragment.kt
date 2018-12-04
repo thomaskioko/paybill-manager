@@ -3,9 +3,10 @@ package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.stepstone.stepper.StepperLayout
 import com.stepstone.stepper.VerificationError
 import com.thomaskioko.paybillmanager.mobile.R
@@ -18,15 +19,13 @@ import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import kotlinx.android.synthetic.main.fragment_create_bill.*
 import timber.log.Timber
 import javax.inject.Inject
-import android.widget.ImageButton
-import androidx.appcompat.app.AppCompatActivity
 
 
+class MaterialStepperFragment : Fragment(), Injectable, DismissableAnimation, StepperLayout.StepperListener {
 
 
-
-class CreateBillFragment : Fragment(), Injectable, DismissableAnimation, StepperLayout.StepperListener {
-
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var navigationController: NavigationController
@@ -34,10 +33,10 @@ class CreateBillFragment : Fragment(), Injectable, DismissableAnimation, Stepper
 
     companion object {
         const val ARG_REVEAL = "args_reveal"
-        fun newInstance(revealAnimationSettings: RevealAnimationSettings): CreateBillFragment {
+        fun newInstance(revealAnimationSettings: RevealAnimationSettings): MaterialStepperFragment {
             val bundle = Bundle()
             bundle.putParcelable(ARG_REVEAL, revealAnimationSettings)
-            val fragment = CreateBillFragment()
+            val fragment = MaterialStepperFragment()
             fragment.arguments = bundle
             return fragment
         }
