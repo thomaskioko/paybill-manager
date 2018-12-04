@@ -6,6 +6,7 @@ import com.thomaskioko.paybillmanager.mobile.injection.ViewModelFactory
 import com.thomaskioko.paybillmanager.mobile.injection.annotation.ViewModelKey
 import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoryViewModel
@@ -45,5 +46,10 @@ abstract class PresentationModule {
     @IntoMap
     @ViewModelKey(CreateBillsViewModel::class)
     abstract fun bindCreateBillsViewModel(viewModel: CreateBillsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SharedViewModel::class)
+    abstract fun bindSharedViewModel(viewModel: SharedViewModel): ViewModel
 }
 
