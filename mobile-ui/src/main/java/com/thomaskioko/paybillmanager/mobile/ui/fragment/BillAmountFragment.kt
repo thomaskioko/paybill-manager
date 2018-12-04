@@ -29,7 +29,6 @@ import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_bill_amount.*
-import kotlinx.android.synthetic.main.layout_keypad.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -63,6 +62,10 @@ class BillAmountFragment : Fragment(), Injectable,
 
         sharedViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
                 .get(SharedViewModel::class.java)
+
+        sharedViewModel.getAmount().observe(this, Observer {
+            tv_bill_amount.text = NumberFormatter.formatNumber(it)
+        })
 
         btn_delete.isEnabled = false
 

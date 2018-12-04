@@ -67,7 +67,7 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
             categoryId = it
         })
 
-        sharedViewModel.getBill().observe(this, Observer<Resource<BillView>> { it ->
+        sharedViewModel.getBillLiveData().observe(this, Observer<Resource<BillView>> { it ->
             it?.let { observeBillView(it) }
         })
 
