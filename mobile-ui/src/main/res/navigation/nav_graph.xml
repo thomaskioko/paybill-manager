@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/nav_add_bill_fragment"
-        android:name="com.thomaskioko.paybillmanager.mobile.ui.fragment.CreateBillFragment"
+        android:name="com.thomaskioko.paybillmanager.mobile.ui.fragment.MaterialStepperFragment"
         android:label="fragment_create_bill"
         tools:layout="@layout/fragment_create_bill" >
         <action

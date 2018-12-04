@@ -33,12 +33,12 @@ open class NavigationController @Inject constructor(private var mainActivity: Ma
                 .commit()
     }
 
-    fun navigateToCreateBillFragment(revealSettings: RevealAnimationSettings) {
-        val fragment = CreateBillFragment.newInstance(revealSettings)
+    fun navigateToMaterialStepperFragment(revealSettings: RevealAnimationSettings) {
+        val fragment = MaterialStepperFragment.newInstance(revealSettings)
         fragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(containerId, fragment)
-                .addToBackStack("CreateBillFragment")
+                .addToBackStack("MaterialStepperFragment")
                 .commit()
 
     }
