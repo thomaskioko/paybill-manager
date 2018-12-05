@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.thomaskioko.paybillmanager.mobile.extension.show
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.mapper.BillsViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
+import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillOnClickListener
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import com.thomaskioko.paybillmanager.presentation.model.BillView
@@ -31,7 +33,8 @@ import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
 import kotlinx.android.synthetic.main.fragment_bills_list.*
 import javax.inject.Inject
 
-class BillsListFragment : Fragment(), Injectable {
+@SuppressLint("VisibleForTests")
+class BillsListFragment : Fragment(), Injectable, BillOnClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -80,7 +83,7 @@ class BillsListFragment : Fragment(), Injectable {
                 .strokeWidth(35)// Stroke width for ring-chart
                 .splitAngle(1.toFloat())// Clearance angle
                 .focusAlphaType(AnimatedPieViewConfig.FOCUS_WITH_ALPHA_REV)// Alpha change mode for selected pie
-                .interpolator( DecelerateInterpolator())// Set animation interpolator
+                .interpolator(DecelerateInterpolator())// Set animation interpolator
                 .focusAlpha(150)// Alpha for selected pie (depend on focusAlphaType)
                 .focusAlphaType(AnimatedPieViewConfig.FOCUS_WITH_ALPHA)
                 .addData(SimplePieInfo(30.toDouble(), Color.parseColor("#FFC5FF8C"), "Shopping"))
@@ -98,6 +101,7 @@ class BillsListFragment : Fragment(), Injectable {
 
     }
 
+
     override fun onStart() {
         super.onStart()
         viewModel.getBills().observe(this,
@@ -114,6 +118,10 @@ class BillsListFragment : Fragment(), Injectable {
         recycler_view_bill_list.adapter = adapter
     }
 
+    override fun onBillClicked(billId: String) {
+        navigationController.navigateToBillDetailFragment()
+    }
+
     private fun observeBillsData(resource: Resource<List<BillView>>) {
         when (resource.status) {
             ResourceState.LOADING -> {
@@ -122,7 +130,7 @@ class BillsListFragment : Fragment(), Injectable {
             ResourceState.SUCCESS -> {
                 progress_bar.hide()
                 resource.data?.let {
-                    adapter.billsList = it.map { mapper.mapToView(it) }
+                    adapter.billsList = it.map { it -> mapper.mapToView(it) }
                     adapter.notifyDataSetChanged()
                 }
             }

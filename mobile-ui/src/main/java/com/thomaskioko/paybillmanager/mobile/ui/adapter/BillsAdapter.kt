@@ -15,6 +15,7 @@ import javax.inject.Inject
 class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.ViewHolder>() {
 
     var billsList: List<Bill> = arrayListOf()
+    var billOnClickListener: BillOnClickListener? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +37,10 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
         holder.tvBillNumber.text = holder.context.getString(R.string.placeholder_bill_number, bill.paybillNumber)
         holder.tvBillAmount.text = holder.context.getString(R.string.placeholder_bill_amount, formatNumber(bill.amount))
         holder.tvBillAccountNumber.text = holder.context.getString(R.string.placeholder_bill_account, bill.accountNumber)
+
+        holder.itemView.setOnClickListener{
+            billOnClickListener?.onBillClicked(bill.billId)
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
