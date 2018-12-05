@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,7 +33,7 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
-
+@SuppressLint("VisibleForTests")
 class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewItemClickListener,
         Step {
 
@@ -86,6 +87,7 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
 
     }
 
+    @SuppressLint("VisibleForTests")
     override fun verifyStep(): VerificationError? {
 
         return when {
@@ -102,18 +104,10 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
                 VerificationError(resources.getString(R.string.error_no_account_number))
             }
             else -> {
-                val bill = Bill(
-                        UUID.randomUUID().toString(),
-                        et_bill_name.text.toString(),
-                        et_bill_number.text.toString(),
-                        et_account_number.text.toString(),
-                        amount,
-                        categoryId.toInt(),
-                        OffsetDateTime.now().toEpochSecond()
-                )
-
-//                sharedViewModel.createBill(bill)
                 closeKeyboard()
+                sharedViewModel.setBillName(et_bill_name.text.toString())
+                sharedViewModel.setBillAccountNumber(et_bill_number.text.toString())
+                sharedViewModel.setPayBillNumber(et_account_number.text.toString())
                 null
             }
         }
