@@ -38,10 +38,12 @@ class GetBillsViewModel @Inject internal constructor(
         return billsLiveData
     }
 
+    @VisibleForTesting
     fun getBill(): LiveData<Resource<BillView>> {
         return billLiveData
     }
 
+    @VisibleForTesting
     fun fetchBills() {
         billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getBills?.execute(BillsSubscriber())
