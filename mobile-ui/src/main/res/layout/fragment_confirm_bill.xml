@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?themePrimary"
@@ -15,10 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_16"
-        android:layout_marginRight="@dimen/dp_16"
         android:layout_marginTop="20dp"
-        android:paddingBottom="60dp"
-        android:background="?themePrimary">
+        android:layout_marginRight="@dimen/dp_16"
+        android:background="?themePrimary"
+        android:paddingBottom="60dp">
 
 
         <com.vipulasri.ticketview.TicketView
@@ -69,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Confirm Bill Details"
+            android:text="@string/text_confirm_bill_details"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4" />
@@ -79,7 +80,7 @@
             android:id="@+id/imageView"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/dp_16"
             app:layout_constraintEnd_toEndOf="@+id/tv_bill_detail_title"
             app:layout_constraintStart_toStartOf="@+id/tv_bill_detail_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_bill_detail_title"
@@ -91,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Bill Name:"
+            android:text="@string/text_bill_name"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/view4" />
 
@@ -100,18 +101,18 @@
             style="@style/TextAppearance.PayBillManager.22sp.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zuku"
             app:layout_constraintBottom_toBottomOf="@+id/tv_detail_bill_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/tv_detail_bill_text" />
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_bill_text"
+            tools:text="@string/text_paybill_name" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_bill_detail_bill_number_title"
             style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="PayBill:"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/text_paybill"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_bill_name" />
 
@@ -120,18 +121,18 @@
             style="@style/TextAppearance.PayBillManager.22sp.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="320320"
             app:layout_constraintBottom_toBottomOf="@+id/tv_bill_detail_bill_number_title"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_bill_number_title" />
+            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_bill_number_title"
+            tools:text="@string/text_paybill_account_number" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_bill_detail_bill_account_title"
             style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Account:"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/text_account"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/tv_bill_detail_bill_number_title" />
 
@@ -140,10 +141,10 @@
             style="@style/TextAppearance.PayBillManager.22sp.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ZUKU245123"
             app:layout_constraintBottom_toBottomOf="@+id/tv_bill_detail_bill_account_title"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_bill_account_title" />
+            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_bill_account_title"
+            tools:text="ZUKU245123" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -151,8 +152,8 @@
             style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Category:"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/text_category"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/tv_bill_detail_bill_account_title" />
 
@@ -161,10 +162,10 @@
             style="@style/TextAppearance.PayBillManager.22sp.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Internet"
             app:layout_constraintBottom_toBottomOf="@+id/tv_bill_detail_category_title"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_category_title" />
+            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_category_title"
+            tools:text="@string/text_category_name" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -180,7 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="Kes"
+            android:text="@string/text_view_currency_code"
             app:layout_constraintEnd_toStartOf="@+id/tv_bill_detail_amount"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ticketView"
@@ -191,19 +192,19 @@
             style="@style/TextAppearance.PayBillManager.45sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="4,300"
+            android:layout_marginStart="@dimen/dp_16"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_bill_detail_currency"
             app:layout_constraintEnd_toStartOf="@+id/ticketView"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_bill_detail_currency" />
+            app:layout_constraintStart_toEndOf="@+id/tv_bill_detail_currency"
+            tools:text="@string/text_amount" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
+            app:layout_constraintGuide_end="@dimen/dp_16" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
