@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.ui.util
+package com.thomaskioko.paybillmanager.mobile.util
 
 import java.text.NumberFormat
 import java.util.*

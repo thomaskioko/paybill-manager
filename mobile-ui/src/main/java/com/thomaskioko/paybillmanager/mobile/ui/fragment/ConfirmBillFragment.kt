@@ -16,6 +16,7 @@ import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
+import com.thomaskioko.paybillmanager.mobile.util.NumberFormatter.formatNumber
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
@@ -57,6 +58,7 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
 
         sharedViewModel.getAmount().observe(this, Observer {
             amount = it
+            tv_bill_detail_amount.text = formatNumber(it)
         })
 
         sharedViewModel.getCategoryId().observe(this, Observer {

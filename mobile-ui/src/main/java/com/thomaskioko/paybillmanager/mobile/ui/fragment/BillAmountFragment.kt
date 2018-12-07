@@ -23,7 +23,7 @@ import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.CategoriesAdapter
-import com.thomaskioko.paybillmanager.mobile.ui.util.NumberFormatter
+import com.thomaskioko.paybillmanager.mobile.util.NumberFormatter
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.inflate
-import com.thomaskioko.paybillmanager.mobile.ui.util.NumberFormatter.formatNumber
+import com.thomaskioko.paybillmanager.mobile.util.NumberFormatter.formatNumber
 import kotlinx.android.synthetic.main.item_bill.view.*
 import javax.inject.Inject
 
