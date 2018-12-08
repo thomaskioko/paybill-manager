@@ -34,8 +34,11 @@ import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCheckedChangeListener {
 
-    val INDIGO = "indigo"
-    val PINK = "pink"
+    companion object {
+        const val INDIGO = "indigo"
+        const val PINK = "pink"
+    }
+
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -143,84 +146,85 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            android.R.id.home -> if (drawer != null) {
-                if (drawer!!.isDrawerOpen) {
+            android.R.id.home -> {
+                if (drawer != null && drawer!!.isDrawerOpen) {
                     drawer!!.closeDrawer()
                 } else {
                     drawer!!.openDrawer()
                 }
+
+        }
+    }
+
+    return super.onOptionsItemSelected(item)
+}
+
+override fun onBackPressed() {
+    //handle the back press :D close the drawer first and if the drawer is closed close the activity
+    closeDrawer()
+
+    if (supportFragmentManager.backStackEntryCount == 0) {
+        navigationController.navigateToBillsListFragment()
+    }
+}
+
+private fun closeDrawer() {
+    if (drawer != null && drawer!!.isDrawerOpen) {
+        drawer!!.closeDrawer()
+    } else {
+        super.onBackPressed()
+    }
+}
+
+override fun supportFragmentInjector() = dispatchingAndroidInjector
+
+
+private fun categoriesList(): List<Category> {
+    val categories: MutableList<Category> = mutableListOf()
+
+    categories.add(Category("1", "Baby", R.drawable.ic_baby_buggy_24dp))
+    categories.add(Category("2", "Education", R.drawable.ic_education_24dp))
+    categories.add(Category("3", "Fitness", R.drawable.ic_fitness_center_24dp))
+    categories.add(Category("4", "Food & Drinks", R.drawable.ic_local_dining_24dp))
+    categories.add(Category("5", "Fuel", R.drawable.ic_fuel_24dp))
+    categories.add(Category("6", "Health", R.drawable.ic_health_24dp))
+    categories.add(Category("7", "House", R.drawable.ic_house_24dp))
+    categories.add(Category("8", "Internet", R.drawable.ic_wifi_24dp))
+    categories.add(Category("9", "Pets", R.drawable.ic_pets_24dp))
+    categories.add(Category("10", "Shopping", R.drawable.ic_shopping_cart_24dp))
+    categories.add(Category("11", "Transportation", R.drawable.ic_transport_24dp))
+    categories.add(Category("12", "Travelling", R.drawable.ic_travel_24dp))
+
+    return categories
+}
+
+override fun onCheckedChanged(drawerItem: IDrawerItem<*, *>?, buttonView: CompoundButton?, isChecked: Boolean) {
+
+    when (drawerItem!!.identifier.toInt()) {
+        4 -> {
+            if (isChecked) {
+                saveTheme(PINK)
+            } else {
+                saveTheme(INDIGO)
             }
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onBackPressed() {
-        //handle the back press :D close the drawer first and if the drawer is closed close the activity
-        closeDrawer()
-
-        if (supportFragmentManager.backStackEntryCount == 0) {
-            navigationController.navigateToBillsListFragment()
+            closeDrawer()
         }
     }
+}
 
-    private fun closeDrawer() {
-        if (drawer != null && drawer!!.isDrawerOpen) {
-            drawer!!.closeDrawer()
-        } else {
-            super.onBackPressed()
-        }
+private fun saveTheme(value: String) {
+    val editor = getPreferences(Activity.MODE_PRIVATE).edit()
+    editor.putString("theme", value)
+    editor.apply()
+    recreate()
+}
+
+private fun getSavedTheme(): Int {
+    val theme = getPreferences(Activity.MODE_PRIVATE).getString("theme", INDIGO)
+    return when (theme) {
+        INDIGO -> R.style.AppTheme_NoActionBar_Light
+        PINK -> R.style.AppTheme_NoActionBar_Dark
+        else -> R.style.AppTheme_NoActionBar_Light
     }
-
-    override fun supportFragmentInjector() = dispatchingAndroidInjector
-
-
-    private fun categoriesList(): List<Category> {
-        val categories: MutableList<Category> = mutableListOf()
-
-        categories.add(Category("1", "Baby", R.drawable.ic_baby_buggy_24dp))
-        categories.add(Category("2", "Education", R.drawable.ic_education_24dp))
-        categories.add(Category("3", "Fitness", R.drawable.ic_fitness_center_24dp))
-        categories.add(Category("4", "Food & Drinks", R.drawable.ic_local_dining_24dp))
-        categories.add(Category("5", "Fuel", R.drawable.ic_fuel_24dp))
-        categories.add(Category("6", "Health", R.drawable.ic_health_24dp))
-        categories.add(Category("7", "House", R.drawable.ic_house_24dp))
-        categories.add(Category("8", "Internet", R.drawable.ic_wifi_24dp))
-        categories.add(Category("9", "Pets", R.drawable.ic_pets_24dp))
-        categories.add(Category("10", "Shopping", R.drawable.ic_shopping_cart_24dp))
-        categories.add(Category("11", "Transportation", R.drawable.ic_transport_24dp))
-        categories.add(Category("12", "Travelling", R.drawable.ic_travel_24dp))
-
-        return categories
-    }
-
-    override fun onCheckedChanged(drawerItem: IDrawerItem<*, *>?, buttonView: CompoundButton?, isChecked: Boolean) {
-
-        when (drawerItem!!.identifier.toInt()) {
-            4 -> {
-                if (isChecked) {
-                    saveTheme(PINK)
-                } else {
-                    saveTheme(INDIGO)
-                }
-                closeDrawer()
-            }
-        }
-    }
-
-    private fun saveTheme(value: String) {
-        val editor = getPreferences(Activity.MODE_PRIVATE).edit()
-        editor.putString("theme", value)
-        editor.apply()
-        recreate()
-    }
-
-    private fun getSavedTheme(): Int {
-        val theme = getPreferences(Activity.MODE_PRIVATE).getString("theme", INDIGO)
-        return when (theme) {
-            INDIGO -> R.style.AppTheme_NoActionBar_Light
-            PINK -> R.style.AppTheme_NoActionBar_Dark
-            else -> R.style.AppTheme_NoActionBar_Light
-        }
-    }
+}
 }

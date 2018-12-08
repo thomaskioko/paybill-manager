@@ -34,9 +34,12 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
         val bill = billsList[position]
 
         holder.tvBillName.text = bill.billName
-        holder.tvBillNumber.text = holder.context.getString(R.string.placeholder_bill_number, bill.paybillNumber)
-        holder.tvBillAmount.text = holder.context.getString(R.string.placeholder_bill_amount, formatNumber(bill.amount))
-        holder.tvBillAccountNumber.text = holder.context.getString(R.string.placeholder_bill_account, bill.accountNumber)
+        holder.tvBillNumber.text = holder.context.getString(
+                R.string.placeholder_bill_number, bill.paybillNumber)
+        holder.tvBillAmount.text = holder.context.getString(
+                R.string.placeholder_bill_amount, formatNumber(bill.amount))
+        holder.tvBillAccountNumber.text = holder.context.getString(
+                R.string.placeholder_bill_account, bill.accountNumber)
 
         holder.itemView.setOnClickListener{
             billOnClickListener?.onBillClicked(bill.billId)

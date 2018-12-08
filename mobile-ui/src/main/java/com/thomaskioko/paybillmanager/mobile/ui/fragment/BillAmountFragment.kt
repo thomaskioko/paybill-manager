@@ -34,7 +34,7 @@ import javax.inject.Inject
 
 
 class BillAmountFragment : Fragment(), Injectable,
-        CategoriesAdapter.OnRecyclerViewItemClickListener, View.OnClickListener, Step {
+        CategoriesAdapter.OnRecyclerViewItemClickListener, Step {
 
 
     @Inject
@@ -72,16 +72,36 @@ class BillAmountFragment : Fragment(), Injectable,
 
         setUpRecyclerView()
 
-        tv_t9_key_0.setOnClickListener(this)
-        tv_t9_key_1.setOnClickListener(this)
-        tv_t9_key_2.setOnClickListener(this)
-        tv_t9_key_3.setOnClickListener(this)
-        tv_t9_key_4.setOnClickListener(this)
-        tv_t9_key_5.setOnClickListener(this)
-        tv_t9_key_6.setOnClickListener(this)
-        tv_t9_key_7.setOnClickListener(this)
-        tv_t9_key_8.setOnClickListener(this)
-        tv_t9_key_9.setOnClickListener(this)
+        tv_t9_key_0.setOnClickListener{
+            setAmountText("0")
+        }
+        tv_t9_key_1.setOnClickListener{
+            setAmountText("1")
+        }
+        tv_t9_key_2.setOnClickListener{
+            setAmountText("2")
+        }
+        tv_t9_key_3.setOnClickListener{
+            setAmountText("3")
+        }
+        tv_t9_key_4.setOnClickListener{
+            setAmountText("4")
+        }
+        tv_t9_key_5.setOnClickListener{
+            setAmountText("5")
+        }
+        tv_t9_key_6.setOnClickListener{
+            setAmountText("6")
+        }
+        tv_t9_key_7.setOnClickListener{
+            setAmountText("7")
+        }
+        tv_t9_key_8.setOnClickListener{
+            setAmountText("8")
+        }
+        tv_t9_key_9.setOnClickListener{
+            setAmountText("9")
+        }
 
         tv_bill_amount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -144,41 +164,6 @@ class BillAmountFragment : Fragment(), Injectable,
 
     override fun onError(error: VerificationError) {
         Timber.e("onError! -> ${error.errorMessage}")
-    }
-
-    override fun onClick(view: View?) {
-        when (view!!.id) {
-            R.id.tv_t9_key_0 -> {
-                setAmountText("0")
-            }
-            R.id.tv_t9_key_1 -> {
-                setAmountText("1")
-            }
-            R.id.tv_t9_key_2 -> {
-                setAmountText("2")
-            }
-            R.id.tv_t9_key_3 -> {
-                setAmountText("3")
-            }
-            R.id.tv_t9_key_4 -> {
-                setAmountText("4")
-            }
-            R.id.tv_t9_key_5 -> {
-                setAmountText("5")
-            }
-            R.id.tv_t9_key_6 -> {
-                setAmountText("6")
-            }
-            R.id.tv_t9_key_7 -> {
-                setAmountText("7")
-            }
-            R.id.tv_t9_key_8 -> {
-                setAmountText("8")
-            }
-            R.id.tv_t9_key_9 -> {
-                setAmountText("9")
-            }
-        }
     }
 
     private fun setAmountText(amount: String) {
