@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * Class responsible for navigating between views
  */
-open class NavigationController @Inject constructor(private var mainActivity: MainActivity) {
+open class NavigationController @Inject constructor(mainActivity: MainActivity) {
 
     private val containerId = R.id.container
     private val fragmentManager = mainActivity.supportFragmentManager
