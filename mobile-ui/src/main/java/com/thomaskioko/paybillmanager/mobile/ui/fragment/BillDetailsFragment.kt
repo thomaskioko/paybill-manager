@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -68,10 +69,6 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
             categoryId = it
         })
 
-        sharedViewModel.getBillLiveData().observe(this, Observer<Resource<BillView>> { it ->
-            it?.let { observeBillView(it) }
-        })
-
 
         val adapter = DaysAdapter(this)
 
@@ -93,14 +90,17 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
         return when {
             et_bill_name.text!!.isEmpty() -> {
                 input_layout_bill_name.showErrorMessage(resources.getString(R.string.error_no_name))
+                input_layout_bill_name.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
                 VerificationError(resources.getString(R.string.error_no_name))
             }
             et_bill_number.text!!.isEmpty() -> {
                 input_layout_bill_number.showErrorMessage(resources.getString(R.string.error_no_pay_bill_number))
+                input_layout_bill_number.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
                 VerificationError(resources.getString(R.string.error_no_pay_bill_number))
             }
             et_account_number.text!!.isEmpty() -> {
                 input_layout_account_number.showErrorMessage(resources.getString(R.string.error_no_account_number))
+                input_layout_account_number.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
                 VerificationError(resources.getString(R.string.error_no_account_number))
             }
             else -> {
@@ -123,20 +123,6 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
 
     override fun onError(error: VerificationError) {
         Timber.e("onError! -> ${error.errorMessage}")
-    }
-
-
-    private fun observeBillView(resource: Resource<BillView>) {
-        when (resource.status) {
-            ResourceState.ERROR -> {
-                Timber.e(resource.message)
-            }
-            ResourceState.LOADING -> {
-            }
-            ResourceState.SUCCESS -> {
-                navigationController.navigateToBillsListFragment()
-            }
-        }
     }
 
 

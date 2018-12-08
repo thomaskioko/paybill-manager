@@ -17,9 +17,6 @@ import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.util.NumberFormatter.formatNumber
-import com.thomaskioko.paybillmanager.presentation.model.BillView
-import com.thomaskioko.paybillmanager.presentation.state.Resource
-import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_confirm_bill.*
 import org.threeten.bp.OffsetDateTime
@@ -79,10 +76,6 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
             tv_bill_detail_account_number.text = it
         })
 
-        sharedViewModel.getBillLiveData().observe(this, Observer<Resource<BillView>> { it ->
-            it?.let { observeBillView(it) }
-        })
-
     }
 
     override fun onSelected() {
@@ -108,19 +101,6 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
 
     override fun onError(verificationError: VerificationError) {
         Timber.e("onError! -> ${verificationError.errorMessage}")
-    }
-
-    private fun observeBillView(resource: Resource<BillView>) {
-        when (resource.status) {
-            ResourceState.ERROR -> {
-                Timber.e(resource.message)
-            }
-            ResourceState.LOADING -> {
-            }
-            ResourceState.SUCCESS -> {
-                navigationController.navigateToBillsListFragment()
-            }
-        }
     }
 
 
