@@ -8,14 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
 import com.razerdp.widget.animatedpieview.data.SimplePieInfo
@@ -27,7 +25,7 @@ import com.thomaskioko.paybillmanager.mobile.mapper.BillsViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillOnClickListener
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
-import com.thomaskioko.paybillmanager.mobile.ui.util.LinearDividerItemDecoration
+import com.thomaskioko.paybillmanager.mobile.ui.util.RecyclerViewItemDecoration
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
@@ -116,7 +114,7 @@ class BillsListFragment : Fragment(), Injectable{
     }
 
     private fun setupBillsRecycler() {
-        val divider = LinearDividerItemDecoration(resources.getColor(R.color.white), 2)
+        val divider = RecyclerViewItemDecoration(resources.getColor(R.color.white), 2)
         adapter = BillsAdapter()
         adapter.billOnClickListener = listener
         recycler_view_bill_list.layoutManager = LinearLayoutManager(activity)
