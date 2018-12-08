@@ -68,7 +68,9 @@
         style="@style/TextAppearance.PayBillManager.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_bill_paybill"
         app:layout_constraintTop_toBottomOf="@+id/tv_bill_paybill"
         tools:text="@string/text_account_number" />
