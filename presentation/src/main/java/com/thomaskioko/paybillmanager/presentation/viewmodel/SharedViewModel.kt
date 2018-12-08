@@ -14,6 +14,7 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
+import com.thomaskioko.paybillmanager.presentation.util.SingleLiveData
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
@@ -26,8 +27,11 @@ open class SharedViewModel @Inject internal constructor(
         private val mapper: CategoryViewMapper
 ) : ViewModel() {
 
-    val categoryIdLiveData = MutableLiveData<String>()
-    val amountLiveData = MutableLiveData<String>()
+    val categoryIdLiveData = SingleLiveData<String>()
+    val amountLiveData = SingleLiveData<String>()
+    val billNameLiveData = SingleLiveData<String>()
+    val payBillNumberLiveData = SingleLiveData<String>()
+    val billAccountLiveData = SingleLiveData<String>()
 
     @VisibleForTesting
     val billViewLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
@@ -72,19 +76,41 @@ open class SharedViewModel @Inject internal constructor(
         categoryIdLiveData.value = categoryId
     }
 
+    fun setBillName(billName: String) {
+        billNameLiveData.postValue(billName)
+    }
+    fun setBillAccountNumber(accountNumber: String) {
+        billAccountLiveData.postValue(accountNumber)
+    }
+    fun setPayBillNumber(payBillNumber: String) {
+        payBillNumberLiveData.postValue(payBillNumber)
+    }
+
     @VisibleForTesting
-    fun getAmount(): MutableLiveData<String> {
+    fun getAmount(): SingleLiveData<String> {
         return amountLiveData
     }
 
     @VisibleForTesting
-    fun getCategoryId(): MutableLiveData<String> {
+    fun getCategoryId(): SingleLiveData<String> {
         return categoryIdLiveData
     }
 
     @VisibleForTesting
     fun getCategories(): LiveData<Resource<List<CategoryView>>> {
         return categoriesLiveData
+    }
+    @VisibleForTesting
+    fun getBillName(): SingleLiveData<String> {
+        return billNameLiveData
+    }
+    @VisibleForTesting
+    fun getBillAccountNumber(): SingleLiveData<String> {
+        return billAccountLiveData
+    }
+    @VisibleForTesting
+    fun getPayBillNumber(): SingleLiveData<String> {
+        return payBillNumberLiveData
     }
 
 
