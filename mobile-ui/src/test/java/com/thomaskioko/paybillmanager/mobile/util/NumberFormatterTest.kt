@@ -1,6 +1,6 @@
 package com.thomaskioko.paybillmanager.mobile.util
 
-import com.thomaskioko.paybillmanager.mobile.ui.util.NumberFormatter.formatNumber
+import com.thomaskioko.paybillmanager.mobile.util.NumberFormatter.formatNumber
 import org.junit.Test
 import kotlin.test.assertEquals
 
