@@ -14,6 +14,7 @@ import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
+import com.thomaskioko.paybillmanager.presentation.util.SingleLiveData
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import org.hamcrest.CoreMatchers.not
 import org.junit.Before
@@ -33,23 +34,27 @@ class BillAmountFragmentTest {
     private lateinit var sharedViewModel: SharedViewModel
 
     private val categoriesLiveData = MutableLiveData<Resource<List<CategoryView>>>()
+    private val amountLiveData = SingleLiveData<String>()
 
 
     @Before
     fun init() {
         val fragment = BillAmountFragment()
 
-        sharedViewModel = mock(SharedViewModel::class.java)
-
         navigationController = mock(NavigationController::class.java)
 
-        Mockito.`when`(sharedViewModel.getCategories()).thenReturn(categoriesLiveData)
+        sharedViewModel = mock(SharedViewModel::class.java)
         Mockito.`when`(sharedViewModel.categoriesLiveData).thenReturn(categoriesLiveData)
+        Mockito.`when`(sharedViewModel.getCategories()).thenReturn(categoriesLiveData)
+        Mockito.`when`(sharedViewModel.getAmount()).thenReturn(amountLiveData)
 
         fragment.viewModelFactory = ViewModelUtil.createViewModelFactory(sharedViewModel)
 
         activityRule.activity.setFragment(fragment)
 
+        activityRule.runOnUiThread {
+
+        }
 
         EspressoAnimationTestUtil.disableProgressBarAnimations(activityRule)
     }

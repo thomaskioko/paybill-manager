@@ -23,7 +23,7 @@ import javax.inject.Inject
 open class SharedViewModel @Inject internal constructor(
         private val createBill: CreateBill,
         private val updateBill: UpdateBill,
-        private val getCategories: GetCategories,
+        private val getCategories: GetCategories?,
         private val mapper: CategoryViewMapper
 ) : ViewModel() {
 
@@ -36,18 +36,19 @@ open class SharedViewModel @Inject internal constructor(
     @VisibleForTesting
     val billViewLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
     @VisibleForTesting
-    val categoriesLiveData: MutableLiveData<Resource<List<CategoryView>>> = MutableLiveData()
+    open val categoriesLiveData: MutableLiveData<Resource<List<CategoryView>>> = MutableLiveData()
 
 
     override fun onCleared() {
         createBill.dispose()
-        getCategories.dispose()
+        updateBill.dispose()
+        getCategories?.dispose()
         super.onCleared()
     }
 
 
     @VisibleForTesting
-    fun getBillLiveData(): LiveData<Resource<BillView>> {
+    open fun getBillLiveData(): LiveData<Resource<BillView>> {
         return billViewLiveData
     }
 
@@ -79,44 +80,49 @@ open class SharedViewModel @Inject internal constructor(
     fun setBillName(billName: String) {
         billNameLiveData.postValue(billName)
     }
+
     fun setBillAccountNumber(accountNumber: String) {
         billAccountLiveData.postValue(accountNumber)
     }
+
     fun setPayBillNumber(payBillNumber: String) {
         payBillNumberLiveData.postValue(payBillNumber)
     }
 
     @VisibleForTesting
-    fun getAmount(): SingleLiveData<String> {
+    open fun getAmount(): SingleLiveData<String> {
         return amountLiveData
     }
 
     @VisibleForTesting
-    fun getCategoryId(): SingleLiveData<String> {
+    open fun getCategoryId(): SingleLiveData<String> {
         return categoryIdLiveData
     }
 
     @VisibleForTesting
-    fun getCategories(): LiveData<Resource<List<CategoryView>>> {
+    open fun getCategories(): LiveData<Resource<List<CategoryView>>> {
         return categoriesLiveData
     }
+
     @VisibleForTesting
-    fun getBillName(): SingleLiveData<String> {
+    open fun getBillName(): SingleLiveData<String> {
         return billNameLiveData
     }
+
     @VisibleForTesting
-    fun getBillAccountNumber(): SingleLiveData<String> {
+    open fun getBillAccountNumber(): SingleLiveData<String> {
         return billAccountLiveData
     }
+
     @VisibleForTesting
-    fun getPayBillNumber(): SingleLiveData<String> {
+    open fun getPayBillNumber(): SingleLiveData<String> {
         return payBillNumberLiveData
     }
 
 
     fun fetchCategories() {
         categoriesLiveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getCategories.execute(CategoriesSubscriber())
+        getCategories?.execute(CategoriesSubscriber())
     }
 
 

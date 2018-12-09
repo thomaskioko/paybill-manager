@@ -14,7 +14,7 @@ import io.reactivex.observers.DisposableCompletableObserver
 import javax.inject.Inject
 
 @VisibleForTesting
-class CreateBillsViewModel @Inject internal constructor(
+open class CreateBillsViewModel @Inject internal constructor(
         private val createBill: CreateBill,
         private val updateBill: UpdateBill
 ) : ViewModel() {
@@ -32,7 +32,7 @@ class CreateBillsViewModel @Inject internal constructor(
 
 
     @VisibleForTesting
-    fun getBill(): LiveData<Resource<BillView>> {
+    open fun getBill(): LiveData<Resource<BillView>> {
         return billViewLiveData
     }
 
@@ -62,12 +62,12 @@ class CreateBillsViewModel @Inject internal constructor(
     }
 
     @VisibleForTesting
-    fun getAmount(): MutableLiveData<String> {
+    open fun getAmount(): MutableLiveData<String> {
         return amountLiveData
     }
 
     @VisibleForTesting
-    fun getCategoryId(): MutableLiveData<String> {
+    open fun getCategoryId(): MutableLiveData<String> {
         return categoryIdLiveData
     }
 

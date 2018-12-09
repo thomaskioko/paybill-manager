@@ -15,16 +15,16 @@ import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
 @VisibleForTesting
-class GetBillsViewModel @Inject internal constructor(
+open class GetBillsViewModel @Inject internal constructor(
         private val getBillById: GetBillById?,
         private val getBills: GetBills?,
         private val mapper: BillViewMapper
 ) : ViewModel() {
 
     @VisibleForTesting
-    val billsLiveData: MutableLiveData<Resource<List<BillView>>> = MutableLiveData()
+    open val billsLiveData: MutableLiveData<Resource<List<BillView>>> = MutableLiveData()
     @VisibleForTesting
-    val billLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
+    open val billLiveData: MutableLiveData<Resource<BillView>> = MutableLiveData()
 
 
     override fun onCleared() {
@@ -34,17 +34,17 @@ class GetBillsViewModel @Inject internal constructor(
     }
 
     @VisibleForTesting
-    fun getBills(): LiveData<Resource<List<BillView>>> {
+    open fun getBills(): LiveData<Resource<List<BillView>>> {
         return billsLiveData
     }
 
     @VisibleForTesting
-    fun getBill(): LiveData<Resource<BillView>> {
+    open fun getBill(): LiveData<Resource<BillView>> {
         return billLiveData
     }
 
     @VisibleForTesting
-    fun fetchBills() {
+    open fun fetchBills() {
         billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getBills?.execute(BillsSubscriber())
     }
