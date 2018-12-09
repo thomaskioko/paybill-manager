@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_24">24dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
+    <dimen name="dp_56">56dp</dimen>
+    <dimen name="dp_64">64dp</dimen>
+    <dimen name="dp_72">72dp</dimen>
+    <dimen name="dp_80">80dp</dimen>
+    <dimen name="dp_160">160dp</dimen>
+
+    <!-- General spacing-->
+    <dimen name="spacing_x_small">2dp</dimen>
+    <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="spacing_x_medium">8dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_sm_large">18dp</dimen>
+    <dimen name="spacing_m_large">20dp</dimen>
+    <dimen name="spacing_mx_large">25dp</dimen>
+    <dimen name="spacing_x_large">35dp</dimen>
+    <dimen name="spacing_xm_large">40dp</dimen>
+    <dimen name="spacing_xx_large">50dp</dimen>
+    <dimen name="spacing_xxx_large">55dp</dimen>
+
+    <!-- Text Sizes-->
+    <dimen name="text_size_xxl">42sp</dimen>
+    <dimen name="text_size_normal">18sp</dimen>
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size_28dp">28sp</dimen>
+    <dimen name="text_size_h3">16sp</dimen>
+
+    <dimen name="dimes_coordinator_layout_height">84dp</dimen>
+    <dimen name="elevation_default">4dp</dimen>
+    <dimen name="dime_toolbar_height">56dp</dimen>
+    <dimen name="elevation_0dp">0dp</dimen>
+    <dimen name="elevation_2dp">2dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">8dp</dimen>
+    <dimen name="bottom_sheet_top_padding">10dp</dimen>
+
+</resources>

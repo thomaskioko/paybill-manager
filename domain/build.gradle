@@ -1,0 +1,15 @@
+apply plugin: 'kotlin'
+
+dependencies {
+
+    implementation deps.rx_kotlin
+    implementation deps.javax_annotation
+    implementation deps.javax_inject
+
+    testImplementation deps.junit
+    testImplementation deps.mockito.kotlin
+    testImplementation deps.assertj
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
