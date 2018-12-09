@@ -92,7 +92,7 @@ class BillsListFragment : Fragment(), Injectable{
                 .addData(SimplePieInfo(18.0, Color.parseColor("#C15D15"), "Internet"))
                 .addData(SimplePieInfo(18.0, Color.parseColor("#FFB300"), "Internet"))
                 .addData(SimplePieInfo(5.0, Color.parseColor("#6A1B9A"), "Internet"))
-                .duration(2000)
+                .duration(500)
         animated_pie_view.applyConfig(animatedConfig)
         animated_pie_view.start()
 
