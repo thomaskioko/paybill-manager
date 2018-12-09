@@ -58,6 +58,6 @@ before_script:
 script:
 - "./gradlew build jacocoTestReport assembleAndroidTest  -q --console=plain"
 - "./gradlew check -q --console=plain"
-- "m"
+- "./gradlew connectedCheck -q --console=plain"
 after_success:
 - bash <(curl -s https://codecov.io/bash)
