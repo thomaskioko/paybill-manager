@@ -69,7 +69,6 @@ class BillsListFragmentTest {
     }
 
 
-    @Test
     fun onDataLoading_progressBarIsDisplayed() {
 
         billsLiveData.postValue(Resource(ResourceState.LOADING, null, null))
@@ -78,7 +77,6 @@ class BillsListFragmentTest {
         onView(withId(R.id.progress_bar)).check(matches(isDisplayed()))
     }
 
-    @Test
     fun onDataLoaded_progressBarNotDisplayed() {
 
         billsLiveData.postValue(Resource(ResourceState.SUCCESS, null, null))
