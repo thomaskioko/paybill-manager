@@ -4,20 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.thomaskioko.paybillmanager.cache.dao.BillsDao
-import com.thomaskioko.paybillmanager.cache.dao.CategoryDao
-import com.thomaskioko.paybillmanager.cache.dao.ConfigDao
-import com.thomaskioko.paybillmanager.cache.dao.TokenDao
-import com.thomaskioko.paybillmanager.cache.model.CachedBills
-import com.thomaskioko.paybillmanager.cache.model.CachedCategory
-import com.thomaskioko.paybillmanager.cache.model.CachedToken
-import com.thomaskioko.paybillmanager.cache.model.Config
+import com.thomaskioko.paybillmanager.cache.dao.*
+import com.thomaskioko.paybillmanager.cache.model.*
 import javax.inject.Inject
 
 @Database(entities = [
     CachedBills::class,
     CachedToken::class,
     CachedCategory::class,
+    CachedJengaToken::class,
     Config::class
 ], version = 1, exportSchema = false)
 abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
@@ -29,6 +24,8 @@ abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
     abstract fun configDao(): ConfigDao
 
     abstract fun categoryDaoDao(): CategoryDao
+
+    abstract fun jengaTokenDao(): JengaTokenDao
 
 
     companion object {
