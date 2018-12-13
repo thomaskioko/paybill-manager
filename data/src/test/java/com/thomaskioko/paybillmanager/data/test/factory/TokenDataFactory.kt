@@ -1,6 +1,8 @@
 package com.thomaskioko.paybillmanager.data.test.factory
 
+import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
 import com.thomaskioko.paybillmanager.data.model.SafaricomTokenEntity
+import com.thomaskioko.paybillmanager.domain.model.JengaToken
 import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
 
 object TokenDataFactory {
@@ -11,6 +13,16 @@ object TokenDataFactory {
 
     fun makeSafaricomTokenEntity(): SafaricomTokenEntity {
         return SafaricomTokenEntity(DataFactory.randomInt(), DataFactory.randomLong(), DataFactory.randomUuid())
+    }
+
+
+    fun makeJengaToken(): JengaToken {
+        return JengaToken("bearer", "1544517293525", "3599", "EJ4CSPoMBIYAj8KLUp45d5CUflvm9lz")
+    }
+
+
+    fun makeJengaTokenEntity(): JengaTokenEntity {
+        return JengaTokenEntity("bearer", "1544517293525", "3599", "EJ4CSPoMBIYAj8KLUp45d5CUflvm9lz")
     }
 
 
