@@ -10,6 +10,6 @@ interface JengaTokenDataStore {
 
     fun saveJengaToken(jengaTokenEntity: JengaTokenEntity): Completable
 
-    fun getJengaToken(): Flowable<JengaTokenEntity>
+    fun getJengaToken(username: String, password: String): Flowable<JengaTokenEntity>
 
 }

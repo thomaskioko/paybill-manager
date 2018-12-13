@@ -13,7 +13,8 @@ open class GetJengaToken @Inject constructor(
 ) : ObservableUseCase<JengaToken, GetJengaToken.Params>(postExecutionThread) {
 
     public override fun buildUseCaseObservable(params: Params?): Observable<JengaToken> {
-        return jengaTokenRepository.getJengaToken()
+        if (params == null) throw IllegalArgumentException("Params can't be null!")
+        return jengaTokenRepository.getJengaToken(params.userName, params.password)
     }
 
     data class Params constructor(val userName: String, val password: String) {

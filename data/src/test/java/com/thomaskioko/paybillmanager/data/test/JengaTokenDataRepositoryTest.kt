@@ -43,7 +43,7 @@ class JengaTokenDataRepositoryTest {
         stubGetToken(Flowable.just(TokenDataFactory.makeJengaTokenEntity()))
         stubMapper(TokenDataFactory.makeJengaToken(), any())
 
-        val testObserver = repository.getJengaToken().test()
+        val testObserver = repository.getJengaToken("12343", "asdfem3smf").test()
         testObserver.assertComplete()
     }
 
@@ -54,12 +54,12 @@ class JengaTokenDataRepositoryTest {
         stubGetToken(Flowable.just(jengaTokenEntity))
         stubMapper(jengaToken, jengaTokenEntity)
 
-        val testObserver = repository.getJengaToken().test()
+        val testObserver = repository.getJengaToken("12343", "asdfem3smf").test()
         testObserver.assertValue(jengaToken)
     }
 
     private fun stubGetToken(observable: Flowable<JengaTokenEntity>) {
-        whenever(store.getJengaToken()).thenReturn(observable)
+        whenever(store.getJengaToken(any(), any())).thenReturn(observable)
     }
 
     private fun stubMapper(model: JengaToken, entity: JengaTokenEntity) {

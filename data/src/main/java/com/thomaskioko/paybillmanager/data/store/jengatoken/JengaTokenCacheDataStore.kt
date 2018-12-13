@@ -19,7 +19,7 @@ open class JengaTokenCacheDataStore @Inject constructor(
                 .andThen(tokenCache.setExpireTime(jengaTokenEntity.expiresIn.toLong()))
     }
 
-    override fun getJengaToken(): Flowable<JengaTokenEntity> {
+    override fun getJengaToken(username: String, password: String): Flowable<JengaTokenEntity> {
         return tokenCache.getJengaToken()
     }
 

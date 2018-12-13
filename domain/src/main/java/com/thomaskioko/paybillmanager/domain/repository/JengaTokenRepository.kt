@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 interface JengaTokenRepository {
 
-    fun getJengaToken(): Observable<JengaToken>
+    fun getJengaToken(username: String, password: String): Observable<JengaToken>
 
     fun saveJengaToken(jengaToken: JengaToken): Completable
 }

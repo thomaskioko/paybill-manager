@@ -2,7 +2,7 @@ package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import com.nhaarman.mockitokotlin2.mock
 import com.thomaskioko.paybillmanager.data.repository.token.TokenRemote
-import com.thomaskioko.paybillmanager.remote.service.TokenService
+import com.thomaskioko.paybillmanager.remote.service.safaricom.SafaricomTokenService
 import dagger.Module
 import dagger.Provides
 
@@ -12,7 +12,7 @@ object TestRemoteModule {
 
     @Provides
     @JvmStatic
-    fun provideTokenService(): TokenService {
+    fun provideTokenService(): SafaricomTokenService {
         return mock()
     }
 
