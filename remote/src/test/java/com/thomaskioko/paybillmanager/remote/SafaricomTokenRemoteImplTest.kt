@@ -7,7 +7,7 @@ import com.thomaskioko.paybillmanager.data.model.SafaricomTokenEntity
 import com.thomaskioko.paybillmanager.remote.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.remote.mapper.TokenResponseModelMapper
 import com.thomaskioko.paybillmanager.remote.model.SafaricomTokenModel
-import com.thomaskioko.paybillmanager.remote.service.TokenService
+import com.thomaskioko.paybillmanager.remote.service.safaricom.SafaricomTokenService
 import io.reactivex.Flowable
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,15 +15,15 @@ import org.junit.runners.JUnit4
 
 
 @RunWith(JUnit4::class)
-class TokenRemoteImplTest {
+class SafaricomTokenRemoteImplTest {
 
     private val mapper = mock<TokenResponseModelMapper>()
-    private val service = mock<TokenService>()
-    private val remote = TokenRemoteImpl(mapper, service)
+    private val service = mock<SafaricomTokenService>()
+    private val remote = SafaricomTokenRemoteImpl(mapper, service)
 
     @Test
     fun getTokenCompletes() {
-        stubTokenServiceSearchRepositories(Flowable.just(TestDataFactory.makeSafaricomTokenModel()))
+        stubGetSafaricomAccessToken(Flowable.just(TestDataFactory.makeSafaricomTokenModel()))
         stubTokenResponseModelMapperMapFromModel(any(), TestDataFactory.makeSafaricomEntity())
 
         //Create a test observer instance & subscribe it getProjects
@@ -34,11 +34,9 @@ class TokenRemoteImplTest {
     }
 
 
-    private fun stubTokenServiceSearchRepositories(observable:
-                                                  Flowable<SafaricomTokenModel>) {
+    private fun stubGetSafaricomAccessToken(observable: Flowable<SafaricomTokenModel>) {
         //Mock the response of the service
-        whenever(service.getAccessToken())
-                .thenReturn(observable)
+        whenever(service.getAccessToken()) .thenReturn(observable)
     }
 
     private fun stubTokenResponseModelMapperMapFromModel(model: SafaricomTokenModel,

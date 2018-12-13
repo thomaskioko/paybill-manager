@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.remote.service
+package com.thomaskioko.paybillmanager.remote.service.safaricom
 
 import com.google.gson.Gson
 import com.thomaskioko.paybillmanager.remote.service.interceptor.TokenInterceptor
@@ -9,9 +9,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object TokenServiceFactory {
+object SafaricomTokenServiceFactory {
 
-    open fun makeTokenService(isDebug: Boolean): TokenService {
+    open fun makeTokenService(isDebug: Boolean): SafaricomTokenService {
         val okHttpClient = makeOkHttpClient(
                 makeLoggingInterceptor((isDebug)))
         return makeTokenTrendingService(okHttpClient, Gson())
@@ -36,14 +36,14 @@ object TokenServiceFactory {
         return logging
     }
 
-    private fun makeTokenTrendingService(okHttpClient: OkHttpClient, gson: Gson): TokenService {
+    private fun makeTokenTrendingService(okHttpClient: OkHttpClient, gson: Gson): SafaricomTokenService {
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://sandbox.safaricom.co.ke/oauth/v1/")
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
-        return retrofit.create(TokenService::class.java)
+        return retrofit.create(SafaricomTokenService::class.java)
     }
 
 }
