@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.domain.bills
+package com.thomaskioko.paybillmanager.domain.interactor.bills
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
 import com.thomaskioko.paybillmanager.domain.interactor.ObservableUseCase
