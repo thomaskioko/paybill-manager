@@ -7,7 +7,7 @@ import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
 import com.thomaskioko.paybillmanager.remote.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.remote.mapper.JengaTokenMapper
 import com.thomaskioko.paybillmanager.remote.model.JengaToken
-import com.thomaskioko.paybillmanager.remote.service.jenga.JengaService
+import com.thomaskioko.paybillmanager.remote.service.JengaService
 import io.reactivex.Flowable
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,11 +15,11 @@ import org.junit.runners.JUnit4
 
 
 @RunWith(JUnit4::class)
-class JengaRemoteImplTest {
+class JengaTokenRemoteImplTest {
 
     private val mapper = mock<JengaTokenMapper>()
     private val service = mock<JengaService>()
-    private val remote = JengaRemoteImpl(mapper, service)
+    private val remote = JengaTokenRemoteImpl(mapper, service)
 
     @Test
     fun getAccessTokenCompletes() {
@@ -27,7 +27,7 @@ class JengaRemoteImplTest {
         stubTokenResponseModelMapperMapFromModel(any(), TestDataFactory.makeJengaTokenEntity())
 
         //Create a test observer instance & subscribe it getProjects
-        val testObserver = remote.getJengaToken("12323", "adfaDe").test()
+        val testObserver = remote.getJengaToken().test()
 
         //Verify that the observer completes
         testObserver.assertComplete()

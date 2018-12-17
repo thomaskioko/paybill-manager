@@ -3,7 +3,7 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel.category
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.thomaskioko.paybillmanager.domain.category.GetCategories
+import com.thomaskioko.paybillmanager.domain.interactor.category.GetCategories
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.presentation.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView

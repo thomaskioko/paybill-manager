@@ -4,9 +4,9 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.thomaskioko.paybillmanager.domain.bills.CreateBill
-import com.thomaskioko.paybillmanager.domain.bills.UpdateBill
-import com.thomaskioko.paybillmanager.domain.category.GetCategories
+import com.thomaskioko.paybillmanager.domain.interactor.bills.CreateBill
+import com.thomaskioko.paybillmanager.domain.interactor.bills.UpdateBill
+import com.thomaskioko.paybillmanager.domain.interactor.category.GetCategories
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.presentation.mapper.CategoryViewMapper

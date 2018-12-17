@@ -16,10 +16,10 @@ open class JengaTokenCacheDataStore @Inject constructor(
 
     override fun saveJengaToken(jengaTokenEntity: JengaTokenEntity): Completable {
         return tokenCache.saveJengaToken(jengaTokenEntity)
-                .andThen(tokenCache.setExpireTime(jengaTokenEntity.expiresIn.toLong()))
+                .andThen(tokenCache.setExpireTime(System.currentTimeMillis()))
     }
 
-    override fun getJengaToken(username: String, password: String): Flowable<JengaTokenEntity> {
+    override fun getJengaToken(): Flowable<JengaTokenEntity> {
         return tokenCache.getJengaToken()
     }
 

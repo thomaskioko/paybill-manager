@@ -6,6 +6,7 @@ import com.thomaskioko.paybillmanager.mobile.injection.ViewModelFactory
 import com.thomaskioko.paybillmanager.mobile.injection.annotation.ViewModelKey
 import com.thomaskioko.paybillmanager.presentation.viewmodel.CreateBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.JengaRequestsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
@@ -51,5 +52,10 @@ abstract class PresentationModule {
     @IntoMap
     @ViewModelKey(SharedViewModel::class)
     abstract fun bindSharedViewModel(viewModel: SharedViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(JengaRequestsViewModel::class)
+    abstract fun bindJengaRequestsViewModel(viewModel: JengaRequestsViewModel): ViewModel
 }
 

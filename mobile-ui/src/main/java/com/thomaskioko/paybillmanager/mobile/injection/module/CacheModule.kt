@@ -3,11 +3,11 @@ package com.thomaskioko.paybillmanager.mobile.injection.module
 import android.app.Application
 import com.thomaskioko.paybillmanager.cache.BillsCacheImpl
 import com.thomaskioko.paybillmanager.cache.CategoryCacheImpl
-import com.thomaskioko.paybillmanager.cache.TokenCacheImpl
+import com.thomaskioko.paybillmanager.cache.JengaTokenCacheImpl
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
 import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import com.thomaskioko.paybillmanager.data.repository.category.CategoryCache
-import com.thomaskioko.paybillmanager.data.repository.token.TokenCache
+import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenCache
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -26,11 +26,11 @@ abstract class CacheModule {
     }
 
     @Binds
-    abstract fun bindTokenCache(tokenCacheImpl: TokenCacheImpl): TokenCache
-
-    @Binds
     abstract fun bindBillsCache(billsCacheImpl: BillsCacheImpl): BillsCache
 
     @Binds
     abstract fun bindCategoryCache(billsCacheImpl: CategoryCacheImpl): CategoryCache
+
+    @Binds
+    abstract fun bindJengaTokenCache(jengaTokenCacheImpl: JengaTokenCacheImpl): JengaTokenCache
 }

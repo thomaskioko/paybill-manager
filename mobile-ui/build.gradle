@@ -54,10 +54,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    buildTypes.each {
-        it.buildConfigField 'String', 'JENGA_USERNAME', JENGA_USERNAME
-        it.buildConfigField 'String', 'JENGA_PASSWORD', JENGA_PASSWORD
-    }
+
 
     lintOptions {
         abortOnError false

@@ -2,11 +2,9 @@ package com.thomaskioko.paybillmanager.cache.dao
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
-import com.nhaarman.mockitokotlin2.any
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
 import com.thomaskioko.paybillmanager.cache.factory.BillsCachedFactory
 import com.thomaskioko.paybillmanager.cache.factory.DataFactory
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Rule
 import org.junit.Test

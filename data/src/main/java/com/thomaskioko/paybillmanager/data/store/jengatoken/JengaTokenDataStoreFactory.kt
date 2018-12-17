@@ -19,7 +19,7 @@ open class JengaTokenDataStoreFactory @Inject constructor(
         return tokenCacheDataStore
     }
 
-    open fun getRemoteDataStore(): JengaTokenRemoteDataStore {
+    open fun getRemoteDataStore(): JengaTokenDataStore {
         return tokenRemoteDataStore
     }
 }

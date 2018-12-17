@@ -1,7 +1,6 @@
-package com.thomaskioko.paybillmanager.remote.service.jenga
+package com.thomaskioko.paybillmanager.remote.service
 
 import com.google.gson.Gson
-import com.thomaskioko.paybillmanager.remote.service.interceptor.JengaTokenInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,11 +8,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object JengaTokenServiceFactory {
+object JengaServiceFactory {
 
     private const val JENGA_URL = "https://uat.jengahq.io/"
 
-    open fun makeTokenService(isDebug: Boolean): JengaService {
+    open fun makeJengaService(isDebug: Boolean): JengaService {
         val okHttpClient = makeOkHttpClient(
                 makeLoggingInterceptor((isDebug)))
         return makeJengaService(okHttpClient, Gson())
@@ -22,7 +21,6 @@ object JengaTokenServiceFactory {
     private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
-                .addInterceptor(JengaTokenInterceptor())
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .build()

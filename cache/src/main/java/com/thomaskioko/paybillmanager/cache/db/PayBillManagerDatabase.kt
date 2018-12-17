@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 @Database(entities = [
     CachedBills::class,
-    CachedToken::class,
     CachedCategory::class,
     CachedJengaToken::class,
     Config::class
@@ -18,8 +17,6 @@ import javax.inject.Inject
 abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun billsDao(): BillsDao
-
-    abstract fun tokenDao(): TokenDao
 
     abstract fun configDao(): ConfigDao
 
@@ -37,7 +34,7 @@ abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
                 synchronized(lock) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(context.applicationContext,
-                                PayBillManagerDatabase::class.java, "paybill_manager.db")
+                                PayBillManagerDatabase::class.java, "paybill.db")
                                 .build()
                     }
                     return INSTANCE as PayBillManagerDatabase

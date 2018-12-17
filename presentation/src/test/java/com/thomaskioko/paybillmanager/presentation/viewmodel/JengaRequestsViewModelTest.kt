@@ -2,7 +2,7 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
-import com.thomaskioko.paybillmanager.domain.jengatoken.GetJengaToken
+import com.thomaskioko.paybillmanager.domain.interactor.jengatoken.GetJengaToken
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
 import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
 import com.thomaskioko.paybillmanager.presentation.factory.TokenFactory
@@ -44,10 +44,10 @@ class JengaRequestsViewModelTest {
 
     @Test
     fun fetchJengaTokenReturnsSuccess() {
-        val safaricomToken = TokenFactory.makeJengaToken()
+        val jengaToken = TokenFactory.makeJengaToken()
         val tokenView = TokenFactory.makeJengaTokenView()
 
-        stubTokenMapperMapToView(tokenView, safaricomToken)
+        stubTokenMapperMapToView(tokenView, jengaToken)
 
         //invoke fetch fetchJengaToken
         viewModel.fetchJengaToken()
@@ -56,7 +56,7 @@ class JengaRequestsViewModelTest {
         verify(getJengaToken).execute(captor.capture(), eq(null))
 
         //Pass data to onNext callback
-        captor.firstValue.onNext(safaricomToken)
+        captor.firstValue.onNext(jengaToken)
 
         //Verify that resource type returned is of type success
         TestCase.assertEquals(ResourceState.SUCCESS, viewModel.getJengaToken().value?.status)
@@ -65,20 +65,19 @@ class JengaRequestsViewModelTest {
 
     @Test
     fun fetchJengaTokenReturnsData() {
-        val safaricomToken = TokenFactory.makeJengaToken()
+        val jengaToken = TokenFactory.makeJengaToken()
         val tokenView = TokenFactory.makeJengaTokenView()
 
-        stubTokenMapperMapToView(tokenView, safaricomToken)
+        stubTokenMapperMapToView(tokenView, jengaToken)
 
-        //invoke fetch fetchJengaToken
         viewModel.fetchJengaToken()
 
-        //Use captor to capture the response when execute is called
+        //invoke fetch fetchJengaToken
         verify(getJengaToken).execute(captor.capture(), eq(null))
 
 
         //Pass data to onNext callback
-        captor.firstValue.onNext(safaricomToken)
+        captor.firstValue.onNext(jengaToken)
 
         //Verify that the data returned is what is returned
         TestCase.assertEquals(tokenView, viewModel.getJengaToken().value?.data)
@@ -91,7 +90,7 @@ class JengaRequestsViewModelTest {
         viewModel.fetchJengaToken()
 
         //Use captor to capture the response when execute is called
-        verify(getJengaToken).execute(captor.capture(), eq(null))
+        verify(getJengaToken).execute(captor.capture(),  eq(null))
 
 
         //Pass Exception to onError callback
@@ -110,7 +109,7 @@ class JengaRequestsViewModelTest {
         viewModel.fetchJengaToken()
 
         //Use captor to capture the response when execute is called
-        verify(getJengaToken).execute(captor.capture(), eq(null))
+        verify(getJengaToken).execute(captor.capture(),  eq(null))
 
 
         //Pass error message to onError callback

@@ -1,10 +1,10 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
-import com.thomaskioko.paybillmanager.data.repository.token.TokenRemote
+import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenRemote
 import com.thomaskioko.paybillmanager.remote.BuildConfig
-import com.thomaskioko.paybillmanager.remote.SafaricomTokenRemoteImpl
-import com.thomaskioko.paybillmanager.remote.service.safaricom.SafaricomTokenService
-import com.thomaskioko.paybillmanager.remote.service.safaricom.SafaricomTokenServiceFactory
+import com.thomaskioko.paybillmanager.remote.JengaTokenRemoteImpl
+import com.thomaskioko.paybillmanager.remote.service.JengaService
+import com.thomaskioko.paybillmanager.remote.service.JengaServiceFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -17,11 +17,11 @@ abstract class RemoteModule {
     companion object {
         @Provides
         @JvmStatic
-        fun provideTokenService(): SafaricomTokenService {
-            return SafaricomTokenServiceFactory.makeTokenService(BuildConfig.DEBUG)
+        fun provideJengaService(): JengaService {
+            return JengaServiceFactory.makeJengaService(BuildConfig.DEBUG)
         }
     }
 
     @Binds
-    abstract fun bindProjectsRemote(projectsRemoteSafaricom: SafaricomTokenRemoteImpl): TokenRemote
+    abstract fun bindJengaRemote(jengaRemoteImpl: JengaTokenRemoteImpl): JengaTokenRemote
 }

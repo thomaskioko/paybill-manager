@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class Config(
         @PrimaryKey(autoGenerate = true)
         var id: Int = -1,
-        var lastCacheTime: Long)
+        var lastCacheTime: Long
+)

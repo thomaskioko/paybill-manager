@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.data.repository.category
 
-import com.thomaskioko.paybillmanager.data.model.BillEntity
 import com.thomaskioko.paybillmanager.data.model.CategoryEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable

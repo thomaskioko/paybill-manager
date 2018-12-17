@@ -4,8 +4,8 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.thomaskioko.paybillmanager.domain.bills.GetBillById
-import com.thomaskioko.paybillmanager.domain.bills.GetBills
+import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillById
+import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBills
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView

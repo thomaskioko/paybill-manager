@@ -1,17 +1,11 @@
 package com.thomaskioko.paybillmanager.presentation.factory
 
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
-import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
 import com.thomaskioko.paybillmanager.presentation.model.JengaTokenView
 import com.thomaskioko.paybillmanager.presentation.model.TokenView
 
 
 object TokenFactory {
-
-    fun makeSafaricomToken(): SafaricomToken {
-        return SafaricomToken(DataFactory.randomInt(), DataFactory.randomLong(), DataFactory.randomUuid())
-    }
-
 
     fun makeSafaricomTokenView(): TokenView {
         return TokenView(DataFactory.randomInt(), DataFactory.randomLong(), DataFactory.randomUuid())

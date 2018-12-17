@@ -9,7 +9,7 @@ import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
 import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenCache
 import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenDataStore
 import com.thomaskioko.paybillmanager.data.store.jengatoken.JengaTokenDataStoreFactory
-import com.thomaskioko.paybillmanager.data.test.factory.TokenDataFactory
+import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -40,26 +40,26 @@ class JengaTokenDataRepositoryTest {
 
     @Test
     fun getTokenCompletes() {
-        stubGetToken(Flowable.just(TokenDataFactory.makeJengaTokenEntity()))
-        stubMapper(TokenDataFactory.makeJengaToken(), any())
+        stubGetToken(Flowable.just(DataFactory.makeJengaTokenEntity()))
+        stubMapper(DataFactory.makeJengaToken(), any())
 
-        val testObserver = repository.getJengaToken("12343", "asdfem3smf").test()
+        val testObserver = repository.getJengaToken().test()
         testObserver.assertComplete()
     }
 
     @Test
     fun getTokenReturnsData() {
-        val jengaTokenEntity = TokenDataFactory.makeJengaTokenEntity()
-        val jengaToken = TokenDataFactory.makeJengaToken()
+        val jengaTokenEntity = DataFactory.makeJengaTokenEntity()
+        val jengaToken = DataFactory.makeJengaToken()
         stubGetToken(Flowable.just(jengaTokenEntity))
         stubMapper(jengaToken, jengaTokenEntity)
 
-        val testObserver = repository.getJengaToken("12343", "asdfem3smf").test()
+        val testObserver = repository.getJengaToken().test()
         testObserver.assertValue(jengaToken)
     }
 
     private fun stubGetToken(observable: Flowable<JengaTokenEntity>) {
-        whenever(store.getJengaToken(any(), any())).thenReturn(observable)
+        whenever(store.getJengaToken()).thenReturn(observable)
     }
 
     private fun stubMapper(model: JengaToken, entity: JengaTokenEntity) {

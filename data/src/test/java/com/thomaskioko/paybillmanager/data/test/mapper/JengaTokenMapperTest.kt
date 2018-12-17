@@ -1,12 +1,9 @@
 package com.thomaskioko.paybillmanager.data.test.mapper
 
 import com.thomaskioko.paybillmanager.data.mapper.JengaTokenMapper
-import com.thomaskioko.paybillmanager.data.mapper.TokenMapper
 import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
-import com.thomaskioko.paybillmanager.data.model.SafaricomTokenEntity
-import com.thomaskioko.paybillmanager.data.test.factory.TokenDataFactory
+import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
-import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,7 +16,7 @@ class JengaTokenMapperTest {
 
     @Test
     fun mapFromEntityMapsData() {
-        val entity = TokenDataFactory.makeJengaTokenEntity()
+        val entity = DataFactory.makeJengaTokenEntity()
         val model = mapper.mapFromEntity(entity)
 
         assertEqualData(entity, model)
@@ -27,7 +24,7 @@ class JengaTokenMapperTest {
 
     @Test
     fun mapToEntityMapsData() {
-        val model = TokenDataFactory.makeJengaToken()
+        val model = DataFactory.makeJengaToken()
         val entity = mapper.mapToEntity(model)
 
         assertEqualData(entity, model)

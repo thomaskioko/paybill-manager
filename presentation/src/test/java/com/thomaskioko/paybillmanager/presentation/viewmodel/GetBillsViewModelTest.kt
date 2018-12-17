@@ -2,8 +2,8 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
-import com.thomaskioko.paybillmanager.domain.bills.GetBillById
-import com.thomaskioko.paybillmanager.domain.bills.GetBills
+import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillById
+import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBills
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.presentation.factory.BillsFactory
 import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
@@ -11,7 +11,6 @@ import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.observers.DisposableObserver
-import junit.framework.Assert.assertEquals
 import junit.framework.TestCase
 import org.junit.Rule
 import org.junit.Test

@@ -1,9 +1,7 @@
 package com.thomaskioko.paybillmanager.presentation.mapper
 
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
-import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
 import com.thomaskioko.paybillmanager.presentation.model.JengaTokenView
-import com.thomaskioko.paybillmanager.presentation.model.TokenView
 import javax.inject.Inject
 
 open class JengaTokenViewMapper @Inject constructor() : Mapper<JengaTokenView, JengaToken> {

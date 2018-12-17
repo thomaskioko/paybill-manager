@@ -34,16 +34,16 @@ class JengaTokenCacheImpl @Inject constructor(
                 .map { mapper.mapFromCached(it) }
     }
 
+    override fun isTokenCached(): Single<Boolean> {
+        return database.jengaTokenDao().getToken().isEmpty
+                .map { !it }
+    }
+
     override fun setExpireTime(expiryTime: Long): Completable {
         return Completable.defer {
             database.configDao().insertConfig(Config(lastCacheTime = expiryTime))
             Completable.complete()
         }
-    }
-
-    override fun isTokenCached(): Single<Boolean> {
-        return database.tokenDao().getToken().isEmpty
-                .map { !it }
     }
 
     override fun hasTokenExpired(): Single<Boolean> {

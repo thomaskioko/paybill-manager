@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.data.store.category
 
-import com.thomaskioko.paybillmanager.data.repository.bills.BillDataStore
 import com.thomaskioko.paybillmanager.data.repository.category.CategoryDataStore
 import javax.inject.Inject
 
