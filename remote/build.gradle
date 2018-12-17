@@ -32,6 +32,8 @@ android {
         it.buildConfigField 'String', 'SAFARICOM_CONSUMER_KEY', SAFARICOM_CONSUMER_KEY
         it.buildConfigField 'String', 'SAFARICOM_CONSUMER_SECRET', SAFARICOM_CONSUMER_SECRET
         it.buildConfigField 'String', 'JENGA_API_KEY', JENGA_API_KEY
+        it.buildConfigField 'String', 'JENGA_USERNAME', JENGA_USERNAME
+        it.buildConfigField 'String', 'JENGA_PASSWORD', JENGA_PASSWORD
     }
 
     lintOptions {
