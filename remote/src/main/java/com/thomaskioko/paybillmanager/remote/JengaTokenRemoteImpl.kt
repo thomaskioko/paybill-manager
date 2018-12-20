@@ -13,7 +13,11 @@ open class JengaTokenRemoteImpl @Inject constructor(
 ) : JengaTokenRemote {
 
     override fun getJengaToken(): Flowable<JengaTokenEntity> {
-        return service.getAccessToken(BuildConfig.JENGA_USERNAME, BuildConfig.JENGA_PASSWORD).map {
+        return service.getAccessToken(
+                BuildConfig.JENGA_API_KEY,
+                "application/x-www-form-urlencoded",
+                BuildConfig.JENGA_USERNAME,
+                BuildConfig.JENGA_PASSWORD).map {
             mapper.mapFromModel(it)
         }
     }
