@@ -40,20 +40,19 @@ class JengaTokenCacheImpl @Inject constructor(
     }
 
     override fun setExpireTime(expiryTime: Long): Completable {
+        val tokenExpireMilliseconds = System.currentTimeMillis() + (expiryTime * 1000)
         return Completable.defer {
-            database.configDao().insertConfig(Config(lastCacheTime = expiryTime))
+            database.configDao().insertConfig(Config(lastCacheTime = tokenExpireMilliseconds))
             Completable.complete()
         }
     }
 
     override fun hasTokenExpired(): Single<Boolean> {
         val currentTime = System.currentTimeMillis()
-        val expirationTime = (60 * 10 * 1000).toLong()
-
         return database.configDao().getConfig()
                 .onErrorReturn { Config(lastCacheTime = 0) }
                 .map {
-                    currentTime - it.lastCacheTime > expirationTime
+                    currentTime > it.lastCacheTime
                 }
     }
 
