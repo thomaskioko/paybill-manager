@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
 import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import com.thomaskioko.paybillmanager.data.repository.category.CategoryCache
-import com.thomaskioko.paybillmanager.data.repository.token.TokenCache
+import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenCache
 import dagger.Module
 import dagger.Provides
 
@@ -23,7 +23,7 @@ object TestCacheModule {
 
     @Provides
     @JvmStatic
-    fun providesTokenCache(): TokenCache {
+    fun providesJengaTokenCache(): JengaTokenCache {
         return mock()
     }
 

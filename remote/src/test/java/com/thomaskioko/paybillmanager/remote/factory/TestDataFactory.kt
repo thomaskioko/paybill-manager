@@ -1,9 +1,7 @@
 package com.thomaskioko.paybillmanager.remote.factory
 
-import com.thomaskioko.paybillmanager.data.model.SafaricomTokenEntity
-import com.thomaskioko.paybillmanager.domain.model.Bill
-import com.thomaskioko.paybillmanager.domain.model.SafaricomToken
-import com.thomaskioko.paybillmanager.remote.model.SafaricomTokenModel
+import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
+import com.thomaskioko.paybillmanager.remote.model.JengaToken
 import java.util.*
 
 object TestDataFactory {
@@ -19,27 +17,12 @@ object TestDataFactory {
     fun randomLong(): Long {
         return Math.random().toLong()
     }
-
-    fun randomBoolean(): Boolean {
-        return Math.random() < 0.5
+    fun makeJengaToken(): JengaToken {
+        return JengaToken("bearer", "1544517293525", "3599", "EJ4CSPoMBIYAj8KLUp45d5CUflvm9lz")
     }
 
-    fun makeBill(): Bill {
-        return Bill(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomUuid(), randomInt(),
-                randomLong())
-    }
-
-    fun makeSafaricomToken(): SafaricomToken {
-        return SafaricomToken(randomInt(), randomLong(), randomUuid())
-    }
-
-    fun makeSafaricomEntity(): SafaricomTokenEntity {
-        return SafaricomTokenEntity(randomInt(), randomLong(), randomUuid())
-    }
-
-    fun makeSafaricomTokenModel(): SafaricomTokenModel {
-        return SafaricomTokenModel(randomLong().toString(), randomUuid())
+    fun makeJengaTokenEntity(): JengaTokenEntity {
+        return JengaTokenEntity("bearer", "1544517293525", "3599", "EJ4CSPoMBIYAj8KLUp45d5CUflvm9lz")
     }
 
 }

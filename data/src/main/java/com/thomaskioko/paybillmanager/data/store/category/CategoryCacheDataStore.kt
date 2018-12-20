@@ -1,9 +1,6 @@
 package com.thomaskioko.paybillmanager.data.store.category
 
-import com.thomaskioko.paybillmanager.data.model.BillEntity
 import com.thomaskioko.paybillmanager.data.model.CategoryEntity
-import com.thomaskioko.paybillmanager.data.repository.bills.BillDataStore
-import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import com.thomaskioko.paybillmanager.data.repository.category.CategoryCache
 import com.thomaskioko.paybillmanager.data.repository.category.CategoryDataStore
 import io.reactivex.Completable

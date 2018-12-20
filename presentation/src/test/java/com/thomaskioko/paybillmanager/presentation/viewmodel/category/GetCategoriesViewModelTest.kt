@@ -2,7 +2,7 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel.category
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
-import com.thomaskioko.paybillmanager.domain.category.GetCategories
+import com.thomaskioko.paybillmanager.domain.interactor.category.GetCategories
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.presentation.factory.CategoryFactory
 import com.thomaskioko.paybillmanager.presentation.factory.DataFactory

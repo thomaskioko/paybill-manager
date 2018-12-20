@@ -4,31 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.thomaskioko.paybillmanager.cache.dao.BillsDao
-import com.thomaskioko.paybillmanager.cache.dao.CategoryDao
-import com.thomaskioko.paybillmanager.cache.dao.ConfigDao
-import com.thomaskioko.paybillmanager.cache.dao.TokenDao
-import com.thomaskioko.paybillmanager.cache.model.CachedBills
-import com.thomaskioko.paybillmanager.cache.model.CachedCategory
-import com.thomaskioko.paybillmanager.cache.model.CachedToken
-import com.thomaskioko.paybillmanager.cache.model.Config
+import com.thomaskioko.paybillmanager.cache.dao.*
+import com.thomaskioko.paybillmanager.cache.model.*
 import javax.inject.Inject
 
 @Database(entities = [
     CachedBills::class,
-    CachedToken::class,
     CachedCategory::class,
+    CachedJengaToken::class,
     Config::class
 ], version = 1, exportSchema = false)
 abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun billsDao(): BillsDao
 
-    abstract fun tokenDao(): TokenDao
-
     abstract fun configDao(): ConfigDao
 
     abstract fun categoryDaoDao(): CategoryDao
+
+    abstract fun jengaTokenDao(): JengaTokenDao
 
 
     companion object {
@@ -40,7 +34,7 @@ abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
                 synchronized(lock) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(context.applicationContext,
-                                PayBillManagerDatabase::class.java, "paybill_manager.db")
+                                PayBillManagerDatabase::class.java, "paybill.db")
                                 .build()
                     }
                     return INSTANCE as PayBillManagerDatabase

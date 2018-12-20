@@ -2,7 +2,6 @@ package com.thomaskioko.paybillmanager.domain.interactor.bills
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
-import com.thomaskioko.paybillmanager.domain.bills.CreateBill
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
 import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository

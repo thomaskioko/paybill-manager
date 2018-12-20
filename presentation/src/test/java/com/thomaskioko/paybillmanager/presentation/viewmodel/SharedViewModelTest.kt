@@ -2,9 +2,9 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
-import com.thomaskioko.paybillmanager.domain.bills.CreateBill
-import com.thomaskioko.paybillmanager.domain.bills.UpdateBill
-import com.thomaskioko.paybillmanager.domain.category.GetCategories
+import com.thomaskioko.paybillmanager.domain.interactor.bills.CreateBill
+import com.thomaskioko.paybillmanager.domain.interactor.bills.UpdateBill
+import com.thomaskioko.paybillmanager.domain.interactor.category.GetCategories
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.presentation.factory.BillsFactory
