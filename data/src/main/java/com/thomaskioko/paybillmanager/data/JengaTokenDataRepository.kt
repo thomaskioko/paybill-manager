@@ -16,16 +16,12 @@ class JengaTokenDataRepository @Inject constructor(
 ) : JengaTokenRepository {
 
     override fun getJengaToken(): Observable<JengaToken> {
-        return Observable.zip(cache.isTokenCached().toObservable(),
-                cache.hasTokenExpired().toObservable(),
-                BiFunction<Boolean, Boolean, Pair<Boolean, Boolean>> { areCached, isExpired ->
-                    Pair(areCached, isExpired)
-                })
+        return cache.hasTokenExpired().toObservable()
                 .flatMap {
-                    factory.getDataStore(it.first, it.second)
+                    factory.getRemoteDataStore()
                             .getJengaToken().toObservable()
                             .distinctUntilChanged()
-                }
+                }c
                 .flatMap { jengaToken ->
                     factory.getCacheDataStore()
                             .saveJengaToken(jengaToken)
