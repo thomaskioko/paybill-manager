@@ -10,6 +10,7 @@ import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
 import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
+import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
 import io.reactivex.observers.DisposableObserver
 import junit.framework.TestCase
 import org.junit.Rule

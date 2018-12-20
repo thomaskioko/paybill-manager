@@ -18,7 +18,7 @@ import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.core.IsNot
 import org.junit.Before
