@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.presentation.viewmodel
+package com.thomaskioko.paybillmanager.presentation.viewmodel.bill
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
