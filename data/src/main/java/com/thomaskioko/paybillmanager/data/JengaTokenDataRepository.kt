@@ -18,10 +18,10 @@ class JengaTokenDataRepository @Inject constructor(
     override fun getJengaToken(): Observable<JengaToken> {
         return cache.hasTokenExpired().toObservable()
                 .flatMap {
-                    factory.getRemoteDataStore()
+                    factory.getDataStore(it)
                             .getJengaToken().toObservable()
                             .distinctUntilChanged()
-                }c
+                }
                 .flatMap { jengaToken ->
                     factory.getCacheDataStore()
                             .saveJengaToken(jengaToken)

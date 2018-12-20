@@ -15,17 +15,12 @@ class JengaTokenDataStoreFactoryTest {
 
     @Test
     fun getDataStoreReturnsRemoteStoreWhenCacheExpired() {
-        assertEquals(remoteStore, factory.getDataStore(true, true))
-    }
-
-    @Test
-    fun getDataStoreReturnsRemoteStoreWhenProjectsNotCached() {
-        assertEquals(remoteStore, factory.getDataStore(false, false))
+        assertEquals(remoteStore, factory.getDataStore(true))
     }
 
     @Test
     fun getDataStoreReturnsCacheStore() {
-        assertEquals(cacheStore, factory.getDataStore(true, false))
+        assertEquals(cacheStore, factory.getDataStore(false))
     }
 
     @Test

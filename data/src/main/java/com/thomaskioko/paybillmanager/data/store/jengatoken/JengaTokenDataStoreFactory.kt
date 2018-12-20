@@ -7,8 +7,8 @@ open class JengaTokenDataStoreFactory @Inject constructor(
         private val tokenCacheDataStore: JengaTokenCacheDataStore,
         private val tokenRemoteDataStore: JengaTokenRemoteDataStore
 ) {
-    open fun getDataStore(tokenCached: Boolean, tokenExpired: Boolean): JengaTokenDataStore {
-        return if (tokenCached && !tokenExpired) {
+    open fun getDataStore(tokenExpired: Boolean): JengaTokenDataStore {
+        return if (!tokenExpired) {
             tokenCacheDataStore
         } else {
             tokenRemoteDataStore

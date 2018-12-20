@@ -36,7 +36,7 @@ class JengaTokenRemoteImplTest {
 
     private fun stubGetJengaAccessToken(observable: Flowable<JengaToken>) {
         //Mock the response of the service
-        whenever(service.getAccessToken(any(), any()))
+        whenever(service.getAccessToken(any(), any(), any(), any()))
                 .thenReturn(observable)
     }
 

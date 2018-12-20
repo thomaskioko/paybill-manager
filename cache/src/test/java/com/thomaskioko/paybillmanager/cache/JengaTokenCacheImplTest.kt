@@ -70,12 +70,4 @@ class JengaTokenCacheImplTest {
         testObserver.assertValue(false)
     }
 
-    @Test
-    fun hasTokenExpiredReturnsHasExpired() {
-        val expirationTime = (50 * 10 * 1000).toLong()
-        cache.setExpireTime(expirationTime).test()
-        val testObserver = cache.hasTokenExpired().test()
-        testObserver.assertValue(true)
-    }
-
 }

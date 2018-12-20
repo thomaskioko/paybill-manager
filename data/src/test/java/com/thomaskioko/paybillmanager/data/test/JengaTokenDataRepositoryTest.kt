@@ -75,7 +75,7 @@ class JengaTokenDataRepositoryTest {
     }
 
     private fun stubFactoryGetDataStore() {
-        whenever(factory.getDataStore(any(), any())).thenReturn(store)
+        whenever(factory.getDataStore(any())).thenReturn(store)
     }
 
     private fun stubFactoryGetCacheDataStore() {

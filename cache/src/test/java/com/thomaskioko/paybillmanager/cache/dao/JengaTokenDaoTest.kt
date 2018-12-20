@@ -50,7 +50,7 @@ class JengaTokenDaoTest {
         //invoke delete function
         database.jengaTokenDao().deleteCachedToken()
 
-        val testObserver = database.tokenDao().getToken().test()
+        val testObserver = database.jengaTokenDao().getToken().test()
 
         //Verify that there is no data when we query
         testObserver.assertEmpty()
