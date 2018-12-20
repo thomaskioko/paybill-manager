@@ -6,11 +6,9 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.CompoundButton
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
@@ -28,15 +26,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
-import com.thomaskioko.paybillmanager.presentation.model.JengaTokenView
-import com.thomaskioko.paybillmanager.presentation.state.Resource
-import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import com.thomaskioko.paybillmanager.presentation.viewmodel.JengaRequestsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.HasSupportFragmentInjector
-import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCheckedChangeListener {
@@ -49,9 +42,6 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
-    @Inject
-    lateinit var jengaRequestsViewModel: JengaRequestsViewModel
 
     @Inject
     lateinit var navigationController: NavigationController
@@ -82,43 +72,13 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
         setUpDrawer()
 
         navigationController.navigateToBillsListFragment()
-
-        jengaRequestsViewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(JengaRequestsViewModel::class.java)
-
-
     }
 
     override fun onStart() {
         super.onStart()
 
-        jengaRequestsViewModel.getJengaToken().observe(this,
-                Observer<Resource<JengaTokenView>> {
-                    it?.let {
-                        handleData(it)
-                    }
-                })
-
-        jengaRequestsViewModel.fetchJengaToken()
-
         for (category in categoriesList()) {
             createCategoryViewModel.createCategory(category)
-        }
-    }
-
-
-    private fun handleData(resource: Resource<JengaTokenView>) {
-        when (resource.status) {
-            ResourceState.LOADING -> {
-                Timber.d("@getJengaToken ${resource.status.name} - ${resource.data.toString()}")
-            }
-            ResourceState.SUCCESS -> {
-                Toast.makeText(this, "Data ${resource.data.toString()}", Toast.LENGTH_SHORT).show()
-                Timber.d("@getJengaToken ${resource.data.toString()}")
-            }
-            ResourceState.ERROR -> {
-                Toast.makeText(this, resource.message, Toast.LENGTH_LONG).show()
-            }
         }
     }
 
