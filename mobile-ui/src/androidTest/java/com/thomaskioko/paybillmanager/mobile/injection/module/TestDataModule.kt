@@ -1,12 +1,9 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import com.nhaarman.mockitokotlin2.mock
-import com.thomaskioko.paybillmanager.data.BillsDataRepository
-import com.thomaskioko.paybillmanager.data.CategoryDataRepository
-import com.thomaskioko.paybillmanager.data.TokenDataRepository
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
-import com.thomaskioko.paybillmanager.domain.repository.TokenRepository
+import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
 import dagger.Module
 import dagger.Provides
 
@@ -15,7 +12,7 @@ object TestDataModule {
 
     @Provides
     @JvmStatic
-    fun providesTokenDataRepository(): TokenRepository {
+    fun providesTokenDataRepository(): JengaTokenRepository {
         return mock()
     }
 

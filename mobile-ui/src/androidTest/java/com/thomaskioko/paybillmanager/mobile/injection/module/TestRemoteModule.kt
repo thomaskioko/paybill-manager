@@ -1,8 +1,8 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import com.nhaarman.mockitokotlin2.mock
-import com.thomaskioko.paybillmanager.data.repository.token.TokenRemote
-import com.thomaskioko.paybillmanager.remote.service.safaricom.SafaricomTokenService
+import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenRemote
+import com.thomaskioko.paybillmanager.remote.service.JengaService
 import dagger.Module
 import dagger.Provides
 
@@ -12,13 +12,13 @@ object TestRemoteModule {
 
     @Provides
     @JvmStatic
-    fun provideTokenService(): SafaricomTokenService {
+    fun provideJengaService(): JengaService {
         return mock()
     }
 
     @Provides
     @JvmStatic
-    fun provideTokenRemote(): TokenRemote {
+    fun provideTokenRemote(): JengaTokenRemote {
         return mock()
     }
 }
