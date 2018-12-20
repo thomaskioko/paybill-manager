@@ -30,7 +30,7 @@ import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import com.thomaskioko.paybillmanager.presentation.viewmodel.GetBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
 import kotlinx.android.synthetic.main.fragment_bills_list.*
 import javax.inject.Inject
 
