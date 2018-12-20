@@ -7,8 +7,10 @@ import retrofit2.http.*
 interface JengaService {
 
     @FormUrlEncoded
-    @GET("identity/v2/token")
+    @POST("identity/v2/token")
     fun getAccessToken(
+            @Header("Authorization") bearer: String,
+            @Header("Content-Type") contentType: String,
             @Field("username") username: String,
             @Field("password") password: String
     ): Flowable<JengaToken>
