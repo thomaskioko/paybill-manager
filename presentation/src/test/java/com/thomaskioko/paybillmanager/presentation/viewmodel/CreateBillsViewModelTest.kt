@@ -2,8 +2,8 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
-import com.thomaskioko.paybillmanager.domain.bills.CreateBill
-import com.thomaskioko.paybillmanager.domain.bills.UpdateBill
+import com.thomaskioko.paybillmanager.domain.interactor.bills.CreateBill
+import com.thomaskioko.paybillmanager.domain.interactor.bills.UpdateBill
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.presentation.factory.BillsFactory
 import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
@@ -11,6 +11,7 @@ import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.observers.DisposableCompletableObserver
+import junit.framework.Assert
 import junit.framework.TestCase
 import org.junit.Rule
 import org.junit.Test
@@ -172,6 +173,22 @@ class CreateBillsViewModelTest {
 
         //Verify that the error message returned is what is expected
         TestCase.assertEquals(errorMessage, viewModel.getBill().value?.message)
+    }
+
+
+    @Test
+    fun setAmountReturnsRightValue(){
+        viewModel.setAmount("2300")
+
+        Assert.assertEquals(viewModel.amountLiveData.value, "2300")
+    }
+
+
+    @Test
+    fun setCategoryIdReRightValue(){
+        viewModel.setCategoryId("2")
+
+        Assert.assertEquals(viewModel.categoryIdLiveData.value, "2")
     }
 
     private fun stubBillMapperMapToView(projectView: BillView, project: Bill) {

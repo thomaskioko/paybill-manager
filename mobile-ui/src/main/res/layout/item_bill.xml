@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="@drawable/selectable_item_background"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/image_button_drawable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_2"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_button_background2"
+        app:layout_constraintEnd_toEndOf="@+id/image_button_background2"
+        app:layout_constraintStart_toStartOf="@+id/image_button_background2"
+        app:layout_constraintTop_toTopOf="@+id/image_button_background2"
+        tools:src="@sample/categories.json/data/drawableIcon" />
+
+
+    <ImageButton
+        android:id="@+id/image_button_background2"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_margin="@dimen/dp_2"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background_circle_dark"
+        android:contentDescription="@null"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <TextView
+        android:id="@+id/tv_detail_bill_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        style="@style/TextAppearance.PayBillManager.MainTitle"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/image_button_background2"
+        tools:layout_editor_absoluteY="8dp"
+        tools:text="@string/text_bill_title" />
+
+
+
+    <TextView
+        android:id="@+id/tv_bill_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:lineSpacingExtra="@dimen/spacing_medium"
+        style="@style/TextAppearance.PayBillManager.Body.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_bill_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_detail_bill_text"
+        tools:text="@string/text_bill_amount" />
+
+    <TextView
+        android:id="@+id/tv_bill_account_number"
+        style="@style/TextAppearance.PayBillManager.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_bill_paybill"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bill_paybill"
+        tools:text="@string/text_account_number" />
+
+    <TextView
+        android:id="@+id/tv_bill_status"
+        style="@style/TextAppearance.PayBillManager.Body.Small.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/drawable_status_pending"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="2dp"
+        android:text="Pending"
+        app:layout_constraintEnd_toEndOf="@+id/tv_bill_amount"
+        app:layout_constraintStart_toStartOf="@+id/tv_bill_amount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bill_amount" />
+
+
+    <TextView
+        android:id="@+id/tv_bill_paybill"
+        style="@style/TextAppearance.PayBillManager.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/spacing_medium"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_bill_text"
+        app:layout_constraintTop_toTopOf="@+id/tv_bill_status"
+        tools:text="@string/text_bill_number" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="8dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/dp_16" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

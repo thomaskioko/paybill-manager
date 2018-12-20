@@ -1,12 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript { 
-    ext.kotlin_version = '1.2.61'
+buildscript {
 
     apply from: 'versions.gradle'
     addRepos(repositories)
     dependencies {
         classpath deps.android_gradle_plugin
+        classpath deps.fabric
+        classpath deps.google_services
         classpath deps.kotlin.plugin
         classpath deps.kotlin.allopen
         // NOTE: Do not place your application dependencies here; they belong
@@ -14,12 +15,8 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        google()
     }
-}
-
-
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC7-2"
 }
 
 allprojects {
@@ -29,26 +26,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-detekt {
-
-    profile("main") {
-        input = file("${project.rootDir}/mobile/src/main/java")
-        config = file("${project.rootDir}/config/detekt/rules-detekt.yml")
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
-        output = "${project.rootDir}/app/build/reports/detekt/"
-        parallel = true
-        disableDefaultRuleSets = false
-    }
-
-    profile("module") {
-        input = file("${project.rootDir}/safaricom_api/src/main/java")
-        config = file("${project.rootDir}/config/detekt/rules-detekt.yml")
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
-        output = "${project.rootDir}/safaricom_api/build/reports/detekt/"
-        parallel = true
-        disableDefaultRuleSets = false
-    }
-
 }

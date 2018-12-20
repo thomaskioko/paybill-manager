@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?themePrimary"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="?themeContentBackgroundLight"
+        android:backgroundTint="?themeContentBackgroundLight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?themeContentBackgroundLight"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_bill_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="?attr/colorPrimaryDark"
+                android:theme="@style/PayBillManager.TextInputLayout"
+                app:errorTextAppearance="@style/error_appearance"
+                app:fontFamily="@font/gotham_rounded_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_bill_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_label"
+                    android:imeOptions="actionNext"
+                    android:textCursorDrawable="@drawable/edit_text_cursor"
+                    android:theme="@style/TextInputEditTextSingleLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_account_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="?attr/colorPrimaryDark"
+                android:theme="@style/PayBillManager.TextInputLayout"
+                app:errorTextAppearance="@style/error_appearance"
+                app:fontFamily="@font/gotham_rounded_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_bill_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_account_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_account_number"
+                    android:imeOptions="actionNext"
+                    android:theme="@style/TextInputEditTextSingleLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_bill_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="?attr/colorPrimaryDark"
+                android:theme="@style/PayBillManager.TextInputLayout"
+                app:errorTextAppearance="@style/error_appearance"
+                app:fontFamily="@font/gotham_rounded_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_account_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_bill_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham_rounded_light"
+                    android:hint="@string/hint_paybill_number"
+                    android:imeOptions="actionDone"
+                    android:theme="@style/TextInputEditTextSingleLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/iv_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@null"
+                android:fontFamily="@font/gotham_rounded_light"
+                android:text="@string/text_reminder"
+                android:textColor="@drawable/checkbox_style"
+                android:textSize="@dimen/text_size_h3"
+                android:theme="@style/CheckBoxStyle"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_bill_number" />
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_dates"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:background="@drawable/recycler_background"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/iv_reminder"
+                tools:listitem="@layout/item_date" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp_16" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_end="@dimen/dp_8" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

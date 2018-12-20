@@ -1,0 +1,262 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'jacoco'
+
+apply from: "$project.rootDir/config/checkstyle/checkstyle.gradle"
+apply from: "$project.rootDir/config/pmd/pmd.gradle"
+apply from: "$project.rootDir/config/detekt/detekt.gradle"
+
+
+jacoco {
+    toolVersion = "0.7.4+"
+    reportsDir = file("$buildDir/reports")
+}
+
+
+android {
+    compileSdkVersion build_versions.compile_version
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId "com.thomaskioko.paybillmanager.mobile"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "com.thomaskioko.paybillmanager.mobile.test.TestRunner"
+        multiDexEnabled true
+
+        vectorDrawables.useSupportLibrary = true
+
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        dexInProcess = false
+        javaMaxHeapSize "4g"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+
+
+    lintOptions {
+        abortOnError false
+        lintConfig rootProject.file('lint.xml')
+    }
+
+}
+
+
+dependencies {
+    implementation project(':presentation')
+    implementation project(':data')
+    implementation project(':remote')
+    implementation project(':cache')
+
+    implementation deps.kotlin.stdlib
+
+    implementation deps.javax_inject
+    implementation deps.rx_kotlin
+
+    /**
+     * Android X
+     */
+    implementation deps.androidx.material
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.core
+    implementation deps.androidx.annotations
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.recyclerview_selection
+    implementation deps.androidx.preference
+
+    /**
+     * Crashlytics
+     */
+    implementation deps.crashlytics
+
+    /**
+     * Lifecycle
+     */
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
+
+    /**
+     * Dagger
+     */
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.processor
+    kapt deps.dagger.compiler
+
+    /**
+     * Firebase
+     */
+    implementation deps.firebase.core
+
+    /**
+     * Room
+     */
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    kapt deps.room.compiler
+
+    /**
+     * Material Libs
+     */
+    implementation deps.material_libs.fontawesome
+    implementation deps.material_libs.iconics
+    implementation deps.material_libs.octicons
+    implementation deps.material_libs.item_animators
+    implementation deps.material_libs.iconics_views
+    implementation(deps.material_libs.drawer) {
+        transitive = true
+    }
+
+    /**
+     * Material Stepper
+     */
+    implementation deps.material_stepper.core
+
+
+    /**
+     * Multidex
+     */
+    implementation deps.multidex
+
+    /**
+     * Navigation
+     */
+    implementation deps.navigation.fragment
+    implementation deps.navigation.ui
+    implementation deps.navigation.testing
+
+    /**
+     * RX Android
+     */
+    implementation deps.rx_android
+
+    /**
+     * RX Binding
+     */
+    implementation deps.rx_binding.rx
+    implementation deps.rx_binding.appcompact
+
+    /**
+     * Timber
+     */
+    implementation deps.timber
+    implementation deps.threetenabp
+
+    implementation deps.animated_pie
+    implementation deps.ticketView
+
+    compileOnly deps.glassfish
+    implementation deps.javax_annotation
+
+    /**
+     * Testing
+     */
+    testImplementation deps.junit
+    testImplementation deps.kotlin.test
+
+    androidTestImplementation deps.androidx.app_compat
+    androidTestImplementation deps.androidx.recyclerview
+    androidTestImplementation deps.androidx.cardview
+    androidTestImplementation deps.androidx.material
+
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+
+    androidTestImplementation deps.mockito.android
+
+    androidTestImplementation(deps.espresso.core, {
+        exclude group: 'androidx.annotation', module: 'annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    androidTestImplementation(deps.espresso.contrib, {
+        exclude group: 'androidx.annotation', module: 'annotation'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    androidTestImplementation(deps.espresso.intents, {
+        exclude group: 'androidx.annotation', module: 'annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+
+    androidTestImplementation(deps.espresso.intents, {
+        exclude group: 'androidx.annotation', module: 'annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+
+    androidTestImplementation deps.mockito.kotlin, {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    }
+
+    androidTestImplementation(deps.material_stepper.esporesso, {
+        exclude group: 'com.android.support.test.espresso'
+    })
+
+
+
+    kaptTest deps.dagger.compiler
+    kaptAndroidTest deps.dagger.compiler
+}
+
+
+task jacocoTestReport(type: JacocoReport) {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+    dependsOn 'testDebugUnitTest', 'pmd', 'checkstyle'
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
+                      '**/*Test*.*', 'android/**/*.*',
+                      '**/*_MembersInjector.class',
+                      '**/Dagger*Component.class',
+                      '**/Dagger*Component$Builder.class',
+                      '**/*_*Factory.class',
+                      '**/*ComponentImpl.class',
+                      '**/*SubComponentBuilder.class']
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ])
+}
+
+// we need all open to run tests which  a we enable only for debug builds.
+project.tasks.whenTaskAdded {
+    if (it.name == "testReleaseUnitTest") {
+        it.enabled = false
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'

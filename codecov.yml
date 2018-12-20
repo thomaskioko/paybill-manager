@@ -1,5 +1,5 @@
 codecov:
-  branch: feature/ft-architecture-restructure
+  branch: feature/clean-architecture-implementation
   notify:
     require_ci_to_pass: yes
 
@@ -12,6 +12,10 @@ coverage:
     project: yes
     patch: yes
     changes: yes
+
+  ignore:
+  - "**/*Activity.kt"
+  - "**/*Fragment.kt"
 
 parsers:
   gcov:

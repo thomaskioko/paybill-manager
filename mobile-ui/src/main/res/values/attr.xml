@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="themePrimary" format="reference" />
+    <attr name="themePrimaryDark" format="reference" />
+    <attr name="themeAccent" format="reference" />
+    <attr name="themeContentBackground" format="reference" />
+    <attr name="themeContentBackgroundLight" format="reference" />
+    <attr name="themeContentTextColor" format="reference" />
+    <attr name="themeContentTextColorLight" format="reference" />
+    <attr name="themeContentTextColorWhite" format="reference" />
+    <attr name="themeContentTextColorDivider" format="reference" />
+    <attr name="themeContentTextColoOnPrimary" format="reference" />
+    <attr name="themeTextInputLayoutBorder" format="reference" />
+    <attr name="themeTextColorSuccess" format="reference" />
+    <attr name="themeTextColorFailure" format="reference" />
+    <attr name="themeTextInputInactive" format="reference" />
+</resources>

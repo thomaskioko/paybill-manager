@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?themePrimary"
+    android:scrollbars="none"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/dp_16"
+        android:background="?themePrimary"
+        android:paddingBottom="60dp">
+
+
+        <com.vipulasri.ticketview.TicketView
+            android:id="@+id/ticketView"
+            android:layout_width="match_parent"
+            android:layout_height="520dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ticketBorderColor="@color/colorAccent"
+            app:ticketBorderWidth="1dp"
+            app:ticketCornerType="normal"
+            app:ticketDividerPadding="0dp"
+            app:ticketDividerType="dash"
+            app:ticketElevation="8dp"
+            app:ticketOrientation="horizontal"
+            app:ticketScallopPositionPercent="75"
+            app:ticketScallopRadius="10dp"
+            app:ticketShowBorder="false"
+            app:ticketShowDivider="true" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginStart="2.83dp"
+            android:layout_marginTop="1.3dp"
+            android:layout_marginEnd="2.83dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="@+id/ticketView"
+            app:layout_constraintStart_toStartOf="@+id/ticketView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_title"
+            style="@style/TextAppearance.PayBillManager.28sp.Light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/text_confirm_bill_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/view4"
+            app:layout_constraintTop_toTopOf="@+id/view4" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/dp_16"
+            app:layout_constraintEnd_toEndOf="@+id/tv_bill_detail_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_bill_detail_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bill_detail_title"
+            app:srcCompat="@drawable/ic_done" />
+
+        <TextView
+            android:id="@+id/tv_detail_bill_text"
+            style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/text_bill_name"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+        <TextView
+            android:id="@+id/tv_detail_bill_name"
+            style="@style/TextAppearance.PayBillManager.22sp.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_detail_bill_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_bill_text"
+            tools:text="@string/text_paybill_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_bill_number_title"
+            style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/text_paybill"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_bill_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_paybill_number"
+            style="@style/TextAppearance.PayBillManager.22sp.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_bill_detail_bill_number_title"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_bill_number_title"
+            tools:text="@string/text_paybill_account_number" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_bill_account_title"
+            style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/text_account"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bill_detail_bill_number_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_account_number"
+            style="@style/TextAppearance.PayBillManager.22sp.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_bill_detail_bill_account_title"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_bill_account_title"
+            tools:text="ZUKU245123" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_category_title"
+            style="@style/TextAppearance.PayBillManager.22sp.light.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/text_category"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bill_detail_bill_account_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_category_name"
+            style="@style/TextAppearance.PayBillManager.22sp.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_bill_detail_category_title"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/tv_bill_detail_category_title"
+            tools:text="@string/text_category_name" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_currency"
+            style="@style/TextAppearance.PayBillManager.Headline.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/text_view_currency_code"
+            app:layout_constraintEnd_toStartOf="@+id/tv_bill_detail_amount"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ticketView"
+            app:layout_constraintTop_toTopOf="@+id/guideline_left" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bill_detail_amount"
+            style="@style/TextAppearance.PayBillManager.45sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_bill_detail_currency"
+            app:layout_constraintEnd_toStartOf="@+id/ticketView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_bill_detail_currency"
+            tools:text="@string/text_amount" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dp_16" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
