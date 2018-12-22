@@ -5,9 +5,9 @@
 
 ext.deps = [:]
 def versions = [:]
-versions.android_gradle_plugin = '3.3.0-rc02'
+versions.android_gradle_plugin = '3.4.0-alpha09'
 versions.androidx = "1.0.0"
-versions.androidx_annotation = "1.0.0-alpha1"
+versions.androidx_annotation = "1.0.0-beta01"
 versions.animated_pie = "1.2.4"
 versions.apache_commons = "2.5"
 versions.arch_core = "2.0.0-alpha1"
@@ -27,11 +27,11 @@ versions.glide = "4.8.0"
 versions.groovy = "2.4.12"
 versions.hamcrest = "1.3"
 versions.item_animators = "1.0.2@aar"
-versions.jacoco = "0.1.2"
+versions.jacoco = "0.1.3"
 versions.javax = "1"
 versions.javax_annotation = "1.0"
 versions.junit = "4.12"
-versions.kotlin = "1.3.0"
+versions.kotlin = "1.3.11"
 versions.lifecycle = "2.0.0-rc01"
 versions.materialviewpager = "1.2.3"
 versions.mikepenz_material_drawer = "6.1.1"
@@ -55,6 +55,7 @@ versions.rx_android = "2.0.1"
 versions.rx_binding = "2.1.1"
 versions.rx_java = "2.0.2"
 versions.rx_kotlin = "2.1.0"
+versions.rx_java = "2.2.4"
 versions.stepper = "4.3.1"
 versions.ticketView = "1.0.7"
 versions.timber = "4.5.1"
@@ -119,6 +120,7 @@ def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
 kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$versions.kotlin"
 kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
 deps.kotlin = kotlin
 
@@ -217,17 +219,20 @@ deps.robolectric = "org.robolectric:robolectric:$versions.robolectric"
 deps.stepper = "com.stepstone.stepper:material-stepper:$versions.stepper"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 deps.rx_kotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rx_kotlin"
+deps.rx_java = "io.reactivex.rxjava2:rxjava:$versions.rx_java"
 deps.ticketView = "com.vipulasri:ticketview:$versions.ticketView"
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 deps.threetenabp = "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
+    handler.mavenCentral()
+    handler.google()
     handler.jcenter()
-    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     handler.maven { url "https://maven.google.com" }
     handler.maven { url 'https://maven.fabric.io/public' }
     handler.maven { url "https://dl.bintray.com/fabian/maven" }
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 ext.addRepos = this.&addRepos
