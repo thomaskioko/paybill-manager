@@ -28,9 +28,9 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
 The app is written entirely in Kotlin and uses the Gradle build system. You require [Android Studio 3.2 Canary 14 or higher](https://developer.android.com/studio/preview/). This is because lower versions don't support Navigation Components yet.
 
 ## API Keys
-For the app to make requests you require a [Safaricom Dev Account](https://developer.safaricom.co.ke/ ). Once you have one, go ahead and [create an application](https://developer.safaricom.co.ke/user/1079/apps/add) in order to get your credentials
+PaybillManager uses [Jenga Account](http://test.jengahq.io/) to handle payments, so you will need to create an account. Once you have one, go ahead and get your [keys](https://test.jengahq.io/#!/developers/api-keys) 
 
-Once you have it, open `gradle.properties` file and paste your API key in `SAFARICOM_CONSUMER_KEY` and `SAFARICOM_CONSUMER_SECRET` variables respectively.
+Once you have them, open `gradle.properties` file and paste your API key in `JENGA_API_KEY`,  `JENGA_USERNAME` and `JENGA_PASSWORD` variables respectively.
 
 
 # Architecture
