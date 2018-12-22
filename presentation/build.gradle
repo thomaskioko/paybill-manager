@@ -69,6 +69,7 @@ dependencies {
     implementation deps.javax_inject
     implementation deps.kotlin.stdlib
     implementation deps.rx_kotlin
+    implementation deps.rx_java
 
     implementation deps.lifecycle.extensions
     implementation deps.lifecycle.runtime

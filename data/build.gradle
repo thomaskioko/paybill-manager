@@ -7,6 +7,7 @@ dependencies {
     implementation deps.javax_annotation
     implementation deps.kotlin.stdlib
     implementation deps.rx_kotlin
+    implementation deps.rx_java
 
     testImplementation deps.junit
     testImplementation deps.mockito.kotlin

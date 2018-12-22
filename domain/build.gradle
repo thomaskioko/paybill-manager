@@ -3,6 +3,7 @@ apply plugin: 'kotlin'
 dependencies {
 
     implementation deps.rx_kotlin
+    implementation deps.rx_java
     implementation deps.javax_annotation
     implementation deps.javax_inject
 
