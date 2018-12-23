@@ -10,9 +10,9 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowIsTranslucent">true</item>
 
-        <item name="android:textColorHint">?themeContentTextColorWhite</item>
-        <item name="colorControlNormal">?themeContentTextColorWhite</item>
-        <item name="colorControlActivated">?themeContentTextColorWhite</item>
+        <item name="android:textColorHint">?themeContentTextColor</item>
+        <item name="colorControlNormal">?themeContentTextColor</item>
+        <item name="colorControlActivated">?themeContentTextColor</item>
 
         <item name="ms_stepperStyle">@style/CustomStepperLayoutThemeSample</item>
     </style>
@@ -29,13 +29,14 @@
         <item name="themeContentBackgroundLight">@color/white</item>
         <item name="themeContentTextColor">@color/colorPrimaryDark</item>
         <item name="themeContentTextColorWhite">@color/white</item>
-        <item name="themeContentTextColorLight">@color/grey_60</item>
+        <item name="themeContentTextColorLight">@color/greyAccent</item>
         <item name="themeContentTextColoOnPrimary">@color/greyAccent</item>
         <item name="themeContentTextColorDivider">@color/gray_divider</item>
         <item name="themeTextColorSuccess">@color/greenSuccess</item>
         <item name="themeTextColorFailure">@color/error</item>
         <item name="themeTextInputLayoutBorder">@color/colorPrimaryDark</item>
         <item name="themeTextInputInactive">@color/lightAccentGreen</item>
+        <item name="themeBackground">@color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Dark">
@@ -53,6 +54,7 @@
         <item name="themeTextColorFailure">@color/error</item>
         <item name="themeTextInputLayoutBorder">@color/white</item>
         <item name="themeTextInputInactive">@color/darkAccentGreen</item>
+        <item name="themeBackground">@color/darkPrimary</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -257,7 +259,7 @@
         <item name="colorControlHighlight">?themeAccent</item>
         <item name="android:textColorHint">?themeAccent</item>
         <item name="colorAccent">?themeAccent</item>
-        <item name="editTextColor">?themeContentTextColorWhite</item>
+        <item name="editTextColor">?themeContentTextColor</item>
     </style>
 
     <!-- CheckBoxStyle-->
@@ -279,7 +281,7 @@
     </style>
 
     <style name="TextInputEditTextSingleLine">
-        <item name="android:textColor">?themeContentTextColorWhite</item>
+        <item name="android:textColor">?themeContentTextColor</item>
         <item name="android:singleLine">true</item>
         <item name="android:fontFamily">@font/gotham_rounded_light</item>
     </style>
@@ -367,5 +369,24 @@
         <item name="ms_bottomNavigationBackground">?attr/colorAccent</item>
     </style>
 
+    <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">?themeAccent</item>
+        <item name="textColorAlertDialogListItem">@android:color/white</item>
+        <item name="colorAccent">?themeAccent</item>
+        <item name="android:textColor">?themeAccent</item>
+        <item name="android:colorPrimary">?themeBackground</item>
+        <item name="android:windowBackground">@drawable/background_dialog</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">?themeAccent</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">?themeAccent</item>
+    </style>
 
 </resources>
