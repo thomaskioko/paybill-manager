@@ -35,7 +35,7 @@
         <item name="themeTextColorSuccess">@color/greenSuccess</item>
         <item name="themeTextColorFailure">@color/error</item>
         <item name="themeTextInputLayoutBorder">@color/colorPrimaryDark</item>
-        <item name="themeTextInputInactive">@color/lightAccentGreen</item>
+        <item name="themeTextInputInactive">@color/lightPrimaryDark</item>
         <item name="themeBackground">@color/white</item>
     </style>
 
