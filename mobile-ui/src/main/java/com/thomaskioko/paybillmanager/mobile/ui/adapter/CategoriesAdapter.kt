@@ -49,7 +49,7 @@ class CategoriesAdapter @Inject constructor(
         }
 
 
-        holder.imageDrawable.setOnClickListener {
+        holder.imageBackground.setOnClickListener {
             lastSelectedPosition = holder.adapterPosition
             notifyDataSetChanged()
 
