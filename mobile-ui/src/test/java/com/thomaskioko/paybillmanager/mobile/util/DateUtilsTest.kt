@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.mobile.util
 
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.dateToTimeStamp
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.formatTimeStampToDate
+import com.thomaskioko.paybillmanager.mobile.util.DateUtils.getMonthFromTimeStamp
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -39,6 +40,16 @@ class DateUtilsTest {
 
         //Verify that the formatted date is the correct format
         assertEquals("23rd December", formattedDate)
+
+    }
+
+    @Test
+    fun getMonthFromTimeStamp(){
+        //Given a timestamp
+        val formattedDate = getMonthFromTimeStamp(1545583939000)
+
+        //Verify that the formatted date is the correct format
+        assertEquals("23rd", formattedDate)
 
     }
 }
