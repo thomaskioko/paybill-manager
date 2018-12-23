@@ -15,7 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="?themePrimary">
+        android:background="?themePrimary"
+        android:layout_marginTop="40dp"
+        android:paddingBottom="10dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -263,13 +265,12 @@
                     android:id="@+id/iv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:layout_marginBottom="@dimen/dp_24"
+                    android:layout_marginTop="16dp"
                     android:contentDescription="@null"
                     android:src="@drawable/ic_calender"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_number_four"
                     app:layout_constraintTop_toBottomOf="@+id/tv_enter_select_date" />
+
 
                 <TextView
                     android:id="@+id/tv_payment_date"
@@ -281,6 +282,23 @@
                     app:layout_constraintBottom_toBottomOf="@+id/iv_date"
                     app:layout_constraintStart_toEndOf="@+id/iv_date"
                     app:layout_constraintTop_toTopOf="@+id/iv_date" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cb_reminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="-8dp"
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="@null"
+                    android:fontFamily="@font/gotham_rounded_light"
+                    android:text="@string/text_reminder"
+                    android:textColor="@drawable/checkbox_style"
+                    android:textSize="@dimen/text_size_h3"
+                    android:theme="@style/CheckBoxStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/iv_date"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_payment_date" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
