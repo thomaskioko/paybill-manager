@@ -2,41 +2,36 @@ package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
+import android.widget.DatePicker
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
-import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.showErrorMessage
 import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
-import com.thomaskioko.paybillmanager.mobile.ui.adapter.DaysAdapter
-import com.thomaskioko.paybillmanager.mobile.util.DateUtils
-import com.thomaskioko.paybillmanager.presentation.model.BillView
-import com.thomaskioko.paybillmanager.presentation.state.Resource
-import com.thomaskioko.paybillmanager.presentation.state.ResourceState
+import com.thomaskioko.paybillmanager.mobile.util.DateUtils.dateToTimeStamp
+import com.thomaskioko.paybillmanager.mobile.util.DateUtils.formatTimeStampToDate
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
-import kotlinx.android.synthetic.main.fragment_bottom_dialog.*
-import org.threeten.bp.OffsetDateTime
+import kotlinx.android.synthetic.main.fragment_bill_details.*
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
 @SuppressLint("VisibleForTests")
-class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewItemClickListener,
-        Step {
+class BillDetailsFragment : Fragment(), Injectable, DatePickerDialog.OnDateSetListener, Step {
 
 
     @Inject
@@ -52,7 +47,7 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottom_dialog, container, false)
+        return inflater.inflate(R.layout.fragment_bill_details, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -69,14 +64,33 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
             categoryId = it
         })
 
+        val calender = Calendar.getInstance()
+        val month = calender.get(Calendar.MONTH)
+        val day = calender.get(Calendar.DAY_OF_MONTH)
 
-        val adapter = DaysAdapter(this)
+        tv_payment_date.setOnClickListener {
+            val datePickerDialog = DatePickerDialog(activity!!, R.style.DatePickerDialogTheme, this, 2018, month, day)
+            datePickerDialog.setCancelable(false)
+            datePickerDialog.show()
+            datePickerDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setBackgroundColor(resources.getColor(R.color.transparent))
+            datePickerDialog.getButton(DialogInterface.BUTTON_POSITIVE).setBackgroundColor(resources.getColor(R.color.transparent))
 
-        recycler_view_dates.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
-        recycler_view_dates.adapter = adapter
+        }
 
-        adapter.offsetDateTimeLists = DateUtils.getDaysOfWeek()
-        adapter.notifyDataSetChanged()
+
+    }
+
+    override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, dayOfTheMonth: Int) {
+
+        val calender = Calendar.getInstance()
+        val hours = calender.time.hours
+        val minutes = calender.time.minutes
+        val seconds = calender.time.seconds
+
+        val selectedDate = "$month-$dayOfTheMonth-$year $hours:$minutes:$seconds"
+        val timeStamp = dateToTimeStamp(selectedDate)
+
+        tv_payment_date.text = formatTimeStampToDate(timeStamp)
 
     }
 
@@ -126,6 +140,4 @@ class BillDetailsFragment : Fragment(), Injectable, DaysAdapter.OnRecyclerViewIt
     }
 
 
-    override fun selectedDateItem(offsetDateTime: OffsetDateTime) {
-    }
 }
