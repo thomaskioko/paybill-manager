@@ -30,11 +30,12 @@
     <dimen name="spacing_xxx_large">55dp</dimen>
 
     <!-- Text Sizes-->
-    <dimen name="text_size_xxl">42sp</dimen>
+    <dimen name="text_size_h3">16sp</dimen>
     <dimen name="text_size_normal">18sp</dimen>
     <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size_14dp">14sp</dimen>
     <dimen name="text_size_28dp">28sp</dimen>
-    <dimen name="text_size_h3">16sp</dimen>
+    <dimen name="text_size_xxl">42sp</dimen>
 
     <dimen name="dimes_coordinator_layout_height">84dp</dimen>
     <dimen name="elevation_default">4dp</dimen>
