@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="?themePrimary"
+    android:scrollbars="none"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="?themePrimary">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?themePrimary"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_bill_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:background="?themeBackground"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_number_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/drawable_item_count"
+                    android:gravity="center"
+                    android:text="@string/keyboard_1"
+                    android:textColor="?themeAccent"
+                    android:textSize="@dimen/text_size_14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_enter_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@string/title_enter_bill_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_one"
+                    app:layout_constraintStart_toEndOf="@+id/tv_number_one"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_one" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_bill_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:theme="@style/PayBillManager.TextInputLayout"
+                    app:errorTextAppearance="@style/error_appearance"
+                    app:fontFamily="@font/gotham_rounded_light"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_number_one"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_enter_bill">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bill_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_label"
+                        android:imeOptions="actionNext"
+                        android:textCursorDrawable="@drawable/edit_text_cursor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_bill_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:background="?themeBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_bill_name">
+
+                <TextView
+                    android:id="@+id/tv_number_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/drawable_item_count"
+                    android:gravity="center"
+                    android:text="@string/keyboard_2"
+                    android:textColor="?themeAccent"
+                    android:textSize="@dimen/text_size_14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_enter_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@string/title_enter_bill_number"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_two"
+                    app:layout_constraintStart_toEndOf="@+id/tv_number_two"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_two" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_bill_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:theme="@style/PayBillManager.TextInputLayout"
+                    app:errorTextAppearance="@style/error_appearance"
+                    app:fontFamily="@font/gotham_rounded_light"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_number_two"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_enter_number">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bill_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_paybill_number"
+                        android:imeOptions="actionNext"
+                        android:textCursorDrawable="@drawable/edit_text_cursor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_account_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:background="?themeBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_bill_number">
+
+                <TextView
+                    android:id="@+id/tv_number_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/drawable_item_count"
+                    android:gravity="center"
+                    android:text="@string/keyboard_3"
+                    android:textColor="?themeAccent"
+                    android:textSize="@dimen/text_size_14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_enter_account_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@string/title_enter_account_number"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_three"
+                    app:layout_constraintStart_toEndOf="@+id/tv_number_three"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_three" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_account_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:theme="@style/PayBillManager.TextInputLayout"
+                    app:errorTextAppearance="@style/error_appearance"
+                    app:fontFamily="@font/gotham_rounded_light"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_number_three"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_enter_account_number">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_account_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_account_number"
+                        android:imeOptions="actionNext"
+                        android:textCursorDrawable="@drawable/edit_text_cursor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_payment_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:background="?themeBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_account_number">
+
+                <TextView
+                    android:id="@+id/tv_number_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/drawable_item_count"
+                    android:gravity="center"
+                    android:text="@string/keyboard_4"
+                    android:textColor="?themeAccent"
+                    android:textSize="@dimen/text_size_14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_enter_select_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@string/title_select_payment_date"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_number_four"
+                    app:layout_constraintStart_toEndOf="@+id/tv_number_four"
+                    app:layout_constraintTop_toTopOf="@+id/tv_number_four" />
+
+
+                <ImageView
+                    android:id="@+id/iv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginBottom="@dimen/dp_24"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_calender"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_number_four"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_enter_select_date" />
+
+                <TextView
+                    android:id="@+id/tv_payment_date"
+                    style="@style/TextAppearance.PayBillManager.MainTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@string/text_choose_date"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_date"
+                    app:layout_constraintStart_toEndOf="@+id/iv_date"
+                    app:layout_constraintTop_toTopOf="@+id/iv_date" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
