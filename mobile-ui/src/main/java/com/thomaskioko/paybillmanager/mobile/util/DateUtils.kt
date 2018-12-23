@@ -46,6 +46,24 @@ object DateUtils {
 
     }
 
+    fun getMonthFromTimeStamp(timeStamp: Long): String {
+
+        val instance = Instant.EPOCH.plusMillis(timeStamp)
+        val offsetTime = OffsetDateTime.ofInstant(instance, ZoneId.of("GMT+03:00"))
+
+        val day = offsetTime.dayOfMonth
+
+        if (day !in 11..18)
+            return when (day % 10) {
+                1 -> "${day}st"
+                2 -> "${day}nd"
+                3 -> "${day}rd"
+                else -> "${day}th"
+            }
+        return "${day}th"
+
+    }
+
     fun dateToTimeStamp(formattedDate: String): Long {
 
         val dateFormat = SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.getDefault())
