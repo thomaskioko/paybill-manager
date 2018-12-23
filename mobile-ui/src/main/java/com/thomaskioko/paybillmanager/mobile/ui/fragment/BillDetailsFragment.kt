@@ -24,6 +24,7 @@ import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.dateToTimeStamp
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.formatTimeStampToDate
+import com.thomaskioko.paybillmanager.mobile.util.DateUtils.getMonthFromTimeStamp
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_bill_details.*
 import timber.log.Timber
@@ -65,11 +66,13 @@ class BillDetailsFragment : Fragment(), Injectable, DatePickerDialog.OnDateSetLi
         })
 
         val calender = Calendar.getInstance()
+        val year = calender.get(Calendar.YEAR)
         val month = calender.get(Calendar.MONTH)
         val day = calender.get(Calendar.DAY_OF_MONTH)
 
         tv_payment_date.setOnClickListener {
-            val datePickerDialog = DatePickerDialog(activity!!, R.style.DatePickerDialogTheme, this, 2018, month, day)
+            val datePickerDialog = DatePickerDialog(activity!!, R.style.DatePickerDialogTheme, this, year, month, day)
+            datePickerDialog.datePicker.minDate = System.currentTimeMillis()
             datePickerDialog.setCancelable(false)
             datePickerDialog.show()
             datePickerDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setBackgroundColor(resources.getColor(R.color.transparent))
@@ -87,8 +90,10 @@ class BillDetailsFragment : Fragment(), Injectable, DatePickerDialog.OnDateSetLi
         val minutes = calender.time.minutes
         val seconds = calender.time.seconds
 
-        val selectedDate = "$month-$dayOfTheMonth-$year $hours:$minutes:$seconds"
+        val selectedDate = "${month + 1}-$dayOfTheMonth-$year $hours:$minutes:$seconds"
         val timeStamp = dateToTimeStamp(selectedDate)
+
+        cb_reminder.setText(resources.getString(R.string.placeholder_repeat, getMonthFromTimeStamp(timeStamp)))
 
         tv_payment_date.text = formatTimeStampToDate(timeStamp)
 
