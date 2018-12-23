@@ -36,7 +36,7 @@
     <color name="darkAccent">#FF2466</color>
     <color name="darkAccentGreen">#3e948d</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/darkAccentGreen</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/colorAccent</color>
     <color name="ms_material_blue_500">#2196f3</color>
     <color name="ms_material_grey_400">#BDBDBD</color>
     <color name="ms_errorColor">#f44336</color>

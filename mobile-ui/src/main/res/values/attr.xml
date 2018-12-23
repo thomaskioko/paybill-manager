@@ -3,6 +3,7 @@
     <attr name="themePrimary" format="reference" />
     <attr name="themePrimaryDark" format="reference" />
     <attr name="themeAccent" format="reference" />
+    <attr name="themeBackground" format="reference" />
     <attr name="themeContentBackground" format="reference" />
     <attr name="themeContentBackgroundLight" format="reference" />
     <attr name="themeContentTextColor" format="reference" />

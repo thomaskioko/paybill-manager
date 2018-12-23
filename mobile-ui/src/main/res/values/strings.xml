@@ -46,7 +46,7 @@
     <string name="hint_account_number">Account Number</string>
     <string name="hint_add_a_note">Add a note</string>
     <string name="hint_amount">Amount</string>
-    <string name="hint_label">Label/Name</string>
+    <string name="hint_label">Bill Name</string>
 
     <!-- Error Messages -->
     <string name="error_no_amount">Please enter an amount</string>
@@ -142,5 +142,10 @@
     <string name="text_paybill_name">Zuku</string>
     <string name="text_paybill_account_number">320320</string>
     <string name="text_category_name">Internet</string>
+    <string name="title_enter_account_number">Enter Account Number</string>
+    <string name="title_enter_bill_number">Enter Bill Number</string>
+    <string name="title_enter_bill_name">Enter Bill Name</string>
+    <string name="title_select_payment_date">Select Payment Date</string>
+    <string name="text_choose_date">Choose Date</string>
 
 </resources>
