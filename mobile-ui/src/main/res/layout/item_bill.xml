@@ -5,59 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="@drawable/selectable_item_background"
-    android:orientation="horizontal">
-
-    <ImageButton
-        android:id="@+id/image_button_drawable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_2"
-        android:background="@null"
-        android:contentDescription="@null"
-        android:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_button_background2"
-        app:layout_constraintEnd_toEndOf="@+id/image_button_background2"
-        app:layout_constraintStart_toStartOf="@+id/image_button_background2"
-        app:layout_constraintTop_toTopOf="@+id/image_button_background2"
-        tools:src="@sample/categories.json/data/drawableIcon" />
+    tools:ignore="UnusedAttribute">
 
 
     <ImageButton
         android:id="@+id/image_button_background2"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_width="@dimen/dimen_drawable_54dp"
+        android:layout_height="@dimen/dimen_drawable_54dp"
         android:layout_margin="@dimen/dp_2"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp"
+        tools:src="@sample/categories.json/data/drawableIcon"
         android:background="@drawable/background_circle_light"
         android:contentDescription="@null"
-        android:elevation="2dp"
+        android:elevation="@dimen/dp_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_detail_bill_text"
+        style="@style/TextAppearance.PayBillManager.MainTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/dp_16"
         android:gravity="center_vertical"
-        style="@style/TextAppearance.PayBillManager.MainTitle"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintStart_toEndOf="@+id/image_button_background2"
-        tools:layout_editor_absoluteY="8dp"
+        app:layout_constraintTop_toTopOf="@+id/image_button_background2"
         tools:text="@string/text_bill_title" />
-
 
 
     <TextView
         android:id="@+id/tv_bill_amount"
+        style="@style/TextAppearance.PayBillManager.Body.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/dp_16"
         android:lineSpacingExtra="@dimen/spacing_medium"
-        style="@style/TextAppearance.PayBillManager.Body.Small"
         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_bill_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_detail_bill_text"
@@ -68,7 +50,7 @@
         style="@style/TextAppearance.PayBillManager.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dimen_4dp"
         android:layout_marginBottom="@dimen/dp_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_bill_paybill"
@@ -82,11 +64,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_8"
         android:background="@drawable/drawable_status_pending"
-        android:paddingLeft="10dp"
-        android:paddingTop="2dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="2dp"
-        android:text="Pending"
+        android:paddingLeft="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_2dp"
+        android:paddingRight="@dimen/dimen_10dp"
+        android:paddingBottom="@dimen/dimen_2dp"
+        android:text="@string/text_pending"
         app:layout_constraintEnd_toEndOf="@+id/tv_bill_amount"
         app:layout_constraintStart_toStartOf="@+id/tv_bill_amount"
         app:layout_constraintTop_toBottomOf="@+id/tv_bill_amount" />

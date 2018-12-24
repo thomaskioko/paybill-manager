@@ -76,7 +76,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="@dimen/dp_16"
             android:gravity="center"
-            android:text="Health "
+            android:text="@string/text_health"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_bill_percent" />
