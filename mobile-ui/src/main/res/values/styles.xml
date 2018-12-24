@@ -29,7 +29,7 @@
         <item name="themeContentBackgroundLight">@color/white</item>
         <item name="themeContentTextColor">@color/colorPrimaryDark</item>
         <item name="themeContentTextColorWhite">@color/white</item>
-        <item name="themeContentTextColorLight">@color/greyAccent</item>
+        <item name="themeContentTextColorLight">@color/secondary_text</item>
         <item name="themeContentTextColoOnPrimary">@color/greyAccent</item>
         <item name="themeContentTextColorDivider">@color/gray_divider</item>
         <item name="themeTextColorSuccess">@color/greenSuccess</item>
@@ -166,7 +166,7 @@
     <style name="TextAppearance.PayBillManager.Body.Small" parent="TextAppearance.MaterialComponents.Body1">
         <item name="textAllCaps">false</item>
         <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">?themeContentTextColor</item>
         <item name="fontFamily">@font/gotham_rounded_medium</item>
     </style>
@@ -200,9 +200,9 @@
     <style name="TextAppearance.PayBillManager.Body" parent="TextAppearance.MaterialComponents.Body1">
         <item name="textAllCaps">false</item>
         <item name="android:letterSpacing" tools:targetApi="lollipop">0</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">?themeContentTextColorLight</item>
-        <item name="fontFamily">@font/gotham_rounded_light</item>
+        <item name="fontFamily">@font/gotham_rounded_book</item>
     </style>
 
     <!-- Title Sub-Headline Text -->
