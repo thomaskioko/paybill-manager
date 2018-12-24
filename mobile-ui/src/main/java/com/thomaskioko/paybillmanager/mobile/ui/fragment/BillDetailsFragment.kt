@@ -3,25 +3,18 @@ package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
 import android.widget.DatePicker
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.showErrorMessage
-import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
+import com.thomaskioko.paybillmanager.mobile.ui.base.BaseFragment
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.dateToTimeStamp
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.formatTimeStampToDate
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.getMonthFromTimeStamp
@@ -32,23 +25,17 @@ import java.util.*
 import javax.inject.Inject
 
 @SuppressLint("VisibleForTests")
-class BillDetailsFragment : Fragment(), Injectable, DatePickerDialog.OnDateSetListener, Step {
+class BillDetailsFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Step {
 
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var sharedViewModel: SharedViewModel
-    @Inject
-    lateinit var navigationController: NavigationController
     private lateinit var amount: String
     private lateinit var categoryId: String
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bill_details, container, false)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_bill_details
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -93,7 +80,7 @@ class BillDetailsFragment : Fragment(), Injectable, DatePickerDialog.OnDateSetLi
         val selectedDate = "${month + 1}-$dayOfTheMonth-$year $hours:$minutes:$seconds"
         val timeStamp = dateToTimeStamp(selectedDate)
 
-        cb_reminder.setText(resources.getString(R.string.placeholder_repeat, getMonthFromTimeStamp(timeStamp)))
+        cb_reminder.text = resources.getString(R.string.placeholder_repeat, getMonthFromTimeStamp(timeStamp))
 
         tv_payment_date.text = formatTimeStampToDate(timeStamp)
 
@@ -132,13 +119,6 @@ class BillDetailsFragment : Fragment(), Injectable, DatePickerDialog.OnDateSetLi
         }
     }
 
-    private fun closeKeyboard() {
-        val view = activity!!.currentFocus
-        if (view != null) {
-            val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm!!.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-    }
 
     override fun onError(error: VerificationError) {
         Timber.e("onError! -> ${error.errorMessage}")

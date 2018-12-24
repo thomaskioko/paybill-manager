@@ -4,15 +4,10 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
@@ -20,11 +15,10 @@ import com.razerdp.widget.animatedpieview.data.SimplePieInfo
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.hide
 import com.thomaskioko.paybillmanager.mobile.extension.show
-import com.thomaskioko.paybillmanager.mobile.injection.Injectable
 import com.thomaskioko.paybillmanager.mobile.mapper.BillsViewMapper
-import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillOnClickListener
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
+import com.thomaskioko.paybillmanager.mobile.ui.base.BaseFragment
 import com.thomaskioko.paybillmanager.mobile.ui.util.RecyclerViewItemDecoration
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import com.thomaskioko.paybillmanager.presentation.model.BillView
@@ -35,10 +29,10 @@ import kotlinx.android.synthetic.main.fragment_bills_list.*
 import javax.inject.Inject
 
 @SuppressLint("VisibleForTests")
-class BillsListFragment : Fragment(), Injectable{
+class BillsListFragment : BaseFragment(){
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+
     @Inject
     lateinit var viewModel: GetBillsViewModel
     @Inject
@@ -48,18 +42,8 @@ class BillsListFragment : Fragment(), Injectable{
     lateinit var adapter: BillsAdapter
 
 
-    @Inject
-    lateinit var navigationController: NavigationController
-
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-
-
-        return inflater.inflate(R.layout.fragment_bills_list, container, false)
-
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_bills_list
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -77,6 +61,8 @@ class BillsListFragment : Fragment(), Injectable{
 
         setupBillsRecycler()
         mapper = BillsViewMapper()
+
+        closeKeyboard()
 
         val animatedConfig = AnimatedPieViewConfig()
         animatedConfig.startAngle((-90).toFloat())// Starting angle offset
