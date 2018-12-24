@@ -2,7 +2,10 @@
 <resources>
 
     <dimen name="dp_2">2dp</dimen>
+    <dimen name="dimen_2dp">2dp</dimen>
+    <dimen name="dimen_4dp">4dp</dimen>
     <dimen name="dp_8">8dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
     <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_24">24dp</dimen>
     <dimen name="dp_32">32dp</dimen>
@@ -37,6 +40,7 @@
     <dimen name="text_size_28dp">28sp</dimen>
     <dimen name="text_size_xxl">42sp</dimen>
 
+    <dimen name="dimen_drawable_54dp">54dp</dimen>
     <dimen name="dimes_coordinator_layout_height">84dp</dimen>
     <dimen name="elevation_default">4dp</dimen>
     <dimen name="dime_toolbar_height">56dp</dimen>
