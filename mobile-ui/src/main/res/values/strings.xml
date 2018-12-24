@@ -91,5 +91,7 @@
     <string name="title_enter_bill_name">Enter Bill Name</string>
     <string name="title_select_payment_date">Select Payment Date</string>
     <string name="text_choose_date">Choose Date</string>
+    <string name="text_pending">Pending</string>
+    <string name="text_health">Health</string>
 
 </resources>
