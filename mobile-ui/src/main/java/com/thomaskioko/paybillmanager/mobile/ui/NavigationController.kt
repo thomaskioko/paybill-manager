@@ -24,13 +24,9 @@ open class NavigationController @Inject constructor(mainActivity: MainActivity) 
                 .commit()
     }
 
-    fun navigateToBillDetailFragment() {
-        val fragment = BillDetailFragment()
-        fragmentManager.beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(containerId, fragment)
-                .addToBackStack("BillDetailFragment")
-                .commit()
+    fun navigateToPaymentFragment() {
+        val bottomSheetDialogFragment = PaymentFragment()
+        bottomSheetDialogFragment.show(fragmentManager, bottomSheetDialogFragment.tag)
     }
 
     fun navigateToMaterialStepperFragment(revealSettings: RevealAnimationSettings) {
