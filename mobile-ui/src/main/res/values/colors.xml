@@ -15,7 +15,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="secondary_text">#A5ADCA</color>
+    <color name="secondary_text">#989898</color>
     <color name="colorControlActivated">#812235</color>
     <color name="error">#B00020</color>
     <color name="gray_divider">#ECF2FC</color>
