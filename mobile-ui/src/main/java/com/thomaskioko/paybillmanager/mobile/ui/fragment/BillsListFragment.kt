@@ -139,7 +139,7 @@ class BillsListFragment : BaseFragment(){
 
     private val listener = object : BillOnClickListener {
         override fun onBillClicked(billId: String) {
-            navigationController.navigateToBillDetailFragment()
+            navigationController.navigateToPaymentFragment()
         }
 
 
