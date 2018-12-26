@@ -106,6 +106,7 @@
         android:layout_marginEnd="16dp"
         android:animateLayoutChanges="true"
         android:visibility="gone"
+        android:theme="@style/PayBillManager.TextInputLayout"
         app:errorTextAppearance="@style/error_appearance"
         app:fontFamily="@font/gotham_rounded_light"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
