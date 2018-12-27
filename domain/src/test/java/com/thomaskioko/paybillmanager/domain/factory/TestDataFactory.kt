@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.factory
 
 import com.thomaskioko.paybillmanager.domain.model.Bill
+import com.thomaskioko.paybillmanager.domain.model.BillCategory
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
 import java.util.*
@@ -31,6 +32,10 @@ object TestDataFactory {
 
     fun makeJengaToken(): JengaToken {
         return JengaToken("bearer", "1544517293525", "3599", "EJ4CSPoMBIYAj8KLUp45d5CUflvm9lz")
+    }
+
+    fun makeBillCategory(): BillCategory {
+        return BillCategory(randomUuid(), randomUuid())
     }
 
     fun makeProjectList(count: Int): List<Bill> {
