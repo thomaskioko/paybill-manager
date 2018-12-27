@@ -1,20 +1,20 @@
 package com.thomaskioko.paybillmanager.cache.factory
 
-import com.thomaskioko.paybillmanager.cache.model.CachedBills
+import com.thomaskioko.paybillmanager.cache.model.CachedBill
 import com.thomaskioko.paybillmanager.data.model.BillEntity
 
 
 object BillsCachedFactory {
 
-    fun makeCachedBill(): CachedBills {
-        return CachedBills(DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomInt(),
+    fun makeCachedBill(): CachedBill {
+        return CachedBill(DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
+                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
                 DataFactory.randomLong())
     }
 
-    fun makeCachedBill(billName: String): CachedBills {
-        return CachedBills(DataFactory.randomUuid(), billName, DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomInt(),
+    fun makeCachedBill(billName: String): CachedBill {
+        return CachedBill(DataFactory.randomUuid(), billName, DataFactory.randomUuid(),
+                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
                 DataFactory.randomLong())
     }
 
@@ -22,13 +22,13 @@ object BillsCachedFactory {
     fun makeBillEntity(): BillEntity {
         return BillEntity(DataFactory.randomUuid(),
                 DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomInt(), DataFactory.randomLong()
+                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomLong()
         )
     }
 
     fun makeBillEntity(billId: String): BillEntity {
         return BillEntity(billId, DataFactory.randomUuid(), DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomInt(),
+                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
                 DataFactory.randomLong())
     }
 
