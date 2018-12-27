@@ -1,7 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.interactor.jengatoken
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
-import com.thomaskioko.paybillmanager.domain.interactor.ObservableUseCase
+import com.thomaskioko.paybillmanager.domain.usecase.ObservableUseCase
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
 import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
 import io.reactivex.Observable

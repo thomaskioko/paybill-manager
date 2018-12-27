@@ -1,7 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.interactor.bills
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
-import com.thomaskioko.paybillmanager.domain.interactor.ObservableUseCase
+import com.thomaskioko.paybillmanager.domain.usecase.ObservableUseCase
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Observable
