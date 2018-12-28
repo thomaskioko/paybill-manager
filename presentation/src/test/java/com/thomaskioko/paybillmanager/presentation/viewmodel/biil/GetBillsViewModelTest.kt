@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.presentation.viewmodel
+package com.thomaskioko.paybillmanager.presentation.viewmodel.biil
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*

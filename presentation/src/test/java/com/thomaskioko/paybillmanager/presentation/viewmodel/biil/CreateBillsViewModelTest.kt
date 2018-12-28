@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.presentation.viewmodel
+package com.thomaskioko.paybillmanager.presentation.viewmodel.biil
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
@@ -10,6 +10,7 @@ import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
 import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
+import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.CreateBillsViewModel
 import io.reactivex.observers.DisposableCompletableObserver
 import junit.framework.Assert
 import junit.framework.TestCase
