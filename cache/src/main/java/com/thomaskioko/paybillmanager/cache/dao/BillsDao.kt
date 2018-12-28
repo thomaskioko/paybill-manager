@@ -4,34 +4,34 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.thomaskioko.paybillmanager.cache.model.CachedBills
+import com.thomaskioko.paybillmanager.cache.model.CachedBill
 import io.reactivex.Flowable
 
 
 @Dao
 abstract class BillsDao {
 
-    @Query("SELECT * FROM bills")
+    @Query("SELECT * FROM bill")
     @JvmSuppressWildcards
-    abstract fun getBills(): Flowable<List<CachedBills>>
+    abstract fun getBills(): Flowable<List<CachedBill>>
 
-    @Query("SELECT * FROM bills where id = :billId")
+    @Query("SELECT * FROM bill where id = :billId")
     @JvmSuppressWildcards
-    abstract fun getBillById(billId: String): Flowable<CachedBills>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    @JvmSuppressWildcards
-    abstract fun insertCachedBills(cachedBills: List<CachedBills>)
+    abstract fun getBillById(billId: String): Flowable<CachedBill>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
-    abstract fun insertBill(cachedBills: CachedBills)
+    abstract fun insertCachedBills(cachedBills: List<CachedBill>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
-    abstract fun updateBill(cachedBills: CachedBills)
+    abstract fun insertBill(cachedBill: CachedBill)
 
-    @Query("DELETE FROM bills")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @JvmSuppressWildcards
+    abstract fun updateBill(cachedBill: CachedBill)
+
+    @Query("DELETE FROM bill")
     abstract fun deleteBills()
 
 }
