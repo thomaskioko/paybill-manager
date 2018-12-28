@@ -90,7 +90,7 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
                 payBillNumber,
                 accountNumber,
                 amount,
-                categoryId.toInt(),
+                categoryId,
                 OffsetDateTime.now().toEpochSecond()
         )
 

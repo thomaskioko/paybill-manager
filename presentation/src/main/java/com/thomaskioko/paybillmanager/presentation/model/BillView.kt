@@ -6,6 +6,6 @@ class BillView(
         var paybillNumber: String,
         var accountNumber: String,
         var amount: String,
-        var categoryId: Int,
+        var categoryId: String,
         var reminderDate: Long
 )

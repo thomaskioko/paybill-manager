@@ -26,7 +26,7 @@ object TestDataFactory {
 
     fun makeBill(): Bill {
         return Bill(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomUuid(), randomInt(),
+                randomUuid(), randomUuid(), randomUuid(),
                 randomLong())
     }
 

@@ -10,20 +10,20 @@ object BillsDataFactory {
 
     fun makeBill(): Bill {
         return Bill(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomUuid(), randomInt(),
+                randomUuid(), randomUuid(), randomUuid(),
                 randomLong())
     }
 
     fun makeUpdateBill(name: String): Bill {
         return Bill(randomUuid(), name, randomUuid(),
-                randomUuid(), randomUuid(), randomInt(),
+                randomUuid(), randomUuid(), randomUuid(),
                 randomLong())
     }
 
 
     fun makeBillEntity(): BillEntity {
         return BillEntity(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomUuid(), randomInt(),
+                randomUuid(), randomUuid(), randomUuid(),
                 randomLong())
     }
 

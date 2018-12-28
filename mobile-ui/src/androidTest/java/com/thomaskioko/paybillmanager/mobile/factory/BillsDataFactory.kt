@@ -11,14 +11,14 @@ object BillsDataFactory {
 
     fun makeStaticBill(): Bill {
         return Bill("12", "Zuku", "320320",
-                "Zuku123443", "4900", 2,
+                "Zuku123443", "4900", "2",
                 156223772
         )
     }
 
     fun makeBill(): Bill {
         return Bill(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), "2400", randomInt(),
+                randomUuid(), "2400", randomUuid(),
                 randomLong())
     }
 
@@ -33,7 +33,7 @@ object BillsDataFactory {
 
     fun makeBillView(): BillView {
         return BillView("12", "Zuku", "320320",
-                "Zuku123443", "4900", 2,
+                "Zuku123443", "4900", "2",
                 156223772)
     }
 
