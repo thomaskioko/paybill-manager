@@ -13,7 +13,6 @@ import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.extension.showErrorMessage
-import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.base.BaseFragment
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.dateToTimeStamp
 import com.thomaskioko.paybillmanager.mobile.util.DateUtils.formatTimeStampToDate
@@ -58,12 +57,16 @@ class BillDetailsFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, 
         val day = calender.get(Calendar.DAY_OF_MONTH)
 
         tv_payment_date.setOnClickListener {
-            val datePickerDialog = DatePickerDialog(activity!!, R.style.DatePickerDialogTheme, this, year, month, day)
+            val datePickerDialog = DatePickerDialog(
+                    activity!!, R.style.DatePickerDialogTheme, this, year, month, day
+            )
             datePickerDialog.datePicker.minDate = System.currentTimeMillis()
             datePickerDialog.setCancelable(false)
             datePickerDialog.show()
-            datePickerDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setBackgroundColor(resources.getColor(R.color.transparent))
-            datePickerDialog.getButton(DialogInterface.BUTTON_POSITIVE).setBackgroundColor(resources.getColor(R.color.transparent))
+            datePickerDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                    .setBackgroundColor(resources.getColor(R.color.transparent))
+            datePickerDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                    .setBackgroundColor(resources.getColor(R.color.transparent))
 
         }
 
@@ -96,17 +99,20 @@ class BillDetailsFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, 
         return when {
             et_bill_name.text!!.isEmpty() -> {
                 input_layout_bill_name.showErrorMessage(resources.getString(R.string.error_no_name))
-                input_layout_bill_name.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
+                input_layout_bill_name
+                        .startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
                 VerificationError(resources.getString(R.string.error_no_name))
             }
             et_bill_number.text!!.isEmpty() -> {
                 input_layout_bill_number.showErrorMessage(resources.getString(R.string.error_no_pay_bill_number))
-                input_layout_bill_number.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
+                input_layout_bill_number
+                        .startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
                 VerificationError(resources.getString(R.string.error_no_pay_bill_number))
             }
             et_account_number.text!!.isEmpty() -> {
                 input_layout_account_number.showErrorMessage(resources.getString(R.string.error_no_account_number))
-                input_layout_account_number.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
+                input_layout_account_number
+                        .startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake_error))
                 VerificationError(resources.getString(R.string.error_no_account_number))
             }
             else -> {

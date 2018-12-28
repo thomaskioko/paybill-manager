@@ -78,8 +78,10 @@ class PaymentFragment : BottomSheetDialogFragment(), Injectable, View.OnClickLis
                 iv_mobile_money.setImageResource(R.drawable.ic_phone_24dp)
                 iv_card.setImageResource(R.drawable.ic_credit_card_24dp)
 
-                iv_mobile_money.setBackgroundDrawable(resources.getDrawable(R.drawable.background_rectangle_activated))
-                iv_card.setBackgroundDrawable(resources.getDrawable(R.drawable.background_rectangle_deactivated))
+                iv_mobile_money.setBackgroundDrawable(
+                        resources.getDrawable(R.drawable.background_rectangle_activated))
+                iv_card.setBackgroundDrawable(
+                        resources.getDrawable(R.drawable.background_rectangle_deactivated))
 
             }
             R.id.iv_card -> {
@@ -91,8 +93,10 @@ class PaymentFragment : BottomSheetDialogFragment(), Injectable, View.OnClickLis
                 iv_mobile_money.setImageResource(R.drawable.ic_phone_24dp)
                 iv_card.setImageResource(R.drawable.ic_credit_card_24dp)
 
-                iv_card.setBackgroundDrawable(resources.getDrawable(R.drawable.background_rectangle_activated))
-                iv_mobile_money.setBackgroundDrawable(resources.getDrawable(R.drawable.background_rectangle_deactivated))
+                iv_card.setBackgroundDrawable(
+                        resources.getDrawable(R.drawable.background_rectangle_activated))
+                iv_mobile_money.setBackgroundDrawable(
+                        resources.getDrawable(R.drawable.background_rectangle_deactivated))
             }
         }
     }
