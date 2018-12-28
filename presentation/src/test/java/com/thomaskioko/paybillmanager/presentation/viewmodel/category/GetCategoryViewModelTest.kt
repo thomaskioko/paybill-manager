@@ -42,7 +42,7 @@ class GetCategoryViewModelTest {
     }
 
     @Test
-    fun fetchBillByIdReturnsSuccess() {
+    fun fetchCategoryByIdReturnsSuccess() {
         val category = CategoryFactory.makeStaticCategory()
         val categoryView = CategoryFactory.makeCategoryView()
         stubBillMapperMapToView(categoryView, category)
@@ -63,7 +63,7 @@ class GetCategoryViewModelTest {
 
 
     @Test
-    fun fetchBillByIdReturnsData() {
+    fun fetchCategoryByIdReturnsData() {
         val category = CategoryFactory.makeStaticCategory()
         val categoryView = CategoryFactory.makeCategoryView()
         stubBillMapperMapToView(categoryView, category)
@@ -83,7 +83,7 @@ class GetCategoryViewModelTest {
 
 
     @Test
-    fun fetchBillByIdReturnsError() {
+    fun fetchCategoryByIdReturnsError() {
         //invoke fetch bill by id
         categoryViewModel.fetchCategory("24")
 
@@ -100,7 +100,7 @@ class GetCategoryViewModelTest {
 
 
     @Test
-    fun fetchBillByIdReturnsMessageForError() {
+    fun fetchCategoryByIdReturnsMessageForError() {
         val errorMessage = DataFactory.randomString()
 
         //invoke fetch bill by id
