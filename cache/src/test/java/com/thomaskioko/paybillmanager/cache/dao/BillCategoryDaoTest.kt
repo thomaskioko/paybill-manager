@@ -30,14 +30,29 @@ class BillCategoryDaoTest {
     }
 
     @Test
-    fun getBillReturnsData() {
+    fun getBillsReturnsData() {
         stubInsertData()
 
         val billCategory = BillCategoryCachedFactory.makeCachedBillCategory()
         database.billCategoryDao().insertBillCategory(billCategory)
 
-        val testObserver = database.billCategoryDao().getBill("123").test()
+        val testObserver = database.billCategoryDao().getBills("123").test()
         testObserver.assertValue(listOf(BillCategoryCachedFactory.makeCachedBill()))
+    }
+
+    @Test
+    fun getBillCategoryReturnData() {
+        stubInsertData()
+
+        val billCategory = BillCategoryCachedFactory.makeCachedBillCategory()
+        //Insert data into the table
+        database.billCategoryDao().insertBillCategory(billCategory)
+
+
+        val testObserver = database.billCategoryDao().getBillCategory(billCategory.billId, billCategory.categoryId).test()
+
+        //Verify that the data returned is correct
+        testObserver.assertValue(billCategory)
     }
 
 
@@ -53,7 +68,7 @@ class BillCategoryDaoTest {
     }
 
     private fun stubInsertData() {
-        database.categoryDaoDao().insertCachedCategory(BillCategoryCachedFactory.makeCachedCategory())
+        database.categoryDao().insertCategory(BillCategoryCachedFactory.makeCachedCategory())
         database.billsDao().insertBill(BillCategoryCachedFactory.makeCachedBill())
 
     }
