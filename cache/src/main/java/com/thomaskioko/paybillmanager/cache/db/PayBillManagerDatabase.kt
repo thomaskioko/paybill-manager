@@ -23,7 +23,7 @@ abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun configDao(): ConfigDao
 
-    abstract fun categoryDaoDao(): CategoryDao
+    abstract fun categoryDao(): CategoryDao
 
     abstract fun jengaTokenDao(): JengaTokenDao
 

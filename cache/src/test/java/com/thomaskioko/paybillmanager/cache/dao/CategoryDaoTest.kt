@@ -3,9 +3,7 @@ package com.thomaskioko.paybillmanager.cache.dao
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
-import com.thomaskioko.paybillmanager.cache.factory.BillsCachedFactory
 import com.thomaskioko.paybillmanager.cache.factory.CategoryCachedFactory
-import com.thomaskioko.paybillmanager.cache.factory.DataFactory
 import org.junit.After
 import org.junit.Rule
 import org.junit.Test
@@ -35,27 +33,27 @@ class CategoryDaoTest {
     @Test
     fun getCategoriesReturnsData() {
         val categories = listOf(CategoryCachedFactory.makeCachedCategory())
-        database.categoryDaoDao().insertCachedCategories(categories)
+        database.categoryDao().insertCachedCategories(categories)
 
-        val testObserver = database.categoryDaoDao().getCachedCategories().test()
+        val testObserver = database.categoryDao().getCachedCategories().test()
         testObserver.assertValue(categories)
     }
 
     @Test
     fun getCategoryByIdReturnsData() {
         val category = CategoryCachedFactory.makeCachedCategory()
-        database.categoryDaoDao().insertCachedCategory(category)
+        database.categoryDao().insertCategory(category)
 
-        val testObserver = database.categoryDaoDao().getCachedCategoryById(category.id).test()
+        val testObserver = database.categoryDao().getCachedCategoryById(category.id).test()
         testObserver.assertValue(category)
     }
 
     @Test
     fun getUpdateCategoryReturnsData() {
         val category = CategoryCachedFactory.makeCachedCategory()
-        database.categoryDaoDao().updateCachedCategory(category)
+        database.categoryDao().updateCachedCategory(category)
 
-        val testObserver = database.categoryDaoDao().getCachedCategoryById(category.id).test()
+        val testObserver = database.categoryDao().getCachedCategoryById(category.id).test()
         testObserver.assertValue(category)
 
     }
@@ -63,10 +61,10 @@ class CategoryDaoTest {
     @Test
     fun deleteCategoriesClearsData() {
         val category = CategoryCachedFactory.makeCachedCategory()
-        database.categoryDaoDao().insertCachedCategories(listOf(category))
-        database.categoryDaoDao().deleteCachedCategories()
+        database.categoryDao().insertCachedCategories(listOf(category))
+        database.categoryDao().deleteCachedCategories()
 
-        val testObserver = database.categoryDaoDao().getCachedCategories().test()
+        val testObserver = database.categoryDao().getCachedCategories().test()
         testObserver.assertValue(emptyList())
     }
 }
