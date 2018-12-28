@@ -8,11 +8,11 @@ import com.thomaskioko.paybillmanager.data.model.CategoryEntity
 object CategoryCachedFactory {
 
     fun makeCachedCategory(): CachedCategory {
-        return CachedCategory(randomUuid(), randomUuid(), randomInt())
+        return CachedCategory("123", randomUuid(), randomInt())
     }
 
     fun makeCategoryEntity(): CategoryEntity {
-        return CategoryEntity(randomUuid(), randomUuid(), randomInt())
+        return CategoryEntity("123", randomUuid(), randomInt())
     }
 
 

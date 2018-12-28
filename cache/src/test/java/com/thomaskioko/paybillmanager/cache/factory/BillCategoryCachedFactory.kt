@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.cache.factory
 
-import com.thomaskioko.paybillmanager.cache.factory.DataFactory.randomUuid
 import com.thomaskioko.paybillmanager.cache.model.CachedBill
 import com.thomaskioko.paybillmanager.cache.model.CachedBillCategory
 import com.thomaskioko.paybillmanager.cache.model.CachedCategory
@@ -10,7 +9,7 @@ object BillCategoryCachedFactory {
 
 
     fun makeBillCategoryEntity(): BillCategoryEntity {
-        return BillCategoryEntity(randomUuid(), randomUuid())
+        return BillCategoryEntity("148", "123")
     }
 
     fun makeCachedBill(): CachedBill {

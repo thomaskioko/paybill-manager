@@ -7,8 +7,8 @@ import com.thomaskioko.paybillmanager.data.model.BillEntity
 object BillsCachedFactory {
 
     fun makeCachedBill(): CachedBill {
-        return CachedBill(DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
+        return CachedBill("148", "Zuku", "320320",
+                "143672", "4900", "123",
                 DataFactory.randomLong())
     }
 
@@ -20,9 +20,8 @@ object BillsCachedFactory {
 
 
     fun makeBillEntity(): BillEntity {
-        return BillEntity(DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomUuid(), DataFactory.randomLong()
+        return BillEntity("148", "Zuku", "320320",
+                "143672", "4900", "123", DataFactory.randomLong()
         )
     }
 

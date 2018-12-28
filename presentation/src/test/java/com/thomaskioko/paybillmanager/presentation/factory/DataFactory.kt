@@ -1,5 +1,7 @@
 package com.thomaskioko.paybillmanager.presentation.factory
 
+import com.thomaskioko.paybillmanager.domain.model.BillCategory
+import com.thomaskioko.paybillmanager.presentation.model.BillCategoryView
 import java.util.*
 
 object DataFactory {
@@ -18,6 +20,14 @@ object DataFactory {
 
     fun randomString(): String {
         return UUID.randomUUID().toString()
+    }
+
+    fun makeBillCategory(): BillCategory {
+        return BillCategory(randomUuid(), randomUuid())
+    }
+
+    fun makeBillCategoryView(): BillCategoryView {
+        return BillCategoryView(randomUuid(), randomUuid())
     }
 
 }
