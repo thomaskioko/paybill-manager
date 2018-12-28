@@ -3,12 +3,13 @@ package com.thomaskioko.paybillmanager.data.test.store.billcategory
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import com.thomaskioko.paybillmanager.data.model.BillCategoryEntity
-import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
+import com.thomaskioko.paybillmanager.data.model.BillEntity
+import com.thomaskioko.paybillmanager.data.model.CategoryEntity
 import com.thomaskioko.paybillmanager.data.repository.billcategory.BillCategoryCache
 import com.thomaskioko.paybillmanager.data.store.billcategory.BillCategoryCacheDataStore
 import com.thomaskioko.paybillmanager.data.test.factory.BillCategoryFactory
 import com.thomaskioko.paybillmanager.data.test.factory.BillsDataFactory
+import com.thomaskioko.paybillmanager.data.test.factory.CategoryDataFactory
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import org.junit.Test
@@ -21,24 +22,44 @@ class BillCategoryCacheDataStoreTest {
     private val cache = mock<BillCategoryCache>()
     private val store = BillCategoryCacheDataStore(cache)
 
-
     @Test
-    fun getBillCategoryCompletes() {
+    fun getBillsByCategoryIdCompletes() {
 
-        stubBillCategoryEntity(Flowable.just(BillCategoryFactory.makeBillCategoryEntity()))
+        stubBillsByCategoryId(Flowable.just(BillsDataFactory.makeBillEntityList(3)))
 
-        val testObserver = store.getBillCategory("343", "434").test()
+        val testObserver = store.getBillsByCategoryId("343").test()
         testObserver.assertComplete()
     }
 
     @Test
-    fun getBillCategoryReturnsData() {
+    fun getBillsByCategoryIdReturnsData() {
 
-        val entity = BillCategoryFactory.makeBillCategoryEntity()
+        val entity = BillsDataFactory.makeBillEntityList(3)
 
-        stubBillCategoryEntity(Flowable.just(entity))
+        stubBillsByCategoryId(Flowable.just(entity))
 
-        val testObserver = store.getBillCategory("343", "434").test()
+        val testObserver = store.getBillsByCategoryId("343").test()
+        testObserver.assertValue(entity)
+    }
+
+    @Test
+    fun getCategoryByBillIdCompletes() {
+        val entity = CategoryDataFactory.makeCategoryEntity()
+
+        stubCategoryByBillId(Flowable.just(entity))
+
+        val testObserver = store.getCategoryByBillId("343").test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getCategoryByBillIdReturnsData() {
+
+        val entity = CategoryDataFactory.makeCategoryEntity()
+
+        stubCategoryByBillId(Flowable.just(entity))
+
+        val testObserver = store.getCategoryByBillId("343").test()
         testObserver.assertValue(entity)
     }
 
@@ -66,8 +87,13 @@ class BillCategoryCacheDataStoreTest {
     }
 
 
-    private fun stubBillCategoryEntity(observable: Flowable<BillCategoryEntity>) {
-        whenever(cache.getBillCategory(any(), any())).thenReturn(observable)
+
+    private fun stubBillsByCategoryId(observable: Flowable<List<BillEntity>>) {
+        whenever(cache.getBillsByCategoryId(any())).thenReturn(observable)
+    }
+
+    private fun stubCategoryByBillId(observable: Flowable<CategoryEntity>) {
+        whenever(cache.getCategoryByBillId(any())).thenReturn(observable)
     }
 
 }
