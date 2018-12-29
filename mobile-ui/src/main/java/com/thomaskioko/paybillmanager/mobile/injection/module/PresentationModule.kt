@@ -8,6 +8,8 @@ import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.CreateBillsVie
 import com.thomaskioko.paybillmanager.presentation.viewmodel.JengaRequestsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.billcategory.CreateBillCategoryViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.billcategory.GetBillCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoriesViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.GetCategoryViewModel
@@ -57,5 +59,15 @@ abstract class PresentationModule {
     @IntoMap
     @ViewModelKey(JengaRequestsViewModel::class)
     abstract fun bindJengaRequestsViewModel(viewModel: JengaRequestsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateBillCategoryViewModel::class)
+    abstract fun bindCreateBillCategoryViewModel(viewModel: CreateBillCategoryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GetBillCategoryViewModel::class)
+    abstract fun bindGetBillCategoryViewModel(viewModel: GetBillCategoryViewModel): ViewModel
 }
 
