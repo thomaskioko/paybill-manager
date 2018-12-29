@@ -1,10 +1,12 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import android.app.Application
+import com.thomaskioko.paybillmanager.cache.BillCategoryCacheImpl
 import com.thomaskioko.paybillmanager.cache.BillsCacheImpl
 import com.thomaskioko.paybillmanager.cache.CategoryCacheImpl
 import com.thomaskioko.paybillmanager.cache.JengaTokenCacheImpl
 import com.thomaskioko.paybillmanager.cache.db.PayBillManagerDatabase
+import com.thomaskioko.paybillmanager.data.repository.billcategory.BillCategoryCache
 import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import com.thomaskioko.paybillmanager.data.repository.category.CategoryCache
 import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenCache
@@ -33,4 +35,7 @@ abstract class CacheModule {
 
     @Binds
     abstract fun bindJengaTokenCache(jengaTokenCacheImpl: JengaTokenCacheImpl): JengaTokenCache
+
+    @Binds
+    abstract fun bindBillCategoryCache(billCategoryCacheImpl: BillCategoryCacheImpl): BillCategoryCache
 }
