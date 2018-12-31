@@ -109,6 +109,11 @@ dependencies {
     kapt deps.dagger.compiler
 
     /**
+     * Flashbar
+     */
+    implementation deps.flashbar
+
+    /**
      * Firebase
      */
     implementation deps.firebase.core
