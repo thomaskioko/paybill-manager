@@ -6,6 +6,11 @@ import com.thomaskioko.paybillmanager.data.model.CategoryEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
+
+/**
+ * Interface used to help communicate with external sources. They act as an access point.
+ * Allows us to avoid having direct access to source implementation
+ */
 interface BillCategoryDataStore {
 
     fun createBillCategory(billCategoryEntity: BillCategoryEntity): Completable

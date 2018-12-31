@@ -28,14 +28,14 @@ abstract class CacheModule {
     }
 
     @Binds
-    abstract fun bindBillsCache(billsCacheImpl: BillsCacheImpl): BillsCache
+    abstract fun bindBillsCache(cacheImpl: BillsCacheImpl): BillsCache
 
     @Binds
-    abstract fun bindCategoryCache(billsCacheImpl: CategoryCacheImpl): CategoryCache
+    abstract fun bindCategoryCache(cacheImpl: CategoryCacheImpl): CategoryCache
 
     @Binds
-    abstract fun bindJengaTokenCache(jengaTokenCacheImpl: JengaTokenCacheImpl): JengaTokenCache
+    abstract fun bindJengaTokenCache(cacheImpl: JengaTokenCacheImpl): JengaTokenCache
 
     @Binds
-    abstract fun bindBillCategoryCache(billCategoryCacheImpl: BillCategoryCacheImpl): BillCategoryCache
+    abstract fun bindBillCategoryCache(cacheImpl: BillCategoryCacheImpl): BillCategoryCache
 }

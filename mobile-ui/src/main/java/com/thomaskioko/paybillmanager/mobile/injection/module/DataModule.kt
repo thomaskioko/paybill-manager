@@ -16,14 +16,14 @@ import dagger.Module
 abstract class DataModule {
 
     @Binds
-    abstract fun bindBillsDataRepository(billsDataRepository: BillsDataRepository): BillsRepository
+    abstract fun bindBillsDataRepository(repository: BillsDataRepository): BillsRepository
 
     @Binds
-    abstract fun bindCategoryRepository(categoryRepository: CategoryDataRepository): CategoryRepository
+    abstract fun bindCategoryRepository(repository: CategoryDataRepository): CategoryRepository
 
     @Binds
-    abstract fun bindJengaTokenDataRepository(jengaTokenDataRepository: JengaTokenDataRepository): JengaTokenRepository
+    abstract fun bindJengaTokenDataRepository(repository: JengaTokenDataRepository): JengaTokenRepository
 
     @Binds
-    abstract fun bindBillCategoryRepository(billCategoryDataRepository: BillCategoryDataRepository): BillCategoryRepository
+    abstract fun bindBillCategoryRepository(repository: BillCategoryDataRepository): BillCategoryRepository
 }
