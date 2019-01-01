@@ -12,9 +12,9 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class GetBillByIdTest {
+class GetBillByBillIdTest {
 
-    private lateinit var getBillById: GetBillById
+    private lateinit var getBillByBillId: GetBillByBillId
     @Mock
     lateinit var billsRepository: BillsRepository
     @Mock
@@ -23,15 +23,15 @@ class GetBillByIdTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        getBillById = GetBillById(billsRepository, postExecutionThread)
+        getBillByBillId = GetBillByBillId(billsRepository, postExecutionThread)
     }
 
     @Test
     fun getBillCompletes() {
         stubGetBillsRepository(Observable.just(TestDataFactory.makeBill()))
 
-        val testObservable = getBillById.buildUseCaseObservable(
-                GetBillById.Params.forBill(TestDataFactory.randomUuid())
+        val testObservable = getBillByBillId.buildUseCaseObservable(
+                GetBillByBillId.Params.forBill(TestDataFactory.randomUuid())
         ).test()
         testObservable.assertComplete()
     }
@@ -43,8 +43,8 @@ class GetBillByIdTest {
         //Stub the repository completes
         stubGetBillsRepository(Observable.just(bills))
 
-        val testObserver = getBillById.buildUseCaseObservable(
-                GetBillById.Params.forBill(TestDataFactory.randomUuid())
+        val testObserver = getBillByBillId.buildUseCaseObservable(
+                GetBillByBillId.Params.forBill(TestDataFactory.randomUuid())
         ).test()
 
         //Verify that the data returned is what is expected

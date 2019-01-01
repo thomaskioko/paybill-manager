@@ -7,10 +7,10 @@ import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 
-open class GetBillById @Inject constructor(
+open class GetBillByBillId @Inject constructor(
         private val billsRepository: BillsRepository,
         postExecutionThread: PostExecutionThread
-) : ObservableUseCase<Bill, GetBillById.Params?>(postExecutionThread) {
+) : ObservableUseCase<Bill, GetBillByBillId.Params?>(postExecutionThread) {
 
     public override fun buildUseCaseObservable(params: Params?): Observable<Bill> {
         if (params == null) throw IllegalArgumentException("Params can't be null!")
