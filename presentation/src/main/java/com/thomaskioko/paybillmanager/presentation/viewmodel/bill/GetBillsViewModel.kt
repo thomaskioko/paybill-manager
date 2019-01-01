@@ -4,7 +4,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillById
+import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillByBillId
 import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBills
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @VisibleForTesting
 open class GetBillsViewModel @Inject internal constructor(
-        private val getBillById: GetBillById?,
+        private val getBillByBillId: GetBillByBillId?,
         private val getBills: GetBills?,
         private val mapper: BillViewMapper
 ) : ViewModel() {
@@ -29,7 +29,7 @@ open class GetBillsViewModel @Inject internal constructor(
 
     override fun onCleared() {
         getBills?.dispose()
-        getBillById?.dispose()
+        getBillByBillId?.dispose()
         super.onCleared()
     }
 
@@ -52,7 +52,7 @@ open class GetBillsViewModel @Inject internal constructor(
 
     fun fetchBillById(billId: String) {
         billLiveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getBillById?.execute(BillByIdSubscriber(), GetBillById.Params.forBill(billId))
+        getBillByBillId?.execute(BillByIdSubscriber(), GetBillByBillId.Params.forBill(billId))
     }
 
 

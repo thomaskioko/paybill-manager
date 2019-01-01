@@ -2,7 +2,7 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel.biil
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
-import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillById
+import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillByBillId
 import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBills
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.presentation.factory.BillsFactory
@@ -33,7 +33,7 @@ class GetBillsViewModelTest {
     val captor = argumentCaptor<DisposableObserver<Bill>>()
 
     private var getBills = mock<GetBills>()
-    private var getBillById = mock<GetBillById>()
+    private var getBillById = mock<GetBillByBillId>()
     private var mapper = mock<BillViewMapper>()
     private var billViewModel = GetBillsViewModel(getBillById, getBills, mapper)
 
@@ -51,7 +51,7 @@ class GetBillsViewModelTest {
         billViewModel.fetchBillById("24")
 
         //verify that fetch bill by id use case is called once
-        verify(getBillById, times(1)).execute(any(), eq(GetBillById.Params.forBill("24")))
+        verify(getBillById, times(1)).execute(any(), eq(GetBillByBillId.Params.forBill("24")))
     }
 
     @Test
@@ -85,7 +85,7 @@ class GetBillsViewModelTest {
         billViewModel.fetchBillById("24")
 
         //Use captor to capture the response when execute is called
-        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+        verify(getBillById).execute(captor.capture(), eq(GetBillByBillId.Params.forBill("24")))
 
         //Pass data to onNext callback
         captor.firstValue.onNext(bill)
@@ -124,7 +124,7 @@ class GetBillsViewModelTest {
         billViewModel.fetchBillById("24")
 
         //Use captor to capture the response when execute is called
-        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+        verify(getBillById).execute(captor.capture(), eq(GetBillByBillId.Params.forBill("24")))
 
         //Pass data to onNext callback
         captor.firstValue.onNext(bill)
@@ -154,7 +154,7 @@ class GetBillsViewModelTest {
         billViewModel.fetchBillById("24")
 
         //Use captor to capture the response when execute is called
-        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+        verify(getBillById).execute(captor.capture(), eq(GetBillByBillId.Params.forBill("24")))
 
 
         //Pass Exception to onError callback
@@ -188,7 +188,7 @@ class GetBillsViewModelTest {
         billViewModel.fetchBillById("24")
 
         //Use captor to capture the response when execute is called
-        verify(getBillById).execute(captor.capture(), eq(GetBillById.Params.forBill("24")))
+        verify(getBillById).execute(captor.capture(), eq(GetBillByBillId.Params.forBill("24")))
 
 
         //Pass error message to onError callback
