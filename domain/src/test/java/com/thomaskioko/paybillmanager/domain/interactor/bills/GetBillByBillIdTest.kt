@@ -53,6 +53,6 @@ class GetBillByBillIdTest {
 
 
     private fun stubGetBillsRepository(observable: Observable<Bill>) {
-        whenever(billsRepository.getBillById(any())).thenReturn(observable)
+        whenever(billsRepository.getBillByBillId(any())).thenReturn(observable)
     }
 }

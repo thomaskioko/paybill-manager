@@ -14,7 +14,7 @@ open class GetBillByBillId @Inject constructor(
 
     public override fun buildUseCaseObservable(params: Params?): Observable<Bill> {
         if (params == null) throw IllegalArgumentException("Params can't be null!")
-        return billsRepository.getBillById(params.billId)
+        return billsRepository.getBillByBillId(params.billId)
     }
 
 
