@@ -47,7 +47,7 @@ class GetCategoryViewModelTest {
         val categoryView = CategoryFactory.makeCategoryView()
         stubBillMapperMapToView(categoryView, category)
 
-        //invoke fetch fetchBillById
+        //invoke fetch fetchBillByBillId
         categoryViewModel.fetchCategory("24")
 
         //Use captor to capture the response when execute is called

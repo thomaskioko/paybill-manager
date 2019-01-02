@@ -214,7 +214,7 @@ class SharedViewModelTest {
         val categoryView = CategoryFactory.makeCategoryViewList(3)
         stubCategoryMapperMapToView(categoryView[0], category[0])
 
-        //invoke fetch fetchBillById
+        //invoke fetch fetchBillByBillId
         viewModel.fetchCategories()
 
         //Use disposableCaptor to capture the response when execute is called
