@@ -8,7 +8,9 @@ interface BillsRepository {
 
     fun getBills(): Observable<List<Bill>>
 
-    fun getBillById(billId: String): Observable<Bill>
+    fun getBillByBillId(billId: String): Observable<Bill>
+
+    fun getBillByIds(billId: String, categoryId: String): Observable<Bill>
 
     fun createBill(bill: Bill): Completable
 
