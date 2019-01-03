@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.mobile.injection
 
 import android.app.Application
+import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
 import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
@@ -28,6 +29,8 @@ interface TestApplicationComponent {
     fun billsBillsRepository(): BillsRepository
 
     fun jengaTokenRepository(): JengaTokenRepository
+
+    fun billCategoryRepository(): BillCategoryRepository
 
     @Component.Builder
     interface Builder {
