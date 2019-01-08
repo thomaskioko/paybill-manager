@@ -8,18 +8,25 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
+import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
+import com.thomaskioko.paybillmanager.mobile.TestApplication
 import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
+import com.thomaskioko.paybillmanager.mobile.ui.activity.MainActivity
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
 import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
 import com.thomaskioko.paybillmanager.mobile.util.matcher.ToolbarViewMarcher.matchToolbarTitle
 import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
+import com.thomaskioko.paybillmanager.presentation.ViewModelFactory
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
+import io.reactivex.Flowable
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.core.IsNot
 import org.junit.Before
@@ -27,6 +34,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 
 @RunWith(AndroidJUnit4::class)
 class BillsListFragmentTest {
@@ -45,17 +54,17 @@ class BillsListFragmentTest {
     fun init() {
         val fragment = BillsListFragment()
 
-        navigationController = Mockito.mock(NavigationController::class.java)
+        navigationController = mock(NavigationController::class.java)
 
 
         viewModel = Mockito.mock(GetBillsViewModel::class.java)
-        Mockito.`when`(viewModel.getBills()).thenReturn(billsLiveData)
-        Mockito.`when`(viewModel.billsLiveData).thenReturn(billsLiveData)
-        Mockito.`when`(viewModel.getBill()).thenReturn(billLiveData)
-        Mockito.`when`(viewModel.billLiveData).thenReturn(billLiveData)
+        `when`(viewModel.getBills()).thenReturn(billsLiveData)
+        `when`(viewModel.billsLiveData).thenReturn(billsLiveData)
+        `when`(viewModel.getBill()).thenReturn(billLiveData)
+        `when`(viewModel.billLiveData).thenReturn(billLiveData)
 
 
-       // fragment.viewModelFactory = ViewModelUtil.createViewModelFactory(viewModel)
+        fragment.viewModelFactory = ViewModelUtil.createViewModelFactory(viewModel)
         activityRule.activity.setFragment(fragment)
 
         activityRule.runOnUiThread { }
@@ -120,6 +129,11 @@ class BillsListFragmentTest {
         //Check if a view item is clickable
         //onView(withId(R.id.recycler_view_bill_list)).perform(click())
 
+    }
+
+    private fun stubBillsRepository(single: Flowable<List<Bill>>) {
+        whenever(TestApplication.appComponent().billsBillsRepository().getBills())
+                .thenReturn(single)
     }
 
 }
