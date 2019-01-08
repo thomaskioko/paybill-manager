@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.usecase
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -8,6 +9,7 @@ import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.schedulers.Schedulers
 
 abstract class CompletableUseCase<in Params> constructor(
+        private val threadExecutor: ThreadExecutor,
         private val postExecutionThread: PostExecutionThread) {
 
     private val disposables = CompositeDisposable()
