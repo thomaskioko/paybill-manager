@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.mobile.injection
 
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
