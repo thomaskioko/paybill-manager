@@ -3,10 +3,11 @@ package com.thomaskioko.paybillmanager.domain.interactor.billcategory
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -22,18 +23,21 @@ class GetBillsByCategoryIdTest {
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
 
+    @Mock
+    private lateinit var threadExecutor: ThreadExecutor
+
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        getBillCategory = GetBillsByCategoryId(repository, postExecutionThread)
+        getBillCategory = GetBillsByCategoryId(repository, threadExecutor, postExecutionThread)
     }
 
     @Test
-    fun getBillsByCategoryIdCompletes(){
+    fun getBillsByCategoryIdCompletes() {
         val list = listOf(TestDataFactory.makeBill())
 
-        stubGetBillsByCategoryIdRepository(Observable.just(list))
+        stubGetBillsByCategoryIdRepository(Flowable.just(list))
 
         val testObservable = getBillCategory.buildUseCaseObservable(
                 GetBillsByCategoryId.Params.forBillsByCategoryId(TestDataFactory.randomUuid())
@@ -46,10 +50,10 @@ class GetBillsByCategoryIdTest {
 
 
     @Test
-    fun getBillsByCategoryIdReturnsData(){
+    fun getBillsByCategoryIdReturnsData() {
         val list = listOf(TestDataFactory.makeBill())
 
-        stubGetBillsByCategoryIdRepository(Observable.just(list))
+        stubGetBillsByCategoryIdRepository(Flowable.just(list))
 
         val testObservable = getBillCategory.buildUseCaseObservable(
                 GetBillsByCategoryId.Params.forBillsByCategoryId(TestDataFactory.randomUuid())
@@ -60,7 +64,7 @@ class GetBillsByCategoryIdTest {
 
     }
 
-    private fun stubGetBillsByCategoryIdRepository(observable: Observable<List<Bill>>){
+    private fun stubGetBillsByCategoryIdRepository(observable: Flowable<List<Bill>>) {
         whenever(repository.getBillsByCategoryId(any())).thenReturn(observable)
     }
 }

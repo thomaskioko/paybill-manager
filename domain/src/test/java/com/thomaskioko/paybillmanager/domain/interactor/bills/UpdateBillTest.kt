@@ -3,6 +3,7 @@ package com.thomaskioko.paybillmanager.domain.interactor.bills
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import io.reactivex.Completable
@@ -18,15 +19,17 @@ class UpdateBillTest {
     lateinit var billsRepository: BillsRepository
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
+    @Mock
+    private lateinit var threadExecutor: ThreadExecutor
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        updateBill = UpdateBill(billsRepository, postExecutionThread)
+        updateBill = UpdateBill(billsRepository, threadExecutor, postExecutionThread)
     }
 
     @Test
-    fun updateBillCompletes(){
+    fun updateBillCompletes() {
         stubCreateBillRepository(Completable.complete())
 
         val testObserver = updateBill.buildUseCaseCompletable(
@@ -38,7 +41,7 @@ class UpdateBillTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun updateBillThrowsException(){
+    fun updateBillThrowsException() {
         updateBill.buildUseCaseCompletable().test()
     }
 
