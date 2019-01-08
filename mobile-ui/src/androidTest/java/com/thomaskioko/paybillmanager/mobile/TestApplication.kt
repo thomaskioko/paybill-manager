@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.test
+package com.thomaskioko.paybillmanager.mobile
 
 import android.app.Activity
 import android.app.Application
