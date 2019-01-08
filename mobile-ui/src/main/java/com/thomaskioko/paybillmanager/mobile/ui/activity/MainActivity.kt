@@ -29,18 +29,15 @@ import com.thomaskioko.paybillmanager.mobile.ui.base.BaseFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.util.AppThemes.Companion.INDIGO
 import com.thomaskioko.paybillmanager.mobile.util.AppThemes.Companion.PINK
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
+import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import javax.inject.Inject
 
 class MainActivity : BaseFragmentActivity(), OnCheckedChangeListener {
 
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var navigationController: NavigationController
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var createCategoryViewModel: CreateCategoryViewModel
@@ -170,7 +167,7 @@ class MainActivity : BaseFragmentActivity(), OnCheckedChangeListener {
         }
     }
 
-    override fun supportFragmentInjector() = dispatchingAndroidInjector
+
 
 
     private fun categoriesList(): List<Category> {
