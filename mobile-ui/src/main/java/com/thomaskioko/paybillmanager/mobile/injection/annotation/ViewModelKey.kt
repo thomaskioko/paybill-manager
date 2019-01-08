@@ -5,7 +5,7 @@ import dagger.MapKey
 import kotlin.reflect.KClass
 
 /**
- * Used to identify view model classes given the class type
+ * Annotation class to identify view models by classname.
  */
 @MustBeDocumented
 @Target(AnnotationTarget.FUNCTION)
