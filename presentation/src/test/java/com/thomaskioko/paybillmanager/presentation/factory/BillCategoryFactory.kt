@@ -9,11 +9,11 @@ object BillCategoryFactory {
 
 
     fun makeBillCategory(): BillCategory {
-        return BillCategory("148","123")
+        return BillCategory("148", "123")
     }
 
     fun makeBillCategoryView(): BillCategoryView {
-        return BillCategoryView("148","123")
+        return BillCategoryView("148", "123")
     }
 
     fun makeBillView(): BillView {

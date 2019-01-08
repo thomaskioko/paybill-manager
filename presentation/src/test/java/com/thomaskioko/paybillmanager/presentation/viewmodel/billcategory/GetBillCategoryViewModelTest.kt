@@ -14,7 +14,7 @@ import com.thomaskioko.paybillmanager.presentation.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import junit.framework.TestCase
 import junit.framework.TestCase.assertEquals
 import org.junit.Rule
@@ -30,10 +30,10 @@ class GetBillCategoryViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Captor
-    val captor = argumentCaptor<DisposableObserver<List<Bill>>>()
+    val captor = argumentCaptor<DisposableSubscriber<List<Bill>>>()
 
     @Captor
-    val captorCategory = argumentCaptor<DisposableObserver<Category>>()
+    val captorCategory = argumentCaptor<DisposableSubscriber<Category>>()
 
 
     private val getBillsByCategoryId = mock<GetBillsByCategoryId>()

@@ -9,7 +9,7 @@ import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
 import com.thomaskioko.paybillmanager.presentation.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import junit.framework.TestCase
 import org.junit.Rule
 import org.junit.Test
@@ -25,7 +25,7 @@ class GetCategoriesViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Captor
-    val captor = argumentCaptor<DisposableObserver<List<Category>>>()
+    val captor = argumentCaptor<DisposableSubscriber<List<Category>>>()
 
     private var getCategories = mock<GetCategories>()
     private var mapper = mock<CategoryViewMapper>()

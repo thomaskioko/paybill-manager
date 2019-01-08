@@ -13,7 +13,7 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import javax.inject.Inject
 
 open class GetBillCategoryViewModel @Inject constructor(
@@ -59,7 +59,7 @@ open class GetBillCategoryViewModel @Inject constructor(
     }
 
 
-    inner class BillsByCategoryIdSubscriber : DisposableObserver<List<Bill>>() {
+    inner class BillsByCategoryIdSubscriber : DisposableSubscriber<List<Bill>>() {
         override fun onComplete() {}
 
         override fun onNext(t: List<Bill>) {
@@ -76,7 +76,7 @@ open class GetBillCategoryViewModel @Inject constructor(
 
     }
 
-    inner class CategoryByBillIdSubscriber : DisposableObserver<Category>() {
+    inner class CategoryByBillIdSubscriber : DisposableSubscriber<Category>() {
 
         override fun onNext(t: Category) {
             categoryLiveData.postValue(
