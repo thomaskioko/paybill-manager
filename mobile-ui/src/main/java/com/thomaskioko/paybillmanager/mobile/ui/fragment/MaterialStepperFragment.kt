@@ -63,7 +63,7 @@ class MaterialStepperFragment : BaseFragment(), DismissableAnimation, StepperLay
 
     override fun onError(verificationError: VerificationError?) {
         Timber.e("onError! -> ${verificationError!!.errorMessage}")
-        showBottomErrorNotification(verificationError.errorMessage)
+        showTopErrorNotification(verificationError.errorMessage)
     }
 
     override fun onReturn() {
