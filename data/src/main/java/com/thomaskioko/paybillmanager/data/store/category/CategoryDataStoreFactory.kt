@@ -15,7 +15,7 @@ open class CategoryDataStoreFactory @Inject constructor(
         return categoryCacheDataStore
     }
 
-    open fun getRemoteDataStore(){
+    open fun getRemoteDataStore() {
 
     }
 }

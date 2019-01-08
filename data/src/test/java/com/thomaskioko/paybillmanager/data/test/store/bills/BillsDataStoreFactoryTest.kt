@@ -13,7 +13,7 @@ class BillsDataStoreFactoryTest {
 
 
     @Test
-    fun getDataStoreReturnsCacheDataStore(){
+    fun getDataStoreReturnsCacheDataStore() {
         assertEquals(cacheStore, factory.getCacheDataStore())
     }
 }
