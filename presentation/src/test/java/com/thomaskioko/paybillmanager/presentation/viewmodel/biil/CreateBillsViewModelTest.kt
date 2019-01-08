@@ -178,7 +178,7 @@ class CreateBillsViewModelTest {
 
 
     @Test
-    fun setAmountReturnsRightValue(){
+    fun setAmountReturnsRightValue() {
         viewModel.setAmount("2300")
 
         Assert.assertEquals(viewModel.amountLiveData.value, "2300")
@@ -186,7 +186,7 @@ class CreateBillsViewModelTest {
 
 
     @Test
-    fun setCategoryIdReRightValue(){
+    fun setCategoryIdReRightValue() {
         viewModel.setCategoryId("2")
 
         Assert.assertEquals(viewModel.categoryIdLiveData.value, "2")

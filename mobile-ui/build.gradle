@@ -57,8 +57,9 @@ android {
 
 
     lintOptions {
+        quiet true
         abortOnError false
-        lintConfig rootProject.file('lint.xml')
+        ignoreWarnings true
     }
 
 }

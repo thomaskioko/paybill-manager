@@ -14,6 +14,7 @@ import javax.inject.Singleton
     ApplicationModule::class,
     CacheModule::class,
     DataModule::class,
+    DomainModule::class,
     PresentationModule::class,
     RemoteModule::class,
     UiModule::class

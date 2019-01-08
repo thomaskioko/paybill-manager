@@ -10,7 +10,7 @@ import com.thomaskioko.paybillmanager.presentation.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import javax.inject.Inject
 
 @VisibleForTesting
@@ -41,7 +41,7 @@ class GetCategoryViewModel @Inject internal constructor(
     }
 
 
-    inner class GetCategoryByIdSubscriber : DisposableObserver<Category>() {
+    inner class GetCategoryByIdSubscriber : DisposableSubscriber<Category>() {
         override fun onNext(t: Category) {
             liveData.postValue(Resource(ResourceState.SUCCESS, mapper.mapToView(t), null))
         }

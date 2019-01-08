@@ -1,7 +1,6 @@
 package com.thomaskioko.paybillmanager.data.test.store.billcategory
 
 import com.nhaarman.mockitokotlin2.mock
-import com.thomaskioko.paybillmanager.data.repository.billcategory.BillCategoryDataStore
 import com.thomaskioko.paybillmanager.data.store.billcategory.BillCategoryCacheDataStore
 import com.thomaskioko.paybillmanager.data.store.billcategory.BillCategoryDataStoreFactory
 import junit.framework.TestCase

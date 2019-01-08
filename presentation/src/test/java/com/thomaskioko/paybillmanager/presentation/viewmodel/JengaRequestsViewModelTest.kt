@@ -9,7 +9,7 @@ import com.thomaskioko.paybillmanager.presentation.factory.TokenFactory
 import com.thomaskioko.paybillmanager.presentation.mapper.JengaTokenViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.JengaTokenView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import junit.framework.TestCase
 import org.junit.Rule
 import org.junit.Test
@@ -26,7 +26,7 @@ class JengaRequestsViewModelTest {
 
 
     @Captor
-    val captor = argumentCaptor<DisposableObserver<JengaToken>>()
+    val captor = argumentCaptor<DisposableSubscriber<JengaToken>>()
 
     private var getJengaToken = mock<GetJengaToken>()
     private var mapper = mock<JengaTokenViewMapper>()
@@ -90,7 +90,7 @@ class JengaRequestsViewModelTest {
         viewModel.fetchJengaToken()
 
         //Use captor to capture the response when execute is called
-        verify(getJengaToken).execute(captor.capture(),  eq(null))
+        verify(getJengaToken).execute(captor.capture(), eq(null))
 
 
         //Pass Exception to onError callback
@@ -109,7 +109,7 @@ class JengaRequestsViewModelTest {
         viewModel.fetchJengaToken()
 
         //Use captor to capture the response when execute is called
-        verify(getJengaToken).execute(captor.capture(),  eq(null))
+        verify(getJengaToken).execute(captor.capture(), eq(null))
 
 
         //Pass error message to onError callback

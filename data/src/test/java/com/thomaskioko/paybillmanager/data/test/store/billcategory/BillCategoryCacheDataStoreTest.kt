@@ -87,7 +87,6 @@ class BillCategoryCacheDataStoreTest {
     }
 
 
-
     private fun stubBillsByCategoryId(observable: Flowable<List<BillEntity>>) {
         whenever(cache.getBillsByCategoryId(any())).thenReturn(observable)
     }

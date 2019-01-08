@@ -12,7 +12,7 @@ import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import javax.inject.Inject
 
 @VisibleForTesting
@@ -63,7 +63,7 @@ open class GetBillsViewModel @Inject internal constructor(
     }
 
 
-    inner class BillsSubscriber : DisposableObserver<List<Bill>>() {
+    inner class BillsSubscriber : DisposableSubscriber<List<Bill>>() {
         override fun onNext(t: List<Bill>) {
             billsLiveData.postValue(Resource(ResourceState.SUCCESS,
                     t.map { mapper.mapToView(it) }, null))
@@ -76,7 +76,7 @@ open class GetBillsViewModel @Inject internal constructor(
         }
     }
 
-    inner class BillByBillIdSubscriber : DisposableObserver<Bill>() {
+    inner class BillByBillIdSubscriber : DisposableSubscriber<Bill>() {
         override fun onNext(t: Bill) {
             billLiveData.postValue(Resource(ResourceState.SUCCESS, mapper.mapToView(t), null))
         }

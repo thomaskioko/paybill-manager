@@ -10,7 +10,7 @@ import com.thomaskioko.paybillmanager.presentation.mapper.JengaTokenViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.JengaTokenView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import javax.inject.Inject
 
 @VisibleForTesting
@@ -37,7 +37,7 @@ open class JengaRequestsViewModel @Inject internal constructor(
     }
 
 
-    inner class JengaTokenSubscriber : DisposableObserver<JengaToken>() {
+    inner class JengaTokenSubscriber : DisposableSubscriber<JengaToken>() {
 
         override fun onNext(jenga: JengaToken) {
             liveData.postValue(Resource(ResourceState.SUCCESS, mapper.mapToView(jenga), null))

@@ -3,6 +3,7 @@ package com.thomaskioko.paybillmanager.domain.interactor.billcategory
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
 import io.reactivex.Completable
@@ -21,11 +22,14 @@ class CreateBillCategoryTest {
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
 
+    @Mock
+    private lateinit var threadExecutor: ThreadExecutor
+
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        getBillCategory = CreateBillsCategory(repository, postExecutionThread)
+        getBillCategory = CreateBillsCategory(repository, threadExecutor, postExecutionThread)
     }
 
     @Test

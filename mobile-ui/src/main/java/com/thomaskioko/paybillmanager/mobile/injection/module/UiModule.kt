@@ -8,7 +8,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-
+/**
+ * Module that provides all dependencies from the mobile-ui package/layer and injects all activities.
+ */
 @Module
 @Suppress("unused")
 abstract class UiModule {

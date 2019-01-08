@@ -33,7 +33,7 @@ class BillCategoryDataRepositoryTest {
     private val billCategoryMapper = mock<BillCategoryMapper>()
     private val factory = mock<BillCategoryDataStoreFactory>()
     private val store = mock<BillCategoryDataStore>()
-    private val repository = BillCategoryDataRepository(billMapper, billCategoryMapper,categoryMapper, factory)
+    private val repository = BillCategoryDataRepository(billMapper, billCategoryMapper, categoryMapper, factory)
 
     @Before
     fun setup() {

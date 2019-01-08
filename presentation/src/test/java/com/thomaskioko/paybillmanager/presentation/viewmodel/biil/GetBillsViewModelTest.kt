@@ -12,7 +12,7 @@ import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import junit.framework.TestCase
 import junit.framework.TestCase.assertEquals
 import org.junit.Rule
@@ -29,10 +29,10 @@ class GetBillsViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Captor
-    val captorList = argumentCaptor<DisposableObserver<List<Bill>>>()
+    val captorList = argumentCaptor<DisposableSubscriber<List<Bill>>>()
 
     @Captor
-    val captor = argumentCaptor<DisposableObserver<Bill>>()
+    val captor = argumentCaptor<DisposableSubscriber<Bill>>()
 
     private var getBills = mock<GetBills>()
     private var getBillByBillId = mock<GetBillByBillId>()
@@ -176,7 +176,7 @@ class GetBillsViewModelTest {
         stubBillMapperMapToView(billView, bill)
 
         //invoke fetch fetchBillByBillId
-        billViewModel.fetchBillById("24","45")
+        billViewModel.fetchBillById("24", "45")
 
         //Use captor to capture the response when execute is called
         verify(getBillById).execute(

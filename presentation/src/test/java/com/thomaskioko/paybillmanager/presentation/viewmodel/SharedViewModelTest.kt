@@ -16,7 +16,7 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import junit.framework.TestCase
 import org.junit.Rule
 import org.junit.Test
@@ -33,7 +33,7 @@ class SharedViewModelTest {
     @Captor
     val disposableCaptor = argumentCaptor<DisposableCompletableObserver>()
     @Captor
-    val captor = argumentCaptor<DisposableObserver<List<Category>>>()
+    val captor = argumentCaptor<DisposableSubscriber<List<Category>>>()
 
     private var mapper = mock<CategoryViewMapper>()
     private var billViewMapper = mock<BillViewMapper>()
@@ -186,7 +186,7 @@ class SharedViewModelTest {
 
 
     @Test
-    fun setAmountReturnsRightValue(){
+    fun setAmountReturnsRightValue() {
         viewModel.setAmount("2300")
 
         TestCase.assertEquals(viewModel.amountLiveData.value, "2300")
@@ -194,7 +194,7 @@ class SharedViewModelTest {
 
 
     @Test
-    fun setCategoryIdReRightValue(){
+    fun setCategoryIdReRightValue() {
         viewModel.setCategoryId("2")
 
         TestCase.assertEquals(viewModel.categoryIdLiveData.value, "2")

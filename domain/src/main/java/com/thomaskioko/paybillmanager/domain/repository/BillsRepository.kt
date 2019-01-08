@@ -2,15 +2,15 @@ package com.thomaskioko.paybillmanager.domain.repository
 
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 
 interface BillsRepository {
 
-    fun getBills(): Observable<List<Bill>>
+    fun getBills(): Flowable<List<Bill>>
 
-    fun getBillByBillId(billId: String): Observable<Bill>
+    fun getBillByBillId(billId: String): Flowable<Bill>
 
-    fun getBillByIds(billId: String, categoryId: String): Observable<Bill>
+    fun getBillByIds(billId: String, categoryId: String): Flowable<Bill>
 
     fun createBill(bill: Bill): Completable
 

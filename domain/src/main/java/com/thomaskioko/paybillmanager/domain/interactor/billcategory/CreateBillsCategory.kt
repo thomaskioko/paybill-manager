@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.interactor.billcategory
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.model.BillCategory
 import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
 import com.thomaskioko.paybillmanager.domain.usecase.CompletableUseCase
@@ -9,8 +10,9 @@ import javax.inject.Inject
 
 open class CreateBillsCategory @Inject constructor(
         private val repository: BillCategoryRepository,
+        threadExecutor: ThreadExecutor,
         postExecutionThread: PostExecutionThread
-) : CompletableUseCase<CreateBillsCategory.Params>(postExecutionThread) {
+) : CompletableUseCase<CreateBillsCategory.Params>(threadExecutor, postExecutionThread) {
 
     public override fun buildUseCaseCompletable(params: Params?): Completable {
         if (params == null) throw IllegalArgumentException("Params can't be null!")
