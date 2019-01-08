@@ -5,8 +5,8 @@ import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
 import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
+import com.thomaskioko.paybillmanager.mobile.TestApplication
 import com.thomaskioko.paybillmanager.mobile.injection.module.*
-import com.thomaskioko.paybillmanager.mobile.test.TestApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
