@@ -5,7 +5,7 @@ import com.thomaskioko.paybillmanager.data.store.category.CategoryDataStoreFacto
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import javax.inject.Inject
 
 class CategoryDataRepository @Inject constructor(
@@ -19,13 +19,13 @@ class CategoryDataRepository @Inject constructor(
         )
     }
 
-    override fun getCategoryById(categoryId: String): Observable<Category> {
-        return factory.getCacheDataStore().getCategoryById(categoryId).toObservable()
+    override fun getCategoryById(categoryId: String): Flowable<Category> {
+        return factory.getCacheDataStore().getCategoryById(categoryId)
                 .map { mapper.mapFromEntity(it) }
     }
 
-    override fun getCategories(): Observable<List<Category>> {
-        return factory.getCacheDataStore().getCategories().toObservable()
+    override fun getCategories(): Flowable<List<Category>> {
+        return factory.getCacheDataStore().getCategories()
                 .map { it.map { mapper.mapFromEntity(it) } }
     }
 

@@ -9,7 +9,7 @@ import com.thomaskioko.paybillmanager.domain.model.BillCategory
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import javax.inject.Inject
 
 class BillCategoryDataRepository @Inject constructor(
@@ -20,24 +20,24 @@ class BillCategoryDataRepository @Inject constructor(
 ) : BillCategoryRepository {
 
 
-    override fun getBillCategory(billId: String, categoryId: String): Observable<BillCategory> {
+    override fun getBillCategory(billId: String, categoryId: String): Flowable<BillCategory> {
         return factory.getCacheDataStore().getBillCategory(billId, categoryId)
-                .toObservable()
                 .map { billCategoryMapper.mapFromEntity(it) }
     }
 
     override fun createBillCategory(billCategory: BillCategory): Completable {
-       return factory.getCacheDataStore().createBillCategory(billCategoryMapper.mapToEntity(billCategory))
+        return factory.getCacheDataStore().createBillCategory(billCategoryMapper.mapToEntity(billCategory))
     }
 
-    override fun getBillsByCategoryId(categoryId: String): Observable<List<Bill>> {
-        return factory.getCacheDataStore().getBillsByCategoryId(categoryId).toObservable().map {
-            it.map { billMapper.mapFromEntity(it) }
-        }
+    override fun getBillsByCategoryId(categoryId: String): Flowable<List<Bill>> {
+        return factory.getCacheDataStore().getBillsByCategoryId(categoryId)
+                .map {
+                    it.map { billMapper.mapFromEntity(it) }
+                }
     }
 
-    override fun getCategoryByBillId(billId: String): Observable<Category> {
-        return factory.getCacheDataStore().getCategoryByBillId(billId).toObservable()
+    override fun getCategoryByBillId(billId: String): Flowable<Category> {
+        return factory.getCacheDataStore().getCategoryByBillId(billId)
                 .map { categoryMapper.mapFromEntity(it) }
     }
 
