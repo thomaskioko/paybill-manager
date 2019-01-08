@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillByBillId
+import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBillByIds
 import com.thomaskioko.paybillmanager.domain.interactor.bills.GetBills
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.presentation.mapper.BillViewMapper
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @VisibleForTesting
 open class GetBillsViewModel @Inject internal constructor(
         private val getBillByBillId: GetBillByBillId?,
+        private val getBillById: GetBillByIds?,
         private val getBills: GetBills?,
         private val mapper: BillViewMapper
 ) : ViewModel() {
@@ -50,9 +52,14 @@ open class GetBillsViewModel @Inject internal constructor(
     }
 
 
-    fun fetchBillById(billId: String) {
+    fun fetchBillByBillId(billId: String) {
         billLiveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getBillByBillId?.execute(BillByIdSubscriber(), GetBillByBillId.Params.forBill(billId))
+        getBillByBillId?.execute(BillByBillIdSubscriber(), GetBillByBillId.Params.forBill(billId))
+    }
+
+    fun fetchBillById(billId: String, categoryId: String) {
+        billLiveData.postValue(Resource(ResourceState.LOADING, null, null))
+        getBillById?.execute(BillByBillIdSubscriber(), GetBillByIds.Params.forBillByIds(billId, categoryId))
     }
 
 
@@ -69,7 +76,7 @@ open class GetBillsViewModel @Inject internal constructor(
         }
     }
 
-    inner class BillByIdSubscriber : DisposableObserver<Bill>() {
+    inner class BillByBillIdSubscriber : DisposableObserver<Bill>() {
         override fun onNext(t: Bill) {
             billLiveData.postValue(Resource(ResourceState.SUCCESS, mapper.mapToView(t), null))
         }
