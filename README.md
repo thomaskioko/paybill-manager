@@ -143,7 +143,7 @@ Patches are encouraged, and may be submitted by forking this project and submitt
 License
 -------
 
-    Copyright 2018 Thomas Kioko
+    Copyright 2019 Thomas Kioko
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
