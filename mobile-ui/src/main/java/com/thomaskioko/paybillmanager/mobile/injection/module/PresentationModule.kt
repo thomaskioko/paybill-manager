@@ -2,11 +2,11 @@ package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.thomaskioko.paybillmanager.mobile.injection.ViewModelFactory
 import com.thomaskioko.paybillmanager.mobile.injection.annotation.ViewModelKey
-import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.CreateBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.ViewModelFactory
 import com.thomaskioko.paybillmanager.presentation.viewmodel.JengaRequestsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.CreateBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.billcategory.CreateBillCategoryViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.billcategory.GetBillCategoryViewModel
