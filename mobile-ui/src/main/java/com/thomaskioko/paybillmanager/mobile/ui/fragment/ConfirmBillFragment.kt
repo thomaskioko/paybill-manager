@@ -3,21 +3,18 @@ package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.stepstone.stepper.Step
+import com.stepstone.stepper.BlockingStep
+import com.stepstone.stepper.StepperLayout
 import com.stepstone.stepper.VerificationError
 import com.thomaskioko.paybillmanager.domain.model.Bill
+import com.thomaskioko.paybillmanager.domain.model.BillCategory
 import com.thomaskioko.paybillmanager.mobile.R
-import com.thomaskioko.paybillmanager.mobile.injection.Injectable
-import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
+import com.thomaskioko.paybillmanager.mobile.ui.base.BaseFragment
 import com.thomaskioko.paybillmanager.mobile.util.NumberFormatter.formatNumber
 import com.thomaskioko.paybillmanager.presentation.viewmodel.SharedViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.billcategory.CreateBillCategoryViewModel
 import kotlinx.android.synthetic.main.fragment_confirm_bill.*
 import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
@@ -25,14 +22,14 @@ import java.util.*
 import javax.inject.Inject
 
 @SuppressLint("VisibleForTests")
-class ConfirmBillFragment : Fragment(), Injectable, Step {
+class ConfirmBillFragment : BaseFragment(), BlockingStep {
+
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
     lateinit var sharedViewModel: SharedViewModel
+
     @Inject
-    lateinit var navigationController: NavigationController
+    lateinit var createBillCategoryViewModel: CreateBillCategoryViewModel
 
     private lateinit var amount: String
     private lateinit var categoryId: String
@@ -40,11 +37,8 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
     private lateinit var billName: String
     private lateinit var payBillNumber: String
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_confirm_bill, container, false)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_confirm_bill
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -52,6 +46,9 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
 
         sharedViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
                 .get(SharedViewModel::class.java)
+
+        createBillCategoryViewModel = ViewModelProviders.of(activity!!, viewModelFactory)
+                .get(CreateBillCategoryViewModel::class.java)
 
         sharedViewModel.getAmount().observe(this, Observer {
             amount = it
@@ -83,6 +80,14 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
     }
 
     override fun verifyStep(): VerificationError? {
+        return null
+    }
+
+    override fun onBackClicked(callback: StepperLayout.OnBackClickedCallback) {
+       callback.goToPrevStep()
+    }
+
+    override fun onCompleteClicked(callback: StepperLayout.OnCompleteClickedCallback) {
 
         val bill = Bill(
                 UUID.randomUUID().toString(),
@@ -96,11 +101,18 @@ class ConfirmBillFragment : Fragment(), Injectable, Step {
 
         sharedViewModel.createBill(bill)
 
-        return null
+        createBillCategoryViewModel.createBillCategory(
+                BillCategory(bill.billId, bill.categoryId)
+        )
+        callback.complete()
+    }
+
+    override fun onNextClicked(callback: StepperLayout.OnNextClickedCallback) {
+
     }
 
     override fun onError(verificationError: VerificationError) {
-        Timber.e("onError! -> ${verificationError.errorMessage}")
+        showTopErrorNotification(verificationError.errorMessage)
     }
 
 
