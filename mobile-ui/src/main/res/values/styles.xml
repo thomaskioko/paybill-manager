@@ -25,6 +25,7 @@
         <item name="themePrimary">@color/lightPrimary</item>
         <item name="themePrimaryDark">@color/lightPrimaryDark</item>
         <item name="themeAccent">@color/lightAccent</item>
+        <item name="themeAccentDark">@color/lightAccentDark</item>
         <item name="themeContentBackground">@color/greyAccent</item>
         <item name="themeContentBackgroundLight">@color/white</item>
         <item name="themeContentTextColor">@color/colorPrimaryDark</item>
@@ -43,6 +44,7 @@
         <item name="themePrimary">@color/darkPrimary</item>
         <item name="themePrimaryDark">@color/darkPrimaryDark</item>
         <item name="themeAccent">@color/darkAccent</item>
+        <item name="themeAccentDark">@color/darkAccentDarker</item>
         <item name="themeContentBackground">@color/darkPrimaryBackground</item>
         <item name="themeContentTextColorLight">@color/greyAccent</item>
         <item name="themeContentBackgroundLight">@color/darkPrimaryLighter</item>
