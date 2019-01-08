@@ -7,9 +7,10 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Singleton
-class ViewModelFactory
-@Inject constructor(private val creators: MutableMap<Class<out ViewModel>, Provider<ViewModel>>)
-    : ViewModelProvider.Factory {
+class ViewModelFactory @Inject constructor(
+        private val creators: MutableMap<Class<out ViewModel>,
+                @JvmSuppressWildcards Provider<ViewModel>>
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -23,7 +24,7 @@ class ViewModelFactory
             }
         }
         if (creator == null) {
-            throw IllegalArgumentException("unknown model class " + modelClass)
+            throw IllegalArgumentException("unknown model class $modelClass")
         }
         try {
             return creator.get() as T
