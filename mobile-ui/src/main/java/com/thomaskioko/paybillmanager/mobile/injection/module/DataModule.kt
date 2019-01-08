@@ -4,6 +4,8 @@ import com.thomaskioko.paybillmanager.data.BillCategoryDataRepository
 import com.thomaskioko.paybillmanager.data.BillsDataRepository
 import com.thomaskioko.paybillmanager.data.CategoryDataRepository
 import com.thomaskioko.paybillmanager.data.JengaTokenDataRepository
+import com.thomaskioko.paybillmanager.data.executor.JobExecutor
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
 import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
 import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
@@ -14,6 +16,9 @@ import dagger.Module
 @Module
 @Suppress("unused")
 abstract class DataModule {
+
+    @Binds
+    abstract fun bindThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor
 
     @Binds
     abstract fun bindBillsDataRepository(repository: BillsDataRepository): BillsRepository
