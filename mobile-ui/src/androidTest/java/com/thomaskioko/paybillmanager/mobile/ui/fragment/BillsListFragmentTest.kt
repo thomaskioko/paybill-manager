@@ -7,6 +7,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
@@ -24,9 +25,10 @@ import org.hamcrest.core.IsNot
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mockito
 
-
+@RunWith(AndroidJUnit4::class)
 class BillsListFragmentTest {
 
     @Rule
@@ -53,7 +55,7 @@ class BillsListFragmentTest {
         Mockito.`when`(viewModel.billLiveData).thenReturn(billLiveData)
 
 
-        fragment.viewModelFactory = ViewModelUtil.createViewModelFactory(viewModel)
+       // fragment.viewModelFactory = ViewModelUtil.createViewModelFactory(viewModel)
         activityRule.activity.setFragment(fragment)
 
         activityRule.runOnUiThread { }
