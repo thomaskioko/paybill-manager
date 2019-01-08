@@ -3,12 +3,15 @@ package com.thomaskioko.paybillmanager.mobile
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.RestrictTo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 /**
  * Used for testing fragments inside a fake activity.
  */
+
+@RestrictTo(RestrictTo.Scope.TESTS)
 class SimpleFragmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_NoActionBar_Light)
