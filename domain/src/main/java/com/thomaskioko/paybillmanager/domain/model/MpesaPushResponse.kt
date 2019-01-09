@@ -1,6 +1,6 @@
 package com.thomaskioko.paybillmanager.domain.model
 
-data class JengaMpesaPushResponse(
+data class MpesaPushResponse(
         val transactionRef: String,
         val status: String
 )

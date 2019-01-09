@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
 import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
-import com.thomaskioko.paybillmanager.domain.model.JengaMpesaPushResponse
+import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.domain.repository.MpesaRequestRepository
 import io.reactivex.Flowable
 import org.junit.Before
@@ -13,7 +13,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class CreateJengaMpesaPushResponseRequestTest {
+class CreateMpesaPushResponseRequestTest {
 
     private lateinit var createMpesaPushRequest: CreateMpesaPushRequest
     @Mock
@@ -47,7 +47,7 @@ class CreateJengaMpesaPushResponseRequestTest {
     }
 
 
-    private fun stubMpesaPushRequestRepository(completable: Flowable<JengaMpesaPushResponse>) {
+    private fun stubMpesaPushRequestRepository(completable: Flowable<MpesaPushResponse>) {
         whenever(repository.createMpesaPushRequest(any())).thenReturn(completable)
     }
 }
