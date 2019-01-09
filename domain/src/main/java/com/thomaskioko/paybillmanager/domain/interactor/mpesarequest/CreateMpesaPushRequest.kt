@@ -2,7 +2,7 @@ package com.thomaskioko.paybillmanager.domain.interactor.mpesarequest
 
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
 import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
-import com.thomaskioko.paybillmanager.domain.model.JengaMpesaPushResponse
+import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import com.thomaskioko.paybillmanager.domain.repository.MpesaRequestRepository
 import com.thomaskioko.paybillmanager.domain.usecase.FlowableUseCase
@@ -13,10 +13,10 @@ open class CreateMpesaPushRequest @Inject constructor(
         val repository: MpesaRequestRepository,
         threadExecutor: ThreadExecutor,
         postExecutionThread: PostExecutionThread
-) : FlowableUseCase<JengaMpesaPushResponse, CreateMpesaPushRequest.Params>(threadExecutor, postExecutionThread) {
+) : FlowableUseCase<MpesaPushResponse, CreateMpesaPushRequest.Params>(threadExecutor, postExecutionThread) {
 
 
-    public override fun buildUseCaseObservable(params: Params?): Flowable<JengaMpesaPushResponse> {
+    public override fun buildUseCaseObservable(params: Params?): Flowable<MpesaPushResponse> {
         if (params == null) throw IllegalArgumentException("Params can't be null")
         return repository.createMpesaPushRequest(params.mpesaPushRequest)
     }

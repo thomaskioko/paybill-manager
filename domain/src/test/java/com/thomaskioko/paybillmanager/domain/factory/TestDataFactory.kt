@@ -58,8 +58,8 @@ object TestDataFactory {
         return projects
     }
 
-    fun makeJengaMpesaPushResponse(): JengaMpesaPushResponse {
-        return JengaMpesaPushResponse(
+    fun makeJengaMpesaPushResponse(): MpesaPushResponse {
+        return MpesaPushResponse(
                 "ws_CO_DMZ_215811302_09012019022651831",
                 "Success. Request accepted for processing"
         )
