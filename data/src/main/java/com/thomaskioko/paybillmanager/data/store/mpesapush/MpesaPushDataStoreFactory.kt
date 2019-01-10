@@ -7,16 +7,16 @@ import javax.inject.Inject
 /**
  * Helper class that decides which data source to use.
  */
-open class MpesaPushRequestDataStoreFactory @Inject constructor(
+open class MpesaPushDataStoreFactory @Inject constructor(
         private val cacheDataStore: MpesaPushCacheDataStore,
         private val remoteDataStore: MpesaPushRemoteDataStore
 ) {
 
     open fun getDataStore(isCached: Boolean): MpesaPushDataStore {
         return if (!isCached) {
-            cacheDataStore
+            getRemoteDataStore()
         } else {
-            remoteDataStore
+            getCacheDataStore()
         }
     }
 

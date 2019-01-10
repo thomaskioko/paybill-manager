@@ -10,9 +10,10 @@ import io.reactivex.Single
  * Defines abstract methods to be implemented by the cash module.
  */
 
-interface MpesaPushRequestCache {
+interface MpesaPushCache {
 
-    fun saveMpesaPushRequest(mpesaPusRequestEntity: MpesaPushRequestEntity): Flowable<MpesaPushResponseEntity>
+    fun createMpesaPushRequest(mpesaPusRequestEntity: MpesaPushRequestEntity)
+            : Flowable<MpesaPushResponseEntity>
 
     fun saveMpesaRequestResponse(mpesaPusRequestEntity: MpesaPushResponseEntity): Completable
 
