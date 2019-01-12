@@ -9,22 +9,22 @@ import com.thomaskioko.paybillmanager.domain.usecase.FlowableUseCase
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-open class CreateMpesaPushRequest @Inject constructor(
+open class GetMpesaStkPush @Inject constructor(
         val repository: MpesaRequestRepository,
         threadExecutor: ThreadExecutor,
         postExecutionThread: PostExecutionThread
-) : FlowableUseCase<MpesaPushResponse, CreateMpesaPushRequest.Params>(threadExecutor, postExecutionThread) {
+) : FlowableUseCase<MpesaPushResponse, GetMpesaStkPush.Params>(threadExecutor, postExecutionThread) {
 
 
     public override fun buildUseCaseObservable(params: Params?): Flowable<MpesaPushResponse> {
         if (params == null) throw IllegalArgumentException("Params can't be null")
-        return repository.createMpesaPushRequest(params.mpesaPushRequest)
+        return repository.getMpesaStkPush(params.mpesaPushRequest)
     }
 
 
     data class Params constructor(val mpesaPushRequest: MpesaPushRequest) {
         companion object {
-            fun forCreateMpesaPush(mpesaPushRequest: MpesaPushRequest): Params {
+            fun forGetMpesaPushRequest(mpesaPushRequest: MpesaPushRequest): Params {
                 return Params(mpesaPushRequest)
             }
         }
