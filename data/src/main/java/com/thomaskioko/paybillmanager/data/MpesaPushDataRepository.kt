@@ -6,30 +6,33 @@ import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushDataStoreFac
 import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import com.thomaskioko.paybillmanager.domain.repository.MpesaRequestRepository
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
 
 class MpesaPushDataRepository @Inject constructor(
+        private val factory: MpesaPushDataStoreFactory,
         private val mapper: MpesaPushRequestMapper,
-        private val responseMapper: MpesaPushResponseMapper,
-        private val factory: MpesaPushDataStoreFactory
+        private val responseMapper: MpesaPushResponseMapper
 ) : MpesaRequestRepository {
 
-    override fun createMpesaPushRequest(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse> {
-        return factory.getCacheDataStore()
-                .isMpesaPushResponseCached()
+    override fun saveMpesaPushResponse(mpesaPushResponse: MpesaPushResponse): Completable {
+        val mpesaRepositoryEntity = responseMapper.mapToEntity(mpesaPushResponse)
+        return factory.retrieveCacheDataStore().saveMpesaPushResponse(mpesaRepositoryEntity)
+    }
+
+    override fun getMpesaStkPush(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse> {
+        return factory.retrieveCacheDataStore()
+                .isStkResponseCached()
                 .flatMapPublisher {
                     factory.getDataStore(it)
-                            .createMpesaPushRequest(mapper.mapToEntity(mpesaPushRequest))
-                            .distinctUntilChanged()
+                            .getMpesaStkPushRequest(mapper.mapToEntity(mpesaPushRequest))
                 }
                 .flatMap {
-                    factory.getCacheDataStore()
-                            .saveMpesaPushResponse(it)
-                            .andThen(Flowable.just(it))
+                    Flowable.just(responseMapper.mapFromEntity(it))
                 }
-                .map {
-                    responseMapper.mapFromEntity(it)
+                .flatMap {
+                   saveMpesaPushResponse(it).toSingle { it }.toFlowable()
                 }
     }
 }

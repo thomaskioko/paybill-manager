@@ -2,18 +2,21 @@ package com.thomaskioko.paybillmanager.data.repository.mpesapush
 
 import com.thomaskioko.paybillmanager.data.model.MpesaPushRequestEntity
 import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
-import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 /**
- * Interface used to help communicate with external sources. They act as an access point.
- * Allows us to avoid having direct access to source implementation
+ * Interface defining methods for the data operations related to MpesaPush.
+ * This is to be implemented by external data source layers, setting the requirements for the
+ * operations that need to be implemented
  */
 interface MpesaPushDataStore {
 
-    fun saveMpesaPushResponse(mpesaPushResponseEntity: MpesaPushResponseEntity): Completable
+    fun saveMpesaPushResponse(mpesaPushResponse: MpesaPushResponseEntity): Completable
 
-    fun createMpesaPushRequest(mpesaPushRequestEntity: MpesaPushRequestEntity): Flowable<MpesaPushResponseEntity>
+    fun getMpesaStkPushRequest(mpesaPushRequest: MpesaPushRequestEntity): Flowable<MpesaPushResponseEntity>
+
+    fun isStkResponseCached(): Single<Boolean>
 
 }

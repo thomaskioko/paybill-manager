@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations
 
 class CreateMpesaPushResponseRequestTest {
 
-    private lateinit var createMpesaPushRequest: CreateMpesaPushRequest
+    private lateinit var getMpesaStkPush: GetMpesaStkPush
     @Mock
     lateinit var repository: MpesaRequestRepository
     @Mock
@@ -26,15 +26,15 @@ class CreateMpesaPushResponseRequestTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        createMpesaPushRequest = CreateMpesaPushRequest(repository, mockThreadExecutor, postExecutionThread)
+        getMpesaStkPush = GetMpesaStkPush(repository, mockThreadExecutor, postExecutionThread)
     }
 
     @Test
     fun createMpesaPushRequestCompletes() {
         stubMpesaPushRequestRepository(Flowable.just(TestDataFactory.makeJengaMpesaPushResponse()))
 
-        val testObserver = createMpesaPushRequest.buildUseCaseObservable(
-                CreateMpesaPushRequest.Params.forCreateMpesaPush(TestDataFactory.makeMpesaPushRequest())
+        val testObserver = getMpesaStkPush.buildUseCaseObservable(
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(TestDataFactory.makeMpesaPushRequest())
         ).test()
 
         //Verify that the observable completes
@@ -43,11 +43,11 @@ class CreateMpesaPushResponseRequestTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun createMpesaPushRequestThrowsException() {
-        createMpesaPushRequest.buildUseCaseObservable().test()
+        getMpesaStkPush.buildUseCaseObservable().test()
     }
 
 
     private fun stubMpesaPushRequestRepository(completable: Flowable<MpesaPushResponse>) {
-        whenever(repository.createMpesaPushRequest(any())).thenReturn(completable)
+        whenever(repository.getMpesaStkPush(any())).thenReturn(completable)
     }
 }

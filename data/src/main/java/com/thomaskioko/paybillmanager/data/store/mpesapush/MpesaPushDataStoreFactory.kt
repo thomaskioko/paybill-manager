@@ -12,19 +12,27 @@ open class MpesaPushDataStoreFactory @Inject constructor(
         private val remoteDataStore: MpesaPushRemoteDataStore
 ) {
 
+    /**
+     * Returns a DataStore based on whether or not there is content in the cache
+     */
     open fun getDataStore(isCached: Boolean): MpesaPushDataStore {
-        return if (!isCached) {
-            getRemoteDataStore()
-        } else {
-            getCacheDataStore()
+        if (isCached) {
+            return retrieveCacheDataStore()
         }
+        return retrieveRemoteDataStore()
     }
 
-    open fun getCacheDataStore(): MpesaPushDataStore {
+    /**
+     * Return an instance of the Cache Data Store
+     */
+    open fun retrieveCacheDataStore(): MpesaPushDataStore {
         return cacheDataStore
     }
 
-    open fun getRemoteDataStore(): MpesaPushDataStore {
+    /**
+     * Return an instance of the Remote Data Store
+     */
+    open fun retrieveRemoteDataStore(): MpesaPushDataStore {
         return remoteDataStore
     }
 }

@@ -7,16 +7,16 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 
 /**
- * Defines abstract methods to be implemented by the cash module.
+ * Interface defining methods for the caching of MpesaPushResponse. This is to be implemented by the
+ * cache layer, using this interface as a way of communicating.
  */
-
 interface MpesaPushCache {
 
-    fun createMpesaPushRequest(mpesaPusRequestEntity: MpesaPushRequestEntity)
+    fun saveMpesaPushResponse(mpesaPusRequestEntity: MpesaPushResponseEntity): Completable
+
+    fun getMpesaStkPushRequest(mpesaPusRequestEntity: MpesaPushRequestEntity)
             : Flowable<MpesaPushResponseEntity>
 
-    fun saveMpesaRequestResponse(mpesaPusRequestEntity: MpesaPushResponseEntity): Completable
-
-    fun isMpesaPushResponseCached(): Single<Boolean>
+    fun isStkResponseCached(): Single<Boolean>
 
 }
