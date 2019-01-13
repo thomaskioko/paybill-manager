@@ -2,6 +2,7 @@ package com.thomaskioko.paybillmanager.data.repository.mpesapush
 
 import com.thomaskioko.paybillmanager.data.model.MpesaPushRequestEntity
 import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
+import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -13,9 +14,11 @@ import io.reactivex.Single
  */
 interface MpesaPushDataStore {
 
+    fun clearMpesaPushRequests(): Completable
+
     fun saveMpesaPushResponse(mpesaPushResponse: MpesaPushResponseEntity): Completable
 
-    fun getMpesaStkPushRequest(mpesaPushRequest: MpesaPushRequestEntity): Flowable<MpesaPushResponseEntity>
+    fun getMpesaStkPushRequest(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity>
 
     fun isStkResponseCached(): Single<Boolean>
 
