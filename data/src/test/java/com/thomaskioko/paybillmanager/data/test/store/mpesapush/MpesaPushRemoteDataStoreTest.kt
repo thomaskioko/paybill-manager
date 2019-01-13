@@ -8,6 +8,7 @@ import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushRemote
 import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushRemoteDataStore
 import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -23,7 +24,7 @@ class MpesaPushRemoteDataStoreTest {
 
         stubGetMpesaStkPushRequest(Flowable.just(DataFactory.makeMpesaPushResponseEntity()))
 
-        val testObserver = store.getMpesaStkPushRequest(DataFactory.makeMpesaPushRequestEntity()).test()
+        val testObserver = store.getMpesaStkPushRequest(DataFactory.makeMpesaPushRequest()).test()
         testObserver.assertComplete()
 
     }

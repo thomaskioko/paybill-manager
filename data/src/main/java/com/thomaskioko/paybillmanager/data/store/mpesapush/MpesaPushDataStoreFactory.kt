@@ -15,7 +15,7 @@ open class MpesaPushDataStoreFactory @Inject constructor(
     /**
      * Returns a DataStore based on whether or not there is content in the cache
      */
-    open fun getDataStore(isCached: Boolean): MpesaPushDataStore {
+    open fun retrieveDataStore(isCached: Boolean): MpesaPushDataStore {
         if (isCached) {
             return retrieveCacheDataStore()
         }

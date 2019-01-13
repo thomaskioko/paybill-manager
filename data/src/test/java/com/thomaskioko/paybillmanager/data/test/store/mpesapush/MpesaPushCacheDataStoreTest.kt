@@ -9,6 +9,7 @@ import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushCacheDataSto
 import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -23,7 +24,7 @@ class MpesaPushCacheDataStoreTest {
     fun createMpesaPushRequestCompletes() {
         stubGetMpesaStkPushRequest(Flowable.just(DataFactory.makeMpesaPushResponseEntity()))
 
-        val testObserver = store.getMpesaStkPushRequest(DataFactory.makeMpesaPushRequestEntity()).test()
+        val testObserver = store.getMpesaStkPushRequest(DataFactory.makeMpesaPushRequest()).test()
         testObserver.assertComplete()
     }
 

@@ -33,7 +33,7 @@ class MpesaPushDataStoreFactoryTest {
     @Test
     fun retrieveDataStoreWhenNotCachedReturnsRemoteDataStore() {
         stubIsStkResponseCached(Single.just(false))
-        val dataStore = dataStoreFactory.getDataStore(false)
+        val dataStore = dataStoreFactory.retrieveDataStore(false)
 
         assertEquals(dataStore, remoteDataStore)
     }
@@ -41,7 +41,7 @@ class MpesaPushDataStoreFactoryTest {
     @Test
     fun retrieveDataStoreReturnsCacheDataStore() {
         stubIsStkResponseCached(Single.just(true))
-        val dataStore = dataStoreFactory.getDataStore(true)
+        val dataStore = dataStoreFactory.retrieveDataStore(true)
 
         assertEquals(dataStore, cacheDataStore)
     }
