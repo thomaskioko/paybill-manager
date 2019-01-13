@@ -122,6 +122,33 @@ class MpesaPushDataRepositoryTest {
     }
 
     @Test
+    fun getMpesaPushResponseCompletes() {
+
+        val mpesaPushResponseEntity = listOf(DataFactory.makeMpesaPushResponseEntity())
+
+        stubDataStoreFactoryRetrieveDataStore(cacheDataStore)
+        stubCacheMpesaStkPushRequests(Flowable.just(mpesaPushResponseEntity))
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+
+        val testObserver = dataRepository.getMpesaPushResponse().test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getMpesaPushResponseReturnsData() {
+
+        val mpesaPushResponse = listOf(DataFactory.makeMpesaPushResponse())
+        val mpesaPushResponseEntity = listOf(DataFactory.makeMpesaPushResponseEntity())
+
+        stubDataStoreFactoryRetrieveDataStore(cacheDataStore)
+        stubCacheMpesaStkPushRequests(Flowable.just(mpesaPushResponseEntity))
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+
+        val testObserver = dataRepository.getMpesaPushResponse().test()
+        testObserver.assertValue(mpesaPushResponse)
+    }
+
+    @Test
     fun getMpesaStkPushSavesMpesaPushResponseWhenFromCacheDataStore() {
 
         val mpesaPushResponse = DataFactory.makeMpesaPushResponse()
@@ -164,12 +191,17 @@ class MpesaPushDataRepositoryTest {
     }
 
     private fun stubIsStkResponseCached(single: Single<Boolean>) {
-        whenever(cacheDataStore.isStkResponseCached())
+        whenever(cacheDataStore.isStkResponseCached(any()))
                 .thenReturn(single)
     }
 
     private fun stubCacheGetMpesaStkPushRequest(flowable: Flowable<MpesaPushResponseEntity>) {
         whenever(cacheDataStore.getMpesaStkPushRequest(any()))
+                .thenReturn(flowable)
+    }
+
+    private fun stubCacheMpesaStkPushRequests(flowable: Flowable<List<MpesaPushResponseEntity>>) {
+        whenever(cacheDataStore.getMpesaStkPushRequests())
                 .thenReturn(flowable)
     }
 

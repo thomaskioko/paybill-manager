@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.data.test.store.mpesapush
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushCache
@@ -60,7 +61,7 @@ class MpesaPushDataStoreFactoryTest {
 
 
     private fun stubIsStkResponseCached(isCached: Single<Boolean>) {
-        whenever(cache.isStkResponseCached())
+        whenever(cache.isStkResponseCached(any()))
                 .thenReturn(isCached)
 
     }
