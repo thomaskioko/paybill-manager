@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.data
 
-import com.thomaskioko.paybillmanager.data.mapper.MpesaPushRequestMapper
 import com.thomaskioko.paybillmanager.data.mapper.MpesaPushResponseMapper
 import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushDataStoreFactory
 import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
@@ -12,27 +11,28 @@ import javax.inject.Inject
 
 class MpesaPushDataRepository @Inject constructor(
         private val factory: MpesaPushDataStoreFactory,
-        private val mapper: MpesaPushRequestMapper,
-        private val responseMapper: MpesaPushResponseMapper
+        private val mapper: MpesaPushResponseMapper
 ) : MpesaRequestRepository {
 
+    override fun clearMpesaPushRequests(): Completable {
+        return factory.retrieveCacheDataStore().clearMpesaPushRequests()
+    }
+
     override fun saveMpesaPushResponse(mpesaPushResponse: MpesaPushResponse): Completable {
-        val mpesaRepositoryEntity = responseMapper.mapToEntity(mpesaPushResponse)
-        return factory.retrieveCacheDataStore().saveMpesaPushResponse(mpesaRepositoryEntity)
+        val mpesaPushResponseEntity = mapper.mapToEntity(mpesaPushResponse)
+        return factory.retrieveCacheDataStore().saveMpesaPushResponse(mpesaPushResponseEntity)
     }
 
     override fun getMpesaStkPush(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse> {
-        return factory.retrieveCacheDataStore()
-                .isStkResponseCached()
+        return factory.retrieveCacheDataStore().isStkResponseCached()
                 .flatMapPublisher {
-                    factory.getDataStore(it)
-                            .getMpesaStkPushRequest(mapper.mapToEntity(mpesaPushRequest))
+                    factory.retrieveDataStore(it).getMpesaStkPushRequest(mpesaPushRequest)
                 }
                 .flatMap {
-                    Flowable.just(responseMapper.mapFromEntity(it))
+                    Flowable.just(mapper.mapFromEntity(it))
                 }
                 .flatMap {
-                   saveMpesaPushResponse(it).toSingle { it }.toFlowable()
+                    saveMpesaPushResponse(it).toSingle { it }.toFlowable()
                 }
     }
 }
