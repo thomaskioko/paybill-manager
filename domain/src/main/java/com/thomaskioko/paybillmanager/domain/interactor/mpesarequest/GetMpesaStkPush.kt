@@ -6,9 +6,7 @@ import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import com.thomaskioko.paybillmanager.domain.repository.MpesaRequestRepository
 import com.thomaskioko.paybillmanager.domain.usecase.FlowableUseCase
-import com.thomaskioko.paybillmanager.domain.usecase.SingleUseCase
 import io.reactivex.Flowable
-import io.reactivex.Single
 import javax.inject.Inject
 
 open class GetMpesaStkPush @Inject constructor(
