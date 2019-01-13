@@ -1,6 +1,5 @@
 package com.thomaskioko.paybillmanager.data.store.mpesapush
 
-import com.thomaskioko.paybillmanager.data.model.MpesaPushRequestEntity
 import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
 import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushCache
 import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushDataStore
@@ -14,6 +13,10 @@ open class MpesaPushCacheDataStore @Inject constructor(
         private val cache: MpesaPushCache
 ) : MpesaPushDataStore {
 
+    override fun getMpesaStkPushRequests(): Flowable<List<MpesaPushResponseEntity>> {
+        return cache.getMpesaStkPushRequests()
+    }
+
     override fun clearMpesaPushRequests(): Completable {
         return cache.clearMpesaPushRequests()
     }
@@ -22,12 +25,11 @@ open class MpesaPushCacheDataStore @Inject constructor(
         return cache.saveMpesaPushResponse(mpesaPushResponse)
     }
 
-    override fun getMpesaStkPushRequest(mpesaPushRequest: MpesaPushRequest)
-            : Flowable<MpesaPushResponseEntity> {
-        return cache.getMpesaStkPushRequest(mpesaPushRequest)
+    override fun getMpesaStkPushRequest(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity> {
+        throw UnsupportedOperationException("Save push response isn't remotely")
     }
 
-    override fun isStkResponseCached(): Single<Boolean> {
-        return cache.isStkResponseCached()
+    override fun isStkResponseCached(transactionReference: String): Single<Boolean> {
+        return cache.isStkResponseCached(transactionReference)
     }
 }

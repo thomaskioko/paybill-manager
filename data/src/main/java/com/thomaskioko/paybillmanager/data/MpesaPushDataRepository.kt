@@ -24,7 +24,8 @@ class MpesaPushDataRepository @Inject constructor(
     }
 
     override fun getMpesaStkPush(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse> {
-        return factory.retrieveCacheDataStore().isStkResponseCached()
+        return factory.retrieveCacheDataStore()
+                .isStkResponseCached(mpesaPushRequest.transaction.reference)
                 .flatMapPublisher {
                     factory.retrieveDataStore(it).getMpesaStkPushRequest(mpesaPushRequest)
                 }
@@ -33,6 +34,14 @@ class MpesaPushDataRepository @Inject constructor(
                 }
                 .flatMap {
                     saveMpesaPushResponse(it).toSingle { it }.toFlowable()
+                }
+    }
+
+    override fun getMpesaPushResponse(): Flowable<List<MpesaPushResponse>> {
+        return factory.retrieveCacheDataStore()
+                .getMpesaStkPushRequests()
+                .map {
+                    it.map { mapper.mapFromEntity(it) }
                 }
     }
 }
