@@ -8,12 +8,13 @@ import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.domain.repository.MpesaRequestRepository
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class CreateMpesaPushResponseRequestTest {
+class GetMpesaStkPushTest {
 
     private lateinit var getMpesaStkPush: GetMpesaStkPush
     @Mock
@@ -30,8 +31,8 @@ class CreateMpesaPushResponseRequestTest {
     }
 
     @Test
-    fun createMpesaPushRequestCompletes() {
-        stubMpesaPushRequestRepository(Flowable.just(TestDataFactory.makeJengaMpesaPushResponse()))
+    fun getMpesaStkPushCompletes() {
+        stubMpesaPushRequestRepository(Single.just(TestDataFactory.makeJengaMpesaPushResponse()))
 
         val testObserver = getMpesaStkPush.buildUseCaseObservable(
                 GetMpesaStkPush.Params.forGetMpesaPushRequest(TestDataFactory.makeMpesaPushRequest())
@@ -42,12 +43,12 @@ class CreateMpesaPushResponseRequestTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun createMpesaPushRequestThrowsException() {
+    fun getMpesaStkPushNullParamsThrowsException() {
         getMpesaStkPush.buildUseCaseObservable().test()
     }
 
 
-    private fun stubMpesaPushRequestRepository(completable: Flowable<MpesaPushResponse>) {
+    private fun stubMpesaPushRequestRepository(completable: Single<MpesaPushResponse>) {
         whenever(repository.getMpesaStkPush(any())).thenReturn(completable)
     }
 }
