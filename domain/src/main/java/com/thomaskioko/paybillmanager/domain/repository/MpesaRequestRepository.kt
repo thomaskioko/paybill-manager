@@ -4,6 +4,7 @@ import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 /**
  * Interface defining methods for how the data layer can pass data to and from the Domain layer.
@@ -11,6 +12,8 @@ import io.reactivex.Flowable
  * operations that need to be implemented
  */
 interface MpesaRequestRepository {
+
+    fun clearMpesaPushRequests(): Completable
 
     fun getMpesaStkPush(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse>
 
