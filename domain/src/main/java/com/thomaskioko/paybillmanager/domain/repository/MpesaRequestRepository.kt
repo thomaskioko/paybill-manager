@@ -17,5 +17,7 @@ interface MpesaRequestRepository {
 
     fun getMpesaStkPush(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse>
 
+    fun getMpesaPushResponse(): Flowable<List<MpesaPushResponse>>
+
     fun saveMpesaPushResponse(mpesaPushResponse: MpesaPushResponse): Completable
 }
