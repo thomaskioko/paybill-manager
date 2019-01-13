@@ -1,17 +1,18 @@
 package com.thomaskioko.paybillmanager.data.test
 
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import com.thomaskioko.paybillmanager.data.MpesaPushDataRepository
-import com.thomaskioko.paybillmanager.data.mapper.MpesaPushRequestMapper
 import com.thomaskioko.paybillmanager.data.mapper.MpesaPushResponseMapper
+import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
 import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushDataStore
 import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushCacheDataStore
 import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushDataStoreFactory
 import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushRemoteDataStore
 import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
+import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import io.reactivex.Completable
+import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,39 +21,135 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class MpesaPushDataRepositoryTest {
 
-    private lateinit var dataRepository: MpesaPushDataRepository
 
-    private lateinit var dataStoreFactory: MpesaPushDataStoreFactory
-    private lateinit var requestMapper: MpesaPushRequestMapper
-    private lateinit var responseMapper: MpesaPushResponseMapper
-    private lateinit var cacheDataStore: MpesaPushCacheDataStore
-    private lateinit var remoteDataStore: MpesaPushRemoteDataStore
-    private lateinit var dataStore: MpesaPushDataStore
+    private var dataStoreFactory = mock<MpesaPushDataStoreFactory>()
+    private var mapper = mock<MpesaPushResponseMapper>()
+    private var cacheDataStore = mock<MpesaPushCacheDataStore>()
+    private var remoteDataStore = mock<MpesaPushRemoteDataStore>()
+
+    private var dataRepository = MpesaPushDataRepository(dataStoreFactory, mapper)
 
     @Before
     fun setUp() {
-        dataStoreFactory = mock()
-        requestMapper = mock()
-        responseMapper = mock()
-        cacheDataStore = mock()
-        remoteDataStore = mock()
-        dataStore = mock()
-        dataRepository = MpesaPushDataRepository(dataStoreFactory, requestMapper, responseMapper)
         stubDataStoreFactoryGetCacheDataStore()
         stubDataStoreFactoryGetRemoteDataStore()
+
+        val mpesaPushResponse = DataFactory.makeMpesaPushResponse()
+        val mpesaPushResponseEntity = DataFactory.makeMpesaPushResponseEntity()
+
+        stubMpesaPushResponseMapperFromEntity(mpesaPushResponseEntity, mpesaPushResponse)
+        stubMpesaPushResponseMapper(mpesaPushResponse, mpesaPushResponseEntity)
+    }
+
+    @Test
+    fun clearMpesaPushRequestsCompletes() {
+        stubClearMpesaPushRequests(Completable.complete())
+        val testObserver = dataRepository.clearMpesaPushRequests().test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun clearMpesaPushRequestsCallsCacheDataStore() {
+        stubClearMpesaPushRequests(Completable.complete())
+        dataRepository.clearMpesaPushRequests().test()
+        verify(cacheDataStore).clearMpesaPushRequests()
+    }
+
+    @Test
+    fun clearMpesaPushRequestsNeverCallsRemoteDataStore() {
+        stubClearMpesaPushRequests(Completable.complete())
+        dataRepository.clearMpesaPushRequests().test()
+        verify(remoteDataStore, never()).clearMpesaPushRequests()
     }
 
     @Test
     fun saveMpesaPushResponseCompletes() {
         stubCacheSaveMpesaPushResponse(Completable.complete())
-
-        val testObserver = dataStore.saveMpesaPushResponse(
-                DataFactory.makeMpesaPushResponseEntity()).test()
+        val testObserver = dataRepository.saveMpesaPushResponse(
+                DataFactory.makeMpesaPushResponse()
+        ).test()
         testObserver.assertComplete()
     }
 
+    @Test
+    fun saveMpesaPushResponseCallsCacheDataStore() {
+
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+        dataRepository.saveMpesaPushResponse(DataFactory.makeMpesaPushResponse()).test()
+        verify(cacheDataStore).saveMpesaPushResponse(any())
+    }
+
+    @Test
+    fun saveMpesaPushResponsesNeverCallsRemoteDataStore() {
+        stubMpesaPushResponseMapper(
+                DataFactory.makeMpesaPushResponse(),
+                DataFactory.makeMpesaPushResponseEntity()
+        )
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+        dataRepository.saveMpesaPushResponse(DataFactory.makeMpesaPushResponse()).test()
+        verify(remoteDataStore, never()).saveMpesaPushResponse(any())
+    }
+
+    @Test
+    fun getMpesaStkPushCompletes() {
+
+        val mpesaRequest = DataFactory.makeMpesaPushRequest()
+
+        stubIsStkResponseCached(Single.just(true))
+        stubDataStoreFactoryRetrieveDataStore(cacheDataStore)
+        stubCacheGetMpesaStkPushRequest(Flowable.just(DataFactory.makeMpesaPushResponseEntity()))
+
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+
+        val testObserver = dataRepository.getMpesaStkPush(mpesaRequest).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getMpesaStkPushReturnsData() {
+
+        val mpesaRequest = DataFactory.makeMpesaPushRequest()
+        val mpesaPushResponse = DataFactory.makeMpesaPushResponse()
+        val mpesaPushResponseEntity = DataFactory.makeMpesaPushResponseEntity()
+
+        stubIsStkResponseCached(Single.just(true))
+        stubDataStoreFactoryRetrieveDataStore(cacheDataStore)
+        stubCacheGetMpesaStkPushRequest(Flowable.just(mpesaPushResponseEntity))
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+
+        val testObserver = dataRepository.getMpesaStkPush(mpesaRequest).test()
+        testObserver.assertValue(mpesaPushResponse)
+    }
+
+    @Test
+    fun getMpesaStkPushSavesMpesaPushResponseWhenFromCacheDataStore() {
+
+        val mpesaPushResponse = DataFactory.makeMpesaPushResponse()
+
+        stubDataStoreFactoryRetrieveDataStore(cacheDataStore)
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+
+        dataRepository.saveMpesaPushResponse(mpesaPushResponse).test()
+        verify(cacheDataStore).saveMpesaPushResponse(any())
+    }
+
+    @Test
+    fun getMpesaNeverSavesMpesaPushResponseWhenFromRemoteDataStore() {
+
+        val mpesaPushResponse = DataFactory.makeMpesaPushResponse()
+        val mpesaPushResponseEntity = DataFactory.makeMpesaPushResponseEntity()
+
+        stubDataStoreFactoryRetrieveDataStore(remoteDataStore)
+        stubMpesaPushResponseMapperFromEntity(mpesaPushResponseEntity, mpesaPushResponse)
+        stubMpesaPushResponseMapper(mpesaPushResponse, mpesaPushResponseEntity)
+        stubCacheSaveMpesaPushResponse(Completable.complete())
+
+        dataRepository.saveMpesaPushResponse(mpesaPushResponse).test()
+        verify(remoteDataStore, never()).saveMpesaPushResponse(any())
+    }
+
     private fun stubCacheSaveMpesaPushResponse(completable: Completable) {
-        whenever(dataStore.saveMpesaPushResponse(any()))
+        whenever(cacheDataStore.saveMpesaPushResponse(any()))
                 .thenReturn(completable)
     }
 
@@ -66,5 +163,34 @@ class MpesaPushDataRepositoryTest {
                 .thenReturn(cacheDataStore)
     }
 
+    private fun stubIsStkResponseCached(single: Single<Boolean>) {
+        whenever(cacheDataStore.isStkResponseCached())
+                .thenReturn(single)
+    }
+
+    private fun stubCacheGetMpesaStkPushRequest(flowable: Flowable<MpesaPushResponseEntity>) {
+        whenever(cacheDataStore.getMpesaStkPushRequest(any()))
+                .thenReturn(flowable)
+    }
+
+    private fun stubDataStoreFactoryRetrieveDataStore(dataStore: MpesaPushDataStore) {
+        whenever(dataStoreFactory.retrieveDataStore(any()))
+                .thenReturn(dataStore)
+    }
+
+    private fun stubClearMpesaPushRequests(completable: Completable) {
+        whenever(cacheDataStore.clearMpesaPushRequests())
+                .thenReturn(completable)
+    }
+
+    private fun stubMpesaPushResponseMapper(model: MpesaPushResponse, entity: MpesaPushResponseEntity) {
+        whenever(mapper.mapToEntity(model))
+                .thenReturn(entity)
+    }
+
+    private fun stubMpesaPushResponseMapperFromEntity(entity: MpesaPushResponseEntity, model: MpesaPushResponse) {
+        whenever(mapper.mapFromEntity(entity))
+                .thenReturn(model)
+    }
 
 }
