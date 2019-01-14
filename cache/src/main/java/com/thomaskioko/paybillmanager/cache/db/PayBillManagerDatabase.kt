@@ -13,6 +13,7 @@ import javax.inject.Inject
     CachedBill::class,
     CachedCategory::class,
     CachedJengaToken::class,
+    CachedMpesaPushResponse::class,
     Config::class
 ], version = 1, exportSchema = false)
 abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
@@ -26,6 +27,8 @@ abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
 
     abstract fun jengaTokenDao(): JengaTokenDao
+
+    abstract fun mpesaPushResponseDao(): MpesaPushResponseDao
 
 
     companion object {
