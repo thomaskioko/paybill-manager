@@ -3,14 +3,19 @@ package com.thomaskioko.paybillmanager.presentation.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
 import com.thomaskioko.paybillmanager.domain.interactor.jengatoken.GetJengaToken
+import com.thomaskioko.paybillmanager.domain.interactor.mpesarequest.GetMpesaStkPush
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
+import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
-import com.thomaskioko.paybillmanager.presentation.factory.TokenFactory
+import com.thomaskioko.paybillmanager.presentation.factory.JengaFactory
 import com.thomaskioko.paybillmanager.presentation.mapper.JengaTokenViewMapper
+import com.thomaskioko.paybillmanager.presentation.mapper.MpesaPushViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.JengaTokenView
+import com.thomaskioko.paybillmanager.presentation.model.MpesaPushResponseView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import io.reactivex.subscribers.DisposableSubscriber
 import junit.framework.TestCase
+import junit.framework.TestCase.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,9 +33,14 @@ class JengaRequestsViewModelTest {
     @Captor
     val captor = argumentCaptor<DisposableSubscriber<JengaToken>>()
 
+    @Captor
+    val mpesaCaptor = argumentCaptor<DisposableSubscriber<MpesaPushResponse>>()
+
     private var getJengaToken = mock<GetJengaToken>()
+    private var getMpesaStkPush = mock<GetMpesaStkPush>()
     private var mapper = mock<JengaTokenViewMapper>()
-    private var viewModel = JengaRequestsViewModel(getJengaToken, mapper)
+    private var mpesaPushViewMapper = mock<MpesaPushViewMapper>()
+    private var viewModel = JengaRequestsViewModel(getJengaToken, getMpesaStkPush, mapper, mpesaPushViewMapper)
 
 
     @Test
@@ -44,8 +54,8 @@ class JengaRequestsViewModelTest {
 
     @Test
     fun fetchJengaTokenReturnsSuccess() {
-        val jengaToken = TokenFactory.makeJengaToken()
-        val tokenView = TokenFactory.makeJengaTokenView()
+        val jengaToken = JengaFactory.makeJengaToken()
+        val tokenView = JengaFactory.makeJengaTokenView()
 
         stubTokenMapperMapToView(tokenView, jengaToken)
 
@@ -65,8 +75,8 @@ class JengaRequestsViewModelTest {
 
     @Test
     fun fetchJengaTokenReturnsData() {
-        val jengaToken = TokenFactory.makeJengaToken()
-        val tokenView = TokenFactory.makeJengaTokenView()
+        val jengaToken = JengaFactory.makeJengaToken()
+        val tokenView = JengaFactory.makeJengaTokenView()
 
         stubTokenMapperMapToView(tokenView, jengaToken)
 
@@ -119,8 +129,110 @@ class JengaRequestsViewModelTest {
         TestCase.assertEquals(errorMessage, viewModel.getJengaToken().value?.message)
     }
 
+    @Test
+    fun fetchMpesaPushResponseExecutesUseCase() {
+
+        val request = JengaFactory.makeMpesaPushRequest()
+
+        //invoke fetch fetchJengaToken
+        viewModel.fetchMpesaPushResponse(request)
+
+        //verify that fetch bill by id use case is called once
+        verify(getMpesaStkPush, times(1)).execute(any(), eq(
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+        ))
+    }
+
+    @Test
+    fun fetchMpesaPushResponseReturnsSuccess() {
+        val model = JengaFactory.makeMpesaPushResponse()
+        val view = JengaFactory.makeMpesaPushResponseView()
+        val request = JengaFactory.makeMpesaPushRequest()
+
+        stubMpesaPushViewMapperMapToView(view, model)
+
+        //invoke fetch fetchJengaToken
+        viewModel.fetchMpesaPushResponse(request)
+
+        verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+        ))
+
+        //Pass data to onNext callback
+        mpesaCaptor.firstValue.onNext(model)
+
+        //Verify that resource type returned is of type success
+        TestCase.assertEquals(ResourceState.SUCCESS, viewModel.getMpesaPushResponse().value?.status)
+    }
+
+    @Test
+    fun fetchMpesaPushResponseReturnsData() {
+        val model = JengaFactory.makeMpesaPushResponse()
+        val view = JengaFactory.makeMpesaPushResponseView()
+        val request = JengaFactory.makeMpesaPushRequest()
+
+        stubMpesaPushViewMapperMapToView(view, model)
+
+        //invoke fetch fetchMpesaPushResponse
+        viewModel.fetchMpesaPushResponse(request)
+
+        verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+        ))
+
+        //Pass data to onNext callback
+        mpesaCaptor.firstValue.onNext(model)
+
+        //Verify that the data returned is what is returned
+        assertEquals(view, viewModel.getMpesaPushResponse().value?.data)
+    }
+
+    @Test
+    fun fetchMpesaPushResponseReturnsError() {
+        val request = JengaFactory.makeMpesaPushRequest()
+        //invoke fetch fetchJengaToken
+        viewModel.fetchMpesaPushResponse(request)
+
+        //Use captor to capture the response when execute is called
+        verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+        ))
+
+
+        //Pass Exception to onError callback
+        mpesaCaptor.firstValue.onError(RuntimeException())
+
+        //Verify that resource type returned is of type error
+        TestCase.assertEquals(ResourceState.ERROR, viewModel.getMpesaPushResponse().value?.status)
+    }
+
+    @Test
+    fun fetchMpesaPushResponseReturnsMessageForError() {
+        val errorMessage = DataFactory.randomString()
+        val request = JengaFactory.makeMpesaPushRequest()
+        //invoke fetch fetchJengaToken
+        viewModel.fetchMpesaPushResponse(request)
+
+        //Use captor to capture the response when execute is called
+        verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+        ))
+
+
+        //Pass error message to onError callback
+        mpesaCaptor.firstValue.onError(RuntimeException(errorMessage))
+
+        //Verify that the error message returned is what is expected
+        TestCase.assertEquals(errorMessage, viewModel.getMpesaPushResponse().value?.message)
+    }
+
+
     private fun stubTokenMapperMapToView(tokenView: JengaTokenView, jengaToken: JengaToken) {
         whenever(mapper.mapToView(jengaToken)).thenReturn(tokenView)
+    }
+
+    private fun stubMpesaPushViewMapperMapToView(view: MpesaPushResponseView, model: MpesaPushResponse) {
+        whenever(mpesaPushViewMapper.mapToView(model)).thenReturn(view)
     }
 
 

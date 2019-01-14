@@ -1,6 +1,6 @@
 package com.thomaskioko.paybillmanager.presentation.mapper
 
-import com.thomaskioko.paybillmanager.presentation.factory.TokenFactory
+import com.thomaskioko.paybillmanager.presentation.factory.JengaFactory
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
@@ -10,7 +10,7 @@ class JengaTokenViewMapperTest {
 
     @Test
     fun mapToViewMapsData() {
-        val entity = TokenFactory.makeJengaToken()
+        val entity = JengaFactory.makeJengaToken()
         val tokenView = mapper.mapToView(entity)
 
         assertEquals(tokenView.tokenType, entity.tokenType)
