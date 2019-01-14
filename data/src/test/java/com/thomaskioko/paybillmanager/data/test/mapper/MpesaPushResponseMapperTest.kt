@@ -31,7 +31,7 @@ class MpesaPushResponseMapperTest {
     }
 
     private fun assertEqualData(entity: MpesaPushResponseEntity, model: MpesaPushResponse) {
-        TestCase.assertEquals(entity.transactionRef, model.transactionRef)
-        TestCase.assertEquals(entity.status, model.status)
+        TestCase.assertEquals(entity.transactionReference, model.transactionReference)
+        TestCase.assertEquals(entity.statusMessage, model.statusMessage)
     }
 }

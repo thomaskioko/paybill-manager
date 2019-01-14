@@ -55,7 +55,7 @@ class MpesaPushResponseCacheImplTest {
         val entity = MpesaResponseCachedFactory.makeMpesaPushResponseEntity()
         cacheImpl.saveMpesaPushResponse(entity).test()
 
-        val testObserver = cacheImpl.isStkResponseCached(entity.transactionRef).test()
+        val testObserver = cacheImpl.isStkResponseCached(entity.transactionReference).test()
         testObserver.assertValue(true)
     }
 

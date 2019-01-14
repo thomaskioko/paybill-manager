@@ -30,7 +30,7 @@ class CachedMpesaPushMapperTest {
     }
 
     private fun assertEqualData(model: CachedMpesaPushResponse, entity: MpesaPushResponseEntity) {
-        assertEquals(model.transactionRef, entity.transactionRef)
-        assertEquals(model.status, entity.status)
+        assertEquals(model.transactionReference, entity.transactionReference)
+        assertEquals(model.statusMessage, entity.statusMessage)
     }
 }

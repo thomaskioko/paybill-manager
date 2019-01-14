@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "mpesa_response")
 data class CachedMpesaPushResponse(
-        val transactionRef: String,
-        val status: String
+        val transactionReference: String,
+        val statusMessage: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

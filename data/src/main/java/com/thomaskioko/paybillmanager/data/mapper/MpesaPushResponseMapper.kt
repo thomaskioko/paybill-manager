@@ -8,10 +8,10 @@ open class MpesaPushResponseMapper @Inject constructor()
     : EntityMapper<MpesaPushResponseEntity, MpesaPushResponse> {
 
     override fun mapFromEntity(entity: MpesaPushResponseEntity): MpesaPushResponse {
-        return MpesaPushResponse(entity.transactionRef, entity.status)
+        return MpesaPushResponse(entity.transactionReference, entity.statusMessage)
     }
 
     override fun mapToEntity(domain: MpesaPushResponse): MpesaPushResponseEntity {
-        return MpesaPushResponseEntity(domain.transactionRef, domain.status)
+        return MpesaPushResponseEntity(domain.transactionReference, domain.statusMessage)
     }
 }
