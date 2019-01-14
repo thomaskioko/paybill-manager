@@ -14,11 +14,7 @@ abstract class MpesaPushResponseDao {
     @JvmSuppressWildcards
     abstract fun getMpesaPushResponses(): Flowable<List<CachedMpesaPushResponse>>
 
-    @Query("SELECT * FROM mpesa_response where status = :status")
-    @JvmSuppressWildcards
-    abstract fun getMpesaPushResponseByStatus(status: String): Flowable<List<CachedMpesaPushResponse>>
-
-    @Query("SELECT * FROM mpesa_response where transactionRef = :transactionReference")
+    @Query("SELECT * FROM mpesa_response where transactionReference = :transactionReference")
     @JvmSuppressWildcards
     abstract fun getMpesaPushResponseByTransactionRef(transactionReference: String)
             : Flowable<CachedMpesaPushResponse>
