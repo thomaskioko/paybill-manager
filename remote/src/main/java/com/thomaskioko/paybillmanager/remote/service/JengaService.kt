@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.remote.service
 
 import com.thomaskioko.paybillmanager.remote.model.JengaToken
+import com.thomaskioko.paybillmanager.remote.model.MpesaPushResponse
 import io.reactivex.Flowable
 import retrofit2.http.*
 
@@ -8,9 +9,9 @@ interface JengaService {
 
     @FormUrlEncoded
     @POST("identity/v2/token")
+    @Headers("Content-Type: application/x-www-form-urlencoded")
     fun getAccessToken(
             @Header("Authorization") bearer: String,
-            @Header("Content-Type") contentType: String,
             @Field("username") username: String,
             @Field("password") password: String
     ): Flowable<JengaToken>
@@ -20,11 +21,11 @@ interface JengaService {
             @Header("Authorization") bearer: String,
             @Header("Content-Type") contentType: String)
 
-    @POST("transaction/v2/payment/mpesastkpush")
-    fun makeMpesaPayment(
-            @Header("Authorization") bearer: String,
-            @Header("Content-Type") contentType: String,
-            @Header("signature") signature: String
-    )
 
+    @POST("transaction/v2/payment/mpesastkpush")
+    @Headers("Content-Type: application/json")
+    fun getMpesaStkPush(
+            @Header("Authorization") bearer: String,
+            @Header("signature") signature: String
+    ): Flowable<MpesaPushResponse>
 }
