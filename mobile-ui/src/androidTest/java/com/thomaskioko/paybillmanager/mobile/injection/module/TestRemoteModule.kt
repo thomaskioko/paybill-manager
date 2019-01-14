@@ -1,7 +1,7 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import com.nhaarman.mockitokotlin2.mock
-import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenRemote
+import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaRemote
 import com.thomaskioko.paybillmanager.remote.service.JengaService
 import dagger.Module
 import dagger.Provides
@@ -18,7 +18,7 @@ object TestRemoteModule {
 
     @Provides
     @JvmStatic
-    fun provideTokenRemote(): JengaTokenRemote {
+    fun provideTokenRemote(): JengaRemote {
         return mock()
     }
 }
