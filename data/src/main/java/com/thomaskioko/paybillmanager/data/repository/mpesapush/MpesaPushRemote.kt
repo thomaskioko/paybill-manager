@@ -12,7 +12,7 @@ import io.reactivex.Single
  */
 interface MpesaPushRemote {
 
-    fun getMpesaStkPushRequest(mpesaPushRequestEntity: MpesaPushRequest)
+    fun getMpesaStkPushRequest(bearerToken: String, mpesaPushRequestEntity: MpesaPushRequest)
             : Flowable<MpesaPushResponseEntity>
 
 }

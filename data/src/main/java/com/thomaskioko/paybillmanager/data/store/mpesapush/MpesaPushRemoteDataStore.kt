@@ -21,8 +21,8 @@ open class MpesaPushRemoteDataStore @Inject constructor(
         throw UnsupportedOperationException("Save push response isn't remotely")
     }
 
-    override fun getMpesaStkPushRequest(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity> {
-        return remote.getMpesaStkPushRequest(mpesaPushRequest)
+    override fun getMpesaStkPushRequest(bearerToken: String, mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity> {
+        return remote.getMpesaStkPushRequest(bearerToken, mpesaPushRequest)
     }
 
     override fun saveMpesaPushResponse(mpesaPushResponse: MpesaPushResponseEntity): Completable {

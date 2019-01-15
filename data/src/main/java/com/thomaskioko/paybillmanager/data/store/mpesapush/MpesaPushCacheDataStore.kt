@@ -25,8 +25,8 @@ open class MpesaPushCacheDataStore @Inject constructor(
         return cache.saveMpesaPushResponse(mpesaPushResponse)
     }
 
-    override fun getMpesaStkPushRequest(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity> {
-        throw UnsupportedOperationException("Save push response isn't remotely")
+    override fun getMpesaStkPushRequest(bearerToken: String, mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity> {
+        throw UnsupportedOperationException("Get push response isn't remotely")
     }
 
     override fun isStkResponseCached(transactionReference: String): Single<Boolean> {

@@ -23,11 +23,11 @@ class MpesaPushDataRepository @Inject constructor(
         return factory.retrieveCacheDataStore().saveMpesaPushResponse(mpesaPushResponseEntity)
     }
 
-    override fun getMpesaStkPush(mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse> {
+    override fun getMpesaStkPush(bearerToken: String, mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse> {
         return factory.retrieveCacheDataStore()
                 .isStkResponseCached(mpesaPushRequest.transaction.reference)
                 .flatMapPublisher {
-                    factory.retrieveDataStore(it).getMpesaStkPushRequest(mpesaPushRequest)
+                    factory.retrieveDataStore(it).getMpesaStkPushRequest(bearerToken, mpesaPushRequest)
                 }
                 .flatMap {
                     Flowable.just(mapper.mapFromEntity(it))
