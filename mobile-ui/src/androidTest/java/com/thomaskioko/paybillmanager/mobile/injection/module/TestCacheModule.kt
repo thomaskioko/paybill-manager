@@ -7,6 +7,7 @@ import com.thomaskioko.paybillmanager.data.repository.billcategory.BillCategoryC
 import com.thomaskioko.paybillmanager.data.repository.bills.BillsCache
 import com.thomaskioko.paybillmanager.data.repository.category.CategoryCache
 import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenCache
+import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushCache
 import dagger.Module
 import dagger.Provides
 
@@ -43,6 +44,12 @@ object TestCacheModule {
     @Provides
     @JvmStatic
     fun providesBillCategoryCache(): BillCategoryCache {
+        return mock()
+    }
+
+    @Provides
+    @JvmStatic
+    fun providesMpesaPushCache(): MpesaPushCache {
         return mock()
     }
 

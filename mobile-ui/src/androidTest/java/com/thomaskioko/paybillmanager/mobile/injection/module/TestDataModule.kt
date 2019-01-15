@@ -3,10 +3,7 @@ package com.thomaskioko.paybillmanager.mobile.injection.module
 import com.nhaarman.mockitokotlin2.mock
 import com.thomaskioko.paybillmanager.data.executor.JobExecutor
 import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
-import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
-import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
-import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
-import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
+import com.thomaskioko.paybillmanager.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -40,6 +37,12 @@ abstract class TestDataModule {
         @Provides
         @JvmStatic
         fun providesBillCategoryRepository(): BillCategoryRepository {
+            return mock()
+        }
+
+        @Provides
+        @JvmStatic
+        fun providesMpesaRequestRepository(): MpesaRequestRepository {
             return mock()
         }
     }
