@@ -1,15 +1,9 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
-import com.thomaskioko.paybillmanager.data.BillCategoryDataRepository
-import com.thomaskioko.paybillmanager.data.BillsDataRepository
-import com.thomaskioko.paybillmanager.data.CategoryDataRepository
-import com.thomaskioko.paybillmanager.data.JengaTokenDataRepository
+import com.thomaskioko.paybillmanager.data.*
 import com.thomaskioko.paybillmanager.data.executor.JobExecutor
 import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
-import com.thomaskioko.paybillmanager.domain.repository.BillCategoryRepository
-import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
-import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
-import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
+import com.thomaskioko.paybillmanager.domain.repository.*
 import dagger.Binds
 import dagger.Module
 
@@ -31,4 +25,7 @@ abstract class DataModule {
 
     @Binds
     abstract fun bindBillCategoryRepository(repository: BillCategoryDataRepository): BillCategoryRepository
+
+    @Binds
+    abstract fun bindMpesaRequestRepository(repository: MpesaPushDataRepository): MpesaRequestRepository
 }

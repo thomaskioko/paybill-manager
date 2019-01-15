@@ -1,8 +1,10 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
 import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaRemote
+import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushRemote
 import com.thomaskioko.paybillmanager.remote.BuildConfig
 import com.thomaskioko.paybillmanager.remote.JengaRemoteImpl
+import com.thomaskioko.paybillmanager.remote.MpesaRemoteImpl
 import com.thomaskioko.paybillmanager.remote.service.JengaService
 import com.thomaskioko.paybillmanager.remote.service.JengaServiceFactory
 import dagger.Binds
@@ -31,4 +33,7 @@ abstract class RemoteModule {
 
     @Binds
     abstract fun bindJengaRemote(jengaRemoteImpl: JengaRemoteImpl): JengaRemote
+
+    @Binds
+    abstract fun bindMpesaPushRemote(mpesaRemoteImpl: MpesaRemoteImpl): MpesaPushRemote
 }
