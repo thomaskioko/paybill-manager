@@ -50,11 +50,11 @@ open class JengaRequestsViewModel @Inject internal constructor(
     }
 
 
-    fun fetchMpesaPushResponse(bearer: String, mpesaPushRequest: MpesaPushRequest) {
+    fun fetchMpesaPushResponse(bearer: String, signaturePayload: String) {
         mpesaStkLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getMpesaStkPush?.execute(
                 JengaMpesaStkSubscriber(),
-                GetMpesaStkPush.Params.forGetMpesaPushRequest(bearer, mpesaPushRequest)
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(bearer, signaturePayload)
         )
     }
 
