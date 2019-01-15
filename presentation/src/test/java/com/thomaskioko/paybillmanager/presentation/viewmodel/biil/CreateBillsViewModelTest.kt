@@ -12,8 +12,7 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.CreateBillsViewModel
 import io.reactivex.observers.DisposableCompletableObserver
-import junit.framework.Assert
-import junit.framework.TestCase
+import junit.framework.TestCase.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -74,7 +73,7 @@ class CreateBillsViewModelTest {
         captor.firstValue.onComplete()
 
         //Verify that resource type returned is of type success
-        TestCase.assertEquals(ResourceState.SUCCESS,
+        assertEquals(ResourceState.SUCCESS,
                 viewModel.getBill().value?.status)
     }
 
@@ -95,7 +94,7 @@ class CreateBillsViewModelTest {
         captor.firstValue.onComplete()
 
         //Verify that resource type returned is of type success
-        TestCase.assertEquals(ResourceState.SUCCESS,
+        assertEquals(ResourceState.SUCCESS,
                 viewModel.getBill().value?.status)
     }
 
@@ -115,7 +114,7 @@ class CreateBillsViewModelTest {
         captor.firstValue.onError(RuntimeException())
 
         //Verify that resource type returned is of type error
-        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
+        assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
     }
 
     @Test
@@ -133,7 +132,7 @@ class CreateBillsViewModelTest {
         captor.firstValue.onError(RuntimeException())
 
         //Verify that resource type returned is of type error
-        TestCase.assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
+        assertEquals(ResourceState.ERROR, viewModel.getBill().value?.status)
     }
 
     @Test
@@ -153,7 +152,7 @@ class CreateBillsViewModelTest {
         captor.firstValue.onError(RuntimeException(errorMessage))
 
         //Verify that the error message returned is what is expected
-        TestCase.assertEquals(errorMessage, viewModel.getBill().value?.message)
+        assertEquals(errorMessage, viewModel.getBill().value?.message)
     }
 
     @Test
@@ -173,7 +172,7 @@ class CreateBillsViewModelTest {
         captor.firstValue.onError(RuntimeException(errorMessage))
 
         //Verify that the error message returned is what is expected
-        TestCase.assertEquals(errorMessage, viewModel.getBill().value?.message)
+        assertEquals(errorMessage, viewModel.getBill().value?.message)
     }
 
 
@@ -181,7 +180,7 @@ class CreateBillsViewModelTest {
     fun setAmountReturnsRightValue() {
         viewModel.setAmount("2300")
 
-        Assert.assertEquals(viewModel.amountLiveData.value, "2300")
+        assertEquals(viewModel.amountLiveData.value, "2300")
     }
 
 
@@ -189,7 +188,7 @@ class CreateBillsViewModelTest {
     fun setCategoryIdReRightValue() {
         viewModel.setCategoryId("2")
 
-        Assert.assertEquals(viewModel.categoryIdLiveData.value, "2")
+        assertEquals(viewModel.categoryIdLiveData.value, "2")
     }
 
     private fun stubBillMapperMapToView(projectView: BillView, project: Bill) {
