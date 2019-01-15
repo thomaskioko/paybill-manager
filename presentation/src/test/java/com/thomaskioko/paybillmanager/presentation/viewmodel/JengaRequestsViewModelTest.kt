@@ -20,6 +20,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Captor
 
 
@@ -135,11 +136,11 @@ class JengaRequestsViewModelTest {
         val request = JengaFactory.makeMpesaPushRequest()
 
         //invoke fetch fetchJengaToken
-        viewModel.fetchMpesaPushResponse(request)
+        viewModel.fetchMpesaPushResponse("Bearer: ", request)
 
         //verify that fetch bill by id use case is called once
         verify(getMpesaStkPush, times(1)).execute(any(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ",  request)
         ))
     }
 
@@ -152,10 +153,10 @@ class JengaRequestsViewModelTest {
         stubMpesaPushViewMapperMapToView(view, model)
 
         //invoke fetch fetchJengaToken
-        viewModel.fetchMpesaPushResponse(request)
+        viewModel.fetchMpesaPushResponse("Bearer: ", request)
 
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", request)
         ))
 
         //Pass data to onNext callback
@@ -174,10 +175,10 @@ class JengaRequestsViewModelTest {
         stubMpesaPushViewMapperMapToView(view, model)
 
         //invoke fetch fetchMpesaPushResponse
-        viewModel.fetchMpesaPushResponse(request)
+        viewModel.fetchMpesaPushResponse("Bearer: ", request)
 
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", request)
         ))
 
         //Pass data to onNext callback
@@ -191,11 +192,11 @@ class JengaRequestsViewModelTest {
     fun fetchMpesaPushResponseReturnsError() {
         val request = JengaFactory.makeMpesaPushRequest()
         //invoke fetch fetchJengaToken
-        viewModel.fetchMpesaPushResponse(request)
+        viewModel.fetchMpesaPushResponse("Bearer: ", request)
 
         //Use captor to capture the response when execute is called
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", request)
         ))
 
 
@@ -211,11 +212,11 @@ class JengaRequestsViewModelTest {
         val errorMessage = DataFactory.randomString()
         val request = JengaFactory.makeMpesaPushRequest()
         //invoke fetch fetchJengaToken
-        viewModel.fetchMpesaPushResponse(request)
+        viewModel.fetchMpesaPushResponse("Bearer: ", request)
 
         //Use captor to capture the response when execute is called
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest(request)
+                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", request)
         ))
 
 

@@ -101,7 +101,7 @@ class MpesaPushDataRepositoryTest {
 
         stubCacheSaveMpesaPushResponse(Completable.complete())
 
-        val testObserver = dataRepository.getMpesaStkPush(mpesaRequest).test()
+        val testObserver = dataRepository.getMpesaStkPush("Bearer: ", mpesaRequest).test()
         testObserver.assertComplete()
     }
 
@@ -117,7 +117,7 @@ class MpesaPushDataRepositoryTest {
         stubCacheGetMpesaStkPushRequest(Flowable.just(mpesaPushResponseEntity))
         stubCacheSaveMpesaPushResponse(Completable.complete())
 
-        val testObserver = dataRepository.getMpesaStkPush(mpesaRequest).test()
+        val testObserver = dataRepository.getMpesaStkPush("Bearer: ", mpesaRequest).test()
         testObserver.assertValue(mpesaPushResponse)
     }
 
@@ -196,7 +196,7 @@ class MpesaPushDataRepositoryTest {
     }
 
     private fun stubCacheGetMpesaStkPushRequest(flowable: Flowable<MpesaPushResponseEntity>) {
-        whenever(cacheDataStore.getMpesaStkPushRequest(any()))
+        whenever(cacheDataStore.getMpesaStkPushRequest(any(), any()))
                 .thenReturn(flowable)
     }
 

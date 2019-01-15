@@ -11,6 +11,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
@@ -32,10 +33,10 @@ class GetMpesaStkPushTest {
 
     @Test
     fun getMpesaStkPushCompletes() {
-        stubMpesaPushRequestRepository(Single.just(TestDataFactory.makeJengaMpesaPushResponse()))
+        stubMpesaPushRequestRepository(Flowable.just(TestDataFactory.makeJengaMpesaPushResponse()))
 
         val testObserver = getMpesaStkPush.buildUseCaseObservable(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest(TestDataFactory.makeMpesaPushRequest())
+                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: wers", TestDataFactory.makeMpesaPushRequest())
         ).test()
 
         //Verify that the observable completes
@@ -48,7 +49,7 @@ class GetMpesaStkPushTest {
     }
 
 
-    private fun stubMpesaPushRequestRepository(completable: Single<MpesaPushResponse>) {
-        whenever(repository.getMpesaStkPush(any())).thenReturn(completable)
+    private fun stubMpesaPushRequestRepository(completable: Flowable<MpesaPushResponse>) {
+        whenever(repository.getMpesaStkPush(any(), any())).thenReturn(completable)
     }
 }
