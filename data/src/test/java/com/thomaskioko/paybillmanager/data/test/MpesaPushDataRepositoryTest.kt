@@ -93,22 +93,19 @@ class MpesaPushDataRepositoryTest {
     @Test
     fun getMpesaStkPushCompletes() {
 
-        val mpesaRequest = DataFactory.makeMpesaPushRequest()
-
         stubIsStkResponseCached(Single.just(true))
         stubDataStoreFactoryRetrieveDataStore(cacheDataStore)
         stubCacheGetMpesaStkPushRequest(Flowable.just(DataFactory.makeMpesaPushResponseEntity()))
 
         stubCacheSaveMpesaPushResponse(Completable.complete())
 
-        val testObserver = dataRepository.getMpesaStkPush("Bearer: ", mpesaRequest).test()
+        val testObserver = dataRepository.getMpesaStkPush("Bearer: ", "signaturePayload").test()
         testObserver.assertComplete()
     }
 
     @Test
     fun getMpesaStkPushReturnsData() {
 
-        val mpesaRequest = DataFactory.makeMpesaPushRequest()
         val mpesaPushResponse = DataFactory.makeMpesaPushResponse()
         val mpesaPushResponseEntity = DataFactory.makeMpesaPushResponseEntity()
 
@@ -117,7 +114,7 @@ class MpesaPushDataRepositoryTest {
         stubCacheGetMpesaStkPushRequest(Flowable.just(mpesaPushResponseEntity))
         stubCacheSaveMpesaPushResponse(Completable.complete())
 
-        val testObserver = dataRepository.getMpesaStkPush("Bearer: ", mpesaRequest).test()
+        val testObserver = dataRepository.getMpesaStkPush("Bearer: ", "signaturePayload").test()
         testObserver.assertValue(mpesaPushResponse)
     }
 

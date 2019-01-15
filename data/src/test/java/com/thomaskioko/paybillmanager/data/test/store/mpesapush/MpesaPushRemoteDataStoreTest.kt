@@ -24,7 +24,7 @@ class MpesaPushRemoteDataStoreTest {
 
         stubGetMpesaStkPushRequest(Flowable.just(DataFactory.makeMpesaPushResponseEntity()))
 
-        val testObserver = store.getMpesaStkPushRequest("Bearer: ", DataFactory.makeMpesaPushRequest()).test()
+        val testObserver = store.getMpesaStkPushRequest("Bearer: ", "signaturePayload").test()
         testObserver.assertComplete()
 
     }

@@ -36,7 +36,7 @@ class GetMpesaStkPushTest {
         stubMpesaPushRequestRepository(Flowable.just(TestDataFactory.makeJengaMpesaPushResponse()))
 
         val testObserver = getMpesaStkPush.buildUseCaseObservable(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: wers", TestDataFactory.makeMpesaPushRequest())
+                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: wers", "signaturePayload")
         ).test()
 
         //Verify that the observable completes
