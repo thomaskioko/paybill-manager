@@ -18,14 +18,14 @@ open class GetMpesaStkPush @Inject constructor(
 
     public override fun buildUseCaseObservable(params: Params?): Flowable<MpesaPushResponse> {
         if (params == null) throw IllegalArgumentException("Params can't be null")
-        return repository.getMpesaStkPush(params.mpesaPushRequest)
+        return repository.getMpesaStkPush(params.bearer, params.mpesaPushRequest)
     }
 
 
-    data class Params constructor(val mpesaPushRequest: MpesaPushRequest) {
+    data class Params constructor(val bearer: String, val mpesaPushRequest: MpesaPushRequest) {
         companion object {
-            fun forGetMpesaPushRequest(mpesaPushRequest: MpesaPushRequest): Params {
-                return Params(mpesaPushRequest)
+            fun forGetMpesaPushRequest(bearer: String, mpesaPushRequest: MpesaPushRequest): Params {
+                return Params(bearer, mpesaPushRequest)
             }
         }
     }
