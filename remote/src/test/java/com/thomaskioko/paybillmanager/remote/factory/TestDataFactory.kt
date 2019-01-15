@@ -1,7 +1,11 @@
 package com.thomaskioko.paybillmanager.remote.factory
 
 import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
+import com.thomaskioko.paybillmanager.data.model.MpesaPushRequestEntity
 import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
+import com.thomaskioko.paybillmanager.domain.model.mpesa.Customer
+import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
+import com.thomaskioko.paybillmanager.domain.model.mpesa.Transaction
 import com.thomaskioko.paybillmanager.remote.model.JengaToken
 import com.thomaskioko.paybillmanager.remote.model.MpesaPushResponse
 import java.util.*
@@ -38,6 +42,14 @@ object TestDataFactory {
         return MpesaPushResponse(
                 "ws_CO_DMZ_215811302_09012019022651831",
                 "Success. Request accepted for processing"
+        )
+    }
+
+
+    fun makeMpesaPushRequest(): MpesaPushRequest {
+        return MpesaPushRequest(
+                Transaction("10", "ref_2434ds", "Bill Payment", "320320"),
+                Customer("0721345321", "KE")
         )
     }
 
