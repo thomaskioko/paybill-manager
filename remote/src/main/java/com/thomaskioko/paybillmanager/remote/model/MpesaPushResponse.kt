@@ -3,8 +3,8 @@ package com.thomaskioko.paybillmanager.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class MpesaPushResponse(
-        @SerializedName("transactionReference")
+        @SerializedName("transactionRef")
         val transactionReference: String,
-        @SerializedName("statusMessage")
+        @SerializedName("status")
         val statusMessage: String
 )
