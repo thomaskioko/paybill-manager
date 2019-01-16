@@ -1,14 +1,21 @@
+<img alt="Icon" src="mobile-ui/src/main/res/mipmap-xxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
+
+
+# PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
+
+Your personal finance manager. 💰
+</br>
+</br>
+</br>
+
+
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/clean-architecture-implementation)](https://travis-ci.org/kioko/paybill-manager)
 [![codecov](https://codecov.io/gh/kioko/paybill-manager/branch/feature/clean-architecture-implementation/graph/badge.svg)](https://codecov.io/gh/kioko/paybill-manager)
 
-<p align="center">
-  <img src="https://github.com/kioko/paybill-manager/blob/master/app/src/main/ic_launcher_web.png?raw=true" alt="Paybill-Manager"/>
-</p>
 
 
-PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
--------------------
-Paybill manger is an Android app meant to help you manage your bill using [Daraja API](https://developer.safaricom.co.ke/docs)
+Paybill manger is an Android app meant to help you manage your bill using [Jenga API](https://jengaapi.io/)
 
 It attempts to use the latest cutting edge libraries and tools. As a summary:
 
@@ -23,17 +30,16 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
   
  
  
-# Development Environment
+## Development Environment
 
 The app is written entirely in Kotlin and uses the Gradle build system. You require [Android Studio 3.2 Canary 14 or higher](https://developer.android.com/studio/preview/). This is because lower versions don't support Navigation Components yet.
 
-## API Keys
+## Jenga Api Credentials
 PaybillManager uses [Jenga Account](http://test.jengahq.io/) to handle payments, so you will need to create an account. Once you have one, go ahead and get your [keys](https://test.jengahq.io/#!/developers/api-keys) 
 
 Once you have them, open `gradle.properties` file and paste your API key in `JENGA_API_KEY`,  `JENGA_USERNAME` and `JENGA_PASSWORD` variables respectively.
 
-
-# Architecture
+## Architecture
 
 We followed the recommendations laid out in the [Guide to App Architecture](https://developer.android.com/jetpack/docs/guide) when deciding on the architecture for the app. We kept logic away from Activities and Fragments and moved it to [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
 
@@ -139,6 +145,13 @@ Patches are encouraged, and may be submitted by forking this project and submitt
 
 #### No code!
 * You can [discuss a bug](https://github.com/kioko/paybill-manager/issues) or if it was not reported yet [submit a bug](https://github.com/kioko/paybill-manager/issues/new).
+
+## References
+
+* [Android Clean Architecture](https://github.com/android10/Android-CleanArchitecture)
+Sample app that is part of a series of blog posts about how to architect an android application using Uncle Bob's clean architecture approach.
+* [Android Architecture Blueprints](https://github.com/googlesamples/android-architecture)
+Demonstrate possible ways to help with testing, maintaining and extending of an Android app using different architectural concepts and tools.
 
 License
 -------
