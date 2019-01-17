@@ -3,6 +3,7 @@ package com.thomaskioko.paybillmanager.remote
 import com.thomaskioko.paybillmanager.data.model.JengaTokenEntity
 import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
 import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaRemote
+import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import com.thomaskioko.paybillmanager.remote.mapper.JengaTokenMapper
 import com.thomaskioko.paybillmanager.remote.mapper.MpesaPushResponseMapper
 import com.thomaskioko.paybillmanager.remote.service.JengaService
@@ -24,9 +25,10 @@ open class JengaRemoteImpl @Inject constructor(
         }
     }
 
-    override fun getMpesaPushResponse(bearerToken: String, signature: String)
+    override fun getMpesaPushResponse(bearerToken: String, signature: String, mpesaPushRequest: MpesaPushRequest)
             : Flowable<MpesaPushResponseEntity> {
-       return service.getMpesaStkPush(bearerToken, signature)
+        val token = "Bearer $bearerToken"
+       return service.getMpesaStkPush(token, signature, mpesaPushRequest)
                .map {
                    responseMapper.mapFromModel(it)
                }

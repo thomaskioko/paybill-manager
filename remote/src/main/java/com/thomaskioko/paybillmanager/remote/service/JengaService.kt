@@ -1,5 +1,6 @@
 package com.thomaskioko.paybillmanager.remote.service
 
+import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import com.thomaskioko.paybillmanager.remote.model.JengaToken
 import com.thomaskioko.paybillmanager.remote.model.MpesaPushResponse
 import io.reactivex.Flowable
@@ -26,6 +27,7 @@ interface JengaService {
     @Headers("Content-Type: application/json")
     fun getMpesaStkPush(
             @Header("Authorization") bearer: String,
-            @Header("signature") signature: String
+            @Header("signature") signature: String,
+            @Body mpesaPushRequest: MpesaPushRequest
     ): Flowable<MpesaPushResponse>
 }

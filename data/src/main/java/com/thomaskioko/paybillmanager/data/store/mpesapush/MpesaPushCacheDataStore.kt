@@ -3,6 +3,7 @@ package com.thomaskioko.paybillmanager.data.store.mpesapush
 import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
 import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushCache
 import com.thomaskioko.paybillmanager.data.repository.mpesapush.MpesaPushDataStore
+import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -24,7 +25,7 @@ open class MpesaPushCacheDataStore @Inject constructor(
         return cache.saveMpesaPushResponse(mpesaPushResponse)
     }
 
-    override fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String): Flowable<MpesaPushResponseEntity> {
+    override fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String, mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity> {
         throw UnsupportedOperationException("Get push response isn't remotely")
     }
 

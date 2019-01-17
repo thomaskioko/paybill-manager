@@ -17,7 +17,7 @@ interface MpesaPushDataStore {
 
     fun saveMpesaPushResponse(mpesaPushResponse: MpesaPushResponseEntity): Completable
 
-    fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String): Flowable<MpesaPushResponseEntity>
+    fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String, mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponseEntity>
 
     fun getMpesaStkPushRequests(): Flowable<List<MpesaPushResponseEntity>>
 

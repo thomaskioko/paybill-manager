@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.data.repository.mpesapush
 
 import com.thomaskioko.paybillmanager.data.model.MpesaPushResponseEntity
+import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import io.reactivex.Flowable
 
 /**
@@ -9,7 +10,7 @@ import io.reactivex.Flowable
  */
 interface MpesaPushRemote {
 
-    fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String)
+    fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String, mpesaPushRequest: MpesaPushRequest)
             : Flowable<MpesaPushResponseEntity>
 
 }

@@ -13,9 +13,10 @@ open class MpesaRemoteImpl @Inject constructor(
         private val service: JengaService
 ) : MpesaPushRemote {
 
-    override fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String)
+    override fun getMpesaStkPushRequest(bearerToken: String, signaturePayload: String, mpesaPushRequest: MpesaPushRequest)
             : Flowable<MpesaPushResponseEntity> {
-        return service.getMpesaStkPush(bearerToken, signaturePayload)
+        val token = "Bearer $bearerToken"
+        return service.getMpesaStkPush(token, signaturePayload, mpesaPushRequest)
                 .map {
                     responseMapper.mapFromModel(it)
                 }

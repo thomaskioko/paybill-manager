@@ -1,6 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.repository
 
 import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
+import com.thomaskioko.paybillmanager.domain.model.mpesa.MpesaPushRequest
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -13,7 +14,7 @@ interface MpesaRequestRepository {
 
     fun clearMpesaPushRequests(): Completable
 
-    fun getMpesaStkPush(bearerToken: String, signaturePayload: String): Flowable<MpesaPushResponse>
+    fun getMpesaStkPush(bearerToken: String, signaturePayload: String, mpesaPushRequest: MpesaPushRequest): Flowable<MpesaPushResponse>
 
     fun getMpesaPushResponse(): Flowable<List<MpesaPushResponse>>
 
