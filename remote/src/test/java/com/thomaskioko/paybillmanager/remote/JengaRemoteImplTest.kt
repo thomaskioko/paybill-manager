@@ -44,7 +44,7 @@ class JengaRemoteImplTest {
         stubMpesaPushResponseMapper(any(), TestDataFactory.makeMpesaPushResponseEntity())
 
         //Create a test observer instance & subscribe it getProjects
-        val testObserver = remote.getMpesaPushResponse(anyString(), anyString()).test()
+        val testObserver = remote.getMpesaPushResponse("Bearer ", "signature", TestDataFactory.makeMpesaPushRequest()).test()
 
         //Verify that the observer completes
         testObserver.assertComplete()
@@ -59,7 +59,7 @@ class JengaRemoteImplTest {
 
     private fun stubGetMpesaStkPush(observable: Flowable<MpesaPushResponse>) {
         //Mock the response of the service
-        whenever(service.getMpesaStkPush(any(), any()))
+        whenever(service.getMpesaStkPush(any(), any(), any()))
                 .thenReturn(observable)
     }
 

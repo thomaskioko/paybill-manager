@@ -35,8 +35,11 @@ class GetMpesaStkPushTest {
     fun getMpesaStkPushCompletes() {
         stubMpesaPushRequestRepository(Flowable.just(TestDataFactory.makeJengaMpesaPushResponse()))
 
+        val pushRequest = TestDataFactory.makeMpesaPushRequest()
+
         val testObserver = getMpesaStkPush.buildUseCaseObservable(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: wers", "signaturePayload")
+                GetMpesaStkPush.Params.forGetMpesaPushRequest(
+                        "Bearer: wers", "signaturePayload", pushRequest)
         ).test()
 
         //Verify that the observable completes
@@ -50,6 +53,6 @@ class GetMpesaStkPushTest {
 
 
     private fun stubMpesaPushRequestRepository(completable: Flowable<MpesaPushResponse>) {
-        whenever(repository.getMpesaStkPush(any(), any())).thenReturn(completable)
+        whenever(repository.getMpesaStkPush(any(), any(), any())).thenReturn(completable)
     }
 }

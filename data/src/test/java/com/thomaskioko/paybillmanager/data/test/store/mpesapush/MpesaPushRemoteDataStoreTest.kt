@@ -24,7 +24,10 @@ class MpesaPushRemoteDataStoreTest {
 
         stubGetMpesaStkPushRequest(Flowable.just(DataFactory.makeMpesaPushResponseEntity()))
 
-        val testObserver = store.getMpesaStkPushRequest("Bearer: ", "signaturePayload").test()
+        val pushRequest = DataFactory.makeMpesaPushRequest()
+
+        val testObserver = store.getMpesaStkPushRequest(
+                "Bearer: ", "signaturePayload", pushRequest).test()
         testObserver.assertComplete()
 
     }
@@ -35,7 +38,7 @@ class MpesaPushRemoteDataStoreTest {
     }
 
     private fun stubGetMpesaStkPushRequest(observer: Flowable<MpesaPushResponseEntity>){
-        whenever(remote.getMpesaStkPushRequest(any(), any()))
+        whenever(remote.getMpesaStkPushRequest(any(), any(), any()))
                 .thenReturn(observer)
     }
 }

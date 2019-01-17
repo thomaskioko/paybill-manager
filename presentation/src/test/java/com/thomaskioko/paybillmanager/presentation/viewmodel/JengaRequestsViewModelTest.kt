@@ -132,12 +132,19 @@ class JengaRequestsViewModelTest {
     @Test
     fun fetchMpesaPushResponseExecutesUseCase() {
 
+        val pushRequest = JengaFactory.makeMpesaPushRequest()
+
         //invoke fetch fetchJengaToken
-        viewModel.fetchMpesaPushResponse("Bearer: ", "signaturePayload")
+        viewModel.fetchMpesaPushResponse(
+                "Bearer: ", "signaturePayload", pushRequest
+        )
 
         //verify that fetch bill by id use case is called once
         verify(getMpesaStkPush, times(1)).execute(any(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", "signaturePayload")
+                GetMpesaStkPush.Params
+                        .forGetMpesaPushRequest(
+                                "Bearer: ", "signaturePayload", pushRequest
+                        )
         ))
     }
 
@@ -148,11 +155,18 @@ class JengaRequestsViewModelTest {
 
         stubMpesaPushViewMapperMapToView(view, model)
 
+        val pushRequest = JengaFactory.makeMpesaPushRequest()
+
         //invoke fetch fetchJengaToken
-        viewModel.fetchMpesaPushResponse("Bearer: ", "signaturePayload")
+        viewModel.fetchMpesaPushResponse(
+                "Bearer: ", "signaturePayload", pushRequest
+        )
 
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", "signaturePayload")
+                GetMpesaStkPush.Params
+                        .forGetMpesaPushRequest(
+                                "Bearer: ", "signaturePayload", pushRequest
+                        )
         ))
 
         //Pass data to onNext callback
@@ -169,11 +183,18 @@ class JengaRequestsViewModelTest {
 
         stubMpesaPushViewMapperMapToView(view, model)
 
+        val pushRequest = JengaFactory.makeMpesaPushRequest()
+
         //invoke fetch fetchMpesaPushResponse
-        viewModel.fetchMpesaPushResponse("Bearer: ", "signaturePayload")
+        viewModel.fetchMpesaPushResponse(
+                "Bearer: ", "signaturePayload", pushRequest
+        )
 
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", "signaturePayload")
+                GetMpesaStkPush.Params
+                        .forGetMpesaPushRequest(
+                                "Bearer: ", "signaturePayload", pushRequest
+                        )
         ))
 
         //Pass data to onNext callback
@@ -185,12 +206,18 @@ class JengaRequestsViewModelTest {
 
     @Test
     fun fetchMpesaPushResponseReturnsError() {
+        val pushRequest = JengaFactory.makeMpesaPushRequest()
         //invoke fetch fetchMpesaPushResponse
-        viewModel.fetchMpesaPushResponse("Bearer: ", "signaturePayload")
+        viewModel.fetchMpesaPushResponse(
+                "Bearer: ", "signaturePayload", pushRequest
+        )
 
         //Use captor to capture the response when execute is called
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", "signaturePayload")
+                GetMpesaStkPush.Params
+                        .forGetMpesaPushRequest(
+                                "Bearer: ", "signaturePayload", pushRequest
+                        )
         ))
 
 
@@ -203,14 +230,20 @@ class JengaRequestsViewModelTest {
 
     @Test
     fun fetchMpesaPushResponseReturnsMessageForError() {
+        val pushRequest = JengaFactory.makeMpesaPushRequest()
         val errorMessage = DataFactory.randomString()
 
         //invoke fetch fetchMpesaPushResponse
-        viewModel.fetchMpesaPushResponse("Bearer: ", "signaturePayload")
+        viewModel.fetchMpesaPushResponse(
+                "Bearer: ", "signaturePayload", pushRequest
+        )
 
         //Use captor to capture the response when execute is called
         verify(getMpesaStkPush).execute(mpesaCaptor.capture(), eq(
-                GetMpesaStkPush.Params.forGetMpesaPushRequest("Bearer: ", "signaturePayload")
+                GetMpesaStkPush.Params
+                        .forGetMpesaPushRequest(
+                                "Bearer: ", "signaturePayload", pushRequest
+                        )
         ))
 
 

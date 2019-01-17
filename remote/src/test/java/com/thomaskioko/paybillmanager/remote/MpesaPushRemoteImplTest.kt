@@ -29,7 +29,9 @@ class MpesaPushRemoteImplTest {
         stubMpesaPushResponseMapper(makeMpesaPushResponse(), makeMpesaPushResponseEntity())
 
         //Create a test observer instance & subscribe it getProjects
-        val testObserver = remote.getMpesaStkPushRequest("Bearer: ", "signaturePayload").test()
+        val testObserver = remote.getMpesaStkPushRequest(
+                "Bearer: ", "signaturePayload", TestDataFactory.makeMpesaPushRequest()
+        ).test()
 
         //Verify that the observer completes
         testObserver.assertComplete()
@@ -37,7 +39,7 @@ class MpesaPushRemoteImplTest {
 
     private fun stubGetMpesaStkPush(observable: Flowable<MpesaPushResponse>) {
         //Mock the response of the service
-        whenever(service.getMpesaStkPush(any(), any()))
+        whenever(service.getMpesaStkPush(any(), any(), any()))
                 .thenReturn(observable)
     }
 
