@@ -16,9 +16,9 @@ import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.mobile.mapper.BillsViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
-import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
-import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
-import com.thomaskioko.paybillmanager.mobile.util.matcher.ToolbarViewMarcher.matchToolbarTitle
+import com.thomaskioko.paybillmanager.mobile.test.EspressoAnimationTestUtil
+import com.thomaskioko.paybillmanager.mobile.test.ViewModelUtil
+import com.thomaskioko.paybillmanager.mobile.test.matcher.ToolbarViewMarcher.matchToolbarTitle
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState

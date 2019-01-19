@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.util
+package com.thomaskioko.paybillmanager.mobile.test
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

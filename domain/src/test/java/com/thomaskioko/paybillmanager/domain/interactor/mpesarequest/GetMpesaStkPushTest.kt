@@ -8,10 +8,8 @@ import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.model.MpesaPushResponse
 import com.thomaskioko.paybillmanager.domain.repository.MpesaRequestRepository
 import io.reactivex.Flowable
-import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 

@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.util.matcher
+package com.thomaskioko.paybillmanager.mobile.test.matcher
 
 import android.content.res.Resources
 import android.view.View

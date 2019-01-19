@@ -9,8 +9,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
-import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
-import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil.createViewModelFactory
+import com.thomaskioko.paybillmanager.mobile.test.EspressoAnimationTestUtil
+import com.thomaskioko.paybillmanager.mobile.test.ViewModelUtil.createViewModelFactory
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.model.JengaTokenView
 import com.thomaskioko.paybillmanager.presentation.model.MpesaPushResponseView
@@ -19,9 +19,7 @@ import com.thomaskioko.paybillmanager.presentation.viewmodel.JengaRequestsViewMo
 import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
 import com.thomaskioko.paybillmanager.presentation.viewmodel.billcategory.GetBillCategoryViewModel
 import org.hamcrest.core.IsNot
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
