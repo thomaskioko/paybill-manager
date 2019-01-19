@@ -59,8 +59,6 @@ class BillsListFragment : BaseFragment() {
                 .get(GetBillsViewModel::class.java)
 
         setupBillsRecycler()
-        mapper = BillsViewMapper()
-
         closeKeyboard()
 
         val animatedConfig = AnimatedPieViewConfig()
@@ -101,7 +99,6 @@ class BillsListFragment : BaseFragment() {
 
     private fun setupBillsRecycler() {
         val divider = RecyclerViewItemDecoration(resources.getColor(R.color.white), 2)
-        adapter = BillsAdapter()
         adapter.billOnClickListener = listener
         recycler_view_bill_list.layoutManager = LinearLayoutManager(activity)
         recycler_view_bill_list.addItemDecoration(divider)
