@@ -2,13 +2,13 @@ package com.thomaskioko.paybillmanager.domain.repository
 
 import com.thomaskioko.paybillmanager.domain.model.Category
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 
 interface CategoryRepository {
 
-    fun getCategories(): Observable<List<Category>>
+    fun getCategories(): Flowable<List<Category>>
 
-    fun getCategoryById(categoryId: String): Observable<Category>
+    fun getCategoryById(categoryId: String): Flowable<Category>
 
     fun createCategory(category: Category): Completable
 

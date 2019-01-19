@@ -16,7 +16,7 @@ import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.util.SingleLiveData
 import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import javax.inject.Inject
 
 @VisibleForTesting
@@ -126,7 +126,7 @@ open class SharedViewModel @Inject internal constructor(
     }
 
 
-    inner class CategoriesSubscriber : DisposableObserver<List<Category>>() {
+    inner class CategoriesSubscriber : DisposableSubscriber<List<Category>>() {
         override fun onNext(t: List<Category>) {
             categoriesLiveData.postValue(Resource(ResourceState.SUCCESS,
                     t.map { mapper.mapToView(it) }, null))

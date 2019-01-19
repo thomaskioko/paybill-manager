@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- From: support/v7/appcompat/res/drawable/abc_dialog_material_background_light.xml -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="20dp"
+    android:insetRight="25dp">
+
+    <shape android:shape="rectangle">
+
+        <solid android:color="?themeBackground" />
+    </shape>
+
+</inset>

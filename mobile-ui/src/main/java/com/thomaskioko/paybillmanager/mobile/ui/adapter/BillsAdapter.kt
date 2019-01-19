@@ -42,7 +42,7 @@ class BillsAdapter @Inject constructor() : RecyclerView.Adapter<BillsAdapter.Vie
                 R.string.placeholder_bill_account, bill.accountNumber)
 
         holder.itemView.setOnClickListener{
-            billOnClickListener?.onBillClicked(bill.billId)
+            billOnClickListener?.onBillClicked(bill.billId, bill.categoryId)
         }
     }
 

@@ -2,33 +2,23 @@ package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 
 import android.os.Bundle
-import android.view.*
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.stepstone.stepper.StepperLayout
 import com.stepstone.stepper.VerificationError
 import com.thomaskioko.paybillmanager.mobile.R
-import com.thomaskioko.paybillmanager.mobile.injection.Injectable
-import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.StepperAdapter
+import com.thomaskioko.paybillmanager.mobile.ui.base.BaseFragment
 import com.thomaskioko.paybillmanager.mobile.ui.util.AnimationUtils
 import com.thomaskioko.paybillmanager.mobile.ui.util.DismissableAnimation
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import kotlinx.android.synthetic.main.fragment_create_bill.*
 import timber.log.Timber
-import javax.inject.Inject
 
 
-class MaterialStepperFragment : Fragment(), Injectable, DismissableAnimation, StepperLayout.StepperListener {
-
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var navigationController: NavigationController
+class MaterialStepperFragment : BaseFragment(), DismissableAnimation, StepperLayout.StepperListener {
 
 
     companion object {
@@ -42,35 +32,10 @@ class MaterialStepperFragment : Fragment(), Injectable, DismissableAnimation, St
         }
     }
 
-
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_create_bill, container, false)
-
-        if (activity!!.intent.hasExtra(ARG_REVEAL)) {
-            val revealAnim: RevealAnimationSettings = arguments?.getParcelable(ARG_REVEAL)!!
-            AnimationUtils.registerCircularRevealAnimation(view!!,
-                    revealAnim,
-                    ContextCompat.getColor(context!!, R.color.colorPrimaryDark),
-                    ContextCompat.getColor(context!!, R.color.white))
-        }
-
-
-        view.isFocusableInTouchMode = true
-        view.requestFocus()
-        view.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
-                navigationController.navigateToBillsListFragment()
-                return@OnKeyListener true
-            }
-            false
-        })
-
-
-        return view
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_create_bill
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -88,7 +53,6 @@ class MaterialStepperFragment : Fragment(), Injectable, DismissableAnimation, St
     }
 
 
-
     override fun onStepSelected(newStepPosition: Int) {
         when (newStepPosition) {
             0 -> toolbar_title.text = resources.getString(R.string.toolbar_new_bill)
@@ -99,10 +63,11 @@ class MaterialStepperFragment : Fragment(), Injectable, DismissableAnimation, St
 
     override fun onError(verificationError: VerificationError?) {
         Timber.e("onError! -> ${verificationError!!.errorMessage}")
+        showTopErrorNotification(verificationError.errorMessage)
     }
 
     override fun onReturn() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       activity!!.finish()
     }
 
     override fun onCompleted(completeButton: View?) {
@@ -123,7 +88,7 @@ class MaterialStepperFragment : Fragment(), Injectable, DismissableAnimation, St
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
+        when (item.itemId) {
             android.R.id.home -> {
                 navigationController.navigateToBillsListFragment()
             }

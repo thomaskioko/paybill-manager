@@ -16,7 +16,6 @@ env:
   - ANDROID_BUILD_TOOLS=28
   - ADB_INSTALL_TIMEOUT=5
 android:
-  update_sdk: true
   components:
   - tools
   - platform-tools
@@ -36,6 +35,8 @@ android:
   - android-sdk-preview-license-.+
   - android-sdk-license-.+
   - google-gdk-license-.+
+
+
 before_install:
 - yes | sdkmanager "platforms;android-28"
 - yes | sdkmanager "platforms;android-27"
@@ -47,6 +48,8 @@ before_install:
 - bash keysSetup.sh
 - chmod +x gradlew
 - "./gradlew dependencies -q --console=plain || true"
+
+
 before_script:
 - android list sdk --extended --no-ui --all
 - android list targets
@@ -63,9 +66,13 @@ before_script:
 # Wake up
 - sleep 20
 - adb shell input keyevent 82 &
+
+
 script:
 - "./gradlew build jacocoTestReport assembleAndroidTest  -q --console=plain"
 - "./gradlew check -q --console=plain"
 - "./gradlew connectedCheck -q --console=plain"
+
+
 after_success:
 - bash <(curl -s https://codecov.io/bash)

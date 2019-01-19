@@ -15,17 +15,17 @@ abstract class CategoryDao {
     @JvmSuppressWildcards
     abstract fun getCachedCategories(): Flowable<List<CachedCategory>>
 
-    @Query("SELECT * FROM category where id = :billId")
+    @Query("SELECT * FROM category where id = :categoryId")
     @JvmSuppressWildcards
-    abstract fun getCachedCategoryById(billId: String): Flowable<CachedCategory>
+    abstract fun getCachedCategoryById(categoryId: String): Flowable<CachedCategory>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
-    abstract fun insertCachedCategories(cachedBills: List<CachedCategory>)
+    abstract fun insertCachedCategories(categories: List<CachedCategory>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
-    abstract fun insertCachedCategory(cachedCategory: CachedCategory)
+    abstract fun insertCategory(cachedCategory: CachedCategory)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards

@@ -13,7 +13,7 @@ class CategoryDataStoreFactoryTest {
 
 
     @Test
-    fun getDataStoreReturnsCacheDataStore(){
+    fun getDataStoreReturnsCacheDataStore() {
         assertEquals(cacheStore, factory.getCacheDataStore())
     }
 }

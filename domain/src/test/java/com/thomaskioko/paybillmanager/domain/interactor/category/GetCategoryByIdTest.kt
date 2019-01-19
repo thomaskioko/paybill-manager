@@ -3,10 +3,11 @@ package com.thomaskioko.paybillmanager.domain.interactor.category
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -19,16 +20,18 @@ class GetCategoryByIdTest {
     lateinit var categoryRepository: CategoryRepository
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
+    @Mock
+    private lateinit var threadExecutor: ThreadExecutor
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        getCategoryById = GetCategoryById(categoryRepository, postExecutionThread)
+        getCategoryById = GetCategoryById(categoryRepository, threadExecutor, postExecutionThread)
     }
 
     @Test
     fun getCategoryCompletes() {
-        stubGetBillsRepository(Observable.just(TestDataFactory.makeCategory()))
+        stubGetBillsRepository(Flowable.just(TestDataFactory.makeCategory()))
 
         val testObservable = getCategoryById.buildUseCaseObservable(
                 GetCategoryById.Params.forCategory(TestDataFactory.randomUuid())
@@ -41,7 +44,7 @@ class GetCategoryByIdTest {
         val category = TestDataFactory.makeCategory()
 
         //Stub the repository completes
-        stubGetBillsRepository(Observable.just(category))
+        stubGetBillsRepository(Flowable.just(category))
 
         val testObserver = getCategoryById.buildUseCaseObservable(
                 GetCategoryById.Params.forCategory(TestDataFactory.randomUuid())
@@ -52,7 +55,7 @@ class GetCategoryByIdTest {
     }
 
 
-    private fun stubGetBillsRepository(observable: Observable<Category>) {
+    private fun stubGetBillsRepository(observable: Flowable<Category>) {
         whenever(categoryRepository.getCategoryById(any())).thenReturn(observable)
     }
 }

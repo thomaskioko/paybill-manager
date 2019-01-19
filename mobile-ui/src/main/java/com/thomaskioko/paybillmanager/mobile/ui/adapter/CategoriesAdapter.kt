@@ -34,9 +34,11 @@ class CategoriesAdapter @Inject constructor(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = categoriesList[position]
 
-        holder.imageDrawable.background = ResourcesCompat.getDrawable(
+        val iconDrawable = ResourcesCompat.getDrawable(
                 holder.context.resources, category.drawableUrl, null
         )
+
+        holder.imageBackground.setImageDrawable(iconDrawable)
 
         if (lastSelectedPosition == position) {
             holder.imageBackground.background = ResourcesCompat.getDrawable(
@@ -49,7 +51,7 @@ class CategoriesAdapter @Inject constructor(
         }
 
 
-        holder.imageDrawable.setOnClickListener {
+        holder.imageBackground.setOnClickListener {
             lastSelectedPosition = holder.adapterPosition
             notifyDataSetChanged()
 
@@ -60,8 +62,7 @@ class CategoriesAdapter @Inject constructor(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var context = view.context!!
         val layout = view.layout_item!!
-        val imageBackground = view.image_button_background!!
-        val imageDrawable = view.image_button_drawable!!
+        var imageBackground = view.image_button_background!!
 
     }
 

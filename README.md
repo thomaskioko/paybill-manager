@@ -1,14 +1,21 @@
+<img alt="Icon" src="mobile-ui/src/main/res/mipmap-xxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
+
+
+# PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
+
+Your personal finance manager. 💰
+</br>
+</br>
+</br>
+
+
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/clean-architecture-implementation)](https://travis-ci.org/kioko/paybill-manager)
 [![codecov](https://codecov.io/gh/kioko/paybill-manager/branch/feature/clean-architecture-implementation/graph/badge.svg)](https://codecov.io/gh/kioko/paybill-manager)
 
-<p align="center">
-  <img src="https://github.com/kioko/paybill-manager/blob/master/app/src/main/ic_launcher_web.png?raw=true" alt="Paybill-Manager"/>
-</p>
 
 
-PayBill Manager (work-in-progress 👷🔧️👷‍♀️⛏)
--------------------
-Paybill manger is an Android app meant to help you manage your bill using [Daraja API](https://developer.safaricom.co.ke/docs)
+Paybill manger is an Android app meant to help you manage your bill using [Jenga API](https://jengaapi.io/)
 
 It attempts to use the latest cutting edge libraries and tools. As a summary:
 
@@ -23,17 +30,36 @@ It attempts to use the latest cutting edge libraries and tools. As a summary:
   
  
  
-# Development Environment
+## Development Environment
 
 The app is written entirely in Kotlin and uses the Gradle build system. You require [Android Studio 3.2 Canary 14 or higher](https://developer.android.com/studio/preview/). This is because lower versions don't support Navigation Components yet.
 
-## API Keys
-For the app to make requests you require a [Safaricom Dev Account](https://developer.safaricom.co.ke/ ). Once you have one, go ahead and [create an application](https://developer.safaricom.co.ke/user/1079/apps/add) in order to get your credentials
+## Jenga Credentials
+PaybillManager uses [Jenga Account](http://test.jengahq.io/) to handle payments, so you will need to create an account. Once you have one, go ahead and get your [keys](https://test.jengahq.io/#!/developers/api-keys) 
 
-Once you have it, open `gradle.properties` file and paste your API key in `SAFARICOM_CONSUMER_KEY` and `SAFARICOM_CONSUMER_SECRET` variables respectively.
+Once you have them, open `gradle.properties` file and paste your API key in `JENGA_API_KEY`,  `JENGA_USERNAME` and `JENGA_PASSWORD` variables respectively.
 
+## Generate Jenga Api Signature
 
-# Architecture
+A SHA-256 signature to proof that this request is coming from the merchant. We concatinate the request object then sign with Private Key and Base64 encode it. We will use `PKCS#8` with an `RSA key` in `PEM` format as per [Jenga documentation](https://developer.jengaapi.io/docs/generating-signatures).
+
+1. Generate a new RSA keypair using openssl  Run the follwing commands in your terminal
+	
+	`$ openssl genrsa -out privatekey.pem 2048 -nodes`
+	
+	Once you are successful with the above command a file (privatekey.pem) will be created on your present directory, proceed to export the public key from the keypair generated. The command below shows how to do it.
+	
+2. Export your public key
+
+	`$ openssl rsa -in privatekey.pem -outform PEM -pubout -out publickey.pem`
+	
+3. If the above command is successful, a new file (publickey.pem) will be created on your current directory. Copy the contents of this file and add it on our [jengaHQ portal](https://test.jengahq.io/#!/developers/api-keys). Make sure to copy only the contents of the keyblock and paste as is.
+
+4. **Important:** We will need to convert the RSA key into a PKCS#8 encoded key in PEM format. We only need this on the client side.	`$ openssl pkcs8 -topk8 -in privatekey.pem -nocrypt -outform PEM -out pkcs8_privatekey.pem`
+
+5. Finally, add `pkcs8_privatekey.pem` to your `assests` folder.
+
+## Architecture
 
 We followed the recommendations laid out in the [Guide to App Architecture](https://developer.android.com/jetpack/docs/guide) when deciding on the architecture for the app. We kept logic away from Activities and Fragments and moved it to [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
 
@@ -84,10 +110,10 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
   * [Okhttp][13] - for networking with Retrofit
   * [Okhttp Logging Interceptor][14] - for logging network traffic
   * [RxAndroid][15] for writing reactive components
-  * [RxAndroid][17] TicketView
-  * [RxAndroid][18] Android Material Stepper
-  * [RxAndroid][19] Android SpinKit
-  * [RxAndroid][20] Collapsible Calendar View
+  * [TicketView][17]
+  * [Android Material Stepper][18] 
+  * [Android SpinKit][19] 
+  * [Collapsible Calendar View][20] 
   
 [0]: https://developer.android.com/jetpack/foundation/
 [1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
@@ -140,10 +166,17 @@ Patches are encouraged, and may be submitted by forking this project and submitt
 #### No code!
 * You can [discuss a bug](https://github.com/kioko/paybill-manager/issues) or if it was not reported yet [submit a bug](https://github.com/kioko/paybill-manager/issues/new).
 
+## References
+
+* [Android Clean Architecture](https://github.com/android10/Android-CleanArchitecture)
+Sample app that is part of a series of blog posts about how to architect an android application using Uncle Bob's clean architecture approach.
+* [Android Architecture Blueprints](https://github.com/googlesamples/android-architecture)
+Demonstrate possible ways to help with testing, maintaining and extending of an Android app using different architectural concepts and tools.
+
 License
 -------
 
-    Copyright 2018 Thomas Kioko
+    Copyright 2019 Thomas Kioko
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

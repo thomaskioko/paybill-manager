@@ -15,14 +15,14 @@ class CategoryCacheImpl @Inject constructor(
 
     override fun createCategory(categoryEntity: CategoryEntity): Completable {
         return Completable.defer {
-            database.categoryDaoDao().insertCachedCategory(mapper.mapToCached(categoryEntity))
+            database.categoryDao().insertCategory(mapper.mapToCached(categoryEntity))
             Completable.complete()
         }
     }
 
     override fun createCategories(categoryEntity: List<CategoryEntity>): Completable {
         return Completable.defer {
-            database.categoryDaoDao().insertCachedCategories(
+            database.categoryDao().insertCachedCategories(
                     categoryEntity.map { mapper.mapToCached(it) }
             )
             Completable.complete()
@@ -31,26 +31,26 @@ class CategoryCacheImpl @Inject constructor(
 
     override fun updateCategory(categoryEntity: CategoryEntity): Completable {
         return Completable.defer {
-            database.categoryDaoDao().updateCachedCategory(mapper.mapToCached(categoryEntity))
+            database.categoryDao().updateCachedCategory(mapper.mapToCached(categoryEntity))
             Completable.complete()
         }
     }
 
     override fun getCategories(): Flowable<List<CategoryEntity>> {
-        return database.categoryDaoDao().getCachedCategories()
+        return database.categoryDao().getCachedCategories()
                 .map {
                     it.map { mapper.mapFromCached(it) }
                 }
     }
 
     override fun getCategoryById(categoryId: String): Flowable<CategoryEntity> {
-        return database.categoryDaoDao().getCachedCategoryById(categoryId)
+        return database.categoryDao().getCachedCategoryById(categoryId)
                 .map { mapper.mapFromCached(it) }
     }
 
     override fun deleteCategories(): Completable {
         return Completable.defer {
-            database.categoryDaoDao().deleteCachedCategories()
+            database.categoryDao().deleteCachedCategories()
             Completable.complete()
         }
     }

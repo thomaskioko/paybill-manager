@@ -50,9 +50,9 @@ class BillCacheDataStoreTest {
         val observable = Flowable.just(BillsDataFactory.makeBillEntity())
 
         //Stub getBills call
-        whenever(cache.getBillById(any())).thenReturn(observable)
+        whenever(cache.getBillByBillId(any())).thenReturn(observable)
 
-        val testObserver = store.getBillById(DataFactory.randomUuid()).test()
+        val testObserver = store.getBillByBillId(DataFactory.randomUuid()).test()
         testObserver.assertComplete()
     }
 
@@ -61,10 +61,10 @@ class BillCacheDataStoreTest {
     fun getBillByIdReturnData() {
         val data = BillsDataFactory.makeBillEntity()
 
-        whenever(cache.getBillById(any())).thenReturn(Flowable.just(data))
+        whenever(cache.getBillByBillId(any())).thenReturn(Flowable.just(data))
 
         //Create test observer
-        val testObserver = store.getBillById(DataFactory.randomUuid()).test()
+        val testObserver = store.getBillByBillId(DataFactory.randomUuid()).test()
         //confirm that the observer completes
         testObserver.assertValue(data)
     }

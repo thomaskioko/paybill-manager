@@ -1,11 +1,9 @@
 package com.thomaskioko.paybillmanager.mobile.injection.module
 
-import com.thomaskioko.paybillmanager.data.BillsDataRepository
-import com.thomaskioko.paybillmanager.data.CategoryDataRepository
-import com.thomaskioko.paybillmanager.data.JengaTokenDataRepository
-import com.thomaskioko.paybillmanager.domain.repository.BillsRepository
-import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
-import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
+import com.thomaskioko.paybillmanager.data.*
+import com.thomaskioko.paybillmanager.data.executor.JobExecutor
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
+import com.thomaskioko.paybillmanager.domain.repository.*
 import dagger.Binds
 import dagger.Module
 
@@ -14,11 +12,20 @@ import dagger.Module
 abstract class DataModule {
 
     @Binds
-    abstract fun bindBillsDataRepository(billsDataRepository: BillsDataRepository): BillsRepository
+    abstract fun bindThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor
 
     @Binds
-    abstract fun bindCategoryRepository(categoryRepository: CategoryDataRepository): CategoryRepository
+    abstract fun bindBillsDataRepository(repository: BillsDataRepository): BillsRepository
 
     @Binds
-    abstract fun bindJengaTokenDataRepository(jengaTokenDataRepository: JengaTokenDataRepository): JengaTokenRepository
+    abstract fun bindCategoryRepository(repository: CategoryDataRepository): CategoryRepository
+
+    @Binds
+    abstract fun bindJengaTokenDataRepository(repository: JengaTokenDataRepository): JengaTokenRepository
+
+    @Binds
+    abstract fun bindBillCategoryRepository(repository: BillCategoryDataRepository): BillCategoryRepository
+
+    @Binds
+    abstract fun bindMpesaRequestRepository(repository: MpesaPushDataRepository): MpesaRequestRepository
 }

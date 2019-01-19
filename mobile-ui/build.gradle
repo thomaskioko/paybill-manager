@@ -57,8 +57,9 @@ android {
 
 
     lintOptions {
+        quiet true
         abortOnError false
-        lintConfig rootProject.file('lint.xml')
+        ignoreWarnings true
     }
 
 }
@@ -107,6 +108,11 @@ dependencies {
     implementation deps.dagger.android_support
     kapt deps.dagger.processor
     kapt deps.dagger.compiler
+
+    /**
+     * Flashbar
+     */
+    implementation deps.flashbar
 
     /**
      * Firebase

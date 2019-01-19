@@ -36,7 +36,7 @@
 
     <string name="text_finish">Finish</string>
     <string name="text_details">Bill Details</string>
-    <string name="text_reminder">Set Reminder</string>
+    <string name="text_reminder">Repeat (Payment recurs every month)</string>
     <string name="toolbar_title_add_bill">Add Bill</string>
     <string name="text_choose_category">Choose Category</string>
 
@@ -46,7 +46,7 @@
     <string name="hint_account_number">Account Number</string>
     <string name="hint_add_a_note">Add a note</string>
     <string name="hint_amount">Amount</string>
-    <string name="hint_label">Label/Name</string>
+    <string name="hint_label">Bill Name</string>
 
     <!-- Error Messages -->
     <string name="error_no_amount">Please enter an amount</string>
@@ -59,67 +59,11 @@
     <string name="placeholder_bill_account">Account No: %1$s</string>
     <string name="placeholder_bill_number">Paybill No: %1$s</string>
     <string name="placeholder_bill_amount">Kes: %1$s</string>
+    <string name="placeholder_repeat">Remind me every %1$s of the month</string>
 
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="title_activity_settings">Settings</string>
 
-    <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
-
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
-
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
-
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
 
     <string-array name="multi_select_list_preference_default_value" />
 
@@ -142,5 +86,12 @@
     <string name="text_paybill_name">Zuku</string>
     <string name="text_paybill_account_number">320320</string>
     <string name="text_category_name">Internet</string>
+    <string name="title_enter_account_number">Enter Account Number</string>
+    <string name="title_enter_bill_number">Enter Bill Number</string>
+    <string name="title_enter_bill_name">Enter Bill Name</string>
+    <string name="title_select_payment_date">Select Payment Date</string>
+    <string name="text_choose_date">Choose Date</string>
+    <string name="text_pending">Pending</string>
+    <string name="text_health">Health</string>
 
 </resources>

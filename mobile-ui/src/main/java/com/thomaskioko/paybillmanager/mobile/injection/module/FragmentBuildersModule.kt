@@ -15,7 +15,7 @@ abstract class FragmentBuildersModule {
     abstract fun contributeAddBillFragment(): BillAmountFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeBillDetailFragment(): BillDetailFragment
+    abstract fun contributeBillDetailFragment(): PaymentFragment
 
     @ContributesAndroidInjector
     abstract fun contributeBillDetailsBottomDialogFragment(): BillDetailsFragment

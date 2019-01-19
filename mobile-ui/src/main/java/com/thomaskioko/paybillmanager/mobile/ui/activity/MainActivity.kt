@@ -1,7 +1,6 @@
 package com.thomaskioko.paybillmanager.mobile.ui.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -26,44 +25,30 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.thomaskioko.paybillmanager.domain.model.Category
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
+import com.thomaskioko.paybillmanager.mobile.ui.base.BaseFragmentActivity
+import com.thomaskioko.paybillmanager.mobile.util.AppThemes.Companion.INDIGO
+import com.thomaskioko.paybillmanager.mobile.util.AppThemes.Companion.PINK
 import com.thomaskioko.paybillmanager.presentation.viewmodel.category.CreateCategoryViewModel
+import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.DaggerAppCompatActivity
-import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCheckedChangeListener {
+class MainActivity : BaseFragmentActivity(), OnCheckedChangeListener {
 
-    companion object {
-        const val INDIGO = "indigo"
-        const val PINK = "pink"
-    }
-
-
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var navigationController: NavigationController
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var createCategoryViewModel: CreateCategoryViewModel
 
     private var drawer: Drawer? = null
-    private var isThemeDark = false
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(getSavedTheme())
         super.onCreate(savedInstanceState)
-
-        isThemeDark = getSavedTheme() != R.style.AppTheme_NoActionBar_Light
-
-        setContentView(R.layout.activity_main)
 
         createCategoryViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(CreateCategoryViewModel::class.java)
@@ -73,6 +58,11 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
 
         navigationController.navigateToBillsListFragment()
     }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+
 
     override fun onStart() {
         super.onStart()
@@ -94,6 +84,7 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
                 .withTranslucentStatusBar(true)
                 .withHeaderBackground(R.drawable.header)
                 .withSelectionListEnabled(false)
+                .addProfiles(profile)
                 .build()
 
         //Create the drawer
@@ -176,7 +167,7 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
         }
     }
 
-    override fun supportFragmentInjector() = dispatchingAndroidInjector
+
 
 
     private fun categoriesList(): List<Category> {
@@ -212,19 +203,4 @@ class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector, OnCh
         }
     }
 
-    private fun saveTheme(value: String) {
-        val editor = getPreferences(Activity.MODE_PRIVATE).edit()
-        editor.putString("theme", value)
-        editor.apply()
-        recreate()
-    }
-
-    private fun getSavedTheme(): Int {
-        val theme = getPreferences(Activity.MODE_PRIVATE).getString("theme", INDIGO)
-        return when (theme) {
-            INDIGO -> R.style.AppTheme_NoActionBar_Light
-            PINK -> R.style.AppTheme_NoActionBar_Dark
-            else -> R.style.AppTheme_NoActionBar_Light
-        }
-    }
 }

@@ -41,11 +41,20 @@ class BillsDaoTest {
     }
 
     @Test
-    fun getBillByIdReturnsData() {
+    fun getBillByBillIdReturnsData() {
         val bill = BillsCachedFactory.makeCachedBill()
         database.billsDao().insertBill(bill)
 
-        val testObserver = database.billsDao().getBillById(bill.id).test()
+        val testObserver = database.billsDao().getBillByBillId(bill.id).test()
+        testObserver.assertValue(bill)
+    }
+
+    @Test
+    fun getBillByIdsReturnsData() {
+        val bill = BillsCachedFactory.makeCachedBill()
+        database.billsDao().insertBill(bill)
+
+        val testObserver = database.billsDao().getBillByIds(bill.id, bill.categoryId).test()
         testObserver.assertValue(bill)
     }
 
