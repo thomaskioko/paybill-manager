@@ -16,7 +16,6 @@ import com.thomaskioko.paybillmanager.mobile.ui.activity.MainActivity
 import org.junit.Rule
 import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class MainActivityTest {
     @Rule
     @JvmField

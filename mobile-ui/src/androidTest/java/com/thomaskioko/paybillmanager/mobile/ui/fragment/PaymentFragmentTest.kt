@@ -41,7 +41,6 @@ class PaymentFragmentTest {
     private val categoryLiveData = MutableLiveData<Resource<CategoryView>>()
 
 
-    @Before
     fun init() {
         val fragment = PaymentFragment()
 
@@ -68,7 +67,6 @@ class PaymentFragmentTest {
 
     }
 
-    @Test
     fun onMoBileMoneyImageViewClickedInPutLayoutIsVisible() {
 
         //When mobile money icon is clicked
@@ -79,7 +77,6 @@ class PaymentFragmentTest {
 
     }
 
-    @Test
     fun onCardImageViewClickedInPutLayoutIsInvisible() {
 
         //When mobile card icon is clicked
