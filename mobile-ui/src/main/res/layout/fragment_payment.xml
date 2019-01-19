@@ -119,6 +119,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter Mobile Number"
             android:imeOptions="actionNext"
+            android:inputType="phone"
             android:textCursorDrawable="@drawable/edit_text_cursor"
             android:textSize="16sp" />
 
