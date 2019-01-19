@@ -5,8 +5,7 @@ import com.thomaskioko.paybillmanager.data.repository.jengatoken.JengaTokenCache
 import com.thomaskioko.paybillmanager.data.store.jengatoken.JengaTokenDataStoreFactory
 import com.thomaskioko.paybillmanager.domain.model.JengaToken
 import com.thomaskioko.paybillmanager.domain.repository.JengaTokenRepository
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
+import io.reactivex.Flowable
 import javax.inject.Inject
 
 class JengaTokenDataRepository @Inject constructor(
@@ -15,17 +14,17 @@ class JengaTokenDataRepository @Inject constructor(
         private val factory: JengaTokenDataStoreFactory
 ) : JengaTokenRepository {
 
-    override fun getJengaToken(): Observable<JengaToken> {
-        return cache.hasTokenExpired().toObservable()
-                .flatMap {
+    override fun getJengaToken(): Flowable<JengaToken> {
+        return cache.hasTokenExpired()
+                .flatMapPublisher {
                     factory.getDataStore(it)
-                            .getJengaToken().toObservable()
+                            .getJengaToken()
                             .distinctUntilChanged()
                 }
-                .flatMap { jengaToken ->
+                .flatMap {
                     factory.getCacheDataStore()
-                            .saveJengaToken(jengaToken)
-                            .andThen(Observable.just(jengaToken))
+                            .saveJengaToken(it)
+                            .andThen(Flowable.just(it))
                 }
                 .map {
                     mapper.mapFromEntity(it)

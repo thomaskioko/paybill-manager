@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import androidx.test.runner.AndroidJUnitRunner
+import com.thomaskioko.paybillmanager.mobile.TestApplication
 
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers

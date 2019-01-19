@@ -2,6 +2,6 @@ package com.thomaskioko.paybillmanager.mobile.ui.adapter
 
 interface BillOnClickListener {
 
-    fun onBillClicked(billId: String)
+    fun onBillClicked(billId: String, categoryId: String)
 
 }

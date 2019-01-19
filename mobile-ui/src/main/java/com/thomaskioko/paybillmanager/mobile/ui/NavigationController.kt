@@ -2,7 +2,9 @@ package com.thomaskioko.paybillmanager.mobile.ui
 
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.ui.activity.MainActivity
-import com.thomaskioko.paybillmanager.mobile.ui.fragment.*
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.BillsListFragment
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.MaterialStepperFragment
+import com.thomaskioko.paybillmanager.mobile.ui.fragment.PaymentFragment
 import com.thomaskioko.paybillmanager.mobile.ui.util.RevealAnimationSettings
 import javax.inject.Inject
 
@@ -24,13 +26,9 @@ open class NavigationController @Inject constructor(mainActivity: MainActivity) 
                 .commit()
     }
 
-    fun navigateToBillDetailFragment() {
-        val fragment = BillDetailFragment()
-        fragmentManager.beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(containerId, fragment)
-                .addToBackStack("BillDetailFragment")
-                .commit()
+    fun navigateToPaymentFragment(billId: String, categoryId: String) {
+        val bottomSheetDialogFragment = PaymentFragment.newInstance(billId, categoryId)
+        bottomSheetDialogFragment.show(fragmentManager, bottomSheetDialogFragment.tag)
     }
 
     fun navigateToMaterialStepperFragment(revealSettings: RevealAnimationSettings) {

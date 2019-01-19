@@ -16,7 +16,9 @@ open class JengaTokenCacheDataStore @Inject constructor(
 
     override fun saveJengaToken(jengaTokenEntity: JengaTokenEntity): Completable {
         return tokenCache.saveJengaToken(jengaTokenEntity)
-                .andThen(tokenCache.setExpireTime(jengaTokenEntity.expiresIn.toLong()))
+                .doOnComplete{
+                    tokenCache.setExpireTime(jengaTokenEntity.expiresIn.toLong())
+                }
     }
 
     override fun getJengaToken(): Flowable<JengaTokenEntity> {

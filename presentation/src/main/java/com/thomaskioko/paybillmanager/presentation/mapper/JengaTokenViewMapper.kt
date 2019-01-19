@@ -7,6 +7,6 @@ import javax.inject.Inject
 open class JengaTokenViewMapper @Inject constructor() : Mapper<JengaTokenView, JengaToken> {
 
     override fun mapToView(type: JengaToken): JengaTokenView {
-        return JengaTokenView(type.tokenType,type.issuedAt, type.expiresIn, type.accessToken)
+        return JengaTokenView(type.tokenType, type.issuedAt, type.expiresIn, type.accessToken)
     }
 }

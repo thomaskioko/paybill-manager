@@ -6,12 +6,12 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
 import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
 import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
-import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.util.SingleLiveData
@@ -20,10 +20,11 @@ import org.hamcrest.CoreMatchers.not
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 
-
+@RunWith(AndroidJUnit4::class)
 class BillAmountFragmentTest {
 
     @Rule

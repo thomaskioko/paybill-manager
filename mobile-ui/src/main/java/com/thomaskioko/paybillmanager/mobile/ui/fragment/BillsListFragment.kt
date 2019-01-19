@@ -25,13 +25,12 @@ import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
 import com.thomaskioko.paybillmanager.presentation.viewmodel.bill.GetBillsViewModel
+import com.thomaskioko.paybillmanager.presentation.viewmodel.billcategory.GetBillCategoryViewModel
 import kotlinx.android.synthetic.main.fragment_bills_list.*
 import javax.inject.Inject
 
 @SuppressLint("VisibleForTests")
-class BillsListFragment : BaseFragment(){
-
-
+class BillsListFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: GetBillsViewModel
@@ -138,8 +137,8 @@ class BillsListFragment : BaseFragment(){
     }
 
     private val listener = object : BillOnClickListener {
-        override fun onBillClicked(billId: String) {
-            navigationController.navigateToBillDetailFragment()
+        override fun onBillClicked(billId: String, categoryId: String) {
+            navigationController.navigateToPaymentFragment(billId, categoryId)
         }
 
 

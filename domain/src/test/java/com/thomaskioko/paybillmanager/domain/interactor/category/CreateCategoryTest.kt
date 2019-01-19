@@ -3,6 +3,7 @@ package com.thomaskioko.paybillmanager.domain.interactor.category
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.executor.PostExecutionThread
+import com.thomaskioko.paybillmanager.domain.executor.ThreadExecutor
 import com.thomaskioko.paybillmanager.domain.factory.TestDataFactory
 import com.thomaskioko.paybillmanager.domain.repository.CategoryRepository
 import io.reactivex.Completable
@@ -18,15 +19,17 @@ class CreateCategoryTest {
     lateinit var categoryRepository: CategoryRepository
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
+    @Mock
+    private lateinit var threadExecutor: ThreadExecutor
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        createCategory = CreateCategory(categoryRepository, postExecutionThread)
+        createCategory = CreateCategory(categoryRepository, threadExecutor, postExecutionThread)
     }
 
     @Test
-    fun createCategoryCompletes(){
+    fun createCategoryCompletes() {
         stubCreateCategoryRepository(Completable.complete())
 
         val testObserver = createCategory.buildUseCaseCompletable(
@@ -38,7 +41,7 @@ class CreateCategoryTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun createCategoryThrowsException(){
+    fun createCategoryThrowsException() {
         createCategory.buildUseCaseCompletable().test()
     }
 

@@ -25,7 +25,7 @@ abstract class CategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
-    abstract fun insertCachedCategory(cachedCategory: CachedCategory)
+    abstract fun insertCategory(cachedCategory: CachedCategory)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards

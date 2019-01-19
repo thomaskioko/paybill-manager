@@ -68,11 +68,29 @@ class BillsCacheImplTest {
     }
 
     @Test
+    fun getBillByBillIdReturnsData() {
+        val bill = BillsCachedFactory.makeBillEntity()
+        cache.createBill(bill).test()
+
+        val testObserver = cache.getBillByBillId(bill.billId).test()
+        testObserver.assertValue(bill)
+    }
+
+    @Test
+    fun getBillByIdsReturnsData() {
+        val bill = BillsCachedFactory.makeBillEntity()
+        cache.createBill(bill).test()
+
+        val testObserver = cache.getBillByIds(bill.billId, bill.categoryId).test()
+        testObserver.assertValue(bill)
+    }
+
+    @Test
     fun createBillReturnsData() {
         val bill = BillsCachedFactory.makeBillEntity()
         cache.createBill(bill).test()
 
-        val testObserver = cache.getBillById(bill.billId).test()
+        val testObserver = cache.getBillByBillId(bill.billId).test()
         testObserver.assertValue(bill)
     }
 
@@ -81,7 +99,7 @@ class BillsCacheImplTest {
         val bill = BillsCachedFactory.makeBillEntity()
         cache.updateBill(bill).test()
 
-        val testObserver = cache.getBillById(bill.billId).test()
+        val testObserver = cache.getBillByBillId(bill.billId).test()
         testObserver.assertValue(bill)
     }
 

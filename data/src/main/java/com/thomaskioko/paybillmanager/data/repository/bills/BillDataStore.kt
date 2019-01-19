@@ -17,7 +17,9 @@ interface BillDataStore {
 
     fun getBills(): Flowable<List<BillEntity>>
 
-    fun getBillById(billId: String): Flowable<BillEntity>
+    fun getBillByBillId(billId: String): Flowable<BillEntity>
+
+    fun getBillByIds(billId: String, categoryId: String): Flowable<BillEntity>
 
     fun updateBill(billEntity: BillEntity): Completable
 }

@@ -9,20 +9,26 @@ import com.thomaskioko.paybillmanager.cache.model.*
 import javax.inject.Inject
 
 @Database(entities = [
-    CachedBills::class,
+    CachedBillCategory::class,
+    CachedBill::class,
     CachedCategory::class,
     CachedJengaToken::class,
+    CachedMpesaPushResponse::class,
     Config::class
 ], version = 1, exportSchema = false)
 abstract class PayBillManagerDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun billsDao(): BillsDao
 
+    abstract fun billCategoryDao(): BillCategoryDao
+
     abstract fun configDao(): ConfigDao
 
-    abstract fun categoryDaoDao(): CategoryDao
+    abstract fun categoryDao(): CategoryDao
 
     abstract fun jengaTokenDao(): JengaTokenDao
+
+    abstract fun mpesaPushResponseDao(): MpesaPushResponseDao
 
 
     companion object {

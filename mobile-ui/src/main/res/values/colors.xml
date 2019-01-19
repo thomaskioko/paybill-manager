@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#15246B</color>
     <color name="colorPrimaryLight">#97a6e4</color>
     <color name="colorAccent">#812235</color>
+    <color name="colorAccentDark">#591724</color>
     <color name="colorAccentLight">#be324e</color>
     <color name="colorAccentLighter">#d7667c</color>
 
@@ -15,7 +16,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="secondary_text">#A5ADCA</color>
+    <color name="secondary_text">#989898</color>
     <color name="colorControlActivated">#812235</color>
     <color name="error">#B00020</color>
     <color name="gray_divider">#ECF2FC</color>
@@ -23,6 +24,7 @@
     <color name="lightPrimary">#E4E8F0</color>
     <color name="lightPrimaryDark">#667daa</color>
     <color name="lightAccent">#812235</color>
+    <color name="lightAccentDark">#591724</color>
     <color name="greenSuccess">#4ab0a7</color>
     <color name="red">#ff0000</color>
     <color name="dark_gray">#a9a9a9</color>
@@ -34,6 +36,7 @@
     <color name="darkPrimaryLight">#26283A</color>
     <color name="darkPrimaryLighter">#2B2C3B</color>
     <color name="darkAccent">#FF2466</color>
+    <color name="darkAccentDarker">#f00048</color>
     <color name="darkAccentGreen">#3e948d</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/colorAccent</color>

@@ -15,7 +15,7 @@ open class BillsDataStoreFactory @Inject constructor(
         return billsCacheDataStore
     }
 
-    open fun getRemoteDataStore(){
+    open fun getRemoteDataStore() {
 
     }
 }

@@ -9,7 +9,7 @@ import com.thomaskioko.paybillmanager.presentation.factory.DataFactory
 import com.thomaskioko.paybillmanager.presentation.mapper.CategoryViewMapper
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import junit.framework.TestCase
 import org.junit.Rule
 import org.junit.Test
@@ -25,12 +25,11 @@ class GetCategoryViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Captor
-    val captor = argumentCaptor<DisposableObserver<Category>>()
+    val captor = argumentCaptor<DisposableSubscriber<Category>>()
 
     private var getCategoryById = mock<GetCategoryById>()
     private var mapper = mock<CategoryViewMapper>()
     private var categoryViewModel = GetCategoryViewModel(getCategoryById, mapper)
-
 
 
     @Test
@@ -42,16 +41,16 @@ class GetCategoryViewModelTest {
     }
 
     @Test
-    fun fetchBillByIdReturnsSuccess() {
+    fun fetchCategoryByIdReturnsSuccess() {
         val category = CategoryFactory.makeStaticCategory()
         val categoryView = CategoryFactory.makeCategoryView()
         stubBillMapperMapToView(categoryView, category)
 
-        //invoke fetch fetchBillById
+        //invoke fetch fetchBillByBillId
         categoryViewModel.fetchCategory("24")
 
         //Use captor to capture the response when execute is called
-        verify(getCategoryById).execute(captor.capture(),eq(GetCategoryById.Params.forCategory("24")))
+        verify(getCategoryById).execute(captor.capture(), eq(GetCategoryById.Params.forCategory("24")))
 
         //Pass data to onNext callback
         captor.firstValue.onNext(category)
@@ -61,9 +60,8 @@ class GetCategoryViewModelTest {
     }
 
 
-
     @Test
-    fun fetchBillByIdReturnsData() {
+    fun fetchCategoryByIdReturnsData() {
         val category = CategoryFactory.makeStaticCategory()
         val categoryView = CategoryFactory.makeCategoryView()
         stubBillMapperMapToView(categoryView, category)
@@ -72,7 +70,7 @@ class GetCategoryViewModelTest {
         categoryViewModel.fetchCategory("24")
 
         //Use captor to capture the response when execute is called
-        verify(getCategoryById).execute(captor.capture(),eq(GetCategoryById.Params.forCategory("24")))
+        verify(getCategoryById).execute(captor.capture(), eq(GetCategoryById.Params.forCategory("24")))
 
         //Pass data to onNext callback
         captor.firstValue.onNext(category)
@@ -83,7 +81,7 @@ class GetCategoryViewModelTest {
 
 
     @Test
-    fun fetchBillByIdReturnsError() {
+    fun fetchCategoryByIdReturnsError() {
         //invoke fetch bill by id
         categoryViewModel.fetchCategory("24")
 
@@ -100,7 +98,7 @@ class GetCategoryViewModelTest {
 
 
     @Test
-    fun fetchBillByIdReturnsMessageForError() {
+    fun fetchCategoryByIdReturnsMessageForError() {
         val errorMessage = DataFactory.randomString()
 
         //invoke fetch bill by id

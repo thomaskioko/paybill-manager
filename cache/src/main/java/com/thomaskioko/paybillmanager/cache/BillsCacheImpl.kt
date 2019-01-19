@@ -43,8 +43,13 @@ class BillsCacheImpl @Inject constructor(
                 }
     }
 
-    override fun getBillById(billId: String): Flowable<BillEntity> {
-        return database.billsDao().getBillById(billId)
+    override fun getBillByBillId(billId: String): Flowable<BillEntity> {
+        return database.billsDao().getBillByBillId(billId)
+                .map { mapper.mapFromCached(it) }
+    }
+
+    override fun getBillByIds(billId: String, categoryId: String): Flowable<BillEntity> {
+        return database.billsDao().getBillByIds(billId, categoryId)
                 .map { mapper.mapFromCached(it) }
     }
 

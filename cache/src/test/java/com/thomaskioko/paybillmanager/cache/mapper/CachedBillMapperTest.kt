@@ -1,7 +1,7 @@
 package com.thomaskioko.paybillmanager.cache.mapper
 
 import com.thomaskioko.paybillmanager.cache.factory.BillsCachedFactory
-import com.thomaskioko.paybillmanager.cache.model.CachedBills
+import com.thomaskioko.paybillmanager.cache.model.CachedBill
 import com.thomaskioko.paybillmanager.data.model.BillEntity
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,7 +29,7 @@ class CachedBillMapperTest {
         assertEqualData(model, entity)
     }
 
-    private fun assertEqualData(model: CachedBills, entity: BillEntity) {
+    private fun assertEqualData(model: CachedBill, entity: BillEntity) {
         assertEquals(model.id, entity.billId)
         assertEquals(model.billName, entity.billName)
         assertEquals(model.paybillNumber, entity.paybillNumber)
