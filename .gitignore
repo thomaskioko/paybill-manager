@@ -41,3 +41,4 @@ captures/
 *.jks
 /.idea/dictionaries
 /.idea/caches/build_file_checksums.ser
+/mobile-ui/src/main/assets/pem
