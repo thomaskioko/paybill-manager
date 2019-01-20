@@ -6,7 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.data.BillsDataRepository
 import com.thomaskioko.paybillmanager.data.mapper.BillMapper
 import com.thomaskioko.paybillmanager.data.model.BillEntity
-import com.thomaskioko.paybillmanager.data.repository.bills.BillDataStore
+import com.thomaskioko.paybillmanager.data.store.bills.BillsCacheDataStore
 import com.thomaskioko.paybillmanager.data.store.bills.BillsDataStoreFactory
 import com.thomaskioko.paybillmanager.data.test.factory.BillsDataFactory
 import com.thomaskioko.paybillmanager.domain.model.Bill
@@ -22,19 +22,21 @@ class BillsDataRepositoryTest {
 
     private val mapper = mock<BillMapper>()
     private val factory = mock<BillsDataStoreFactory>()
-    private val store = mock<BillDataStore>()
+    private var cacheDataStore = mock<BillsCacheDataStore>()
     private val repository = BillsDataRepository(mapper, factory)
 
     @Before
     fun setup() {
         stubFactoryGetCacheDataStore()
+        stubMapperFromEntity(BillsDataFactory.makeBill(), BillsDataFactory.makeBillEntity())
+        stubMapperToEntity(BillsDataFactory.makeBill(), BillsDataFactory.makeBillEntity())
     }
 
     @Test
     fun getBillsCompletes() {
         stubGetBills(Flowable.just(BillsDataFactory.makeBillEntityList(2)))
 
-        stubMapper(BillsDataFactory.makeBill(), any())
+        stubMapperFromEntity(BillsDataFactory.makeBill(), any())
 
         val testObserver = repository.getBills().test()
         testObserver.assertComplete()
@@ -47,10 +49,39 @@ class BillsDataRepositoryTest {
 
         stubGetBills(Flowable.just(listOf(billEntity)))
 
-        stubMapper(bill, billEntity)
+        stubMapperFromEntity(bill, billEntity)
 
         val testObserver = repository.getBills().test()
         testObserver.assertValue(listOf(bill))
+    }
+
+    @Test
+    fun getBillsByIdCompletes() {
+
+        val bill = BillsDataFactory.makeBill()
+
+        stubCreateBill(Completable.complete())
+
+        repository.createBill(bill).test()
+
+        stubGetBillById(Flowable.just(BillsDataFactory.makeBillEntity()))
+
+        val testObserver = repository.getBillByBillId(bill.billId).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getBillByIdsCompletes() {
+
+        val bill = BillsDataFactory.makeBill()
+        stubCreateBill(Completable.complete())
+
+        repository.createBill(bill).test()
+
+        stubGetBillByIds(Flowable.just(BillsDataFactory.makeBillEntity()))
+
+        val testObserver = repository.getBillByIds(bill.billId, bill.categoryId).test()
+        testObserver.assertComplete()
     }
 
 
@@ -59,16 +90,16 @@ class BillsDataRepositoryTest {
 
         stubCreateBill(Completable.complete())
 
-        val testObserver = store.createBill(BillsDataFactory.makeBillEntity()).test()
+        val testObserver = repository.createBill(BillsDataFactory.makeBill()).test()
         testObserver.assertComplete()
     }
 
     @Test
     fun createBillsCompletes() {
 
-        stubCreateBill(Completable.complete())
+        stubCreateBills(Completable.complete())
 
-        val testObserver = store.createBill(BillsDataFactory.makeBillEntity()).test()
+        val testObserver = repository.createBills(listOf(BillsDataFactory.makeBill())).test()
         testObserver.assertComplete()
     }
 
@@ -77,34 +108,54 @@ class BillsDataRepositoryTest {
 
         stubUpdateBill(Completable.complete())
 
-        val testObserver = store.updateBill(BillsDataFactory.makeBillEntity()).test()
+        val testObserver = repository.updateBill(BillsDataFactory.makeBill()).test()
         testObserver.assertComplete()
     }
 
 
     private fun stubFactoryGetCacheDataStore() {
         whenever(factory.getCacheDataStore())
-                .thenReturn(store)
+                .thenReturn(cacheDataStore)
     }
 
     private fun stubCreateBill(completable: Completable) {
-        whenever(store.createBill(any()))
+        whenever(cacheDataStore.createBill(any()))
+                .thenReturn(completable)
+    }
+
+    private fun stubCreateBills(completable: Completable) {
+        whenever(cacheDataStore.createBills(any()))
                 .thenReturn(completable)
     }
 
     private fun stubUpdateBill(completable: Completable) {
-        whenever(store.updateBill(any()))
+        whenever(cacheDataStore.updateBill(any()))
                 .thenReturn(completable)
     }
 
     private fun stubGetBills(observable: Flowable<List<BillEntity>>) {
-        whenever(store.getBills())
+        whenever(cacheDataStore.getBills())
                 .thenReturn(observable)
     }
 
-    private fun stubMapper(model: Bill, entity: BillEntity) {
+    private fun stubGetBillById(observable: Flowable<BillEntity>) {
+        whenever(cacheDataStore.getBillByBillId(any()))
+                .thenReturn(observable)
+    }
+
+    private fun stubGetBillByIds(observable: Flowable<BillEntity>) {
+        whenever(cacheDataStore.getBillByIds(any(), any()))
+                .thenReturn(observable)
+    }
+
+    private fun stubMapperFromEntity(model: Bill, entity: BillEntity) {
         whenever(mapper.mapFromEntity(entity))
                 .thenReturn(model)
+    }
+
+    private fun stubMapperToEntity(model: Bill, entity: BillEntity) {
+        whenever(mapper.mapToEntity(model))
+                .thenReturn(entity)
     }
 
 }

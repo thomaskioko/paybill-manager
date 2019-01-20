@@ -37,6 +37,21 @@ class MpesaPushRemoteDataStoreTest {
        store.saveMpesaPushResponse(DataFactory.makeMpesaPushResponseEntity()).test()
     }
 
+    @Test(expected = UnsupportedOperationException::class)
+    fun getMpesaStkPushRequests() {
+        store.getMpesaStkPushRequests()
+    }
+
+    @Test(expected = UnsupportedOperationException::class)
+    fun clearMpesaPushRequests() {
+        store.clearMpesaPushRequests()
+    }
+
+    @Test(expected = UnsupportedOperationException::class)
+    fun isStkResponseCached() {
+        store.isStkResponseCached("234")
+    }
+
     private fun stubGetMpesaStkPushRequest(observer: Flowable<MpesaPushResponseEntity>){
         whenever(remote.getMpesaStkPushRequest(any(), any(), any()))
                 .thenReturn(observer)

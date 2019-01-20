@@ -70,6 +70,31 @@ class BillCacheDataStoreTest {
     }
 
     @Test
+    fun getBillByIdsCompletes() {
+
+        val observable = Flowable.just(BillsDataFactory.makeBillEntity())
+
+        //Stub getBills call
+        whenever(cache.getBillByIds(any(), any())).thenReturn(observable)
+
+        val testObserver = store.getBillByIds(DataFactory.randomUuid(), DataFactory.randomUuid()).test()
+        testObserver.assertComplete()
+    }
+
+
+    @Test
+    fun getBillByIdsReturnData() {
+        val data = BillsDataFactory.makeBillEntity()
+
+        whenever(cache.getBillByIds(any(), any())).thenReturn(Flowable.just(data))
+
+        //Create test observer
+        val testObserver = store.getBillByIds(DataFactory.randomUuid(), DataFactory.randomUuid()).test()
+        //confirm that the observer completes
+        testObserver.assertValue(data)
+    }
+
+    @Test
     fun getBillsCallsCacheStore() {
         val data = listOf(BillsDataFactory.makeBillEntity())
 

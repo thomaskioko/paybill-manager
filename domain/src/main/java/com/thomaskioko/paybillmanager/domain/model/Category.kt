@@ -1,7 +1,7 @@
 package com.thomaskioko.paybillmanager.domain.model
 
 data class Category(
-        var id: String,
-        var categoryName: String,
-        var drawableUrl: Int
+        val id: String,
+        val categoryName: String,
+        val drawableUrl: Int
 )
