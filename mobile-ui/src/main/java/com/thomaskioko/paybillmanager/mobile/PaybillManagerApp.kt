@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.Application
 import com.crashlytics.android.Crashlytics
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
 import com.thomaskioko.paybillmanager.mobile.injection.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -16,6 +18,10 @@ import javax.inject.Inject
 class PaybillManagerApp : Application(), HasActivityInjector {
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Activity>
+
+    companion object {
+        lateinit var refWatcher: RefWatcher
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -32,6 +38,14 @@ class PaybillManagerApp : Application(), HasActivityInjector {
                     .build()
             Fabric.with(fabric)
         }
+
+        setUpLeakCanary()
+    }
+
+    private fun setUpLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) { return }
+
+        LeakCanary.install(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
