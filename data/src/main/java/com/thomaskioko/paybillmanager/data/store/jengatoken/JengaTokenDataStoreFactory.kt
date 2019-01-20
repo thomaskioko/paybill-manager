@@ -9,9 +9,9 @@ open class JengaTokenDataStoreFactory @Inject constructor(
 ) {
     open fun getDataStore(tokenExpired: Boolean): JengaTokenDataStore {
         return if (!tokenExpired) {
-            tokenCacheDataStore
+            getCacheDataStore()
         } else {
-            tokenRemoteDataStore
+            getRemoteDataStore()
         }
     }
 

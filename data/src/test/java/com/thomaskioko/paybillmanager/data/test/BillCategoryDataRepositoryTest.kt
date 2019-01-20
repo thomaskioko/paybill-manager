@@ -10,7 +10,7 @@ import com.thomaskioko.paybillmanager.data.mapper.CategoryMapper
 import com.thomaskioko.paybillmanager.data.model.BillCategoryEntity
 import com.thomaskioko.paybillmanager.data.model.BillEntity
 import com.thomaskioko.paybillmanager.data.model.CategoryEntity
-import com.thomaskioko.paybillmanager.data.repository.billcategory.BillCategoryDataStore
+import com.thomaskioko.paybillmanager.data.store.billcategory.BillCategoryCacheDataStore
 import com.thomaskioko.paybillmanager.data.store.billcategory.BillCategoryDataStoreFactory
 import com.thomaskioko.paybillmanager.data.test.factory.BillCategoryFactory
 import com.thomaskioko.paybillmanager.data.test.factory.BillsDataFactory
@@ -32,12 +32,19 @@ class BillCategoryDataRepositoryTest {
     private val categoryMapper = mock<CategoryMapper>()
     private val billCategoryMapper = mock<BillCategoryMapper>()
     private val factory = mock<BillCategoryDataStoreFactory>()
-    private val store = mock<BillCategoryDataStore>()
+    private val cacheDataStore = mock<BillCategoryCacheDataStore>()
     private val repository = BillCategoryDataRepository(billMapper, billCategoryMapper, categoryMapper, factory)
 
     @Before
     fun setup() {
         stubFactoryGetCacheDataStore()
+
+        val category = CategoryDataFactory.makeCategory()
+        val categoryEntity = CategoryDataFactory.makeCategoryEntity()
+
+        stubCategoryMapToEntity(category, categoryEntity)
+        stubCategoryMapFromEntity(category, categoryEntity)
+
     }
 
 
@@ -65,7 +72,7 @@ class BillCategoryDataRepositoryTest {
     fun getCategoryByBillId() {
         stubGetCategoryByBillId(Flowable.just(CategoryDataFactory.makeCategoryEntity()))
 
-        stubCategoryMapper(CategoryDataFactory.makeCategory(), any())
+        stubCategoryMapFromEntity(CategoryDataFactory.makeCategory(), any())
 
         val testObserver = repository.getCategoryByBillId("43").test()
         testObserver.assertComplete()
@@ -74,9 +81,14 @@ class BillCategoryDataRepositoryTest {
     @Test
     fun createBillCategoryComplete() {
 
+        val billCategory = BillCategoryFactory.makeBillCategory()
+        val billCategoryEntity = BillCategoryFactory.makeBillCategoryEntity()
+
         stubCreateBillCategory(Completable.complete())
 
-        val testObserver = store.createBillCategory(BillCategoryFactory.makeBillCategoryEntity()).test()
+        stubBillCategoryCategoryMapToEntity(billCategory, billCategoryEntity)
+
+        val testObserver = repository.createBillCategory(billCategory).test()
 
         //Verify that the observer completes
         testObserver.assertComplete()
@@ -103,7 +115,7 @@ class BillCategoryDataRepositoryTest {
 
         stubGetCategoryByBillId(Flowable.just(entity))
 
-        stubCategoryMapper(model, entity)
+        stubCategoryMapFromEntity(model, entity)
 
         val testObserver = repository.getCategoryByBillId(model.id).test()
         testObserver.assertValue(model)
@@ -125,16 +137,16 @@ class BillCategoryDataRepositoryTest {
 
     private fun stubFactoryGetCacheDataStore() {
         whenever(factory.getCacheDataStore())
-                .thenReturn(store)
+                .thenReturn(cacheDataStore)
     }
 
     private fun stubGetBillCategory(observable: Flowable<BillCategoryEntity>) {
-        whenever(store.getBillCategory(any(), any()))
+        whenever(cacheDataStore.getBillCategory(any(), any()))
                 .thenReturn(observable)
     }
 
     private fun stubCreateBillCategory(completable: Completable) {
-        whenever(store.createBillCategory(any()))
+        whenever(cacheDataStore.createBillCategory(any()))
                 .thenReturn(completable)
     }
 
@@ -150,17 +162,27 @@ class BillCategoryDataRepositoryTest {
     }
 
     private fun stubGetBillsByCategoryId(observable: Flowable<List<BillEntity>>) {
-        whenever(store.getBillsByCategoryId(any()))
+        whenever(cacheDataStore.getBillsByCategoryId(any()))
                 .thenReturn(observable)
     }
 
     private fun stubGetCategoryByBillId(observable: Flowable<CategoryEntity>) {
-        whenever(store.getCategoryByBillId(any()))
+        whenever(cacheDataStore.getCategoryByBillId(any()))
                 .thenReturn(observable)
     }
 
-    private fun stubCategoryMapper(model: Category, entity: CategoryEntity) {
+    private fun stubCategoryMapFromEntity(model: Category, entity: CategoryEntity) {
         whenever(categoryMapper.mapFromEntity(entity))
                 .thenReturn(model)
+    }
+
+    private fun stubCategoryMapToEntity(model: Category, entity: CategoryEntity) {
+        whenever(categoryMapper.mapToEntity(model))
+                .thenReturn(entity)
+    }
+
+    private fun stubBillCategoryCategoryMapToEntity(model: BillCategory, entity: BillCategoryEntity) {
+        whenever(billCategoryMapper.mapToEntity(model))
+                .thenReturn(entity)
     }
 }

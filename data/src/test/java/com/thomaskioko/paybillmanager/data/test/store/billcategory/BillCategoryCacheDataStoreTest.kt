@@ -3,6 +3,7 @@ package com.thomaskioko.paybillmanager.data.test.store.billcategory
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import com.thomaskioko.paybillmanager.data.model.BillCategoryEntity
 import com.thomaskioko.paybillmanager.data.model.BillEntity
 import com.thomaskioko.paybillmanager.data.model.CategoryEntity
 import com.thomaskioko.paybillmanager.data.repository.billcategory.BillCategoryCache
@@ -64,6 +65,26 @@ class BillCategoryCacheDataStoreTest {
     }
 
     @Test
+    fun getBillCategoryCompletes() {
+
+        val entity = BillCategoryFactory.makeBillCategoryEntity()
+        stubBillCategory(Flowable.just(entity))
+
+        val testObserver = store.getBillCategory(entity.billId, entity.categoryId).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getBillCategoryCompletesReturnsData() {
+
+        val entity = BillCategoryFactory.makeBillCategoryEntity()
+        stubBillCategory(Flowable.just(entity))
+
+        val testObserver = store.getBillCategory(entity.billId, entity.categoryId).test()
+        testObserver.assertValue(entity)
+    }
+
+    @Test
     fun createBillCategoryCompletes() {
 
         //Stub create bill
@@ -93,6 +114,10 @@ class BillCategoryCacheDataStoreTest {
 
     private fun stubCategoryByBillId(observable: Flowable<CategoryEntity>) {
         whenever(cache.getCategoryByBillId(any())).thenReturn(observable)
+    }
+
+    private fun stubBillCategory(observable: Flowable<BillCategoryEntity>) {
+        whenever(cache.getBillCategory(any(), any())).thenReturn(observable)
     }
 
 }

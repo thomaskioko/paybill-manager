@@ -9,6 +9,7 @@ import com.thomaskioko.paybillmanager.data.store.mpesapush.MpesaPushCacheDataSto
 import com.thomaskioko.paybillmanager.data.test.factory.DataFactory
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -35,8 +36,42 @@ class MpesaPushCacheDataStoreTest {
         testObserver.assertComplete()
     }
 
+    @Test
+    fun clearMpesaPushRequestsCompletes() {
+        stubClearMpesaRequestResponse(Completable.complete())
+
+        val testObserver = store.clearMpesaPushRequests().test()
+        testObserver.assertComplete()
+    }
+
+    @Test(expected = UnsupportedOperationException::class)
+    fun getMpesaStkPushRequest() {
+        val entity = DataFactory.makeMpesaPushRequest()
+
+        val testObserver = store.getMpesaStkPushRequest("er", "er", entity).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun isStkResponseCachedCompletes() {
+        stubIsStkResponseCached(Single.just(false))
+
+        val testObserver = store.isStkResponseCached("123").test()
+        testObserver.assertComplete()
+    }
+
     private fun stubSaveMpesaRequestResponse(completable: Completable) {
         whenever(cache.saveMpesaPushResponse(any()))
+                .thenReturn(completable)
+    }
+
+    private fun stubClearMpesaRequestResponse(completable: Completable) {
+        whenever(cache.clearMpesaPushRequests())
+                .thenReturn(completable)
+    }
+
+    private fun stubIsStkResponseCached(completable: Single<Boolean>) {
+        whenever(cache.isStkResponseCached(any()))
                 .thenReturn(completable)
     }
 
