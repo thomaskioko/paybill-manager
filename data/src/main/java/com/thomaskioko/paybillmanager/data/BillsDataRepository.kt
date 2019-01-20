@@ -26,7 +26,7 @@ class BillsDataRepository @Inject constructor(
     }
 
     override fun getBillByIds(billId: String, categoryId: String): Flowable<Bill> {
-        return factory.getCacheDataStore().getBillByBillId(billId)
+        return factory.getCacheDataStore().getBillByIds(billId, categoryId)
                 .map { mapper.mapFromEntity(it) }
     }
 

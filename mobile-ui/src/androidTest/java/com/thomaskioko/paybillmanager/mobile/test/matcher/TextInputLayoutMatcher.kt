@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.util.matcher
+package com.thomaskioko.paybillmanager.mobile.test.matcher
 
 import android.view.View
 import androidx.test.espresso.core.internal.deps.guava.base.Preconditions

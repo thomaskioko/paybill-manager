@@ -2,26 +2,23 @@ package com.thomaskioko.paybillmanager.mobile.ui.fragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.thomaskioko.paybillmanager.domain.model.Bill
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.TestApplication
 import com.thomaskioko.paybillmanager.mobile.factory.BillsDataFactory
+import com.thomaskioko.paybillmanager.mobile.mapper.BillsViewMapper
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
-import com.thomaskioko.paybillmanager.mobile.ui.activity.MainActivity
 import com.thomaskioko.paybillmanager.mobile.ui.adapter.BillsAdapter
-import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
-import com.thomaskioko.paybillmanager.mobile.util.matcher.ToolbarViewMarcher.matchToolbarTitle
-import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
-import com.thomaskioko.paybillmanager.presentation.ViewModelFactory
+import com.thomaskioko.paybillmanager.mobile.test.EspressoAnimationTestUtil
+import com.thomaskioko.paybillmanager.mobile.test.ViewModelUtil
+import com.thomaskioko.paybillmanager.mobile.test.matcher.ToolbarViewMarcher.matchToolbarTitle
 import com.thomaskioko.paybillmanager.presentation.model.BillView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.state.ResourceState
@@ -65,6 +62,8 @@ class BillsListFragmentTest {
 
 
         fragment.viewModelFactory = ViewModelUtil.createViewModelFactory(viewModel)
+        fragment.adapter = BillsAdapter()
+        fragment.mapper = BillsViewMapper()
         activityRule.activity.setFragment(fragment)
 
         activityRule.runOnUiThread { }

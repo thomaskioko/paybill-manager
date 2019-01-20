@@ -10,8 +10,8 @@ import androidx.test.runner.AndroidJUnit4
 import com.thomaskioko.paybillmanager.mobile.R
 import com.thomaskioko.paybillmanager.mobile.SimpleFragmentActivity
 import com.thomaskioko.paybillmanager.mobile.ui.NavigationController
-import com.thomaskioko.paybillmanager.mobile.util.EspressoAnimationTestUtil
-import com.thomaskioko.paybillmanager.mobile.util.ViewModelUtil
+import com.thomaskioko.paybillmanager.mobile.test.EspressoAnimationTestUtil
+import com.thomaskioko.paybillmanager.mobile.test.ViewModelUtil
 import com.thomaskioko.paybillmanager.presentation.model.CategoryView
 import com.thomaskioko.paybillmanager.presentation.state.Resource
 import com.thomaskioko.paybillmanager.presentation.util.SingleLiveData

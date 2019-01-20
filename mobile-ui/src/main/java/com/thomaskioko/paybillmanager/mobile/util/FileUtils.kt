@@ -5,7 +5,7 @@ import timber.log.Timber
 import java.io.InputStream
 import javax.inject.Inject
 
-class FileUtils @Inject constructor(val context: Context) {
+open class FileUtils @Inject constructor(val context: Context) {
 
     fun loadFile(): String? {
         return try {

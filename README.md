@@ -10,7 +10,7 @@ Your personal finance manager. 💰
 
 
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Build Status](https://travis-ci.org/kioko/paybill-manager.svg?branch=feature/clean-architecture-implementation)](https://travis-ci.org/kioko/paybill-manager)
+[![Build Status](https://travis-ci.com/kioko/paybill-manager.svg?branch=feature/clean-architecture-implementation)](https://travis-ci.com/kioko/paybill-manager)
 [![codecov](https://codecov.io/gh/kioko/paybill-manager/branch/feature/clean-architecture-implementation/graph/badge.svg)](https://codecov.io/gh/kioko/paybill-manager)
 
 
@@ -39,7 +39,7 @@ PaybillManager uses [Jenga Account](http://test.jengahq.io/) to handle payments,
 
 Once you have them, open `gradle.properties` file and paste your API key in `JENGA_API_KEY`,  `JENGA_USERNAME` and `JENGA_PASSWORD` variables respectively.
 
-## Generate Jenga Api Signature
+## Jenga Api Signature (Generate Pem files)
 
 A SHA-256 signature to proof that this request is coming from the merchant. We concatinate the request object then sign with Private Key and Base64 encode it. We will use `PKCS#8` with an `RSA key` in `PEM` format as per [Jenga documentation](https://developer.jengaapi.io/docs/generating-signatures).
 
@@ -57,7 +57,7 @@ A SHA-256 signature to proof that this request is coming from the merchant. We c
 
 4. **Important:** We will need to convert the RSA key into a PKCS#8 encoded key in PEM format. We only need this on the client side.	`$ openssl pkcs8 -topk8 -in privatekey.pem -nocrypt -outform PEM -out pkcs8_privatekey.pem`
 
-5. Finally, add `pkcs8_privatekey.pem` to your `assests` folder.
+5. Finally, add `pkcs8_privatekey.pem` to your `assests/pem` folder.
 
 ## Architecture
 
@@ -113,7 +113,8 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
   * [TicketView][17]
   * [Android Material Stepper][18] 
   * [Android SpinKit][19] 
-  * [Collapsible Calendar View][20] 
+  * [Collapsible Calendar View][20]
+  * [LeakCanary][21] - for memory leak detection
   
 [0]: https://developer.android.com/jetpack/foundation/
 [1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
@@ -136,6 +137,7 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
 [18]: https://github.com/stepstone-tech/android-material-stepper
 [19]: https://github.com/ybq/Android-SpinKit
 [20]: https://github.com/shrikanth7698/Collapsible-Calendar-View-Android?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=6829
+[21]: https://github.com/square/leakcanary
 
 
 ## Development Progress
@@ -145,9 +147,12 @@ As mentioned before, this project uses [clean architecture](https://github.com/a
 - [x] Add CodeCov
 - [x] Setup CodeQuality Checks
 - [x] Setup Crashlytics
+- [x] Setup LeakCanary
+- [x] Invoke STK Push
+- [ ] Work On UI
+- [ ] Switch to Coroutines (Maybe) 🤔
 - [ ] Use WorkManager for reminders
-- [ ] Get CodeCoverage above 70%
-- [ ] Setup LeakCanary
+- [ ] Get CodeCoverage above 50%
 - [ ] Release Beta Version
 
 ## Contributions

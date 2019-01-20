@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.util
+package com.thomaskioko.paybillmanager.mobile.test
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

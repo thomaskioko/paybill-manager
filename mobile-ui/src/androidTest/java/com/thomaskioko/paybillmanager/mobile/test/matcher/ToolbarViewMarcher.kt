@@ -1,4 +1,4 @@
-package com.thomaskioko.paybillmanager.mobile.util.matcher
+package com.thomaskioko.paybillmanager.mobile.test.matcher
 
 import androidx.appcompat.widget.Toolbar
 import androidx.test.espresso.Espresso

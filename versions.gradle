@@ -33,6 +33,7 @@ versions.javax = "1"
 versions.javax_annotation = "1.0"
 versions.junit = "4.12"
 versions.kotlin = "1.3.11"
+versions.leakcanary = "1.6.3"
 versions.lifecycle = "2.0.0-rc01"
 versions.materialviewpager = "1.2.3"
 versions.mikepenz_material_drawer = "6.1.1"
@@ -124,6 +125,13 @@ kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 kotlin.extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$versions.kotlin"
 kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
 deps.kotlin = kotlin
+
+
+def leakcanary = [:]
+leakcanary.android = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
+leakcanary.fragment = "com.squareup.leakcanary:leakcanary-support-fragment:$versions.leakcanary"
+leakcanary.no_op = "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary"
+deps.leakcanary = leakcanary
 
 def lifecycle = [:]
 lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"

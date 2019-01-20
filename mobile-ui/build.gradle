@@ -120,11 +120,11 @@ dependencies {
     implementation deps.firebase.core
 
     /**
-     * Room
+     * LeakCanary
      */
-    implementation deps.room.runtime
-    implementation deps.room.rxjava2
-    kapt deps.room.compiler
+    debugImplementation deps.leakcanary.android
+    debugImplementation deps.leakcanary.fragment // Optional, if you use support library fragments:
+    releaseImplementation deps.leakcanary.no_op
 
     /**
      * Material Libs
@@ -155,6 +155,13 @@ dependencies {
     implementation deps.navigation.fragment
     implementation deps.navigation.ui
     implementation deps.navigation.testing
+
+    /**
+     * Room
+     */
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    kapt deps.room.compiler
 
     /**
      * RX Android

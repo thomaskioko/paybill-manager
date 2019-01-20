@@ -20,6 +20,7 @@ import javax.inject.Singleton
     TestDataModule::class,
     PresentationModule::class,
     UiModule::class,
+    TestUtilsModule::class,
     TestRemoteModule::class
 ])
 interface TestApplicationComponent {
