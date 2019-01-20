@@ -10,8 +10,7 @@ coverage:
 
   status:
     project:
-      patch: yes
-      changes: yes
+      default: off
       data:
         target: 50%
         flags: data
@@ -24,6 +23,8 @@ coverage:
       remote:
         target: 50%
         flags: remote
+    patch: false
+    changes: false
 
   flags:
     data:
