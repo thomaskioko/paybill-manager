@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 
 open class GetMpesaStkPush @Inject constructor(
-        val repository: MpesaRequestRepository,
+        private val repository: MpesaRequestRepository,
         threadExecutor: ThreadExecutor,
         postExecutionThread: PostExecutionThread
 ) : FlowableUseCase<MpesaPushResponse, GetMpesaStkPush.Params>(threadExecutor, postExecutionThread) {

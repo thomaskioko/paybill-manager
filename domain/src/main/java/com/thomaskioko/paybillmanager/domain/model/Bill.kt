@@ -2,11 +2,11 @@ package com.thomaskioko.paybillmanager.domain.model
 
 
 data class Bill(
-        var billId: String,
-        var billName: String,
-        var paybillNumber: String,
-        var accountNumber: String,
-        var amount: String,
-        var categoryId: String,
-        var reminderDate: Long
+        val billId: String,
+        val billName: String,
+        val paybillNumber: String,
+        val accountNumber: String,
+        val amount: String,
+        val categoryId: String,
+        val reminderDate: Long
 )
