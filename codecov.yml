@@ -12,7 +12,6 @@ coverage:
     project:
       patch: yes
       changes: yes
-      default: off
       data:
         target: 50%
         flags: data
